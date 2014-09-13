@@ -26,3 +26,9 @@
 *.exe
 *.out
 *.app
+
+# Eclipse settings folder
+.settings
+
+# Eclipse Debug folder
+Debug
