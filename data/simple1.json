@@ -1,0 +1,13 @@
+{
+	"_desc": "A very simple scenario with just one vehicle to test properly loading data",
+	"vehicles": [
+		{
+			"name":"Vehicle 1",
+			"data":"vehicle1.json"
+		}
+	],
+	"roadSurface": "concrete",
+	"roadSurfaceValues": "concrete, asphalt, dirt",
+	"roadCondition": "dry",
+	"roadConditionValues": "dry, wet, icy"
+}
