@@ -6,13 +6,13 @@ Vehicle simulator to test algorithms for traffic optimization.
 
 Dependencies:
 
-libboost-all-dev
-mongodb
+  * libboost-all-dev
+  * mongodb
 
-Can be installed using:
+These can be installed using:
 
-sudo apt-get install libboost-all-dev
-sudo apt-get install mongodb
+  apt-get install libboost-all-dev<br/>
+  apt-get install mongodb
 
 To build you need to link the following libraries (in this order):
 pthread, mongoclient, crypto, ssl, boost_thread, boost_filesystem, boost_system
