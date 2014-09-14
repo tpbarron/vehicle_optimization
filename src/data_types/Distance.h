@@ -14,7 +14,7 @@ public:
 	Distance(double d);
 	virtual ~Distance();
 
-	double get_distance();
+	const double get_distance() const;
 	void set_distance(double d);
 
 private:

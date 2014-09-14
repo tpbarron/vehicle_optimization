@@ -10,29 +10,25 @@
 
 #include "../data_types/Distance.h"
 
-/**
- * I don't know if this is accurage enough.
- * May need other data representation than GPS coords.
- */
 
 class Position {
 public:
 	Position();
-	Position(double lat, double lng);
+	Position(double x, double y);
 	virtual ~Position();
 
-	void set_lat(double lat);
-	void set_lng(double lng);
+	void set_x(double x);
+	void set_y(double y);
 
-	double get_lat();
-	double get_lng();
+	const double get_x() const;
+	const double get_y() const;
 
-	Distance* get_distance_to(Position &other);
+	const Distance* get_distance_to(const Position &other);
 
 private:
 
-	double lat;
-	double lng;
+	double x;
+	double y;
 
 };
 

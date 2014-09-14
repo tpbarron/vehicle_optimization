@@ -20,7 +20,7 @@ Distance::~Distance() {
 	// TODO Auto-generated destructor stub
 }
 
-double Distance::get_distance() {
+const double Distance::get_distance() const {
 	return distance;
 }
 

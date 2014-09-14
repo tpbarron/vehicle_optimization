@@ -47,9 +47,9 @@ public:
 	void set_position(Position &pos);
 	void set_speed(Speed &spd);
 
-	const Heading* get_heading() const;
-	const Position* get_position() const;
-	const Speed* get_speed() const;
+	const Heading& get_heading() const;
+	const Position& get_position() const;
+	const Speed& get_speed() const;
 
 private:
 

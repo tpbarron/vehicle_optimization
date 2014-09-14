@@ -47,15 +47,15 @@ void VehicleSensor::set_speed(Speed &spd) {
 }
 
 
-const Position* VehicleSensor::get_position() const {
-	return &pos;
+const Position& VehicleSensor::get_position() const {
+	return pos;
 }
 
-const Speed* VehicleSensor::get_speed() const {
-	return &spd;
+const Speed& VehicleSensor::get_speed() const {
+	return spd;
 }
 
 
-const Heading* VehicleSensor::get_heading() const {
-	return &hdng;
+const Heading& VehicleSensor::get_heading() const {
+	return hdng;
 }

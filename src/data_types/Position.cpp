@@ -6,56 +6,44 @@
  */
 
 #include "Position.h"
+#include <math.h>
 
 Position::Position() {
-	lat = 0;
-	lng = 0;
+	x = 0;
+	y = 0;
 }
 
-Position::Position(double lat, double lng) {
-	Position::lat = lat;
-	Position::lng = lng;
+Position::Position(double x, double y) {
+	Position::x = x;
+	Position::y = y;
 }
 
 Position::~Position() {
 }
 
-void Position::set_lat(double lat) {
-	Position::lat = lat;
+void Position::set_x(double new_x) {
+	Position::x = new_x;
 }
 
-void Position::set_lng(double lng) {
-	Position::lng = lng;
+void Position::set_y(double new_y) {
+	Position::y = new_y;
 }
 
-double Position::get_lat() {
-	return lat;
+const double Position::get_x() const {
+	return x;
 }
 
-double Position::get_lng() {
-	return lng;
+const double Position::get_y() const {
+	return y;
 }
 
+//TODO ensure this is deallocated
 /*
- * Haversine formula
- *http://www.movable-type.co.uk/scripts/latlong.html
- *
-
-var R = 6371; // km
-var φ1 = lat1.toRadians();
-var φ2 = lat2.toRadians();
-var Δφ = (lat2-lat1).toRadians();
-var Δλ = (lon2-lon1).toRadians();
-
-var a = Math.sin(Δφ/2) * Math.sin(Δφ/2) +
-        Math.cos(φ1) * Math.cos(φ2) *
-        Math.sin(Δλ/2) * Math.sin(Δλ/2);
-var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
-
-var d = R * c;
+ * Simple euclidean dist, does not follow roads....
  */
-Distance* Position::get_distance_to(Position &other) {
+const Distance* Position::get_distance_to(const Position &other) {
 	Distance *d = new Distance();
-
+	double dist = sqrt(pow(other.get_x() - x, 2) + pow(other.get_y() - y, 2));
+	d->set_distance(dist);
 	return d;
 }

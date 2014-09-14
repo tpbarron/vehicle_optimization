@@ -58,8 +58,8 @@ void Scenario::load_vehicle(std::string name, std::string file) {
 			mongo::BSONObjBuilder b;
 			b.append("id", v.get_id_as_string());
 			b.append("time", vehicle_state.second.get<float>("time"));
-			b.append("pos_lat", vehicle_state.second.get<float>("pos_lat"));
-			b.append("pos_lng", vehicle_state.second.get<float>("pos_lng"));
+			b.append("pos_x", vehicle_state.second.get<float>("pos_x"));
+			b.append("pos_y", vehicle_state.second.get<float>("pos_y"));
 			b.append("accel", vehicle_state.second.get<float>("accel"));
 			b.append("speed", vehicle_state.second.get<float>("speed"));
 			b.append("brake", vehicle_state.second.get<float>("brake"));
