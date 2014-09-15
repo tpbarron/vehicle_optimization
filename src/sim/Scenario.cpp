@@ -46,8 +46,8 @@ void Scenario::load_scenario(std::string file) {
 void Scenario::load_vehicle(std::string name, std::string file) {
 	std::ifstream vehicle_file(file.c_str());
 	if (vehicle_file.is_open()) {
-		Vehicle v(name, &io_, &strand_);
-		vehicles.push_back(v);
+		Vehicle *v = new Vehicle(name, &io_, &strand_);
+		VehicleManager::register_vehicle(v);
 		std::stringstream vbuf;
 		vbuf << vehicle_file.rdbuf();
 		boost::property_tree::ptree vehicle_data;
@@ -56,16 +56,29 @@ void Scenario::load_vehicle(std::string name, std::string file) {
 		BOOST_FOREACH(boost::property_tree::ptree::value_type &vehicle_state, vehicle_data.get_child("data")) {
 			//Data for each vehicle
 			mongo::BSONObjBuilder b;
-			b.append("id", v.get_id_as_string());
+
+			double pos_x = vehicle_state.second.get<double>("pos_x");
+			double pos_y = vehicle_state.second.get<double>("pos_y");
+			float accel = vehicle_state.second.get<float>("accel");
+			float speed = vehicle_state.second.get<float>("speed");
+			float brake = vehicle_state.second.get<float>("brake");
+			float heading = vehicle_state.second.get<float>("heading");
+			float vturn = vehicle_state.second.get<float>("vturn");
+			float wturn = vehicle_state.second.get<float>("wturn");
+
+			v->get_sensor().set_position(new Position(pos_x, pos_y));
+
+			b.append("id", (*v).get_id_as_string());
 			b.append("time", vehicle_state.second.get<float>("time"));
-			b.append("pos_x", vehicle_state.second.get<float>("pos_x"));
-			b.append("pos_y", vehicle_state.second.get<float>("pos_y"));
-			b.append("accel", vehicle_state.second.get<float>("accel"));
-			b.append("speed", vehicle_state.second.get<float>("speed"));
-			b.append("brake", vehicle_state.second.get<float>("brake"));
-			b.append("heading", vehicle_state.second.get<float>("heading"));
-			b.append("vturn", vehicle_state.second.get<float>("vturn"));
-			b.append("wturn", vehicle_state.second.get<float>("wturn"));
+			b.append("pos_x", pos_x);
+			b.append("pos_y", pos_y);
+			b.append("accel", accel);
+			b.append("speed", speed);
+			b.append("brake", brake);
+			b.append("heading", heading);
+			b.append("vturn", vturn);
+			b.append("wturn", wturn);
+
 			mongo::BSONObj vehicle_obj = b.obj();
 			conn.insert_vehicle(vehicle_obj);
 		}
@@ -78,8 +91,9 @@ void Scenario::load_vehicle(std::string name, std::string file) {
  * TODO: start all timers
  */
 void Scenario::start() {
-	for (std::vector<Vehicle>::iterator it = vehicles.begin(); it != vehicles.end(); ++it) {
-		(*it).start();
+	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
+		Vehicle* v = VehicleManager::get_vehicles()[i];
+		v->start();
 	}
 }
 
@@ -91,3 +105,18 @@ void Scenario::update_sensor_data(boost::uuids::uuid &vid) {
 
 }
 
+
+/*
+ * Tests
+ */
+void Scenario::test_get_closest_vehicles() {
+	std::cout << "Num vehicles: " << VehicleManager::get_vehicles().size() << std::endl;
+	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
+		Vehicle* v = VehicleManager::get_vehicles()[i];
+		std::cout << v->get_readable_name() << ", " << v->get_id_as_string() << std::endl;
+		std::vector<VehicleManager::VehicleDistPair> nearby = VehicleManager::get_nearest(v->get_sensor().get_position(), 2, 10);
+		for (std::vector<VehicleManager::VehicleDistPair>::iterator vdistitr = nearby.begin(); vdistitr != nearby.end(); ++vdistitr) {
+			std::cout << "    Found vehicle: " << (*vdistitr).second->get_readable_name() << " at distance " << (*vdistitr).first->get_distance() << std::endl;
+		}
+	}
+}

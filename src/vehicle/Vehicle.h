@@ -26,7 +26,6 @@
 #include "../sensor/VehicleSensorData.h"
 #include "../utils/Utils.h"
 
-class VehicleManager;
 
 class Vehicle : public IVehicleDataListener {
 
@@ -54,7 +53,12 @@ public:
 
 	const boost::uuids::uuid get_id() const;
 	const std::string get_id_as_string() const;
+	const std::string get_readable_name() const;
+
 	Distance* get_stopping_dist();
+
+	VehicleSensor& get_sensor();
+
 
 
 private:
@@ -78,11 +82,6 @@ private:
 
 	void populate_data_struct();
 
-	/*
-	 * This is temporary and only for simulation since I
-	 * don't have a real ad-hoc network to test with
-	 */
-	void register_with_manager();
 
 	/*
 	 * Called regularly to update both check for new nearby vehicles

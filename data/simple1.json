@@ -4,6 +4,14 @@
 		{
 			"name":"Vehicle 1",
 			"data":"vehicle1.json"
+		},
+		{
+			"name":"Vehicle 2",
+			"data":"vehicle2.json"
+		},
+		{
+			"name":"Vehicle 3",
+			"data":"vehicle3.json"
 		}
 	],
 	"roadSurface": "concrete",

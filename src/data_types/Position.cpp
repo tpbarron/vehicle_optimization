@@ -41,9 +41,9 @@ const double Position::get_y() const {
 /*
  * Simple euclidean dist, does not follow roads....
  */
-const Distance* Position::get_distance_to(const Position &other) {
+const Distance* Position::get_distance_to(const Position *other) const {
 	Distance *d = new Distance();
-	double dist = sqrt(pow(other.get_x() - x, 2) + pow(other.get_y() - y, 2));
+	double dist = sqrt(pow(other->get_x() - x, 2) + pow(other->get_y() - y, 2));
 	d->set_distance(dist);
 	return d;
 }

@@ -12,6 +12,7 @@
 
 #include "../vehicle/Vehicle.h"
 #include "../utils/Utils.h"
+#include "../data_manager/VehicleManager.h"
 
 #include <iostream>
 #include <string>
@@ -39,11 +40,11 @@ public:
 
 	void update_sensor_data(boost::uuids::uuid &vid);
 
+	void test_get_closest_vehicles();
 
 private:
 
 	DBConn conn;
-	std::vector<Vehicle> vehicles;
 
 	boost::asio::io_service io_;
 	boost::asio::strand strand_;

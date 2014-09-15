@@ -10,8 +10,6 @@
 Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::strand *strand) : count_(0) {
 
 	id = Utils::gen_uuid();
-
-//	std::cout << "Vehicle created: " << name << ", " << get_id_as_string() << std::endl;
 	sensor.set_uuid(id);
 
 	data = new VehicleSensorData();
@@ -22,10 +20,6 @@ Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::str
 	_io = io;
 	_strand = strand;
 	timer = new boost::asio::deadline_timer(*_io, boost::posix_time::seconds(1));
-
-	register_with_manager();
-
-	std::cout << "Registered" << std::endl;
 }
 
 /*
@@ -61,14 +55,6 @@ void Vehicle::start() {
  * -------------------
  *
  */
-
-
-/*
- *
- */
-void Vehicle::register_with_manager() {
-	VehicleManager::register_vehicle(this);
-}
 
 
 void Vehicle::update() {
@@ -158,13 +144,19 @@ const std::string Vehicle::get_id_as_string() const {
 	return boost::uuids::to_string(id);
 }
 
+const std::string Vehicle::get_readable_name() const {
+	return readable_name;
+}
+
 //TODO: should this calculate stopping dist?
 //Should probably be cached
 Distance* Vehicle::get_stopping_dist() {
 	return &stopping_dist;
 }
 
-
+VehicleSensor& Vehicle::get_sensor() {
+	return sensor;
+}
 
 /*
  *
