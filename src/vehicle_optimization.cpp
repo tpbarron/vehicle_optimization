@@ -29,7 +29,7 @@ int main(void) {
 	s.test_get_closest_vehicles();
 
 	s.start();
-
+	s.stop();
 //	boost::asio::io_service io;
 //	boost::asio::strand strand(io);
 //

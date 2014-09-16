@@ -91,14 +91,20 @@ void Scenario::load_vehicle(std::string name, std::string file) {
  * TODO: start all timers
  */
 void Scenario::start() {
+	std::cout << "Starting scenario" << std::endl;
 	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
 		Vehicle* v = VehicleManager::get_vehicles()[i];
 		v->start();
 	}
+	io_.run();
 }
 
 void Scenario::stop() {
-	//
+	std::cout << "Stopping scenario" << std::endl;
+	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
+		Vehicle* v = VehicleManager::get_vehicles()[i];
+		v->stop();
+	}
 }
 
 void Scenario::update_sensor_data(boost::uuids::uuid &vid) {

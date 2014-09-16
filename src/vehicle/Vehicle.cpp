@@ -20,6 +20,7 @@ Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::str
 	_io = io;
 	_strand = strand;
 	timer = new boost::asio::deadline_timer(*_io, boost::posix_time::seconds(1));
+	t = nullptr;
 }
 
 /*
@@ -30,6 +31,7 @@ Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::str
 Vehicle::~Vehicle() {
 //	delete timer;
 //	delete data;
+	delete t;
 }
 
 
@@ -37,16 +39,18 @@ Vehicle::~Vehicle() {
 void Vehicle::start() {
 	(*timer).async_wait((*_strand).wrap(boost::bind(&Vehicle::update, this)));
 
-	boost::thread t(boost::bind(
+	t = new boost::thread(boost::bind(
 			static_cast<size_t (boost::asio::io_service::*)()> (&boost::asio::io_service::run),
 			boost::ref(*_io)));
-	std::cout << "thread started" << std::endl;
-
-	//TODO: I have a threading bug. If I don't join the update loop doesn't happen. But I don't want to join right away,
-	// because then everything else waits for this thread.
-	t.join();
 }
 
+
+/*
+ * Joins thread
+ */
+void Vehicle::stop() {
+	t->join();
+}
 
 /*
  *
@@ -58,7 +62,7 @@ void Vehicle::start() {
 
 
 void Vehicle::update() {
-	if (count_ < 10) {
+	if (count_ < 3) {
 		populate_data_struct();
 		broadcast_data();
 		compute();

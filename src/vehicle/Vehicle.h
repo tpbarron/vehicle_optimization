@@ -34,10 +34,14 @@ public:
 	virtual ~Vehicle();
 
 	/*
-	 * Start the timer update loop
+	 * Start the timer update loop in a thread
 	 */
 	void start();
 
+	/*
+	 * Stop thread / timers
+	 */
+	void stop();
 	/*
 	 * Send out the data to all the listeners
 	 */
@@ -73,6 +77,8 @@ private:
 	boost::asio::io_service *_io;
 	boost::asio::strand *_strand;
 	int count_;
+
+	boost::thread *t;
 
 
 	//Data struct
