@@ -23,7 +23,7 @@ void Speed::set_speed(double s) {
 	spd = s;
 }
 
-double Speed::get_speed() {
+const double Speed::get_speed() const {
 	return spd;
 }
 

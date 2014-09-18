@@ -10,7 +10,6 @@
 Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::strand *strand) : count_(0) {
 
 	id = Utils::gen_uuid();
-	sensor.set_uuid(id);
 
 	data = new VehicleSensorData();
 	data->VEHICLE_UUID = get_id_as_string();
@@ -19,18 +18,14 @@ Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::str
 
 	_io = io;
 	_strand = strand;
-	timer = new boost::asio::deadline_timer(*_io, boost::posix_time::seconds(1));
+	timer = new boost::asio::deadline_timer(*_io, boost::posix_time::milliseconds(250));
 	t = nullptr;
 }
 
-/*
- * Free memory.
- * TODO: Why does freeing the data struct give an error?
- * Maybe the timer cannot be deallocated before the io service?
- */
+
 Vehicle::~Vehicle() {
-//	delete timer;
-//	delete data;
+	delete timer;
+	delete data;
 	delete t;
 }
 
@@ -62,8 +57,10 @@ void Vehicle::stop() {
 
 
 void Vehicle::update() {
-	if (count_ < 3) {
+	if (count_ < 8) {
 		populate_data_struct();
+
+		std::cout << "sensor spd: " << (sensor.get_speed()->get_speed()) << std::endl;
 		broadcast_data();
 		compute();
 		std::cout << get_id_as_string() << ": " << count_ << "\n";
@@ -80,6 +77,7 @@ void Vehicle::update() {
  * Fill data struct will current values
  */
 void Vehicle::populate_data_struct() {
+	Scenario::update_vehicle_sensor(get_id_as_string(), sensor);
 	data->WARN = should_warn();
 	sensor.export_data(data);
 }

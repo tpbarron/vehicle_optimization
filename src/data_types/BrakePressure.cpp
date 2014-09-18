@@ -19,7 +19,7 @@ BrakePressure::~BrakePressure() {
 	// TODO Auto-generated destructor stub
 }
 
-double BrakePressure::get_pressure() {
+const double BrakePressure::get_pressure() const {
 	return pressure;
 }
 

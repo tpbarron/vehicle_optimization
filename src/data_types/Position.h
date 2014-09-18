@@ -19,6 +19,7 @@ public:
 
 	void set_x(double x);
 	void set_y(double y);
+	void set_position(double x, double y);
 
 	const double get_x() const;
 	const double get_y() const;

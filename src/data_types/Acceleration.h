@@ -22,7 +22,7 @@ public:
 	virtual ~Acceleration();
 
 	void set_acceleration(double a);
-	double get_acceleration();
+	const double get_acceleration() const;
 
 	/*
 	 * Get the expected speed after the given time if acceleration

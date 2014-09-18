@@ -15,7 +15,7 @@ public:
 	virtual ~Speed();
 
 	void set_speed(double s);
-	double get_speed();
+	const double get_speed() const;
 
 	double time_to_travel(double meters);
 

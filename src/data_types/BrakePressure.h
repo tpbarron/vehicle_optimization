@@ -17,7 +17,7 @@ public:
 	BrakePressure(double p);
 	virtual ~BrakePressure();
 
-	double get_pressure();
+	const double get_pressure() const;
 	void set_pressure(double p);
 
 	Distance* dist_to_stop();

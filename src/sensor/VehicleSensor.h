@@ -43,15 +43,13 @@ public:
 
 	void export_data(struct VehicleSensorData *data);
 
-	void set_uuid(boost::uuids::uuid &vid);
-
-	void set_acceleration(Acceleration* accel);
-	void set_brake_pressure(BrakePressure* brake_pressure);
-	void set_heading(Heading* heading);
-	void set_position(Position* pos);
-	void set_speed(Speed* spd);
-	void set_vehicle_turn_rate(TurnRate* vehicle_turn_rate);
-	void set_wheel_turn_rate(TurnRate* wheel_turn_rate);
+	void set_acceleration(double accel);
+	void set_brake_pressure(double brake_pressure);
+	void set_heading(double heading);
+	void set_position(double pos_x, double pos_y);
+	void set_speed(double spd);
+	void set_vehicle_turn_rate(double vehicle_turn_rate);
+	void set_wheel_turn_rate(double wheel_turn_rate);
 
 	const Acceleration* get_acceleration() const;
 	const BrakePressure* get_brake_pressure() const;
@@ -62,9 +60,6 @@ public:
 	const TurnRate* get_wheel_turn_rate() const;
 
 private:
-
-	//TODO: this probably isn't needed... if referencing from Vehicle.
-	boost::uuids::uuid vehicle_uuid;
 
 	/*
 	 * Keep these alphabetized

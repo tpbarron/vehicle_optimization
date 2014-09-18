@@ -19,7 +19,7 @@ public:
 	TurnRate(double tr);
 	virtual ~TurnRate();
 
-	double get_turn_rate();
+	const double get_turn_rate() const;
 	void set_turn_rate(double tr);
 
 private:

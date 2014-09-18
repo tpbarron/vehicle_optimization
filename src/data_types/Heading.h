@@ -18,7 +18,7 @@ public:
 	Heading(double h);
 	virtual ~Heading();
 
-	double get_heading();
+	const double get_heading() const;
 	void set_heading(double h);
 
 private:

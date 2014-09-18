@@ -37,36 +37,61 @@ void VehicleSensor::export_data(struct VehicleSensorData *data) {
 	data->STEERING_WHEEL_TURN_RATE = _wheel_turn_rate;
 }
 
-void VehicleSensor::set_uuid(boost::uuids::uuid &vid) {
-	vehicle_uuid = vid;
+//TODO: update these to check whether null ptr, if so create obj
+//otherwise set obj.
+void VehicleSensor::set_acceleration(double accel) {
+	if (_accel == nullptr) {
+		_accel = new Acceleration(accel);
+	} else {
+		_accel->set_acceleration(accel);
+	}
 }
 
-
-void VehicleSensor::set_acceleration(Acceleration* accel) {
-	_accel = accel;
+void VehicleSensor::set_brake_pressure(double brake_pressure) {
+	if (_brake_pressure == nullptr) {
+		_brake_pressure = new BrakePressure(brake_pressure);
+	} else {
+		_brake_pressure->set_pressure(brake_pressure);
+	}
 }
 
-void VehicleSensor::set_brake_pressure(BrakePressure* brake_pressure) {
-	_brake_pressure = brake_pressure;
+void VehicleSensor::set_heading(double heading) {
+	if (_heading == nullptr) {
+		_heading = new Heading(heading);
+	} else {
+		_heading->set_heading(heading);
+	}
+}
+void VehicleSensor::set_position(double pos_x, double pos_y) {
+	if (_pos == nullptr) {
+		_pos = new Position(pos_x, pos_y);
+	} else {
+		_pos->set_position(pos_x, pos_y);
+	}
 }
 
-void VehicleSensor::set_heading(Heading* heading) {
-	_heading = heading;
-}
-void VehicleSensor::set_position(Position* pos) {
-	_pos = pos;
-}
-
-void VehicleSensor::set_speed(Speed* spd) {
-	_spd = spd;
+void VehicleSensor::set_speed(double spd) {
+	if (_spd == nullptr) {
+		_spd = new Speed(spd);
+	} else {
+		_spd->set_speed(spd);
+	}
 }
 
-void VehicleSensor::set_vehicle_turn_rate(TurnRate* vehicle_turn_rate) {
-	_vehicle_turn_rate = vehicle_turn_rate;
+void VehicleSensor::set_vehicle_turn_rate(double vehicle_turn_rate) {
+	if (_vehicle_turn_rate == nullptr) {
+		_vehicle_turn_rate = new TurnRate(vehicle_turn_rate);
+	} else {
+		_vehicle_turn_rate->set_turn_rate(vehicle_turn_rate);
+	}
 }
 
-void VehicleSensor::set_wheel_turn_rate(TurnRate* wheel_turn_rate) {
-	_wheel_turn_rate = wheel_turn_rate;
+void VehicleSensor::set_wheel_turn_rate(double wheel_turn_rate) {
+	if (_wheel_turn_rate == nullptr) {
+		_wheel_turn_rate = new TurnRate(wheel_turn_rate);
+	} else {
+		_wheel_turn_rate->set_turn_rate(wheel_turn_rate);
+	}
 }
 
 

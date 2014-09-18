@@ -23,7 +23,7 @@ void Acceleration::set_acceleration(double a) {
 	acceleration = a;
 }
 
-double Acceleration::get_acceleration() {
+const double Acceleration::get_acceleration() const {
 	return acceleration;
 }
 

@@ -29,6 +29,11 @@ void Position::set_y(double new_y) {
 	Position::y = new_y;
 }
 
+void Position::set_position(double new_x, double new_y) {
+	Position::x = new_x;
+	Position::y = new_y;
+}
+
 const double Position::get_x() const {
 	return x;
 }

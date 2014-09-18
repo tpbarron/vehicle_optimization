@@ -19,7 +19,7 @@ Heading::~Heading() {
 	// TODO Auto-generated destructor stub
 }
 
-double Heading::get_heading() {
+const double Heading::get_heading() const {
 	return heading;
 }
 

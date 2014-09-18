@@ -24,6 +24,7 @@
 #include "../data_types/Distance.h"
 #include "../sensor/VehicleSensor.h"
 #include "../sensor/VehicleSensorData.h"
+#include "../sim/Scenario.h"
 #include "../utils/Utils.h"
 
 

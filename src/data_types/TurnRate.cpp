@@ -19,7 +19,7 @@ TurnRate::~TurnRate() {
 	// TODO Auto-generated destructor stub
 }
 
-double TurnRate::get_turn_rate() {
+const double TurnRate::get_turn_rate() const {
 	return turn_rate;
 }
 

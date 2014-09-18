@@ -9,12 +9,18 @@
 
 #include <boost/foreach.hpp>
 
-Scenario::Scenario() : strand_(io_) {
+boost::posix_time::ptime Scenario::start_time;
 
+
+Scenario::Scenario() : strand_(io_) {
+	DBConn::init();
 }
 
 
 Scenario::~Scenario() {
+	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
+		delete VehicleManager::get_vehicles()[i];
+	}
 }
 
 
@@ -66,7 +72,8 @@ void Scenario::load_vehicle(std::string name, std::string file) {
 			float vturn = vehicle_state.second.get<float>("vturn");
 			float wturn = vehicle_state.second.get<float>("wturn");
 
-			v->get_sensor().set_position(new Position(pos_x, pos_y));
+			//TODO: remove this later and use periodic update
+			v->get_sensor().set_position(pos_x, pos_y);
 
 			b.append("id", (*v).get_id_as_string());
 			b.append("time", vehicle_state.second.get<float>("time"));
@@ -80,7 +87,7 @@ void Scenario::load_vehicle(std::string name, std::string file) {
 			b.append("wturn", wturn);
 
 			mongo::BSONObj vehicle_obj = b.obj();
-			conn.insert_vehicle(vehicle_obj);
+			DBConn::insert_vehicle(vehicle_obj);
 		}
 	} else {
 		std::cerr << "Unable to open vehicle file" << std::endl;
@@ -92,6 +99,7 @@ void Scenario::load_vehicle(std::string name, std::string file) {
  */
 void Scenario::start() {
 	std::cout << "Starting scenario" << std::endl;
+	start_time = boost::posix_time::microsec_clock::local_time();
 	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
 		Vehicle* v = VehicleManager::get_vehicles()[i];
 		v->start();
@@ -107,8 +115,29 @@ void Scenario::stop() {
 	}
 }
 
-void Scenario::update_sensor_data(boost::uuids::uuid &vid) {
-
+/*
+ * Static function
+ *
+ * get data from database or cache for vehicle with given id
+ * then populate into sensor.
+ *
+ */
+void Scenario::update_vehicle_sensor(const std::string &vid, VehicleSensor &sensor) {
+	boost::posix_time::ptime cur_time = boost::posix_time::microsec_clock::local_time();
+	boost::posix_time::time_duration diff = cur_time - start_time;
+	long millis = diff.total_milliseconds();
+	std::unique_ptr<mongo::DBClientCursor> cursor = DBConn::evaluate_query(DBConn::VEHICLE_PATH, vid, millis);
+	while (cursor->more()) {
+		mongo::BSONObj obj = cursor->next();
+		sensor.set_acceleration(obj.getField(DBConn::ACCELERATION).Double());
+		sensor.set_brake_pressure(obj.getField(DBConn::BRAKE_PRESSURE).Double());
+		sensor.set_heading(obj.getField(DBConn::HEADING).Double());
+		sensor.set_position(obj.getField(DBConn::POSITION_X).Double(), obj.getField(DBConn::POSITION_Y).Double());
+		sensor.set_speed(obj.getField(DBConn::SPEED).Double());
+		sensor.set_vehicle_turn_rate(obj.getField(DBConn::VEHICLE_TURN_RATE).Double());
+		sensor.set_wheel_turn_rate(obj.getField(DBConn::WHEEL_TURN_RATE).Double());
+	}
+	cursor.release();
 }
 
 
