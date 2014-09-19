@@ -30,5 +30,6 @@
 # Eclipse settings folder
 .settings
 
-# Eclipse Debug folder
+# Eclipse Debug and Release folders
 Debug
+Release
