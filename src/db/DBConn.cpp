@@ -29,8 +29,17 @@ namespace DBConn {
 		}
 	}
 
+	void clear_db() {
+		c.remove(DBConn::SCENARIO_PATH, mongo::Query());
+		c.remove(DBConn::VEHICLE_PATH, mongo::Query());
+	}
+
+	void insert_scenario(mongo::BSONObj &obj) {
+		c.insert(DBConn::SCENARIO_PATH, obj);
+	}
+
 	void insert_vehicle(mongo::BSONObj &obj) {
-		c.insert(VEHICLE_PATH, obj);
+		c.insert(DBConn::VEHICLE_PATH, obj);
 	}
 
 	std::unique_ptr<mongo::DBClientCursor> evaluate_query(std::string query, const std::string vid, const double millis) {

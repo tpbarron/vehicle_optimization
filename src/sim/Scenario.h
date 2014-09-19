@@ -34,6 +34,7 @@ public:
 
 	void load_scenario(std::string file);
 	void load_vehicle(std::string vehicle_name, std::string vehicle_file);
+	void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid);
 
 	void start();
 	void stop();

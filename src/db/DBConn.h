@@ -12,12 +12,14 @@
 
 #include <string>
 
-//TODO: create cpp file for definitions instead of inlining
 namespace DBConn {
 
-	const std::string VEHICLE_PATH = "scenario.vehicles.data";
+	//scenario
+	const std::string SCENARIO_PATH = "scenario.vehicles";
+	const std::string SCENARIO_NAME = "name";
 
 	//Vehicle entries
+	const std::string VEHICLE_PATH = "scenario.vehicles.data";
 	const std::string ID = "id";
 	const std::string TIME = "time";
 	const std::string POSITION_X = "pos_x";
@@ -33,6 +35,11 @@ namespace DBConn {
 
 	bool connect_to_db();
 	void init();
+
+	void clear_db();
+
+	void insert_scenario(mongo::BSONObj &obj);
+
 	void insert_vehicle(mongo::BSONObj &obj);
 	std::unique_ptr<mongo::DBClientCursor> evaluate_query(const std::string query, const std::string vid, const double millis);
 

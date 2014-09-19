@@ -1,4 +1,5 @@
 {
+	"_name": "Simple1",
 	"_desc": "A very simple scenario with just one vehicle to test properly loading data",
 	"vehicles": [
 		{

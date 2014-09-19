@@ -26,7 +26,6 @@ int main(void) {
 
 	Scenario s;
 	s.load_scenario("data/simple1.json");
-	s.test_get_closest_vehicles();
 
 	s.start();
 	s.stop();
