@@ -40,6 +40,7 @@ std::vector<VehicleManager::VehicleDistPair> VehicleManager::get_nearest(const P
 	std::vector<VehicleManager::VehicleDistPair> nearest;
 	std::cout << "Position: " << p->get_x() << " " << p->get_y() << std::endl;
 	for (std::vector<Vehicle*>::iterator it = vehicles.begin(); it != vehicles.end(); ++it) {
+		std::cout << "Checking vehicle" << std::endl;
 		VehicleManager::VehicleDistPair vdist;
 		vdist.first = p->get_distance_to((*it)->get_sensor().get_position());
 		vdist.second = (*it);
@@ -47,6 +48,7 @@ std::vector<VehicleManager::VehicleDistPair> VehicleManager::get_nearest(const P
 	}
 	//Sort vector;
 	std::sort(nearest.begin(), nearest.end(), VehicleManager::closer);
+	std::cout << "sorted" << std::endl;
 	if (nearest.size() < k) {
 		return nearest;
 	} else {

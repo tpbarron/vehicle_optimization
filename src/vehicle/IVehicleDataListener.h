@@ -17,7 +17,7 @@ class IVehicleDataListener {
 public:
 	virtual ~IVehicleDataListener();
 
-	virtual void recv(struct VehicleSensorData &data) const = 0;
+	virtual void recv(struct VehicleSensorData &data) = 0;
 };
 
 #endif /* IVEHICLEDATALISTENER_H_ */

@@ -9,7 +9,7 @@
 #define VEHICLE_H_
 
 #include <iostream>
-#include <vector>
+#include <unordered_set>
 
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
@@ -19,13 +19,13 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-#include "../data_manager/VehicleManager.h"
-#include "../data_types/IVehicleDataListener.h"
-#include "../data_types/Distance.h"
-#include "../sensor/VehicleSensor.h"
-#include "../sensor/VehicleSensorData.h"
-#include "../sim/Scenario.h"
-#include "../utils/Utils.h"
+#include "IVehicleDataListener.h"
+#include "data_manager/VehicleManager.h"
+#include "data_types/Distance.h"
+#include "sensor/VehicleSensor.h"
+#include "sensor/VehicleSensorData.h"
+#include "sim/Scenario.h"
+#include "utils/Utils.h"
 
 
 class Vehicle : public IVehicleDataListener {
@@ -51,8 +51,8 @@ public:
 	/*
 	 * Add a new listener to broadcast data to
 	 */
-	void add_listener(IVehicleDataListener const &l);
-	virtual void recv(struct VehicleSensorData &data) const;
+	void add_listener(Vehicle &l);
+	virtual void recv(struct VehicleSensorData &data);
 
 	void set_stopping_dist(Distance &dist);
 
@@ -67,6 +67,14 @@ public:
 
 
 private:
+
+	struct vehicle_hash {
+	    size_t operator()(const Vehicle *v ) const
+	    {
+	        return std::hash<std::string>()((*v).get_id_as_string());
+	    }
+	};
+
 
 	boost::uuids::uuid id;
 	std::string readable_name;
@@ -85,7 +93,7 @@ private:
 	//Data struct
 	struct VehicleSensorData* data;
 
-	std::vector<const IVehicleDataListener*> listeners;
+	std::unordered_set<Vehicle*, vehicle_hash> listeners;
 
 	void populate_data_struct();
 

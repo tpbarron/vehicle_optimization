@@ -9,8 +9,8 @@
 #define VEHICLEMANAGER_H_
 
 
-#include "../vehicle/Vehicle.h"
-#include "../data_types/Position.h"
+#include "vehicle/Vehicle.h"
+#include "data_types/Position.h"
 
 #include <utility>
 #include <unordered_set>
@@ -27,7 +27,7 @@ public:
 	static void register_vehicle(Vehicle *v);
 	static std::vector<Vehicle*> get_vehicles();
 
-	typedef std::pair<const Distance*, const Vehicle*> VehicleDistPair;
+	typedef std::pair<const Distance*, Vehicle*> VehicleDistPair;
 
 	inline static bool closer(VehicleDistPair p1, VehicleDistPair p2) {
 		return ((p1.first->get_distance()) < (p2.first->get_distance()));

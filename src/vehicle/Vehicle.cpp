@@ -8,7 +8,6 @@
 #include "Vehicle.h"
 
 Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::strand *strand) : count_(0) {
-
 	id = Utils::gen_uuid();
 
 	data = new VehicleSensorData();
@@ -32,6 +31,9 @@ Vehicle::~Vehicle() {
 
 
 void Vehicle::start() {
+	//otherwise data is null on first check
+	populate_data_struct();
+
 	(*timer).async_wait((*_strand).wrap(boost::bind(&Vehicle::update, this)));
 
 	t = new boost::thread(boost::bind(
@@ -60,7 +62,11 @@ void Vehicle::update() {
 	if (count_ < 8) {
 		populate_data_struct();
 
-		std::cout << "sensor spd: " << (sensor.get_speed()->get_speed()) << std::endl;
+		std::vector<VehicleManager::VehicleDistPair> nearby_vehicles = VehicleManager::get_nearest(sensor.get_position(), 10, 10);
+		for (unsigned int i = 0; i < nearby_vehicles.size(); ++i) {
+			listeners.insert(nearby_vehicles[i].second);
+		}
+
 		broadcast_data();
 		compute();
 		std::cout << get_id_as_string() << ": " << count_ << "\n";
@@ -86,29 +92,29 @@ void Vehicle::populate_data_struct() {
  * Send out data struct to listeners
  */
 void Vehicle::broadcast_data() {
-	for (std::vector<const IVehicleDataListener*>::iterator it = listeners.begin(); it != listeners.end(); ++it) {
+	for (std::unordered_set<Vehicle*, vehicle_hash>::iterator it = listeners.begin(); it != listeners.end(); ++it) {
 		std::cout << "Sending data from " << get_id_as_string() << std::endl;
-		(**it).recv(*data);
+		(*it)->recv(*data);
 	}
 }
 
 
 /*
- * TODO: is it possible to get rid of one of the pointers here? I don't think it is. This has to be a reference
- * since can't instantiate the interface directly. Then need double pointer above in the iterator
- * for a ptr to ref.
+ *
  */
-void Vehicle::add_listener(IVehicleDataListener const &l) {
+void Vehicle::add_listener(Vehicle &l) {
 	std::cout << "Adding listener to vehicle " << get_id_as_string() << std::endl;
-	listeners.push_back(&l);
+	listeners.insert(&l);
 }
 
 
 /*
  * Compute as necessary using received data
  */
-void Vehicle::recv(struct VehicleSensorData &data) const {
+void Vehicle::recv(struct VehicleSensorData &data) {
 	std::cout << get_id_as_string() << ": received data" << std::endl;
+	//TODO: start thread for computation...
+	compute();
 }
 
 
