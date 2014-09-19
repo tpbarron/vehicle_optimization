@@ -10,12 +10,12 @@
 
 #include <string>
 
-#include "../data_types/Acceleration.h"
-#include "../data_types/BrakePressure.h"
-#include "../data_types/Heading.h"
-#include "../data_types/Position.h"
-#include "../data_types/Speed.h"
-#include "../data_types/TurnRate.h"
+#include "data_types/Acceleration.h"
+#include "data_types/BrakePressure.h"
+#include "data_types/Heading.h"
+#include "data_types/Position.h"
+#include "data_types/Speed.h"
+#include "data_types/TurnRate.h"
 
 struct VehicleSensorData {
 

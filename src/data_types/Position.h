@@ -8,8 +8,7 @@
 #ifndef POSITION_H_
 #define POSITION_H_
 
-#include "../data_types/Distance.h"
-
+#include "data_types/Distance.h"
 
 class Position {
 public:

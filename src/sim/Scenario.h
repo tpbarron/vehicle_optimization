@@ -8,13 +8,6 @@
 #ifndef SCENARIO_H_
 #define SCENARIO_H_
 
-#include "../db/DBConn.h"
-
-#include "../vehicle/Vehicle.h"
-#include "../sensor/VehicleSensor.h"
-#include "../utils/Utils.h"
-#include "../data_manager/VehicleManager.h"
-
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -25,6 +18,12 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include <boost/asio.hpp>
+
+#include "data_manager/VehicleManager.h"
+#include "db/DBConn.h"
+#include "sensor/VehicleSensor.h"
+#include "utils/Utils.h"
+#include "vehicle/Vehicle.h"
 
 class Scenario {
 public:

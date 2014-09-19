@@ -8,9 +8,9 @@
 #ifndef DBCONN_H_
 #define DBCONN_H_
 
-#include "mongo/client/dbclient.h"
-
 #include <string>
+
+#include "mongo/client/dbclient.h"
 
 namespace DBConn {
 

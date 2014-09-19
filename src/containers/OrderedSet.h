@@ -8,10 +8,11 @@
 #ifndef ORDEREDSET_H_
 #define ORDEREDSET_H_
 
-#include "data_manager/VehicleManager.h"
-#include <vector>
 #include <set>
 #include <string>
+#include <vector>
+
+#include "data_manager/VehicleManager.h"
 
 class VehicleManager;
 /*

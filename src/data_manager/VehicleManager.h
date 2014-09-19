@@ -8,13 +8,12 @@
 #ifndef VEHICLEMANAGER_H_
 #define VEHICLEMANAGER_H_
 
+#include <unordered_set>
+#include <utility>
+#include <vector>
 
 #include "vehicle/Vehicle.h"
 #include "data_types/Position.h"
-
-#include <utility>
-#include <unordered_set>
-#include <vector>
 
 class Vehicle;
 

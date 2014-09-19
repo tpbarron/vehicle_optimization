@@ -8,16 +8,17 @@
 #ifndef VEHICLESENSOR_H_
 #define VEHICLESENSOR_H_
 
-#include "../data_types/Acceleration.h"
-#include "../data_types/BrakePressure.h"
-#include "../data_types/Heading.h"
-#include "../data_types/Position.h"
-#include "../data_types/Speed.h"
-#include "../data_types/TurnRate.h"
+#include <boost/uuid/uuid.hpp>
 
 #include "VehicleSensorData.h"
 
-#include <boost/uuid/uuid.hpp>
+//Not needed included from VehicleSensorData.h
+//#include "data_types/Acceleration.h"
+//#include "data_types/BrakePressure.h"
+//#include "data_types/Heading.h"
+//#include "data_types/Position.h"
+//#include "data_types/Speed.h"
+//#include "data_types/TurnRate.h"
 
 /**
  * Emits data from vehicle

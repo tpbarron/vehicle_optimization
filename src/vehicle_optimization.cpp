@@ -16,10 +16,10 @@
 
 #include <boost/asio.hpp>
 
-#include "vehicle/Vehicle.h"
-#include "utils/Utils.h"
-
 #include "sim/Scenario.h"
+#include "utils/Utils.h"
+#include "vehicle/Vehicle.h"
+
 
 
 int main(void) {

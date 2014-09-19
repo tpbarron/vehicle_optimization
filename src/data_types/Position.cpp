@@ -6,6 +6,7 @@
  */
 
 #include "Position.h"
+
 #include <math.h>
 
 Position::Position() {

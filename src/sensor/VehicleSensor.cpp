@@ -6,7 +6,8 @@
  */
 
 #include "VehicleSensor.h"
-#include "../sim/Scenario.h"
+
+#include "sim/Scenario.h"
 
 VehicleSensor::VehicleSensor() {
 	_accel = nullptr;

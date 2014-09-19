@@ -10,7 +10,7 @@
 
 #include <iostream>
 
-#include "../sensor/VehicleSensorData.h"
+#include "sensor/VehicleSensorData.h"
 
 class IVehicleDataListener {
 

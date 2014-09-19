@@ -13,15 +13,14 @@
 
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
-#include <boost/thread/thread.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
-
+#include <boost/thread/thread.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-#include "IVehicleDataListener.h"
 #include "data_manager/VehicleManager.h"
 #include "data_types/Distance.h"
+#include "IVehicleDataListener.h"
 #include "sensor/VehicleSensor.h"
 #include "sensor/VehicleSensorData.h"
 #include "sim/Scenario.h"

@@ -5,8 +5,8 @@
  *      Author: trevor
  */
 
-#include "DBConn.h"
 
+#include "DBConn.h"
 
 namespace DBConn {
 
