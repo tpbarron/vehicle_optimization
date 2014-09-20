@@ -8,6 +8,7 @@
  * is strictly prohibited.
  */
 
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
@@ -15,31 +16,55 @@
 #include <string>
 
 #include <boost/asio.hpp>
+#include <boost/program_options.hpp>
 
 #include "sim/Scenario.h"
 #include "utils/Utils.h"
 #include "vehicle/Vehicle.h"
 
+#include "tests/TestMain.h"
+
+int main(int argc, char* argv[]) {
+
+	namespace po = boost::program_options;
+	po::options_description desc("Allowed options");
+	desc.add_options()
+	    ("help", "help message")
+	    ("run-tests", po::value<bool>(), "Should run tests")
+	    ("use-graphics", po::value<bool>(), "Should use GTK graphics")
+	;
+
+	po::variables_map vm;
+	po::store(po::parse_command_line(argc, argv, desc), vm);
+	po::notify(vm);
 
 
-int main(void) {
+	if (vm.count("help")) {
+	    std::cout << desc << std::endl;
+	    return 1;
+	}
+
+	bool run_tests = false;
+	if (vm.count("run-tests")) {
+	    std::cout << "Will run tests..." << std::endl;
+	    run_tests = vm["run-tests"].as<bool>();
+	}
+
+	bool use_graphics = false;
+	if (vm.count("use_graphics")) {
+		std::cout << "Will use GTK graphics..." << std::endl;
+		use_graphics = vm["use-graphics"].as<bool>();
+	}
 
 	Scenario s;
 	s.load_scenario("data/simple1.json");
 
 	s.start();
 	s.stop();
-//	boost::asio::io_service io;
-//	boost::asio::strand strand(io);
-//
-//	Vehicle v1("v1", &io, &strand);
-//	Vehicle v2("v2", &io, &strand);
-//	Vehicle v3("v3", &io, &strand);
-//	v1.add_listener(v2);
-//	v1.add_listener(v3);
-//	v2.add_listener(v1);
-//
-//	io.run();
 
-	return 0;
+	if (run_tests) {
+		return TestMain::run_tests(argc, argv);
+	} else {
+		return 0;
+	}
 }
