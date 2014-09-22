@@ -7,7 +7,7 @@
 
 #define BOOST_TEST_DYN_LINK
 
-#include <tests/TestMain.h>
+#include "TestMain.h"
 
 #include <boost/bind.hpp>
 #include <boost/test/included/unit_test.hpp>

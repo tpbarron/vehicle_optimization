@@ -20,9 +20,12 @@ public:
 	Utils();
 	~Utils();
 
-	const static std::string DATA_DIR;
+	const static std::string SCENARIO_DATA_DIR;
 
 	static boost::uuids::random_generator gen_uuid;
+
+	static std::string get_scenario_file_path(std::string);
+	static std::string get_scenario_vehicle_file_path(std::string scenario, std::string file);
 
 };
 

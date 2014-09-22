@@ -9,22 +9,26 @@
 
 #include <boost/foreach.hpp>
 
-boost::posix_time::ptime Scenario::start_time;
 
+namespace Scenario {
 
-Scenario::Scenario() : strand_(io_) {
+boost::posix_time::ptime start_time;
+
+boost::asio::io_service io_;
+boost::asio::strand strand_(io_);
+
+void init() {
 	DBConn::init();
 }
 
-
-Scenario::~Scenario() {
+void cleanup() {
 	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
 		delete VehicleManager::get_vehicles()[i];
 	}
 }
 
 
-void Scenario::load_scenario(std::string file) {
+void load_scenario(std::string file) {
 	//read json file and insert into db
 	std::ifstream in(file.c_str());
 	if (in.is_open()) {
@@ -53,16 +57,17 @@ void Scenario::load_scenario(std::string file) {
 		boost::property_tree::ptree::value_type v;
 		BOOST_FOREACH(boost::property_tree::ptree::value_type &v, tree.get_child("vehicles")) {
 			std::string vname = v.second.get<std::string>("name");
-			std::string vfile = Utils::DATA_DIR+v.second.get<std::string>("data");
-			std::cout << vname << ": " << vfile << std::endl;
-			load_vehicle(vname, vfile);
+			std::string vfilename = v.second.get<std::string>("data");
+			std::string vpath = Utils::get_scenario_vehicle_file_path(file, vfilename);
+			std::cout << vname << ": " << vpath << std::endl;
+			load_vehicle(vname, vpath);
 		}
 	} else {
 		std::cerr << "Unable to open scenario file" << std::endl;
 	}
 }
 
-void Scenario::load_vehicle(std::string name, std::string file) {
+void load_vehicle(std::string name, std::string file) {
 	std::ifstream vehicle_file(file.c_str());
 	if (vehicle_file.is_open()) {
 		Vehicle *v = new Vehicle(name, &io_, &strand_);
@@ -74,7 +79,7 @@ void Scenario::load_vehicle(std::string name, std::string file) {
 	}
 }
 
-void Scenario::insert_vehicle_data(std::ifstream &vehicle_file, std::string vid) {
+void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid) {
 	std::stringstream vbuf;
 	vbuf << vehicle_file.rdbuf();
 	boost::property_tree::ptree vehicle_data;
@@ -112,7 +117,7 @@ void Scenario::insert_vehicle_data(std::ifstream &vehicle_file, std::string vid)
 /*
  * TODO: start all timers
  */
-void Scenario::start() {
+void start() {
 	std::cout << "Starting scenario" << std::endl;
 	start_time = boost::posix_time::microsec_clock::local_time();
 	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
@@ -122,7 +127,7 @@ void Scenario::start() {
 	io_.run();
 }
 
-void Scenario::stop() {
+void stop() {
 	std::cout << "Stopping scenario" << std::endl;
 	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
 		Vehicle* v = VehicleManager::get_vehicles()[i];
@@ -131,13 +136,13 @@ void Scenario::stop() {
 }
 
 /*
- * Static function
+ *
  *
  * get data from database or cache for vehicle with given id
  * then populate into sensor.
  *
  */
-void Scenario::update_vehicle_sensor(const std::string &vid, VehicleSensor &sensor) {
+void update_vehicle_sensor(const std::string &vid, VehicleSensor &sensor) {
 	boost::posix_time::ptime cur_time = boost::posix_time::microsec_clock::local_time();
 	boost::posix_time::time_duration diff = cur_time - start_time;
 	long millis = diff.total_milliseconds();
@@ -159,7 +164,7 @@ void Scenario::update_vehicle_sensor(const std::string &vid, VehicleSensor &sens
 /*
  * Tests
  */
-void Scenario::test_get_closest_vehicles() {
+void test_get_closest_vehicles() {
 	std::cout << "Num vehicles: " << VehicleManager::get_vehicles().size() << std::endl;
 	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
 		Vehicle* v = VehicleManager::get_vehicles()[i];
@@ -169,4 +174,6 @@ void Scenario::test_get_closest_vehicles() {
 			std::cout << "    Found vehicle: " << (*vdistitr).second->get_readable_name() << " at distance " << (*vdistitr).first->get_distance() << std::endl;
 		}
 	}
+}
+
 }

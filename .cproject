@@ -20,7 +20,7 @@
 							<targetPlatform id="cdt.managedbuild.target.gnu.platform.exe.debug.781062550" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.exe.debug"/>
 							<builder buildPath="${workspace_loc:/vehicle_optimization}/Debug" id="cdt.managedbuild.target.gnu.builder.exe.debug.249731395" keepEnvironmentInBuildfile="false" managedBuildOn="true" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.archiver.base.508220395" name="GCC Archiver" superClass="cdt.managedbuild.tool.gnu.archiver.base"/>
-							<tool command="g++ -std=gnu++11 `pkg-config --cflags --libs gtk+-3.0`" id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.91409299" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug">
+							<tool command="g++ -std=gnu++11 `pkg-config gtkmm-3.0 --cflags`" id="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug.91409299" name="GCC C++ Compiler" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.exe.debug">
 								<option id="gnu.cpp.compiler.exe.debug.option.optimization.level.1497738324" name="Optimization Level" superClass="gnu.cpp.compiler.exe.debug.option.optimization.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.optimization.level.none" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.exe.debug.option.debugging.level.966234979" name="Debug Level" superClass="gnu.cpp.compiler.exe.debug.option.debugging.level" useByScannerDiscovery="false" value="gnu.cpp.compiler.debugging.level.max" valueType="enumerated"/>
 								<option id="gnu.cpp.compiler.option.include.paths.1672678180" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" useByScannerDiscovery="false" valueType="includePath">
@@ -55,7 +55,13 @@
 							<tool command="g++" id="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug.1911842731" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.debug">
 								<option id="gnu.cpp.link.option.libs.445193531" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="pthread"/>
+									<listOptionValue builtIn="false" value="gtkmm-3.0"/>
+									<listOptionValue builtIn="false" value="atkmm-1.6"/>
+									<listOptionValue builtIn="false" value="giomm-2.4"/>
+									<listOptionValue builtIn="false" value="pangomm-1.4"/>
 									<listOptionValue builtIn="false" value="gtk-3"/>
+									<listOptionValue builtIn="false" value="glibmm-2.4"/>
+									<listOptionValue builtIn="false" value="cairomm-1.0"/>
 									<listOptionValue builtIn="false" value="gdk-3"/>
 									<listOptionValue builtIn="false" value="atk-1.0"/>
 									<listOptionValue builtIn="false" value="gio-2.0"/>
@@ -64,6 +70,7 @@
 									<listOptionValue builtIn="false" value="cairo-gobject"/>
 									<listOptionValue builtIn="false" value="pango-1.0"/>
 									<listOptionValue builtIn="false" value="cairo"/>
+									<listOptionValue builtIn="false" value="sigc-2.0"/>
 									<listOptionValue builtIn="false" value="gobject-2.0"/>
 									<listOptionValue builtIn="false" value="glib-2.0"/>
 									<listOptionValue builtIn="false" value="mongoclient"/>
@@ -147,13 +154,31 @@
 							<tool id="cdt.managedbuild.tool.gnu.c.linker.exe.release.903726788" name="GCC C Linker" superClass="cdt.managedbuild.tool.gnu.c.linker.exe.release"/>
 							<tool id="cdt.managedbuild.tool.gnu.cpp.linker.exe.release.1330909917" name="GCC C++ Linker" superClass="cdt.managedbuild.tool.gnu.cpp.linker.exe.release">
 								<option id="gnu.cpp.link.option.libs.1088286047" name="Libraries (-l)" superClass="gnu.cpp.link.option.libs" valueType="libs">
-									<listOptionValue builtIn="false" value="pthread"/>
+									<listOptionValue builtIn="false" value="gtkmm-3.0"/>
+									<listOptionValue builtIn="false" value="atkmm-1.6"/>
+									<listOptionValue builtIn="false" value="giomm-2.4"/>
+									<listOptionValue builtIn="false" value="pangomm-1.4"/>
+									<listOptionValue builtIn="false" value="gtk-3"/>
+									<listOptionValue builtIn="false" value="glibmm-2.4"/>
+									<listOptionValue builtIn="false" value="cairomm-1.0"/>
+									<listOptionValue builtIn="false" value="gdk-3"/>
+									<listOptionValue builtIn="false" value="atk-1.0"/>
+									<listOptionValue builtIn="false" value="gio-2.0"/>
+									<listOptionValue builtIn="false" value="pangocairo-1.0"/>
+									<listOptionValue builtIn="false" value="gdk_pixbuf-2.0"/>
+									<listOptionValue builtIn="false" value="cairo-gobject"/>
+									<listOptionValue builtIn="false" value="pango-1.0"/>
+									<listOptionValue builtIn="false" value="cairo"/>
+									<listOptionValue builtIn="false" value="sigc-2.0"/>
+									<listOptionValue builtIn="false" value="gobject-2.0"/>
+									<listOptionValue builtIn="false" value="glib-2.0"/>
 									<listOptionValue builtIn="false" value="mongoclient"/>
 									<listOptionValue builtIn="false" value="crypto"/>
 									<listOptionValue builtIn="false" value="ssl"/>
 									<listOptionValue builtIn="false" value="boost_thread"/>
 									<listOptionValue builtIn="false" value="boost_filesystem"/>
 									<listOptionValue builtIn="false" value="boost_system"/>
+									<listOptionValue builtIn="false" value="boost
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.linker.input.2101502396" superClass="cdt.managedbuild.tool.gnu.cpp.linker.input">
 									<additionalInput kind="additionalinputdependency" paths="$(USER_OBJS)"/>

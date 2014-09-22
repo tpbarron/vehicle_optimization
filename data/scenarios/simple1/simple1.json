@@ -15,6 +15,12 @@
 			"data":"vehicle3.json"
 		}
 	],
+	"map": {
+		"width": 100,
+		"height": 100,
+		"intersections": "simple_intersections.json",
+		"roads": "simple_roads.json"
+	},
 	"roadSurface": "concrete",
 	"roadSurfaceValues": "concrete, asphalt, dirt",
 	"roadCondition": "dry",

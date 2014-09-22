@@ -18,6 +18,7 @@
 #include <boost/asio.hpp>
 #include <boost/program_options.hpp>
 
+#include "graphics/gui/GUI.h"
 #include "sim/Scenario.h"
 #include "utils/Utils.h"
 #include "vehicle/Vehicle.h"
@@ -30,8 +31,8 @@ int main(int argc, char* argv[]) {
 	po::options_description desc("Allowed options");
 	desc.add_options()
 	    ("help", "help message")
-	    ("run-tests", po::value<bool>(), "Should run tests")
-	    ("use-graphics", po::value<bool>(), "Should use GTK graphics")
+	    ("tests", po::value<bool>(), "Should run tests")
+	    ("graphics", po::value<bool>(), "Should use GTK graphics")
 	;
 
 	po::variables_map vm;
@@ -45,22 +46,27 @@ int main(int argc, char* argv[]) {
 	}
 
 	bool run_tests = false;
-	if (vm.count("run-tests")) {
+	if (vm.count("tests")) {
 	    std::cout << "Will run tests..." << std::endl;
-	    run_tests = vm["run-tests"].as<bool>();
+	    run_tests = vm["tests"].as<bool>();
 	}
 
 	bool use_graphics = false;
-	if (vm.count("use_graphics")) {
+	if (vm.count("graphics")) {
 		std::cout << "Will use GTK graphics..." << std::endl;
-		use_graphics = vm["use-graphics"].as<bool>();
+		use_graphics = vm["graphics"].as<bool>();
 	}
 
-	Scenario s;
-	s.load_scenario("data/simple1.json");
-
-	s.start();
-	s.stop();
+	std::cout << "Use graphics: " << use_graphics << std::endl;
+	if (use_graphics) {
+		GUI::init(argc, argv);
+	} else {
+		Scenario::init();
+		Scenario::load_scenario(Utils::get_scenario_file_path("simple1"));
+		Scenario::start();
+		Scenario::stop();
+		Scenario::cleanup();
+	}
 
 	if (run_tests) {
 		return TestMain::run_tests(argc, argv);

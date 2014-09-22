@@ -25,33 +25,25 @@
 #include "utils/Utils.h"
 #include "vehicle/Vehicle.h"
 
-class Scenario {
-public:
+namespace Scenario {
 
-	Scenario();
-	~Scenario();
+void init();
+void cleanup();
 
-	void load_scenario(std::string file);
-	void load_vehicle(std::string vehicle_name, std::string vehicle_file);
-	void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid);
+void load_scenario(std::string file);
+void load_vehicle(std::string vehicle_name, std::string vehicle_file);
+void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid);
 
-	void start();
-	void stop();
+void start();
+void stop();
 
-	static void update_vehicle_sensor(const std::string &vid, VehicleSensor &sensor);
+void update_vehicle_sensor(const std::string &vid, VehicleSensor &sensor);
 
-	void test_get_closest_vehicles();
+void test_get_closest_vehicles();
 
-private:
-
-	boost::asio::io_service io_;
-	boost::asio::strand strand_;
-
-	/*
-	 * TODO: should this whole class have static members?
-	 * Should it just be a namespace?
-	 */
-	static boost::posix_time::ptime start_time;
+extern boost::asio::io_service io_;
+extern boost::asio::strand strand_;
+extern boost::posix_time::ptime start_time;
 
 };
 
