@@ -15,7 +15,7 @@ Glib::RefPtr<Gtk::Builder> builder;
 Gtk::Button* start_button;
 Gtk::Button* restart_button;
 Gtk::ComboBoxText* scenario_combobox;
-Gtk::DrawingArea* area;
+MapDrawingArea* map_area;
 bool running = false;
 
 void init(int argc, char* argv[]) {
@@ -28,7 +28,7 @@ void init(int argc, char* argv[]) {
     builder->get_widget("button2", start_button);
     builder->get_widget("button1", restart_button);
     builder->get_widget("comboboxtext1", scenario_combobox);
-    builder->get_widget("drawingarea1", area);
+    builder->get_widget_derived("drawingarea1", map_area);
 
     restart_button->set_sensitive(false);
     init_scenario_combobox();
@@ -41,9 +41,9 @@ void init(int argc, char* argv[]) {
 
 void init_scenario_combobox() {
 	scenario_combobox->append("simple1");
-	scenario_combobox->append("Scenario 1");
-	scenario_combobox->append("Scenario 2");
-	scenario_combobox->append("Scenario 3");
+	scenario_combobox->append("Scenario1");
+	scenario_combobox->append("Scenario2");
+	scenario_combobox->append("Scenario3");
 	scenario_combobox->set_active(0);
 }
 
@@ -67,9 +67,6 @@ void start_button_clicked() {
 }
 
 void test_cairo() {
-	Cairo::RefPtr<Cairo::Context> myContext = area->get_window()->create_cairo_context();
-	myContext->set_source_rgb(1.0, 0.0, 0.0);
-	myContext->set_line_width(2.0);
 }
 //void restart_button_clicked() {
 //	std::cout << "toggled" << std::endl;

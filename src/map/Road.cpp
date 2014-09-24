@@ -21,10 +21,16 @@ Road::~Road() {
 
 
 void Road::set_start_intersection(Intersection *i) {
+	if (start_int ==  nullptr) {
+		start_int = new Intersection();
+	}
 	start_int = i;
 }
 
 void Road::set_end_intersection(Intersection *i) {
+	if (end_int == nullptr) {
+		end_int = new Intersection();
+	}
 	end_int = i;
 }
 

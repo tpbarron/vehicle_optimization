@@ -42,6 +42,7 @@ std::vector<VehicleManager::VehicleDistPair> VehicleManager::get_nearest(const P
 	for (std::vector<Vehicle*>::iterator it = vehicles.begin(); it != vehicles.end(); ++it) {
 		std::cout << "Checking vehicle" << std::endl;
 		VehicleManager::VehicleDistPair vdist;
+		std::cout << "Other pos == null? : " << ((*it)->get_sensor().get_position() == nullptr) << std::endl;
 		vdist.first = p->get_distance_to((*it)->get_sensor().get_position());
 		vdist.second = (*it);
 		nearest.push_back(vdist);

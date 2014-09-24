@@ -92,8 +92,8 @@ extern boost::asio::io_service io_;
 extern boost::asio::strand strand_;
 extern boost::posix_time::ptime start_time;
 extern Map map;
-extern std::vector<Intersection> intersections;
-extern std::vector<Road> roads;
+extern std::vector<Intersection*> intersections;
+extern std::vector<Road*> roads;
 
 };
 

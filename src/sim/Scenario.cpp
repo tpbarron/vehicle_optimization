@@ -17,8 +17,8 @@ boost::posix_time::ptime start_time;
 boost::asio::io_service io_;
 boost::asio::strand strand_(io_);
 Map map;
-std::vector<Intersection> intersections;
-std::vector<Road> roads;
+std::vector<Intersection*> intersections;
+std::vector<Road*> roads;
 
 void init() {
 	DBConn::init();
@@ -28,6 +28,12 @@ void cleanup() {
 	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
 		delete VehicleManager::get_vehicles()[i];
 	}
+	for (unsigned int j = 0; j < intersections.size(); ++j) {
+		delete intersections[j];
+	}
+//	for (unsigned int k = 0; k < roads.size(); ++k) {
+//		delete roads[k];
+//	}
 }
 
 
@@ -125,11 +131,11 @@ void load_scenario_intersections(std::string scenario, std::string file) {
 			double width = intersection.second.get<double>(INTERSECTION_WIDTH);
 			double height = intersection.second.get<double>(INTERSECTION_HEIGHT);
 
-			Intersection i;
-			i.set_id(id);
-			i.set_position(pos_x, pos_y);
-			i.set_width(width);
-			i.set_height(height);
+			Intersection *i = new Intersection();
+			i->set_id(id);
+			i->set_position(pos_x, pos_y);
+			i->set_width(width);
+			i->set_height(height);
 
 			intersections.push_back(i);
 		}
@@ -155,10 +161,10 @@ void load_scenario_roads(std::string scenario, std::string file) {
 			int end_int_id = road.second.get<int>(ROAD_END_INT_ID);
 			double speed_limit = road.second.get<double>(ROAD_SPEED_LIMIT);
 
-			Road r;
-			r.set_start_intersection(get_intersection_from_id(start_int_id));
-			r.set_end_intersection(get_intersection_from_id(end_int_id));
-			r.set_speed_limit(speed_limit);
+			Road *r;
+			r->set_start_intersection(get_intersection_from_id(start_int_id));
+			r->set_end_intersection(get_intersection_from_id(end_int_id));
+			r->set_speed_limit(speed_limit);
 
 			roads.push_back(r);
 		}
@@ -168,13 +174,13 @@ void load_scenario_roads(std::string scenario, std::string file) {
 }
 
 Intersection* get_intersection_from_id(int id) {
-	Intersection *i = nullptr;
+	Intersection *intersect = nullptr;
 	for (unsigned int i = 0; i < intersections.size(); ++i) {
-		if (intersections[i].get_id() == id) {
-			return &intersections[i];
+		if (intersections[i]->get_id() == id) {
+			return intersections[i];
 		}
 	}
-	return i;
+	return intersect;
 }
 
 void load_road_lane(std::string file) {
@@ -191,10 +197,10 @@ void populate_map() {
 	//copy the road to the returned object.
 	for (unsigned int r = 0; r < roads.size(); ++r) {
 		//TODO: if road is not one way, also add in other direction
-		Road road = roads[r];
-		Intersection *i1 = road.get_start_intersection();
-		Intersection *i2 = road.get_end_intersection();
-		map.add_edge(i1, i2, &road);
+		Road *road = roads[r];
+		Intersection *i1 = road->get_start_intersection();
+		Intersection *i2 = road->get_end_intersection();
+		map.add_edge(i1, i2, road);
 	}
 }
 

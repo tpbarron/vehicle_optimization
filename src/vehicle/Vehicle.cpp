@@ -8,6 +8,7 @@
 #include "Vehicle.h"
 
 Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::strand *strand) : count_(0) {
+
 	id = Utils::gen_uuid();
 
 	data = new VehicleSensorData();
@@ -17,7 +18,7 @@ Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::str
 
 	_io = io;
 	_strand = strand;
-	timer = new boost::asio::deadline_timer(*_io, boost::posix_time::milliseconds(250));
+	timer = new boost::asio::deadline_timer(*_io, boost::posix_time::milliseconds(500));
 	t = nullptr;
 }
 
@@ -62,7 +63,8 @@ void Vehicle::update() {
 	if (count_ < 8) {
 		populate_data_struct();
 
-		std::vector<VehicleManager::VehicleDistPair> nearby_vehicles = VehicleManager::get_nearest(sensor.get_position(), 10, 10);
+		std::vector<VehicleManager::VehicleDistPair> nearby_vehicles =
+				VehicleManager::get_nearest(sensor.get_position(), 10, 10);
 		for (unsigned int i = 0; i < nearby_vehicles.size(); ++i) {
 			listeners.insert(nearby_vehicles[i].second);
 		}
