@@ -62,7 +62,8 @@ int main(int argc, char* argv[]) {
 		GUI::init(argc, argv);
 	} else {
 		Scenario::init();
-		Scenario::load_scenario(Utils::get_scenario_file_path("simple1"));
+		Scenario::load_scenario("simple1");
+//		Scenario::test_print_map();
 		Scenario::start();
 		Scenario::stop();
 		Scenario::cleanup();

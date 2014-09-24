@@ -1,0 +1,17 @@
+{
+	"roads": [
+		{
+			"start_intersection": 0,
+			"end_intersection": 1,
+			"speed_limit": 11.176,
+			"lanes": {
+				"forward": [
+					"lane1.json"
+				],
+				"backward": [
+					"lane2.json"
+				]
+			}
+		}
+	]
+}

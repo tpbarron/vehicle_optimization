@@ -15,7 +15,7 @@ Glib::RefPtr<Gtk::Builder> builder;
 Gtk::Button* start_button;
 Gtk::Button* restart_button;
 Gtk::ComboBoxText* scenario_combobox;
-
+Gtk::DrawingArea* area;
 bool running = false;
 
 void init(int argc, char* argv[]) {
@@ -28,6 +28,7 @@ void init(int argc, char* argv[]) {
     builder->get_widget("button2", start_button);
     builder->get_widget("button1", restart_button);
     builder->get_widget("comboboxtext1", scenario_combobox);
+    builder->get_widget("drawingarea1", area);
 
     restart_button->set_sensitive(false);
     init_scenario_combobox();
@@ -50,10 +51,9 @@ void start_button_clicked() {
 	if (!running) {
 		start_button->set_label("Stop");
 		std::string scenario = scenario_combobox->get_active_text();
-		std::string path = Utils::get_scenario_file_path(scenario);
 		//TODO: do this in background thread so GUI doesn't lag
 		Scenario::init();
-		Scenario::load_scenario(path);
+		Scenario::load_scenario(scenario);
 		Scenario::start();
 		running = true;
 	} else {
@@ -66,6 +66,11 @@ void start_button_clicked() {
 
 }
 
+void test_cairo() {
+	Cairo::RefPtr<Cairo::Context> myContext = area->get_window()->create_cairo_context();
+	myContext->set_source_rgb(1.0, 0.0, 0.0);
+	myContext->set_line_width(2.0);
+}
 //void restart_button_clicked() {
 //	std::cout << "toggled" << std::endl;
 //	Scenario s;

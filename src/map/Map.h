@@ -9,6 +9,7 @@
 #define MAP_H_
 
 #include <boost/graph/adjacency_matrix.hpp>
+#include <boost/graph/graph_traits.hpp>
 
 #include "Intersection.h"
 #include "Road.h"
@@ -23,22 +24,25 @@ public:
 	Map();
 	virtual ~Map();
 
-	/*
-	 * Will need to add all intersections first
-	 * boost::add_edge returns an edge_description, i.e. Road.
-	 * Then properties can be set on the road.
-	 */
+	void add_edge(Intersection *i1, Intersection *i2, Road *r);
 
-	Road* add_edge(Intersection &i1, Intersection &i2);
+	void set_width(int width);
+	void set_height(int height);
+
+	void print_map_data();
 
 private:
 
 	int width;
 	int height;
 
-	typedef boost::adjacency_matrix<boost::undirectedS,  Intersection, Road> Graph;
-	Graph network;
+	typedef boost::adjacency_matrix<boost::directedS,  Intersection*, Road*> Graph;
+	typedef boost::graph_traits<Graph>::vertex_descriptor vertex_t;
+	typedef boost::graph_traits<Graph>::edge_descriptor edge_t;
+	typedef boost::graph_traits<Graph>::edge_iterator edge_iterator;
 
+
+	Graph network;
 };
 
 #endif /* MAP_H_ */

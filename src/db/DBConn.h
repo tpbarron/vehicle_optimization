@@ -17,9 +17,10 @@ namespace DBConn {
 //scenario
 const std::string SCENARIO_PATH = "scenario.vehicles";
 const std::string SCENARIO_NAME = "name";
+const std::string SCENARIO_DESC = "desc";
 
 //Vehicle entries
-const std::string VEHICLE_PATH = "scenario.vehicles.data";
+const std::string VEHICLE_PATH = "scenario.vehicles";
 const std::string ID = "id";
 const std::string TIME = "time";
 const std::string POSITION_X = "pos_x";

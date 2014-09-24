@@ -16,6 +16,9 @@ boost::posix_time::ptime start_time;
 
 boost::asio::io_service io_;
 boost::asio::strand strand_(io_);
+Map map;
+std::vector<Intersection> intersections;
+std::vector<Road> roads;
 
 void init() {
 	DBConn::init();
@@ -28,7 +31,8 @@ void cleanup() {
 }
 
 
-void load_scenario(std::string file) {
+void load_scenario(std::string scenario) {
+	std::string file = Utils::get_scenario_file_path(scenario);
 	//read json file and insert into db
 	std::ifstream in(file.c_str());
 	if (in.is_open()) {
@@ -38,34 +42,38 @@ void load_scenario(std::string file) {
 		boost::property_tree::ptree tree;
 		boost::property_tree::read_json(buf, tree);
 
-		//Empty an data
+		//Empty data
 		DBConn::clear_db();
 
-		std::string name = tree.get<std::string>("_name");
-		std::string desc = tree.get<std::string>("_desc");
+		std::string name = tree.get<std::string>(SCENARIO_NAME);
+		std::string desc = tree.get<std::string>(SCENARIO_DESC);
 
 		std::cout << "Loading scenario into db: " << desc << std::endl;
 
 		mongo::BSONObjBuilder b;
-		b.append("name", name);
-		b.append("desc", desc);
+		b.append(DBConn::SCENARIO_NAME, name);
+		b.append(DBConn::SCENARIO_DESC, desc);
 
 		mongo::BSONObj scenario_obj = b.obj();
 		DBConn::insert_scenario(scenario_obj);
 
 		//vehicles
 		boost::property_tree::ptree::value_type v;
-		BOOST_FOREACH(boost::property_tree::ptree::value_type &v, tree.get_child("vehicles")) {
-			std::string vname = v.second.get<std::string>("name");
-			std::string vfilename = v.second.get<std::string>("data");
-			std::string vpath = Utils::get_scenario_vehicle_file_path(file, vfilename);
+		BOOST_FOREACH(boost::property_tree::ptree::value_type &v, tree.get_child(SCENARIO_VEHICLES)) {
+			std::string vname = v.second.get<std::string>(SCENARIO_VEHICLES_NAME);
+			std::string vfilename = v.second.get<std::string>(SCENARIO_VEHICLES_DATA);
+			std::string vpath = Utils::get_scenario_vehicle_file_path(scenario, vfilename);
 			std::cout << vname << ": " << vpath << std::endl;
 			load_vehicle(vname, vpath);
 		}
+
+		boost::property_tree::ptree map_tree = tree.get_child(SCENARIO_MAP);
+		load_scenario_map(scenario, map_tree);
 	} else {
 		std::cerr << "Unable to open scenario file" << std::endl;
 	}
 }
+
 
 void load_vehicle(std::string name, std::string file) {
 	std::ifstream vehicle_file(file.c_str());
@@ -79,35 +87,147 @@ void load_vehicle(std::string name, std::string file) {
 	}
 }
 
+void load_scenario_map(std::string scenario, boost::property_tree::ptree &map_tree) {
+	int map_width = map_tree.get<int>(SCENARIO_MAP_WIDTH);
+	int map_height = map_tree.get<int>(SCENARIO_MAP_HEIGHT);
+
+	map.set_height(map_height);
+	map.set_width(map_width);
+
+	std::string intersections_file = map_tree.get<std::string>(SCENARIO_MAP_INTERSECTIONS);
+	std::string roads_file = map_tree.get<std::string>(SCENARIO_MAP_ROADS);
+
+	load_scenario_intersections(scenario, intersections_file);
+	load_scenario_roads(scenario, roads_file);
+
+//	populate_map();
+}
+
+/*
+ * TODO: insert into db not just memory
+ */
+void load_scenario_intersections(std::string scenario, std::string file) {
+	std::string path = Utils::get_scenario_intersection_file_path(scenario, file);
+	std::cout << "Intersections: " << path << std::endl;
+	std::ifstream in(path.c_str());
+	if (in.is_open()) {
+		std::stringstream buf;
+		buf << in.rdbuf();
+		in.close();
+		boost::property_tree::ptree intersection_data;
+		boost::property_tree::read_json(buf, intersection_data);
+
+		boost::property_tree::ptree::value_type intersection;
+		BOOST_FOREACH(boost::property_tree::ptree::value_type &intersection, intersection_data.get_child(INTERSECTION_DATA)) {
+			int id = intersection.second.get<int>(INTERSECTION_ID);
+			double pos_x = intersection.second.get<double>(INTERSECTION_POSITION_X);
+			double pos_y = intersection.second.get<double>(INTERSECTION_POSITION_Y);
+			double width = intersection.second.get<double>(INTERSECTION_WIDTH);
+			double height = intersection.second.get<double>(INTERSECTION_HEIGHT);
+
+			Intersection i;
+			i.set_id(id);
+			i.set_position(pos_x, pos_y);
+			i.set_width(width);
+			i.set_height(height);
+
+			intersections.push_back(i);
+		}
+	} else {
+		std::cerr << "Could not open intersections file" << std::endl;
+	}
+}
+
+void load_scenario_roads(std::string scenario, std::string file) {
+	std::string path = Utils::get_scenario_road_file_path(scenario, file);
+	std::cout << "Roads: " << path << std::endl;
+	std::ifstream in(path.c_str());
+	if (in.is_open()) {
+		std::stringstream buf;
+		buf << in.rdbuf();
+		in.close();
+		boost::property_tree::ptree road_data;
+		boost::property_tree::read_json(buf, road_data);
+
+		boost::property_tree::ptree::value_type road;
+		BOOST_FOREACH(boost::property_tree::ptree::value_type &road, road_data.get_child(ROAD_DATA)) {
+			int start_int_id = road.second.get<int>(ROAD_START_INT_ID);
+			int end_int_id = road.second.get<int>(ROAD_END_INT_ID);
+			double speed_limit = road.second.get<double>(ROAD_SPEED_LIMIT);
+
+			Road r;
+			r.set_start_intersection(get_intersection_from_id(start_int_id));
+			r.set_end_intersection(get_intersection_from_id(end_int_id));
+			r.set_speed_limit(speed_limit);
+
+			roads.push_back(r);
+		}
+	} else {
+		std::cerr << "Could not open road file" << std::endl;
+	}
+}
+
+Intersection* get_intersection_from_id(int id) {
+	Intersection *i = nullptr;
+	for (unsigned int i = 0; i < intersections.size(); ++i) {
+		if (intersections[i].get_id() == id) {
+			return &intersections[i];
+		}
+	}
+	return i;
+}
+
+void load_road_lane(std::string file) {
+
+}
+
+/*
+ * add the roads / intersections to the graph structure in the map
+ */
+void populate_map() {
+	//for each road
+	//get the two endpoint intersections
+	//add the intersections as nodes
+	//copy the road to the returned object.
+	for (unsigned int r = 0; r < roads.size(); ++r) {
+		//TODO: if road is not one way, also add in other direction
+		Road road = roads[r];
+		Intersection *i1 = road.get_start_intersection();
+		Intersection *i2 = road.get_end_intersection();
+		map.add_edge(i1, i2, &road);
+	}
+}
+
+
 void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid) {
 	std::stringstream vbuf;
 	vbuf << vehicle_file.rdbuf();
 	boost::property_tree::ptree vehicle_data;
 	boost::property_tree::read_json(vbuf, vehicle_data);
 	boost::property_tree::ptree::value_type vehicle_state;
-	BOOST_FOREACH(boost::property_tree::ptree::value_type &vehicle_state, vehicle_data.get_child("data")) {
+	BOOST_FOREACH(boost::property_tree::ptree::value_type &vehicle_state, vehicle_data.get_child(VEHICLE_DATA)) {
 		//Data for each vehicle
 		mongo::BSONObjBuilder b;
 
-		double pos_x = vehicle_state.second.get<double>("pos_x");
-		double pos_y = vehicle_state.second.get<double>("pos_y");
-		float accel = vehicle_state.second.get<float>("accel");
-		float speed = vehicle_state.second.get<float>("speed");
-		float brake = vehicle_state.second.get<float>("brake");
-		float heading = vehicle_state.second.get<float>("heading");
-		float vturn = vehicle_state.second.get<float>("vturn");
-		float wturn = vehicle_state.second.get<float>("wturn");
+		double pos_x = vehicle_state.second.get<double>(VEHICLE_POSITION_X);
+		double pos_y = vehicle_state.second.get<double>(VEHICLE_POSITION_Y);
+		float accel = vehicle_state.second.get<float>(VEHICLE_ACCELERATION);
+		float speed = vehicle_state.second.get<float>(VEHICLE_SPEED);
+		float brake = vehicle_state.second.get<float>(VEHICLE_BRAKE_PRESSURE);
+		float heading = vehicle_state.second.get<float>(VEHICLE_HEADING);
+		float vturn = vehicle_state.second.get<float>(VEHICLE_VEHICLE_TURN_RATE);
+		float wturn = vehicle_state.second.get<float>(VEHICLE_WHEEL_TURN_RATE);
 
-		b.append("id", vid);
-		b.append("time", vehicle_state.second.get<float>("time"));
-		b.append("pos_x", pos_x);
-		b.append("pos_y", pos_y);
-		b.append("accel", accel);
-		b.append("speed", speed);
-		b.append("brake", brake);
-		b.append("heading", heading);
-		b.append("vturn", vturn);
-		b.append("wturn", wturn);
+		b.append(DBConn::ID, vid);
+		b.append(DBConn::TIME, vehicle_state.second.get<float>(VEHICLE_TIME));
+		b.append(DBConn::POSITION_X, pos_x);
+		b.append(DBConn::POSITION_Y, pos_y);
+		b.append(DBConn::ACCELERATION, accel);
+		b.append(DBConn::SPEED, speed);
+		b.append(DBConn::BRAKE_PRESSURE, brake);
+		b.append(DBConn::HEADING, heading);
+		b.append(DBConn::VEHICLE_TURN_RATE, vturn);
+		b.append(DBConn::WHEEL_TURN_RATE, wturn);
 
 		mongo::BSONObj vehicle_obj = b.obj();
 		DBConn::insert_vehicle(vehicle_obj);
@@ -174,6 +294,10 @@ void test_get_closest_vehicles() {
 			std::cout << "    Found vehicle: " << (*vdistitr).second->get_readable_name() << " at distance " << (*vdistitr).first->get_distance() << std::endl;
 		}
 	}
+}
+
+void test_print_map() {
+	map.print_map_data();
 }
 
 }

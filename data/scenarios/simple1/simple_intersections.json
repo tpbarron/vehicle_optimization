@@ -1,0 +1,18 @@
+{
+	"intersections": [
+		{
+			"id": 0,
+			"pos_x": 5,
+			"pos_y": 5,
+			"width": 2,
+			"height": 2
+		},
+		{
+			"id": 1,
+			"pos_x": 25,
+			"pos_y": 5,
+			"width": 2,
+			"height": 2
+		}
+	]
+}

@@ -19,11 +19,13 @@ void init(int argc, char* argv[]);
 
 void init_scenario_combobox();
 void start_button_clicked();
+void test_cairo();
 
 extern Glib::RefPtr<Gtk::Builder> builder;
 extern Gtk::Button* start_button;
 extern Gtk::Button* restart_button;
 extern Gtk::ComboBoxText* scenario_combobox;
+extern Gtk::DrawingArea* area;
 
 extern bool running;
 
