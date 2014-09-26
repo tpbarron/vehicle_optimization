@@ -19,7 +19,9 @@ VehicleManager::VehicleManager() {
 }
 
 VehicleManager::~VehicleManager() {
-	// TODO Auto-generated destructor stub
+	for (unsigned int i = 0; i < vehicles.size(); ++i) {
+		delete vehicles[i];
+	}
 }
 
 

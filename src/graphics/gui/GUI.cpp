@@ -39,6 +39,13 @@ void init(int argc, char* argv[]) {
 	Gtk::Main::run(*window);
 }
 
+void cleanup() {
+	delete start_button;
+	delete restart_button;
+	delete scenario_combobox;
+	delete map_area;
+}
+
 void init_scenario_combobox() {
 	scenario_combobox->append("simple1");
 	scenario_combobox->append("Scenario1");

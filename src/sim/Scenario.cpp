@@ -25,15 +25,13 @@ void init() {
 }
 
 void cleanup() {
-	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
-		delete VehicleManager::get_vehicles()[i];
-	}
+	std::cout << "Cleaning up scenario" << std::endl;
 	for (unsigned int j = 0; j < intersections.size(); ++j) {
 		delete intersections[j];
 	}
-	//	for (unsigned int k = 0; k < roads.size(); ++k) {
-	//		delete roads[k];
-	//	}
+	for (unsigned int k = 0; k < roads.size(); ++k) {
+		delete roads[k];
+	}
 }
 
 
@@ -172,7 +170,7 @@ void load_scenario_roads(std::string scenario, std::string file) {
 			r->set_speed_limit(speed_limit);
 			r->set_distance(dist);
 
-			std::cout << "getting lanes" << std::endl;
+			std::cout << "Loading lanes" << std::endl;
 			BOOST_FOREACH(boost::property_tree::ptree::value_type &forward_lanes,
 					road.second.get_child(ROAD_LANES+"."+ROAD_FORWARD_LANES)) {
 				std::cout << forward_lanes.second.data() << std::endl;
@@ -208,8 +206,8 @@ Lane* load_road_lane(std::string scenario, std::string file) {
 		BOOST_FOREACH(boost::property_tree::ptree::value_type &lane, lane_data.get_child(LANE_WAYPOINTS)) {
 			double ptx = lane.second.get<double>(LANE_POINT_X);
 			double pty = lane.second.get<double>(LANE_POINT_Y);
-			Position p;
-			p.set_position(ptx, pty);
+			Position *p = new Position();
+			p->set_position(ptx, pty);
 			l->add_waypoint(p);
 		}
 	} else {

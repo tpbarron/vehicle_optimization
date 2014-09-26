@@ -9,11 +9,18 @@
 
 Road::Road() {
 	speed_limit = 0;
+	distance = 0;
 	start_int = nullptr;
 	end_int = nullptr;
 }
 
 Road::~Road() {
+	for (unsigned int i = 0; i < lanes_forward.size(); ++i) {
+		delete lanes_forward[i];
+	}
+	for (unsigned int j = 0; j < lanes_backward.size(); ++j) {
+		delete lanes_backward[j];
+	}
 	// TODO Do the intersections need to be deleted here? 
 	// need shared pointer because multiple roads can point to the same 
 	// intersections.

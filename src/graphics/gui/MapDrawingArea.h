@@ -11,6 +11,8 @@
 #include <gtkmm/drawingarea.h>
 #include <gtkmm/builder.h>
 
+#include "sim/Scenario.h"
+
 
 class MapDrawingArea : public Gtk::DrawingArea {
 public:
@@ -25,9 +27,14 @@ protected:
 
 private:
 
+  const std::string VEHICLE_IMAGE_128x128 = "resources/images/vehicle.png";
+
   void draw_road();
   void draw_intersection();
   void draw_vehicle(const Cairo::RefPtr<Cairo::Context>& cr);
+  void draw_scale(const Cairo::RefPtr<Cairo::Context>& cr);
+  void draw_text(const Cairo::RefPtr<Cairo::Context>& cr,
+			std::string text, int x, int y, int rectangle_width, int rectangle_height);
 
 };
 

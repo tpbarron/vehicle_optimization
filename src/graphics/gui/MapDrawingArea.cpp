@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+#include <boost/lexical_cast.hpp>
+
 #include <cairomm/context.h>
 
 
@@ -22,22 +24,22 @@ MapDrawingArea::~MapDrawingArea() {
 }
 
 bool MapDrawingArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
+
 	Gtk::Allocation allocation = get_allocation();
 	const int width = allocation.get_width();
 	const int height = allocation.get_height();
-
-	// coordinates for the center of the window
-	int xc, yc;
-	xc = width / 2;
-	yc = height / 2;
-
 
 	cr->rectangle(0, 0, width, height);
 	// (37, 65, 23) is Dark Forest Green
 	// http://www.computerhope.com/htmcolor.htm
 	cr->set_source_rgb (37/255.0, 65/255.0, 23/255.0);
 	cr->fill();
+
+	draw_scale(cr);
+
 	draw_vehicle(cr);
+
+
 //
 //
 //	cr->set_line_width(10.0);
@@ -52,6 +54,59 @@ bool MapDrawingArea::on_draw(const Cairo::RefPtr<Cairo::Context>& cr) {
 //	cr->stroke();
 
 	return true;
+}
+
+void MapDrawingArea::draw_scale(const Cairo::RefPtr<Cairo::Context>& cr) {
+	Gtk::Allocation allocation = get_allocation();
+	const int width = allocation.get_width();
+	const int height = allocation.get_height();
+
+	int map_width = Scenario::map.get_width();
+	int map_height = Scenario::map.get_height();
+
+	if (map_width == -1 || map_height == -1)
+		return;
+
+	double pixels = 50.0;
+	double meters = pixels / (((double)width) / ((double)map_width));
+
+	cr->rectangle(width-125, 25, 100, 75);
+	cr->set_source_rgb(1, 1, 1);
+	cr->fill();
+
+	cr->rectangle(width-95, 50, pixels, 10);
+	cr->set_source_rgb(0, 1, 0);
+	cr->fill();
+
+	std::string text = boost::lexical_cast<std::string>(meters) + " meters";
+
+	draw_text(cr, text, width-120, 60, 50, 25);
+}
+
+
+void MapDrawingArea::draw_text(const Cairo::RefPtr<Cairo::Context>& cr,
+		std::string text, int x, int y, int rectangle_width, int rectangle_height) {
+  // http://developer.gnome.org/pangomm/unstable/classPango_1_1FontDescription.html
+  Pango::FontDescription font;
+
+  font.set_family("Monospace");
+  font.set_weight(Pango::WEIGHT_BOLD);
+
+  // http://developer.gnome.org/pangomm/unstable/classPango_1_1Layout.html
+  Glib::RefPtr<Pango::Layout> layout = create_pango_layout(text);
+
+  layout->set_font_description(font);
+
+  int text_width;
+  int text_height;
+
+  //get the text dimensions (it updates the variables -- by reference)
+  layout->get_pixel_size(text_width, text_height);
+
+  // Position the text
+  cr->move_to(x, y);
+
+  layout->show_in_cairo_context(cr);
 }
 
 void MapDrawingArea::draw_road() {
@@ -69,7 +124,7 @@ void MapDrawingArea::draw_vehicle(const Cairo::RefPtr<Cairo::Context>& cr) {
 	Cairo::RefPtr< Cairo::ImageSurface > image_surface_ptr_;
 	try
 	{
-		image_surface_ptr_ = Cairo::ImageSurface::create_from_png ("resources/images/vehicle.png");
+		image_surface_ptr_ = Cairo::ImageSurface::create_from_png (VEHICLE_IMAGE_128x128);
 	}
 	catch(std::exception& e)
 	{

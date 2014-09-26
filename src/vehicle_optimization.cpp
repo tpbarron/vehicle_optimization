@@ -60,6 +60,8 @@ int main(int argc, char* argv[]) {
 	std::cout << "Use graphics: " << use_graphics << std::endl;
 	if (use_graphics) {
 		GUI::init(argc, argv);
+//		GUI::cleanup();
+		//need to clean up GUI but from where?
 	} else {
 		Scenario::init();
 		Scenario::load_scenario("simple1");

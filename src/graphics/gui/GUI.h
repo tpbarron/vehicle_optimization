@@ -21,6 +21,7 @@
 namespace GUI {
 
 void init(int argc, char* argv[]);
+void cleanup();
 
 void init_scenario_combobox();
 void start_button_clicked();
