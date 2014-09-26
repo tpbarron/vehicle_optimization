@@ -8,11 +8,13 @@ Dependencies:
 
   * libboost-all-dev
   * mongodb
+  * libgtkmm-3.0-dev
 
 These can be installed using:
 
   apt-get install libboost-all-dev<br/>
-  apt-get install mongodb
+  apt-get install mongodb<br/>
+  apt-get install libgtkmm-3.0-dev
 
 The following should already be done for you if you use eclipse and have the .cproject file. 
 
