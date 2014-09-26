@@ -38,6 +38,11 @@ void Road::set_speed_limit(double s) {
 	speed_limit = s;
 }
 
+void Road::set_distance(double d) {
+	distance = d;
+}
+
+
 Intersection* Road::get_start_intersection() {
 	return start_int;
 }
@@ -46,9 +51,22 @@ Intersection* Road::get_end_intersection() {
 	return end_int;
 }
 
+double Road::get_speed_limit() {
+	return speed_limit;
+}
+
+double Road::get_distance() {
+	return distance;
+}
+
 /*
  * From start to end
  */
+
+void Road::add_lane_forward(Lane *l) {
+	lanes_forward.push_back(l);
+}
+
 int Road::get_num_lanes_forward() {
 	return lanes_forward.size();
 }
@@ -56,6 +74,10 @@ int Road::get_num_lanes_forward() {
 /*
  * From end to start
  */
+void Road::add_lane_backward(Lane *l) {
+	lanes_backward.push_back(l);
+}
+
 int Road::get_num_lanes_backward() {
 	return lanes_backward.size();
 }

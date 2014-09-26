@@ -16,6 +16,14 @@ Map::~Map() {
 	// TODO Auto-generated destructor stub
 }
 
+int Map::get_width() {
+	return width;
+}
+
+int Map::get_height() {
+	return height;
+}
+
 void Map::set_width(int w) {
 	width = w;
 }

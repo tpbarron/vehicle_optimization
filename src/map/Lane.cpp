@@ -16,3 +16,6 @@ Lane::~Lane() {
 	// TODO Auto-generated destructor stub
 }
 
+void Lane::add_waypoint(Position p) {
+	way_pts.push_back(p);
+}

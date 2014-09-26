@@ -31,9 +31,9 @@ void cleanup() {
 	for (unsigned int j = 0; j < intersections.size(); ++j) {
 		delete intersections[j];
 	}
-//	for (unsigned int k = 0; k < roads.size(); ++k) {
-//		delete roads[k];
-//	}
+	//	for (unsigned int k = 0; k < roads.size(); ++k) {
+	//		delete roads[k];
+	//	}
 }
 
 
@@ -148,7 +148,9 @@ void load_scenario_roads(std::string scenario, std::string file) {
 	std::string path = Utils::get_scenario_road_file_path(scenario, file);
 	std::cout << "Roads: " << path << std::endl;
 	std::ifstream in(path.c_str());
+
 	if (in.is_open()) {
+
 		std::stringstream buf;
 		buf << in.rdbuf();
 		in.close();
@@ -156,21 +158,64 @@ void load_scenario_roads(std::string scenario, std::string file) {
 		boost::property_tree::read_json(buf, road_data);
 
 		boost::property_tree::ptree::value_type road;
-		BOOST_FOREACH(boost::property_tree::ptree::value_type &road, road_data.get_child(ROAD_DATA)) {
+		BOOST_FOREACH(boost::property_tree::ptree::value_type &road,
+				road_data.get_child(ROAD_DATA)) {
+
 			int start_int_id = road.second.get<int>(ROAD_START_INT_ID);
 			int end_int_id = road.second.get<int>(ROAD_END_INT_ID);
 			double speed_limit = road.second.get<double>(ROAD_SPEED_LIMIT);
+			double dist = road.second.get<double>(ROAD_DISTANCE);
 
-			Road *r;
+			Road *r = new Road();
 			r->set_start_intersection(get_intersection_from_id(start_int_id));
 			r->set_end_intersection(get_intersection_from_id(end_int_id));
 			r->set_speed_limit(speed_limit);
+			r->set_distance(dist);
+
+			std::cout << "getting lanes" << std::endl;
+			BOOST_FOREACH(boost::property_tree::ptree::value_type &forward_lanes,
+					road.second.get_child(ROAD_LANES+"."+ROAD_FORWARD_LANES)) {
+				std::cout << forward_lanes.second.data() << std::endl;
+				r->add_lane_forward(load_road_lane(scenario, forward_lanes.second.data()));
+			}
+
+			BOOST_FOREACH(boost::property_tree::ptree::value_type &backward_lanes,
+					road.second.get_child(ROAD_LANES+"."+ROAD_BACKWARD_LANES)) {
+				std::cout << backward_lanes.second.data() << std::endl;
+				r->add_lane_backward(load_road_lane(scenario, backward_lanes.second.data()));
+			}
 
 			roads.push_back(r);
 		}
 	} else {
 		std::cerr << "Could not open road file" << std::endl;
 	}
+}
+
+Lane* load_road_lane(std::string scenario, std::string file) {
+	std::string path = Utils::get_scenario_lane_file_path(scenario, file);
+	std::cout << "Lane: " << path << std::endl;
+	Lane *l = new Lane();
+	std::ifstream in(path.c_str());
+	if (in.is_open()) {
+		std::stringstream buf;
+		buf << in.rdbuf();
+		in.close();
+		boost::property_tree::ptree lane_data;
+		boost::property_tree::read_json(buf, lane_data);
+
+		boost::property_tree::ptree::value_type lane;
+		BOOST_FOREACH(boost::property_tree::ptree::value_type &lane, lane_data.get_child(LANE_WAYPOINTS)) {
+			double ptx = lane.second.get<double>(LANE_POINT_X);
+			double pty = lane.second.get<double>(LANE_POINT_Y);
+			Position p;
+			p.set_position(ptx, pty);
+			l->add_waypoint(p);
+		}
+	} else {
+		std::cerr << "Could not open road file" << std::endl;
+	}
+	return l;
 }
 
 Intersection* get_intersection_from_id(int id) {
@@ -181,10 +226,6 @@ Intersection* get_intersection_from_id(int id) {
 		}
 	}
 	return intersect;
-}
-
-void load_road_lane(std::string file) {
-
 }
 
 /*

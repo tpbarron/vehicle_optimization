@@ -4,6 +4,7 @@
 			"start_intersection": 0,
 			"end_intersection": 1,
 			"speed_limit": 11.176,
+			"distance": 100,
 			"lanes": {
 				"forward": [
 					"lane1.json"

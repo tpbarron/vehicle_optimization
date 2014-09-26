@@ -26,6 +26,9 @@ public:
 
 	void add_edge(Intersection *i1, Intersection *i2, Road *r);
 
+	int get_width();
+	int get_height();
+
 	void set_width(int width);
 	void set_height(int height);
 

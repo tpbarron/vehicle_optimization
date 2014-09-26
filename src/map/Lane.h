@@ -11,17 +11,19 @@
 #include <vector>
 #include <utility>
 
+#include "data_types/Position.h"
+
 class Lane {
 
 public:
 	Lane();
 	virtual ~Lane();
 
+	void add_waypoint(Position p);
+
 private:
 
-	typedef std::pair<double, double> Point;
-
-	std::vector<Point> way_pts;
+	std::vector<Position> way_pts;
 };
 
 #endif /* LANE_H_ */

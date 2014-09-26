@@ -24,6 +24,7 @@
 #include "map/Map.h"
 #include "map/Intersection.h"
 #include "map/Road.h"
+#include "map/Lane.h"
 #include "sensor/VehicleSensor.h"
 #include "utils/Utils.h"
 #include "vehicle/Vehicle.h"
@@ -66,6 +67,14 @@ const std::string ROAD_DATA = "roads";
 const std::string ROAD_START_INT_ID = "start_intersection";
 const std::string ROAD_END_INT_ID = "end_intersection";
 const std::string ROAD_SPEED_LIMIT = "speed_limit";
+const std::string ROAD_DISTANCE = "distance";
+const std::string ROAD_LANES = "lanes";
+const std::string ROAD_FORWARD_LANES = "forward";
+const std::string ROAD_BACKWARD_LANES = "backward";
+
+const std::string LANE_WAYPOINTS = "waypoints";
+const std::string LANE_POINT_X = "ptx";
+const std::string LANE_POINT_Y = "ptx";
 
 void init();
 void cleanup();
@@ -73,6 +82,7 @@ void cleanup();
 void load_scenario(std::string file);
 void load_scenario_map(std::string scenario, boost::property_tree::ptree &map_tree);
 void load_scenario_roads(std::string scenario, std::string file);
+Lane* load_road_lane(std::string scenario, std::string file);
 void load_scenario_intersections(std::string scenario, std::string file);
 void load_vehicle(std::string vehicle_name, std::string vehicle_file);
 void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid);
