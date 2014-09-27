@@ -1,0 +1,8 @@
+{
+	"scenarios": [
+		{
+			"name":"Simple Scenario 1",
+			"path": "simple1",
+		}
+	]
+}

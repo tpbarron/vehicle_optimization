@@ -25,6 +25,9 @@
 
 #include "tests/TestMain.h"
 
+/**
+ * Simulation entry point
+ */
 int main(int argc, char* argv[]) {
 
 	namespace po = boost::program_options;
