@@ -60,7 +60,7 @@ void Vehicle::stop() {
 
 
 void Vehicle::update() {
-	if (_count < 8) {
+	if (_count < 3) {
 		populate_data_struct();
 
 		std::vector<VehicleManager::VehicleDistPair> nearby_vehicles =

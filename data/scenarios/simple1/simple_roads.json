@@ -13,6 +13,20 @@
 					"lane2.json"
 				]
 			}
-		}
+		},
+		{
+            "start_intersection": 1,
+            "end_intersection": 2,
+            "speed_limit": 11.176,
+            "distance": 100,
+            "lanes": {
+                "forward": [
+                    "lane1.json"
+                ],
+                "backward": [
+                    "lane2.json"
+                ]
+            }
+        }
 	]
 }

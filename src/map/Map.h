@@ -8,7 +8,7 @@
 #ifndef MAP_H_
 #define MAP_H_
 
-#include <boost/graph/adjacency_matrix.hpp>
+#include <boost/graph/adjacency_list.hpp>
 #include <boost/graph/graph_traits.hpp>
 
 #include "Intersection.h"
@@ -39,7 +39,8 @@ private:
 	int _width;
 	int _height;
 
-	typedef boost::adjacency_matrix<boost::directedS,  Intersection*, Road*> Graph;
+	typedef boost::adjacency_list<boost::vecS, boost::vecS, boost::directedS,
+			Intersection*, Road*> Graph;
 	typedef boost::graph_traits<Graph>::vertex_descriptor vertex_t;
 	typedef boost::graph_traits<Graph>::edge_descriptor edge_t;
 	typedef boost::graph_traits<Graph>::edge_iterator edge_iterator;

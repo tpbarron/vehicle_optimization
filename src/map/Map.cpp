@@ -56,6 +56,13 @@ void Map::print_map_data() {
 	//the original types so it's more clear what is going on
 	std::pair<edge_iterator, edge_iterator> ei = boost::edges(_network);
 	for(edge_iterator edge_iter = ei.first; edge_iter != ei.second; ++edge_iter) {
-		std::cout << "(" << boost::source(*edge_iter, _network) << ", " << boost::target(*edge_iter, _network) << ")\n";
+
+		vertex_t u = boost::source(*edge_iter, _network);
+		vertex_t v = boost::target(*edge_iter, _network);
+
+		Intersection *i1 = _network[u];
+		Intersection *i2 = _network[v];
+		std::cout << "(" << i1->get_id() << " pos=" << i1->get_position()->to_string() << "), ("
+						 << i2->get_id() << " pos=" << i2->get_position()->to_string() << ")" << std::endl;
 	}
 }

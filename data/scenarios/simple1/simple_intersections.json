@@ -13,6 +13,13 @@
 			"pos_y": 5,
 			"width": 2,
 			"height": 2
-		}
+		},
+		{
+            "id": 2,
+            "pos_x": 45,
+            "pos_y": 5,
+            "width": 2,
+            "height": 2
+        }
 	]
 }

@@ -68,7 +68,7 @@ int main(int argc, char* argv[]) {
 	} else {
 		Scenario::init();
 		Scenario::load_scenario("simple1");
-//		Scenario::test_print_map();
+		Scenario::test_print_map();
 		Scenario::start();
 		Scenario::stop();
 		Scenario::cleanup();

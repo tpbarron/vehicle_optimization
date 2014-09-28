@@ -80,6 +80,7 @@ void init();
 void cleanup();
 
 void load_scenario(std::string file);
+void insert_scenario_data(std::string name, std::string desc);
 void load_scenario_map(std::string scenario, boost::property_tree::ptree &map_tree);
 void load_scenario_roads(std::string scenario, std::string file);
 Lane* load_road_lane(std::string scenario, std::string file);

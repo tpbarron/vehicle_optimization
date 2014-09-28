@@ -8,6 +8,8 @@
 #ifndef POSITION_H_
 #define POSITION_H_
 
+#include <string>
+
 #include "data_types/Distance.h"
 
 class Position {
@@ -24,6 +26,8 @@ public:
 	const double get_y() const;
 
 	const Distance* get_distance_to(const Position *other) const;
+
+	std::string to_string();
 
 private:
 

@@ -9,6 +9,8 @@
 
 #include <math.h>
 
+#include <boost/lexical_cast.hpp>
+
 Position::Position() {
 	_x = 0;
 	_y = 0;
@@ -52,4 +54,9 @@ const Distance* Position::get_distance_to(const Position *other) const {
 	double dist = sqrt(pow(other->get_x() - _x, 2) + pow(other->get_y() - _y, 2));
 	d->set_distance(dist);
 	return d;
+}
+
+std::string Position::to_string() {
+	return "(" + boost::lexical_cast<std::string>(_x) + ", " +
+			boost::lexical_cast<std::string>(_y) + ")";
 }

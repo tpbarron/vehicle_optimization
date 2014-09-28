@@ -46,20 +46,10 @@ void load_scenario(std::string scenario) {
 		boost::property_tree::ptree tree;
 		boost::property_tree::read_json(buf, tree);
 
-		//Empty data
-		DBConn::clear_db();
-
 		std::string name = tree.get<std::string>(SCENARIO_NAME);
 		std::string desc = tree.get<std::string>(SCENARIO_DESC);
 
-		std::cout << "Loading scenario into db: " << desc << std::endl;
-
-		mongo::BSONObjBuilder b;
-		b.append(DBConn::SCENARIO_NAME, name);
-		b.append(DBConn::SCENARIO_DESC, desc);
-
-		mongo::BSONObj scenario_obj = b.obj();
-		DBConn::insert_scenario(scenario_obj);
+		DBConn::clear_db();
 
 		//vehicles
 		boost::property_tree::ptree::value_type v;
@@ -78,19 +68,82 @@ void load_scenario(std::string scenario) {
 	}
 }
 
+void insert_scenario_data(std::string name, std::string desc) {
+	mongo::BSONObjBuilder b;
+	b.append(DBConn::SCENARIO_NAME, name);
+	b.append(DBConn::SCENARIO_DESC, desc);
+
+	mongo::BSONObj scenario_obj = b.obj();
+	DBConn::insert_scenario(scenario_obj);
+
+	std::cout << "Loading scenario into db: " << desc << std::endl;
+}
+
 
 void load_vehicle(std::string name, std::string file) {
 	std::ifstream vehicle_file(file.c_str());
 	if (vehicle_file.is_open()) {
 		Vehicle *v = new Vehicle(name, &_io, &_strand);
 		VehicleManager::register_vehicle(v);
+
+//		std::stringstream vbuf;
+//		vbuf << vehicle_file.rdbuf();
+//		boost::property_tree::ptree vehicle_data;
+//		boost::property_tree::read_json(vbuf, vehicle_data);
+//		boost::property_tree::ptree::value_type vehicle_state;
+//		BOOST_FOREACH(boost::property_tree::ptree::value_type &vehicle_state, vehicle_data.get_child(VEHICLE_DATA)) {
+//			double pos_x = vehicle_state.second.get<double>(VEHICLE_POSITION_X);
+//			double pos_y = vehicle_state.second.get<double>(VEHICLE_POSITION_Y);
+//			float accel = vehicle_state.second.get<float>(VEHICLE_ACCELERATION);
+//			float speed = vehicle_state.second.get<float>(VEHICLE_SPEED);
+//			float brake = vehicle_state.second.get<float>(VEHICLE_BRAKE_PRESSURE);
+//			float heading = vehicle_state.second.get<float>(VEHICLE_HEADING);
+//			float vturn = vehicle_state.second.get<float>(VEHICLE_VEHICLE_TURN_RATE);
+//			float wturn = vehicle_state.second.get<float>(VEHICLE_WHEEL_TURN_RATE);
+//		}
+
 		std::cout << "Inserting vehicle into db" << std::endl;
 		insert_vehicle_data(vehicle_file, v->get_id_as_string());
+
 	} else {
 		std::cerr << "Unable to open vehicle file" << std::endl;
 	}
 }
 
+void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid) {
+	std::stringstream vbuf;
+	vbuf << vehicle_file.rdbuf();
+	boost::property_tree::ptree vehicle_data;
+	boost::property_tree::read_json(vbuf, vehicle_data);
+	boost::property_tree::ptree::value_type vehicle_state;
+	BOOST_FOREACH(boost::property_tree::ptree::value_type &vehicle_state, vehicle_data.get_child(VEHICLE_DATA)) {
+		//holds data for one time for a single vehicle
+		mongo::BSONObjBuilder b;
+
+		double pos_x = vehicle_state.second.get<double>(VEHICLE_POSITION_X);
+		double pos_y = vehicle_state.second.get<double>(VEHICLE_POSITION_Y);
+		float accel = vehicle_state.second.get<float>(VEHICLE_ACCELERATION);
+		float speed = vehicle_state.second.get<float>(VEHICLE_SPEED);
+		float brake = vehicle_state.second.get<float>(VEHICLE_BRAKE_PRESSURE);
+		float heading = vehicle_state.second.get<float>(VEHICLE_HEADING);
+		float vturn = vehicle_state.second.get<float>(VEHICLE_VEHICLE_TURN_RATE);
+		float wturn = vehicle_state.second.get<float>(VEHICLE_WHEEL_TURN_RATE);
+
+		b.append(DBConn::ID, vid);
+		b.append(DBConn::TIME, vehicle_state.second.get<float>(VEHICLE_TIME));
+		b.append(DBConn::POSITION_X, pos_x);
+		b.append(DBConn::POSITION_Y, pos_y);
+		b.append(DBConn::ACCELERATION, accel);
+		b.append(DBConn::SPEED, speed);
+		b.append(DBConn::BRAKE_PRESSURE, brake);
+		b.append(DBConn::HEADING, heading);
+		b.append(DBConn::VEHICLE_TURN_RATE, vturn);
+		b.append(DBConn::WHEEL_TURN_RATE, wturn);
+
+		mongo::BSONObj vehicle_obj = b.obj();
+		DBConn::insert_vehicle(vehicle_obj);
+	}
+}
 void load_scenario_map(std::string scenario, boost::property_tree::ptree &map_tree) {
 	int map_width = map_tree.get<int>(SCENARIO_MAP_WIDTH);
 	int map_height = map_tree.get<int>(SCENARIO_MAP_HEIGHT);
@@ -104,7 +157,7 @@ void load_scenario_map(std::string scenario, boost::property_tree::ptree &map_tr
 	load_scenario_intersections(scenario, intersections_file);
 	load_scenario_roads(scenario, roads_file);
 
-//	populate_map();
+	populate_map();
 }
 
 /*
@@ -244,40 +297,6 @@ void populate_map() {
 }
 
 
-void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid) {
-	std::stringstream vbuf;
-	vbuf << vehicle_file.rdbuf();
-	boost::property_tree::ptree vehicle_data;
-	boost::property_tree::read_json(vbuf, vehicle_data);
-	boost::property_tree::ptree::value_type vehicle_state;
-	BOOST_FOREACH(boost::property_tree::ptree::value_type &vehicle_state, vehicle_data.get_child(VEHICLE_DATA)) {
-		//Data for each vehicle
-		mongo::BSONObjBuilder b;
-
-		double pos_x = vehicle_state.second.get<double>(VEHICLE_POSITION_X);
-		double pos_y = vehicle_state.second.get<double>(VEHICLE_POSITION_Y);
-		float accel = vehicle_state.second.get<float>(VEHICLE_ACCELERATION);
-		float speed = vehicle_state.second.get<float>(VEHICLE_SPEED);
-		float brake = vehicle_state.second.get<float>(VEHICLE_BRAKE_PRESSURE);
-		float heading = vehicle_state.second.get<float>(VEHICLE_HEADING);
-		float vturn = vehicle_state.second.get<float>(VEHICLE_VEHICLE_TURN_RATE);
-		float wturn = vehicle_state.second.get<float>(VEHICLE_WHEEL_TURN_RATE);
-
-		b.append(DBConn::ID, vid);
-		b.append(DBConn::TIME, vehicle_state.second.get<float>(VEHICLE_TIME));
-		b.append(DBConn::POSITION_X, pos_x);
-		b.append(DBConn::POSITION_Y, pos_y);
-		b.append(DBConn::ACCELERATION, accel);
-		b.append(DBConn::SPEED, speed);
-		b.append(DBConn::BRAKE_PRESSURE, brake);
-		b.append(DBConn::HEADING, heading);
-		b.append(DBConn::VEHICLE_TURN_RATE, vturn);
-		b.append(DBConn::WHEEL_TURN_RATE, wturn);
-
-		mongo::BSONObj vehicle_obj = b.obj();
-		DBConn::insert_vehicle(vehicle_obj);
-	}
-}
 
 /*
  * TODO: start all timers
