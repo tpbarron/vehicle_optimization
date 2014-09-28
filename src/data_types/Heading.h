@@ -23,7 +23,7 @@ public:
 
 private:
 
-	double heading;
+	double _heading;
 
 };
 

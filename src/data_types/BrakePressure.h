@@ -27,7 +27,7 @@ private:
 	/*
 	 * As a percent?
 	 */
-	double pressure;
+	double _pressure;
 };
 
 #endif /* BRAKEPRESSURE_H_ */

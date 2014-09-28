@@ -27,8 +27,8 @@ public:
 
 private:
 
-	double x;
-	double y;
+	double _x;
+	double _y;
 
 };
 

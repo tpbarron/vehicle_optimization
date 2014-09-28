@@ -24,7 +24,7 @@ public:
 
 private:
 
-	double turn_rate;
+	double _turn_rate;
 
 };
 

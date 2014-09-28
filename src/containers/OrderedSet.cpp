@@ -18,23 +18,23 @@ OrderedSet::~OrderedSet() {
 
 
 bool OrderedSet::add(VehicleManager::VehicleDistPair &e) {
-	bool already_exists = ids.find(e.second->get_id_as_string()) != ids.end();
+	bool already_exists = _ids.find(e.second->get_id_as_string()) != _ids.end();
 	if (already_exists) {
 		return false;
 	}
 
-	ids.insert(e.second->get_id_as_string());
+	_ids.insert(e.second->get_id_as_string());
 	add_to_list(e);
 	return true;
 }
 
 void OrderedSet::add_to_list(VehicleManager::VehicleDistPair &e) {
-	for (unsigned int i = 0; i < elements.size(); ++i) {
-		if (e.first->get_distance() < elements[i].first->get_distance()) {
-			elements.insert(elements.begin() + i, e);
+	for (unsigned int i = 0; i < _elements.size(); ++i) {
+		if (e.first->get_distance() < _elements[i].first->get_distance()) {
+			_elements.insert(_elements.begin() + i, e);
 			return;
 		}
 	}
 	//If reach this part of the function, this is the longest dist seen. Add to back.
-	elements.push_back(e);
+	_elements.push_back(e);
 }

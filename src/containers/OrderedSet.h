@@ -32,8 +32,8 @@ public:
 
 private:
 
-	std::vector<VehicleManager::VehicleDistPair> elements;
-	std::set<std::string> ids;
+	std::vector<VehicleManager::VehicleDistPair> _elements;
+	std::set<std::string> _ids;
 
 	void add_to_list(VehicleManager::VehicleDistPair &e);
 };

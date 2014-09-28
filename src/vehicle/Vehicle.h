@@ -50,7 +50,7 @@ public:
 	/*
 	 * Add a new listener to broadcast data to
 	 */
-	void add_listener(Vehicle &l);
+	virtual void add_listener(IVehicleDataListener &l);
 	virtual void recv(struct VehicleSensorData &data);
 
 	void set_stopping_dist(Distance &dist);
@@ -68,31 +68,31 @@ public:
 private:
 
 	struct vehicle_hash {
-	    size_t operator()(const Vehicle *v ) const
+	    size_t operator()(IVehicleDataListener *v) const
 	    {
-	        return std::hash<std::string>()((*v).get_id_as_string());
+	        return std::hash<std::string>()(v->to_string());
 	    }
 	};
 
 
-	boost::uuids::uuid id;
-	std::string readable_name;
-	VehicleSensor sensor;
-	Distance stopping_dist;
+	boost::uuids::uuid _id;
+	std::string _readable_name;
+	VehicleSensor _sensor;
+	Distance _stopping_dist;
 
 	//Timer
-	boost::asio::deadline_timer *timer;
+	boost::asio::deadline_timer *_timer;
 	boost::asio::io_service *_io;
 	boost::asio::strand *_strand;
-	int count_;
+	int _count;
 
-	boost::thread *t;
+	boost::thread *_t;
 
 
 	//Data struct
-	struct VehicleSensorData* data;
+	struct VehicleSensorData* _data;
 
-	std::unordered_set<Vehicle*, vehicle_hash> listeners;
+	std::unordered_set<IVehicleDataListener*, vehicle_hash> _listeners;
 
 	void populate_data_struct();
 
@@ -111,6 +111,8 @@ private:
 	 * Calculates stopping distance based on weight, current speed, and road conditions
 	 */
 	void calc_stopping_dist();
+
+	virtual std::string to_string();
 
 };
 

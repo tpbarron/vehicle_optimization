@@ -98,12 +98,12 @@ void test_get_closest_vehicles();
 void test_print_map();
 
 
-extern boost::asio::io_service io_;
-extern boost::asio::strand strand_;
-extern boost::posix_time::ptime start_time;
-extern Map map;
-extern std::vector<Intersection*> intersections;
-extern std::vector<Road*> roads;
+extern boost::asio::io_service _io;
+extern boost::asio::strand _strand;
+extern boost::posix_time::ptime _start_time;
+extern Map _map;
+extern std::vector<Intersection*> _intersections;
+extern std::vector<Road*> _roads;
 
 };
 

@@ -36,8 +36,8 @@ public:
 
 private:
 
-	int width;
-	int height;
+	int _width;
+	int _height;
 
 	typedef boost::adjacency_matrix<boost::directedS,  Intersection*, Road*> Graph;
 	typedef boost::graph_traits<Graph>::vertex_descriptor vertex_t;
@@ -45,7 +45,7 @@ private:
 	typedef boost::graph_traits<Graph>::edge_iterator edge_iterator;
 
 
-	Graph network;
+	Graph _network;
 };
 
 #endif /* MAP_H_ */

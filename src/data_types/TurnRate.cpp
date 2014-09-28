@@ -8,11 +8,11 @@
 #include "TurnRate.h"
 
 TurnRate::TurnRate(double tr) {
-	turn_rate = tr;
+	_turn_rate = tr;
 }
 
 TurnRate::TurnRate() {
-	turn_rate = 0;
+	_turn_rate = 0;
 }
 
 TurnRate::~TurnRate() {
@@ -20,10 +20,10 @@ TurnRate::~TurnRate() {
 }
 
 const double TurnRate::get_turn_rate() const {
-	return turn_rate;
+	return _turn_rate;
 }
 
 void TurnRate::set_turn_rate(double tr) {
-	turn_rate = tr;
+	_turn_rate = tr;
 }
 

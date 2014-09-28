@@ -8,11 +8,11 @@
 #include "Speed.h"
 
 Speed::Speed() {
-	spd = -1;
+	_speed = -1;
 }
 
 Speed::Speed(double s) {
-	spd = s;
+	_speed = s;
 }
 
 Speed::~Speed() {
@@ -20,16 +20,16 @@ Speed::~Speed() {
 }
 
 void Speed::set_speed(double s) {
-	spd = s;
+	_speed = s;
 }
 
 const double Speed::get_speed() const {
-	return spd;
+	return _speed;
 }
 
 /*
  * Calculate time to travel given meters at this speed;
  */
 double Speed::time_to_travel(double meters) {
-	return meters / spd;
+	return meters / _speed;
 }

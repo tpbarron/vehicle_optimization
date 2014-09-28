@@ -61,8 +61,8 @@ void MapDrawingArea::draw_scale(const Cairo::RefPtr<Cairo::Context>& cr) {
 	const int width = allocation.get_width();
 	const int height = allocation.get_height();
 
-	int map_width = Scenario::map.get_width();
-	int map_height = Scenario::map.get_height();
+	int map_width = Scenario::_map.get_width();
+	int map_height = Scenario::_map.get_height();
 
 	if (map_width == -1 || map_height == -1)
 		return;

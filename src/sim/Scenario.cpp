@@ -12,13 +12,13 @@
 
 namespace Scenario {
 
-boost::posix_time::ptime start_time;
+boost::posix_time::ptime _start_time;
 
-boost::asio::io_service io_;
-boost::asio::strand strand_(io_);
-Map map;
-std::vector<Intersection*> intersections;
-std::vector<Road*> roads;
+boost::asio::io_service _io;
+boost::asio::strand _strand(_io);
+Map _map;
+std::vector<Intersection*> _intersections;
+std::vector<Road*> _roads;
 
 void init() {
 	DBConn::init();
@@ -26,11 +26,11 @@ void init() {
 
 void cleanup() {
 	std::cout << "Cleaning up scenario" << std::endl;
-	for (unsigned int j = 0; j < intersections.size(); ++j) {
-		delete intersections[j];
+	for (unsigned int j = 0; j < _intersections.size(); ++j) {
+		delete _intersections[j];
 	}
-	for (unsigned int k = 0; k < roads.size(); ++k) {
-		delete roads[k];
+	for (unsigned int k = 0; k < _roads.size(); ++k) {
+		delete _roads[k];
 	}
 }
 
@@ -82,7 +82,7 @@ void load_scenario(std::string scenario) {
 void load_vehicle(std::string name, std::string file) {
 	std::ifstream vehicle_file(file.c_str());
 	if (vehicle_file.is_open()) {
-		Vehicle *v = new Vehicle(name, &io_, &strand_);
+		Vehicle *v = new Vehicle(name, &_io, &_strand);
 		VehicleManager::register_vehicle(v);
 		std::cout << "Inserting vehicle into db" << std::endl;
 		insert_vehicle_data(vehicle_file, v->get_id_as_string());
@@ -95,8 +95,8 @@ void load_scenario_map(std::string scenario, boost::property_tree::ptree &map_tr
 	int map_width = map_tree.get<int>(SCENARIO_MAP_WIDTH);
 	int map_height = map_tree.get<int>(SCENARIO_MAP_HEIGHT);
 
-	map.set_height(map_height);
-	map.set_width(map_width);
+	_map.set_height(map_height);
+	_map.set_width(map_width);
 
 	std::string intersections_file = map_tree.get<std::string>(SCENARIO_MAP_INTERSECTIONS);
 	std::string roads_file = map_tree.get<std::string>(SCENARIO_MAP_ROADS);
@@ -135,7 +135,7 @@ void load_scenario_intersections(std::string scenario, std::string file) {
 			i->set_width(width);
 			i->set_height(height);
 
-			intersections.push_back(i);
+			_intersections.push_back(i);
 		}
 	} else {
 		std::cerr << "Could not open intersections file" << std::endl;
@@ -183,7 +183,7 @@ void load_scenario_roads(std::string scenario, std::string file) {
 				r->add_lane_backward(load_road_lane(scenario, backward_lanes.second.data()));
 			}
 
-			roads.push_back(r);
+			_roads.push_back(r);
 		}
 	} else {
 		std::cerr << "Could not open road file" << std::endl;
@@ -218,9 +218,9 @@ Lane* load_road_lane(std::string scenario, std::string file) {
 
 Intersection* get_intersection_from_id(int id) {
 	Intersection *intersect = nullptr;
-	for (unsigned int i = 0; i < intersections.size(); ++i) {
-		if (intersections[i]->get_id() == id) {
-			return intersections[i];
+	for (unsigned int i = 0; i < _intersections.size(); ++i) {
+		if (_intersections[i]->get_id() == id) {
+			return _intersections[i];
 		}
 	}
 	return intersect;
@@ -234,12 +234,12 @@ void populate_map() {
 	//get the two endpoint intersections
 	//add the intersections as nodes
 	//copy the road to the returned object.
-	for (unsigned int r = 0; r < roads.size(); ++r) {
+	for (unsigned int r = 0; r < _roads.size(); ++r) {
 		//TODO: if road is not one way, also add in other direction
-		Road *road = roads[r];
+		Road *road = _roads[r];
 		Intersection *i1 = road->get_start_intersection();
 		Intersection *i2 = road->get_end_intersection();
-		map.add_edge(i1, i2, road);
+		_map.add_edge(i1, i2, road);
 	}
 }
 
@@ -284,12 +284,12 @@ void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid) {
  */
 void start() {
 	std::cout << "Starting scenario" << std::endl;
-	start_time = boost::posix_time::microsec_clock::local_time();
+	_start_time = boost::posix_time::microsec_clock::local_time();
 	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
 		Vehicle* v = VehicleManager::get_vehicles()[i];
 		v->start();
 	}
-	io_.run();
+	_io.run();
 }
 
 void stop() {
@@ -309,7 +309,7 @@ void stop() {
  */
 void update_vehicle_sensor(const std::string &vid, VehicleSensor &sensor) {
 	boost::posix_time::ptime cur_time = boost::posix_time::microsec_clock::local_time();
-	boost::posix_time::time_duration diff = cur_time - start_time;
+	boost::posix_time::time_duration diff = cur_time - _start_time;
 	long millis = diff.total_milliseconds();
 	std::unique_ptr<mongo::DBClientCursor> cursor = DBConn::evaluate_query(DBConn::VEHICLE_PATH, vid, millis);
 	while (cursor->more()) {
@@ -342,7 +342,7 @@ void test_get_closest_vehicles() {
 }
 
 void test_print_map() {
-	map.print_map_data();
+	_map.print_map_data();
 }
 
 }

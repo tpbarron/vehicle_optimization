@@ -9,11 +9,11 @@
 
 
 Distance::Distance() {
-	distance = -1;
+	_distance = -1;
 }
 
 Distance::Distance(double d) {
-	distance = d;
+	_distance = d;
 }
 
 Distance::~Distance() {
@@ -21,9 +21,9 @@ Distance::~Distance() {
 }
 
 const double Distance::get_distance() const {
-	return distance;
+	return _distance;
 }
 
 void Distance::set_distance(double d) {
-	distance = d;
+	_distance = d;
 }

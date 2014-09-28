@@ -10,37 +10,37 @@
 #include <math.h>
 
 Position::Position() {
-	x = 0;
-	y = 0;
+	_x = 0;
+	_y = 0;
 }
 
 Position::Position(double x, double y) {
-	Position::x = x;
-	Position::y = y;
+	Position::_x = x;
+	Position::_y = y;
 }
 
 Position::~Position() {
 }
 
 void Position::set_x(double new_x) {
-	Position::x = new_x;
+	Position::_x = new_x;
 }
 
 void Position::set_y(double new_y) {
-	Position::y = new_y;
+	Position::_y = new_y;
 }
 
 void Position::set_position(double new_x, double new_y) {
-	Position::x = new_x;
-	Position::y = new_y;
+	Position::_x = new_x;
+	Position::_y = new_y;
 }
 
 const double Position::get_x() const {
-	return x;
+	return _x;
 }
 
 const double Position::get_y() const {
-	return y;
+	return _y;
 }
 
 //TODO ensure this is deallocated
@@ -49,7 +49,7 @@ const double Position::get_y() const {
  */
 const Distance* Position::get_distance_to(const Position *other) const {
 	Distance *d = new Distance();
-	double dist = sqrt(pow(other->get_x() - x, 2) + pow(other->get_y() - y, 2));
+	double dist = sqrt(pow(other->get_x() - _x, 2) + pow(other->get_y() - _y, 2));
 	d->set_distance(dist);
 	return d;
 }

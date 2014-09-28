@@ -23,7 +23,7 @@ public:
 
 private:
 
-	std::vector<Position*> way_pts;
+	std::vector<Position*> _way_pts;
 };
 
 #endif /* LANE_H_ */

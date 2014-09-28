@@ -32,7 +32,7 @@ const std::string HEADING = "heading";
 const std::string VEHICLE_TURN_RATE = "vturn";
 const std::string WHEEL_TURN_RATE = "wturn";
 
-extern mongo::DBClientConnection c;
+extern mongo::DBClientConnection _c;
 
 bool connect_to_db();
 void init();

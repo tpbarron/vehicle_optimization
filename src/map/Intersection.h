@@ -28,12 +28,12 @@ public:
 
 private:
 
-	int id;
+	int _id;
 
-	Position* pos;
+	Position* _pos;
 
-	double width;
-	double height;
+	double _width;
+	double _height;
 
 };
 

@@ -8,11 +8,11 @@
 #include "Heading.h"
 
 Heading::Heading() {
-	heading = 0;
+	_heading = 0;
 }
 
 Heading::Heading(double h) {
-	heading = h;
+	_heading = h;
 }
 
 Heading::~Heading() {
@@ -20,9 +20,9 @@ Heading::~Heading() {
 }
 
 const double Heading::get_heading() const {
-	return heading;
+	return _heading;
 }
 
 void Heading::set_heading(double h) {
-	heading = h;
+	_heading = h;
 }

@@ -31,12 +31,12 @@ public:
 	inline static bool closer(VehicleDistPair p1, VehicleDistPair p2) {
 		return ((p1.first->get_distance()) < (p2.first->get_distance()));
 	}
-	static std::vector<VehicleDistPair> get_nearest(const Position *p, unsigned int k, unsigned int m);
+	static std::vector<VehicleDistPair> get_nearest(const Position *p, unsigned int num_vehicles, unsigned int meters);
 
 
 private:
 
-	static std::vector<Vehicle*> vehicles;
+	static std::vector<Vehicle*> _vehicles;
 //	static std::unordered_set<const Vehicle*> vehicles;
 
 };

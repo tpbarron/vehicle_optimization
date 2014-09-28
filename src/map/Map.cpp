@@ -7,9 +7,9 @@
 
 #include "Map.h"
 
-Map::Map() : network(0) {
-	height = -1;
-	width = -1;
+Map::Map() : _network(0) {
+	_height = -1;
+	_width = -1;
 }
 
 Map::~Map() {
@@ -17,45 +17,45 @@ Map::~Map() {
 }
 
 int Map::get_width() {
-	return width;
+	return _width;
 }
 
 int Map::get_height() {
-	return height;
+	return _height;
 }
 
 void Map::set_width(int w) {
-	width = w;
+	_width = w;
 }
 
 void Map::set_height(int h) {
-	height = h;
+	_height = h;
 }
 
 /*
  * TODO
  */
 void Map::add_edge(Intersection *i1, Intersection *i2, Road *r) {
-	vertex_t u = boost::add_vertex(i1, network);
-	vertex_t v = boost::add_vertex(i2, network);
+	vertex_t u = boost::add_vertex(i1, _network);
+	vertex_t v = boost::add_vertex(i2, _network);
 
 	edge_t e;
 	bool b;
-	boost::tie(e, b) = boost::add_edge(u, v, network);
+	boost::tie(e, b) = boost::add_edge(u, v, _network);
 
 	//copy to vertex u and v
 //	network[u] = i1;
 //	network[v] = i2;
 
 	//copy to edge e
-	network[e] = r;
+	_network[e] = r;
 }
 
 void Map::print_map_data() {
 	//Tried to make this section more clear, instead of using tie, keeping all
 	//the original types so it's more clear what is going on
-	std::pair<edge_iterator, edge_iterator> ei = boost::edges(network);
+	std::pair<edge_iterator, edge_iterator> ei = boost::edges(_network);
 	for(edge_iterator edge_iter = ei.first; edge_iter != ei.second; ++edge_iter) {
-		std::cout << "(" << boost::source(*edge_iter, network) << ", " << boost::target(*edge_iter, network) << ")\n";
+		std::cout << "(" << boost::source(*edge_iter, _network) << ", " << boost::target(*edge_iter, _network) << ")\n";
 	}
 }

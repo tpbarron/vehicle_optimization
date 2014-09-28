@@ -32,7 +32,7 @@ public:
 
 private:
 
-	double acceleration;
+	double _acceleration;
 
 };
 

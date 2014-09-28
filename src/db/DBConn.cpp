@@ -10,11 +10,11 @@
 
 namespace DBConn {
 
-mongo::DBClientConnection c;
+mongo::DBClientConnection _c;
 
 bool connect_to_db() {
 	try {
-		c.connect("localhost");
+		_c.connect("localhost");
 		return true;
 	} catch (const mongo::DBException &e ) {
 		std::cout << e.what() << std::endl;
@@ -30,16 +30,16 @@ void init() {
 }
 
 void clear_db() {
-	c.remove(DBConn::SCENARIO_PATH, mongo::Query());
-	c.remove(DBConn::VEHICLE_PATH, mongo::Query());
+	_c.remove(DBConn::SCENARIO_PATH, mongo::Query());
+	_c.remove(DBConn::VEHICLE_PATH, mongo::Query());
 }
 
 void insert_scenario(mongo::BSONObj &obj) {
-	c.insert(DBConn::SCENARIO_PATH, obj);
+	_c.insert(DBConn::SCENARIO_PATH, obj);
 }
 
 void insert_vehicle(mongo::BSONObj &obj) {
-	c.insert(DBConn::VEHICLE_PATH, obj);
+	_c.insert(DBConn::VEHICLE_PATH, obj);
 }
 
 std::unique_ptr<mongo::DBClientCursor> evaluate_query(std::string query, const std::string vid, const double millis) {
@@ -58,7 +58,7 @@ std::unique_ptr<mongo::DBClientCursor> evaluate_query(std::string query, const s
 	 * 		}
 	 * )
 	 */
-	std::unique_ptr<mongo::DBClientCursor> cursor = c.query(query,
+	std::unique_ptr<mongo::DBClientCursor> cursor = _c.query(query,
 			BSON(DBConn::ID << vid << DBConn::TIME << static_cast<int>(millis/1000+.5))
 	);
 	return cursor;

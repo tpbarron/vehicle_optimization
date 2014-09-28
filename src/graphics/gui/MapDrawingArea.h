@@ -15,13 +15,16 @@
 
 
 class MapDrawingArea : public Gtk::DrawingArea {
+
 public:
+
 	MapDrawingArea(BaseObjectType* cobject,
 			const Glib::RefPtr<Gtk::Builder>& builder);
 	virtual ~MapDrawingArea();
 
 
 protected:
+
   //Override default signal handler:
   virtual bool on_draw(const Cairo::RefPtr<Cairo::Context>& cr);
 

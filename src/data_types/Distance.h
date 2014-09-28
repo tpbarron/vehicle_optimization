@@ -18,7 +18,8 @@ public:
 	void set_distance(double d);
 
 private:
-	double distance;
+
+	double _distance;
 
 };
 

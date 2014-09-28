@@ -8,11 +8,11 @@
 #include "BrakePressure.h"
 
 BrakePressure::BrakePressure() {
-	pressure = 0;
+	_pressure = 0;
 }
 
 BrakePressure::BrakePressure(double p) {
-	pressure = p;
+	_pressure = p;
 }
 
 BrakePressure::~BrakePressure() {
@@ -20,11 +20,11 @@ BrakePressure::~BrakePressure() {
 }
 
 const double BrakePressure::get_pressure() const {
-	return pressure;
+	return _pressure;
 }
 
 void BrakePressure::set_pressure(double p) {
-	pressure = p;
+	_pressure = p;
 }
 
 /*

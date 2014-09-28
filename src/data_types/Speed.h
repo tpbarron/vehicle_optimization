@@ -20,7 +20,8 @@ public:
 	double time_to_travel(double meters);
 
 private:
-	double spd;
+
+	double _speed;
 
 };
 

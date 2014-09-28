@@ -55,18 +55,18 @@ private:
 	/*
 	 * Speed limit in meters/sec
 	 */
-	double speed_limit;
+	double _speed_limit;
 
 	/*
 	 * Distance between intersections in meters
 	 */
-	double distance;
+	double _distance;
 
-	Intersection* start_int;
-	Intersection* end_int;
+	Intersection* _start_int;
+	Intersection* _end_int;
 
-	std::vector<Lane*> lanes_forward;
-	std::vector<Lane*> lanes_backward;
+	std::vector<Lane*> _lanes_forward;
+	std::vector<Lane*> _lanes_backward;
 
 };
 
