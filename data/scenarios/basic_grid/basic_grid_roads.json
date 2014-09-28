@@ -1,0 +1,102 @@
+{
+	"roads": [
+		{
+			"start_intersection": 0,
+			"end_intersection": 1,
+			"speed_limit": 11.176,
+			"distance": 100,
+			"lanes": {
+				"forward": [
+					"lane1.json"
+				],
+				"backward": [
+					"lane2.json"
+				]
+			}
+		},
+		{
+            "start_intersection": 1,
+            "end_intersection": 2,
+            "speed_limit": 11.176,
+            "distance": 100,
+            "lanes": {
+                "forward": [
+                    "lane1.json"
+                ],
+                "backward": [
+                    "lane2.json"
+                ]
+            }
+        },
+        {
+            "start_intersection": 0,
+            "end_intersection": 3,
+            "speed_limit": 11.176,
+            "distance": 100,
+            "lanes": {
+                "forward": [
+                    "lane1.json"
+                ],
+                "backward": [
+                    "lane2.json"
+                ]
+            }
+        },
+        {
+            "start_intersection": 1,
+            "end_intersection": 4,
+            "speed_limit": 11.176,
+            "distance": 100,
+            "lanes": {
+                "forward": [
+                    "lane1.json"
+                ],
+                "backward": [
+                    "lane2.json"
+                ]
+            }
+        },
+        {
+            "start_intersection": 2,
+            "end_intersection": 5,
+            "speed_limit": 11.176,
+            "distance": 100,
+            "lanes": {
+                "forward": [
+                    "lane1.json"
+                ],
+                "backward": [
+                    "lane2.json"
+                ]
+            }
+        },
+        {
+            "start_intersection": 3,
+            "end_intersection": 4,
+            "speed_limit": 11.176,
+            "distance": 100,
+            "lanes": {
+                "forward": [
+                    "lane1.json"
+                ],
+                "backward": [
+                    "lane2.json"
+                ]
+            }
+        },
+        {
+            "start_intersection": 4,
+            "end_intersection": 5,
+            "speed_limit": 11.176,
+            "distance": 100,
+            "lanes": {
+                "forward": [
+                    "lane1.json"
+                ],
+                "backward": [
+                    "lane2.json"
+                ]
+            }
+        }
+	]
+}

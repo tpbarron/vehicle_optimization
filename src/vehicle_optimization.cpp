@@ -67,7 +67,7 @@ int main(int argc, char* argv[]) {
 		//need to clean up GUI but from where?
 	} else {
 		Scenario::init();
-		Scenario::load_scenario("simple1");
+		Scenario::load_scenario("basic_grid");
 		Scenario::test_print_map();
 		Scenario::start();
 		Scenario::stop();

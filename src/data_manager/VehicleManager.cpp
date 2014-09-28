@@ -1,8 +1,12 @@
-/*
+/**
  * VehicleManager.cpp
  *
  *  Created on: Aug 25, 2014
  *      Author: trevor
+ *
+ * Implementation for VehicleManager class. Maintains current Vehicle instances.
+ *
+ *
  */
 
 #include "VehicleManager.h"
@@ -10,7 +14,6 @@
 #include <algorithm>
 
 //Define vector
-//std::unordered_set<const Vehicle*> VehicleManager::vehicles;
 std::vector<Vehicle*> VehicleManager::_vehicles;
 
 
@@ -25,10 +28,13 @@ VehicleManager::~VehicleManager() {
 }
 
 
+/*
+ * Simply add a Vehicle to the vector
+ */
 void VehicleManager::register_vehicle(Vehicle *v) {
 	_vehicles.push_back(v);
-	//insert(v);
 }
+
 
 std::vector<Vehicle*> VehicleManager::get_vehicles() {
 	return _vehicles;
@@ -36,19 +42,24 @@ std::vector<Vehicle*> VehicleManager::get_vehicles() {
 
 
 /*
- * TODO: this is not optimal. But a good start
+ * Return the num vehicles closest Vehicles < meters meters away.
+ * TODO: exclude own vehicle
  */
-std::vector<VehicleManager::VehicleDistPair> VehicleManager::get_nearest(const Position *p, unsigned int num_vehicles, unsigned int meters) {
+std::vector<VehicleManager::VehicleDistPair> VehicleManager::get_nearest(const Position *p,
+		unsigned int num_vehicles, unsigned int meters) {
+
 	std::vector<VehicleManager::VehicleDistPair> nearest;
 	std::cout << "Position: " << p->get_x() << " " << p->get_y() << std::endl;
+
+	//Check all vehicles
 	for (std::vector<Vehicle*>::iterator it = _vehicles.begin(); it != _vehicles.end(); ++it) {
 		std::cout << "Checking vehicle" << std::endl;
 		VehicleManager::VehicleDistPair vdist;
-		std::cout << "Other pos == null? : " << ((*it)->get_sensor().get_position() == nullptr) << std::endl;
 		vdist.first = p->get_distance_to((*it)->get_sensor().get_position());
 		vdist.second = (*it);
 		nearest.push_back(vdist);
 	}
+
 	//Sort vector;
 	std::sort(nearest.begin(), nearest.end(), VehicleManager::closer);
 	std::cout << "sorted" << std::endl;

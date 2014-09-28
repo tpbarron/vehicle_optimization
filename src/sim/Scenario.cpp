@@ -293,6 +293,9 @@ void populate_map() {
 		Intersection *i1 = road->get_start_intersection();
 		Intersection *i2 = road->get_end_intersection();
 		_map.add_edge(i1, i2, road);
+		if (!road->is_one_way()) {
+			_map.add_edge(i2, i1, road);
+		}
 	}
 }
 

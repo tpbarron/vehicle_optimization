@@ -1,0 +1,24 @@
+{
+    "_name": "Basic Grid",
+    "_desc": "A very scenario with streets organized in a grid",
+    "vehicles": [
+        {
+            "name":"Vehicle 1",
+            "data":"vehicle1.json"
+        },
+        {
+            "name":"Vehicle 2",
+            "data":"vehicle2.json"
+        },
+        {
+            "name":"Vehicle 3",
+            "data":"vehicle3.json"
+        }
+    ],
+    "map": {
+        "width": 260,
+        "height": 140,
+        "intersections": "basic_grid_intersections.json",
+        "roads": "basic_grid_roads.json"
+    }
+}

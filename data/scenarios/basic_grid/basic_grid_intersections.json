@@ -1,0 +1,46 @@
+{
+	"intersections": [
+		{
+			"id": 0,
+			"pos_x": 0,
+			"pos_y": 0,
+			"width": 20,
+			"height": 20
+		},
+		{
+			"id": 1,
+			"pos_x": 120,
+			"pos_y": 0,
+			"width": 20,
+			"height": 20
+		},
+		{
+            "id": 2,
+            "pos_x": 240,
+            "pos_y": 0,
+            "width": 20,
+            "height": 20
+        },
+        {
+            "id": 3,
+            "pos_x": 0,
+            "pos_y": 120,
+            "width": 20,
+            "height": 20
+        },
+        {
+            "id": 4,
+            "pos_x": 120,
+            "pos_y": 120,
+            "width": 20,
+            "height": 20
+        },
+        {
+            "id": 5,
+            "pos_x": 240,
+            "pos_y": 120,
+            "width": 20,
+            "height": 20
+        }
+	]
+}
