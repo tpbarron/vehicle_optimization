@@ -70,7 +70,7 @@ public:
 	 * @see Vehicle
 	 *
 	 */
-	static std::vector<VehicleDistPair> get_nearest(const Position *p,
+	static std::vector<VehicleDistPair> get_nearest(const Position &p,
 			unsigned int num_vehicles, unsigned int meters);
 
 

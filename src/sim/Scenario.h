@@ -25,6 +25,7 @@
 #include "map/Intersection.h"
 #include "map/Road.h"
 #include "map/Lane.h"
+#include "map/routing/Route.h"
 #include "sensor/VehicleSensor.h"
 #include "utils/Utils.h"
 #include "vehicle/Vehicle.h"
@@ -83,12 +84,12 @@ void load_scenario(std::string file);
 void insert_scenario_data(std::string name, std::string desc);
 void load_scenario_map(std::string scenario, boost::property_tree::ptree &map_tree);
 void load_scenario_roads(std::string scenario, std::string file);
-Lane* load_road_lane(std::string scenario, std::string file);
+Lane load_road_lane(std::string scenario, std::string file);
 void load_scenario_intersections(std::string scenario, std::string file);
 void load_vehicle(std::string vehicle_name, std::string vehicle_file);
 void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid);
 void populate_map();
-Intersection* get_intersection_from_id(int id);
+Intersection& get_intersection_from_id(int id);
 
 void start();
 void stop();
@@ -97,14 +98,15 @@ void update_vehicle_sensor(const std::string &vid, VehicleSensor &sensor);
 
 void test_get_closest_vehicles();
 void test_print_map();
+void test_routing();
 
 
 extern boost::asio::io_service _io;
 extern boost::asio::strand _strand;
 extern boost::posix_time::ptime _start_time;
 extern Map _map;
-extern std::vector<Intersection*> _intersections;
-extern std::vector<Road*> _roads;
+extern std::vector<Intersection> _intersections;
+extern std::vector<Road> _roads;
 
 };
 

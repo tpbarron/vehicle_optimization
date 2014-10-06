@@ -10,34 +10,17 @@
 Road::Road() {
 	_speed_limit = 0;
 	_distance = 0;
-	_start_int = nullptr;
-	_end_int = nullptr;
 }
 
 Road::~Road() {
-	for (unsigned int i = 0; i < _lanes_forward.size(); ++i) {
-		delete _lanes_forward[i];
-	}
-	for (unsigned int j = 0; j < _lanes_backward.size(); ++j) {
-		delete _lanes_backward[j];
-	}
-	// TODO Do the intersections need to be deleted here? 
-	// need shared pointer because multiple roads can point to the same 
-	// intersections.
 }
 
 
-void Road::set_start_intersection(Intersection *i) {
-	if (_start_int ==  nullptr) {
-		_start_int = new Intersection();
-	}
+void Road::set_start_intersection(Intersection &i) {
 	_start_int = i;
 }
 
-void Road::set_end_intersection(Intersection *i) {
-	if (_end_int == nullptr) {
-		_end_int = new Intersection();
-	}
+void Road::set_end_intersection(Intersection &i) {
 	_end_int = i;
 }
 
@@ -50,11 +33,11 @@ void Road::set_distance(double d) {
 }
 
 
-Intersection* Road::get_start_intersection() {
+Intersection Road::get_start_intersection() {
 	return _start_int;
 }
 
-Intersection* Road::get_end_intersection() {
+Intersection Road::get_end_intersection() {
 	return _end_int;
 }
 
@@ -70,7 +53,7 @@ double Road::get_distance() {
  * From start to end
  */
 
-void Road::add_lane_forward(Lane *l) {
+void Road::add_lane_forward(Lane l) {
 	_lanes_forward.push_back(l);
 }
 
@@ -81,7 +64,7 @@ int Road::get_num_lanes_forward() {
 /*
  * From end to start
  */
-void Road::add_lane_backward(Lane *l) {
+void Road::add_lane_backward(Lane l) {
 	_lanes_backward.push_back(l);
 }
 

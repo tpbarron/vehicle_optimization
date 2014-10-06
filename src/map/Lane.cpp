@@ -13,11 +13,8 @@ Lane::Lane() {
 }
 
 Lane::~Lane() {
-	for (unsigned int i = 0; i < _way_pts.size(); ++i) {
-		delete _way_pts[i];
-	}
 }
 
-void Lane::add_waypoint(Position *p) {
+void Lane::add_waypoint(Position &p) {
 	_way_pts.push_back(p);
 }

@@ -25,30 +25,36 @@ public:
 		ONE_WAY_BACKWARD
 	};
 
-	void set_start_intersection(Intersection *i);
-	void set_end_intersection(Intersection *i);
+	void set_start_intersection(Intersection &i);
+	void set_end_intersection(Intersection &i);
 	void set_speed_limit(double s);
 	void set_distance(double d);
 
-	Intersection* get_start_intersection();
-	Intersection* get_end_intersection();
+	Intersection get_start_intersection();
+	Intersection get_end_intersection();
 	double get_speed_limit();
 	double get_distance();
 
 	/*
 	 * From start to end
 	 */
-	void add_lane_forward(Lane *l);
+	void add_lane_forward(Lane l);
 	int get_num_lanes_forward();
 
 	/*
 	 * From end to start
 	 */
-	void add_lane_backward(Lane *l);
+	void add_lane_backward(Lane l);
 	int get_num_lanes_backward();
 
 	bool is_one_way();
 	RoadType get_road_type();
+
+	/*
+	 * TODO: make this private and use function for cost..
+	 * Distance between intersections in meters
+	 */
+	double _distance;
 
 private:
 
@@ -57,16 +63,11 @@ private:
 	 */
 	double _speed_limit;
 
-	/*
-	 * Distance between intersections in meters
-	 */
-	double _distance;
+	Intersection _start_int;
+	Intersection _end_int;
 
-	Intersection* _start_int;
-	Intersection* _end_int;
-
-	std::vector<Lane*> _lanes_forward;
-	std::vector<Lane*> _lanes_backward;
+	std::vector<Lane> _lanes_forward;
+	std::vector<Lane> _lanes_backward;
 
 };
 

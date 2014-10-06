@@ -23,14 +23,14 @@ public:
 	void set_pox_y(double y);
 	void set_position(double x, double y);
 
-	Position* get_position();
+	Position get_position();
 	int get_id();
 
 private:
 
 	int _id;
 
-	Position* _pos;
+	Position _pos;
 
 	double _width;
 	double _height;

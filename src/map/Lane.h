@@ -19,11 +19,11 @@ public:
 	Lane();
 	virtual ~Lane();
 
-	void add_waypoint(Position *p);
+	void add_waypoint(Position &p);
 
 private:
 
-	std::vector<Position*> _way_pts;
+	std::vector<Position> _way_pts;
 };
 
 #endif /* LANE_H_ */

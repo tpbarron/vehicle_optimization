@@ -9,7 +9,10 @@
 
 #include <boost/foreach.hpp>
 
-
+/**
+ * Maintains data for a running scenario.
+ *
+ */
 namespace Scenario {
 
 boost::posix_time::ptime _start_time;
@@ -17,24 +20,27 @@ boost::posix_time::ptime _start_time;
 boost::asio::io_service _io;
 boost::asio::strand _strand(_io);
 Map _map;
-std::vector<Intersection*> _intersections;
-std::vector<Road*> _roads;
+std::vector<Intersection> _intersections;
+std::vector<Road> _roads;
 
+/**
+ * Initialize the connection to the database
+ */
 void init() {
 	DBConn::init();
 }
 
+/**
+ * Cleanup resources used in the Scenario namespace
+ */
 void cleanup() {
 	std::cout << "Cleaning up scenario" << std::endl;
-	for (unsigned int j = 0; j < _intersections.size(); ++j) {
-		delete _intersections[j];
-	}
-	for (unsigned int k = 0; k < _roads.size(); ++k) {
-		delete _roads[k];
-	}
 }
 
-
+/**
+ * Load a scenario by name
+ * @param scenario - a string designating the name of the scenario.
+ */
 void load_scenario(std::string scenario) {
 	std::string file = Utils::get_scenario_file_path(scenario);
 	//read json file and insert into db
@@ -68,6 +74,11 @@ void load_scenario(std::string scenario) {
 	}
 }
 
+/**
+ * Insert scenario meta data into the database
+ * @param name - the name of the scenario
+ * @param desc - a short description of the scenario
+ */
 void insert_scenario_data(std::string name, std::string desc) {
 	mongo::BSONObjBuilder b;
 	b.append(DBConn::SCENARIO_NAME, name);
@@ -79,7 +90,12 @@ void insert_scenario_data(std::string name, std::string desc) {
 	std::cout << "Loading scenario into db: " << desc << std::endl;
 }
 
-
+/**
+ * Load a vehicle from file for use in this scenario
+ *
+ * @param name - the name of the scenario being loaded
+ * @param file - the file to load the vehicle from
+ */
 void load_vehicle(std::string name, std::string file) {
 	std::ifstream vehicle_file(file.c_str());
 	if (vehicle_file.is_open()) {
@@ -110,6 +126,12 @@ void load_vehicle(std::string name, std::string file) {
 	}
 }
 
+/**
+ * Insert the vehicle data into the database
+ *
+ * @param vehicle_file - the file to read the vehicle data from
+ * @param vid - the id of the vehicle generated using boost::uuid generator
+ */
 void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid) {
 	std::stringstream vbuf;
 	vbuf << vehicle_file.rdbuf();
@@ -144,6 +166,13 @@ void insert_vehicle_data(std::ifstream &vehicle_file, std::string vid) {
 		DBConn::insert_vehicle(vehicle_obj);
 	}
 }
+
+/**
+ * Load the map for this scenario from a file
+ *
+ * @param scenario - the name of the scenario
+ * @param map_tree - a boost::property_tree with map data
+ */
 void load_scenario_map(std::string scenario, boost::property_tree::ptree &map_tree) {
 	int map_width = map_tree.get<int>(SCENARIO_MAP_WIDTH);
 	int map_height = map_tree.get<int>(SCENARIO_MAP_HEIGHT);
@@ -182,11 +211,11 @@ void load_scenario_intersections(std::string scenario, std::string file) {
 			double width = intersection.second.get<double>(INTERSECTION_WIDTH);
 			double height = intersection.second.get<double>(INTERSECTION_HEIGHT);
 
-			Intersection *i = new Intersection();
-			i->set_id(id);
-			i->set_position(pos_x, pos_y);
-			i->set_width(width);
-			i->set_height(height);
+			Intersection i;
+			i.set_id(id);
+			i.set_position(pos_x, pos_y);
+			i.set_width(width);
+			i.set_height(height);
 
 			_intersections.push_back(i);
 		}
@@ -217,23 +246,23 @@ void load_scenario_roads(std::string scenario, std::string file) {
 			double speed_limit = road.second.get<double>(ROAD_SPEED_LIMIT);
 			double dist = road.second.get<double>(ROAD_DISTANCE);
 
-			Road *r = new Road();
-			r->set_start_intersection(get_intersection_from_id(start_int_id));
-			r->set_end_intersection(get_intersection_from_id(end_int_id));
-			r->set_speed_limit(speed_limit);
-			r->set_distance(dist);
+			Road r;
+			r.set_start_intersection(get_intersection_from_id(start_int_id));
+			r.set_end_intersection(get_intersection_from_id(end_int_id));
+			r.set_speed_limit(speed_limit);
+			r.set_distance(dist);
 
 			std::cout << "Loading lanes" << std::endl;
 			BOOST_FOREACH(boost::property_tree::ptree::value_type &forward_lanes,
 					road.second.get_child(ROAD_LANES+"."+ROAD_FORWARD_LANES)) {
 				std::cout << forward_lanes.second.data() << std::endl;
-				r->add_lane_forward(load_road_lane(scenario, forward_lanes.second.data()));
+				r.add_lane_forward(load_road_lane(scenario, forward_lanes.second.data()));
 			}
 
 			BOOST_FOREACH(boost::property_tree::ptree::value_type &backward_lanes,
 					road.second.get_child(ROAD_LANES+"."+ROAD_BACKWARD_LANES)) {
 				std::cout << backward_lanes.second.data() << std::endl;
-				r->add_lane_backward(load_road_lane(scenario, backward_lanes.second.data()));
+				r.add_lane_backward(load_road_lane(scenario, backward_lanes.second.data()));
 			}
 
 			_roads.push_back(r);
@@ -243,10 +272,10 @@ void load_scenario_roads(std::string scenario, std::string file) {
 	}
 }
 
-Lane* load_road_lane(std::string scenario, std::string file) {
+Lane load_road_lane(std::string scenario, std::string file) {
 	std::string path = Utils::get_scenario_lane_file_path(scenario, file);
 	std::cout << "Lane: " << path << std::endl;
-	Lane *l = new Lane();
+	Lane l;
 	std::ifstream in(path.c_str());
 	if (in.is_open()) {
 		std::stringstream buf;
@@ -259,9 +288,9 @@ Lane* load_road_lane(std::string scenario, std::string file) {
 		BOOST_FOREACH(boost::property_tree::ptree::value_type &lane, lane_data.get_child(LANE_WAYPOINTS)) {
 			double ptx = lane.second.get<double>(LANE_POINT_X);
 			double pty = lane.second.get<double>(LANE_POINT_Y);
-			Position *p = new Position();
-			p->set_position(ptx, pty);
-			l->add_waypoint(p);
+			Position p;
+			p.set_position(ptx, pty);
+			l.add_waypoint(p);
 		}
 	} else {
 		std::cerr << "Could not open road file" << std::endl;
@@ -269,14 +298,13 @@ Lane* load_road_lane(std::string scenario, std::string file) {
 	return l;
 }
 
-Intersection* get_intersection_from_id(int id) {
-	Intersection *intersect = nullptr;
+Intersection& get_intersection_from_id(int id) {
 	for (unsigned int i = 0; i < _intersections.size(); ++i) {
-		if (_intersections[i]->get_id() == id) {
+		if (_intersections[i].get_id() == id) {
 			return _intersections[i];
 		}
 	}
-	return intersect;
+	throw std::invalid_argument("No intersection for id = " + boost::lexical_cast<std::string>(id));
 }
 
 /*
@@ -289,11 +317,11 @@ void populate_map() {
 	//copy the road to the returned object.
 	for (unsigned int r = 0; r < _roads.size(); ++r) {
 		//TODO: if road is not one way, also add in other direction
-		Road *road = _roads[r];
-		Intersection *i1 = road->get_start_intersection();
-		Intersection *i2 = road->get_end_intersection();
+		Road road = _roads[r];
+		Intersection i1 = road.get_start_intersection();
+		Intersection i2 = road.get_end_intersection();
 		_map.add_edge(i1, i2, road);
-		if (!road->is_one_way()) {
+		if (!road.is_one_way()) {
 			_map.add_edge(i2, i1, road);
 		}
 	}
@@ -365,6 +393,11 @@ void test_get_closest_vehicles() {
 
 void test_print_map() {
 	_map.print_map_data();
+}
+
+void test_routing() {
+	Route r(_map);
+	r.generate_route(_intersections[0], _intersections[5]);
 }
 
 }

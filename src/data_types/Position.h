@@ -25,7 +25,7 @@ public:
 	const double get_x() const;
 	const double get_y() const;
 
-	const Distance* get_distance_to(const Position *other) const;
+	const Distance* get_distance_to(const Position &other) const;
 
 	std::string to_string();
 

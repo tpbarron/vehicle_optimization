@@ -21,6 +21,7 @@
 #include "data_manager/VehicleManager.h"
 #include "data_types/Distance.h"
 #include "IVehicleDataListener.h"
+#include "map/routing/Route.h"
 #include "sensor/VehicleSensor.h"
 #include "sensor/VehicleSensorData.h"
 #include "sim/Scenario.h"
@@ -88,6 +89,9 @@ private:
 
 	boost::thread *_t;
 
+	//Routing
+	Map _map;
+	Route _route;
 
 	//Data struct
 	struct VehicleSensorData* _data;

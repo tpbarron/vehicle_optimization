@@ -7,7 +7,7 @@
 
 #include "Vehicle.h"
 
-Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::strand *strand) : _count(0) {
+Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::strand *strand) : _count(0), _route(_map) {
 
 	_id = Utils::gen_uuid();
 

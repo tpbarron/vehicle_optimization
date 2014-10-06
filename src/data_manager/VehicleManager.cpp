@@ -45,17 +45,17 @@ std::vector<Vehicle*> VehicleManager::get_vehicles() {
  * Return the num vehicles closest Vehicles < meters meters away.
  * TODO: exclude own vehicle
  */
-std::vector<VehicleManager::VehicleDistPair> VehicleManager::get_nearest(const Position *p,
+std::vector<VehicleManager::VehicleDistPair> VehicleManager::get_nearest(const Position &p,
 		unsigned int num_vehicles, unsigned int meters) {
 
 	std::vector<VehicleManager::VehicleDistPair> nearest;
-	std::cout << "Position: " << p->get_x() << " " << p->get_y() << std::endl;
+	std::cout << "Position: " << p.get_x() << " " << p.get_y() << std::endl;
 
 	//Check all vehicles
 	for (std::vector<Vehicle*>::iterator it = _vehicles.begin(); it != _vehicles.end(); ++it) {
 		std::cout << "Checking vehicle" << std::endl;
 		VehicleManager::VehicleDistPair vdist;
-		vdist.first = p->get_distance_to((*it)->get_sensor().get_position());
+		vdist.first = p.get_distance_to((*it)->get_sensor().get_position());
 		vdist.second = (*it);
 		nearest.push_back(vdist);
 	}
