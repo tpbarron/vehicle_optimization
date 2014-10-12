@@ -65,7 +65,6 @@
       <li><a href="functions_i.html#index_i"><span>i</span></a></li>
       <li><a href="functions_l.html#index_l"><span>l</span></a></li>
       <li><a href="functions_m.html#index_m"><span>m</span></a></li>
-      <li><a href="functions_n.html#index_n"><span>n</span></a></li>
       <li><a href="functions_o.html#index_o"><span>o</span></a></li>
       <li><a href="functions_p.html#index_p"><span>p</span></a></li>
       <li><a href="functions_r.html#index_r"><span>r</span></a></li>
@@ -74,8 +73,6 @@
       <li><a href="functions_u.html#index_u"><span>u</span></a></li>
       <li><a href="functions_v.html#index_v"><span>v</span></a></li>
       <li><a href="functions_w.html#index_w"><span>w</span></a></li>
-      <li><a href="functions_x.html#index_x"><span>x</span></a></li>
-      <li><a href="functions_y.html#index_y"><span>y</span></a></li>
       <li><a href="functions_~.html#index_~"><span>~</span></a></li>
     </ul>
   </div>
@@ -93,9 +90,6 @@
 <li>SCENARIO_VEHICLE_DATA_DIR
 : <a class="el" href="classUtils.html#ae9582b3ccd6ab280ecef1cb72b9b26b4">Utils</a>
 </li>
-<li>sensor
-: <a class="el" href="classVehicle.html#a5c9eae715f1deedb46e91a443a42bd1e">Vehicle</a>
-</li>
 <li>set_acceleration()
 : <a class="el" href="classAcceleration.html#a08a8be6f0afdc0274bc8e87852e4cc07">Acceleration</a>
 , <a class="el" href="classVehicleSensor.html#a339654209609eff3186d42a2dd7c6bba">VehicleSensor</a>
@@ -108,7 +102,10 @@
 , <a class="el" href="classRoad.html#aad16b4e8a78aedb370d8aef6d0e335d2">Road</a>
 </li>
 <li>set_end_intersection()
-: <a class="el" href="classRoad.html#a38a2edc69078dc826e0b535c74a51eba">Road</a>
+: <a class="el" href="classRoad.html#a7ee79f4f1b8ea520ecd8962882d3d1f9">Road</a>
+</li>
+<li>set_goal_position()
+: <a class="el" href="classVehicle.html#a764a6cc6668ccf3cea442127156bed4d">Vehicle</a>
 </li>
 <li>set_heading()
 : <a class="el" href="classHeading.html#ad103dfe1c9429e79c6cc67671c3cd49a">Heading</a>
@@ -120,6 +117,10 @@
 </li>
 <li>set_id()
 : <a class="el" href="classIntersection.html#ab2fa65fc994d4d88dfde074132c6ad5e">Intersection</a>
+</li>
+<li>set_map()
+: <a class="el" href="classRoute.html#a47c8782cd1326ccc74642f767e3e7802">Route</a>
+, <a class="el" href="classVehicle.html#a09fcdddce98436862149e8c7414cf21d">Vehicle</a>
 </li>
 <li>set_pos_x()
 : <a class="el" href="classIntersection.html#a916662f3b83c907f858939c24637fbd5">Intersection</a>
@@ -143,7 +144,10 @@
 : <a class="el" href="classRoad.html#a84dd72376d9c736d1addb5ab384b8a93">Road</a>
 </li>
 <li>set_start_intersection()
-: <a class="el" href="classRoad.html#aed898c1a49b124a56f4fca314d005f30">Road</a>
+: <a class="el" href="classRoad.html#a3fce6051e3d6615dcbf49b461252e27f">Road</a>
+</li>
+<li>set_start_position()
+: <a class="el" href="classVehicle.html#a76556dbb0efaa6a420e366a1190c1cc8">Vehicle</a>
 </li>
 <li>set_stopping_dist()
 : <a class="el" href="classVehicle.html#a6824c70b827f387ccb0231b71ab0802f">Vehicle</a>
@@ -170,23 +174,14 @@
 <li>should_warn()
 : <a class="el" href="classVehicle.html#aaf43644a0de1dfeb9b7b82b7a338680c">Vehicle</a>
 </li>
-<li>spd
-: <a class="el" href="classSpeed.html#a0b16826485c99173440679643d9fe9c0">Speed</a>
-</li>
 <li>Speed()
 : <a class="el" href="classSpeed.html#a9d5396f9602ccca90ae19568b7376d3f">Speed</a>
 </li>
 <li>SPEED
 : <a class="el" href="structVehicleSensorData.html#a5ab42ad29dd4021badfa2bc4ef7033af">VehicleSensorData</a>
 </li>
-<li>speed_limit
-: <a class="el" href="classRoad.html#a20eca7a05db16fb26722dd86186e4620">Road</a>
-</li>
 <li>start()
 : <a class="el" href="classVehicle.html#a3ccb19e449f184280cae484d2ee0e7c3">Vehicle</a>
-</li>
-<li>start_int
-: <a class="el" href="classRoad.html#a845ce2a2a21042ec60f37c8fe2523bf1">Road</a>
 </li>
 <li>STEERING_WHEEL_TURN_RATE
 : <a class="el" href="structVehicleSensorData.html#a0007897896990e0aca457ecccfa8bb5b">VehicleSensorData</a>
@@ -194,14 +189,11 @@
 <li>stop()
 : <a class="el" href="classVehicle.html#a837e3c110672946892026ca6bfd21b27">Vehicle</a>
 </li>
-<li>stopping_dist
-: <a class="el" href="classVehicle.html#a34c7e243ba43a84cb34a7410aa9b62a5">Vehicle</a>
-</li>
 </ul>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 27 2014 14:08:18 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

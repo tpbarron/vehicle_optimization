@@ -86,22 +86,26 @@
 : <a class="el" href="classOrderedSet.html#ae2f342fe610037643c89570cc04dec2c">OrderedSet</a>
 </li>
 <li>add_edge()
-: <a class="el" href="classMap.html#a2bd435e4ac7f431f25b23bf49254a45d">Map</a>
+: <a class="el" href="classMap.html#a32a9ed7ee766dc33b89912cb8b031d93">Map</a>
 </li>
 <li>add_lane_backward()
-: <a class="el" href="classRoad.html#abc878f2e0415ee5935be740ed9a18391">Road</a>
+: <a class="el" href="classRoad.html#a441ca274106093fd5c83e0c061cfacac">Road</a>
 </li>
 <li>add_lane_forward()
-: <a class="el" href="classRoad.html#a5b19938783d101fc941f37bec3ef17ee">Road</a>
+: <a class="el" href="classRoad.html#a4b91dd025292b28f030ecdde02c766c6">Road</a>
 </li>
 <li>add_listener()
-: <a class="el" href="classVehicle.html#adb1ae004089252de05554a5a2717e202">Vehicle</a>
+: <a class="el" href="classIVehicleDataListener.html#a6d431df9ff8bdd85346d47e6a5b9e6f3">IVehicleDataListener</a>
+, <a class="el" href="classVehicle.html#adeb672bdb930c1efe33cf4beadc43d24">Vehicle</a>
 </li>
 <li>add_to_list()
 : <a class="el" href="classOrderedSet.html#a800560dd7d70f3d4e7bd57b33262e1fc">OrderedSet</a>
 </li>
 <li>add_waypoint()
-: <a class="el" href="classLane.html#a51116742c9b88c008fce2c31a9ea822b">Lane</a>
+: <a class="el" href="classLane.html#a5af3bd7172da1d79e915f9689887c6b4">Lane</a>
+</li>
+<li>AstarGoalVisitor()
+: <a class="el" href="classAstarGoalVisitor.html#a5b51a78e2d956b29269a1d384222017c">AstarGoalVisitor</a>
 </li>
 </ul>
 
@@ -113,12 +117,21 @@
 <li>broadcast_data()
 : <a class="el" href="classVehicle.html#ab49c93f87385b7c64f86c8b09689ab35">Vehicle</a>
 </li>
+<li>build_weight_map()
+: <a class="el" href="classMap.html#a1b77a89afe3532f10f2079af409e1556">Map</a>
+</li>
 </ul>
 
 
 <h3><a class="anchor" id="index_c"></a>- c -</h3><ul>
 <li>calc_stopping_dist()
 : <a class="el" href="classVehicle.html#af4be780be96885b7b7f6476dd1f4f14f">Vehicle</a>
+</li>
+<li>calculate_angle_to_intersection()
+: <a class="el" href="classRoute.html#a376c8f1e68752e4e4623904979468567">Route</a>
+</li>
+<li>calculate_progress()
+: <a class="el" href="classVehicle.html#acd62c8551083e7f3e6c1845b80577f51">Vehicle</a>
 </li>
 <li>closer()
 : <a class="el" href="classVehicleManager.html#a0afa5be2cced853db0f9fba40a33a06e">VehicleManager</a>
@@ -155,6 +168,12 @@
 
 
 <h3><a class="anchor" id="index_e"></a>- e -</h3><ul>
+<li>EuclideanDistanceHeuristic()
+: <a class="el" href="classEuclideanDistanceHeuristic.html#a399f8a85b7469fabfa6fbb5576ea82ee">EuclideanDistanceHeuristic&lt; Graph, CostType &gt;</a>
+</li>
+<li>examine_vertex()
+: <a class="el" href="classAstarGoalVisitor.html#a5f8c379ee71e393dc152ecbbe3dcbcb2">AstarGoalVisitor</a>
+</li>
 <li>export_data()
 : <a class="el" href="classVehicleSensor.html#a49255dee0602e801dcd0ffffe8ae8135">VehicleSensor</a>
 </li>
@@ -162,26 +181,38 @@
 
 
 <h3><a class="anchor" id="index_g"></a>- g -</h3><ul>
+<li>generate_route()
+: <a class="el" href="classRoute.html#a0036f1fb7ad6494b29bf674ab3b8b8ec">Route</a>
+</li>
 <li>get_acceleration()
 : <a class="el" href="classAcceleration.html#abed15865ca828184ce7b2bc50b67614b">Acceleration</a>
-, <a class="el" href="classVehicleSensor.html#ad57453a662bdc684bb6844dffafc4e8f">VehicleSensor</a>
+, <a class="el" href="classVehicleSensor.html#a3e1a2459e21e8d3872658c7b77ba0a1e">VehicleSensor</a>
 </li>
 <li>get_brake_pressure()
-: <a class="el" href="classVehicleSensor.html#a922c8859a508a0798d07f82ba786691d">VehicleSensor</a>
+: <a class="el" href="classVehicleSensor.html#a9f0a55ee6c88ec7e58390b2e82793f2e">VehicleSensor</a>
+</li>
+<li>get_current_heading()
+: <a class="el" href="classRoute.html#ace4efac7938dc75c941db70725a8abb7">Route</a>
+</li>
+<li>get_current_speed_limit()
+: <a class="el" href="classRoute.html#af61bc9d809755b7b92b1e88c39431542">Route</a>
 </li>
 <li>get_distance()
 : <a class="el" href="classDistance.html#a10f101530d40ee06547dbeb8a18b7fa9">Distance</a>
 , <a class="el" href="classRoad.html#affcadb36bfcb3ae716bcf543979c7f3e">Road</a>
 </li>
+<li>get_distance_for_time()
+: <a class="el" href="classSpeed.html#af73e1e5e14661326038b2c9db00cfcfd">Speed</a>
+</li>
 <li>get_distance_to()
-: <a class="el" href="classPosition.html#adcd4442d9a75850abd7e5b82a0fa74b8">Position</a>
+: <a class="el" href="classPosition.html#a762d5019a6e1b5681ed81823e59d3f15">Position</a>
 </li>
 <li>get_end_intersection()
-: <a class="el" href="classRoad.html#a0acd4e291e060c503f77a8be759ce449">Road</a>
+: <a class="el" href="classRoad.html#a53bd062dde38e5968b3f55ed38ca88a0">Road</a>
 </li>
 <li>get_heading()
 : <a class="el" href="classHeading.html#a943b19981e56f8c680e8a74ddce7625d">Heading</a>
-, <a class="el" href="classVehicleSensor.html#a6f74fd21ba2c70aab700b3f66bae67a6">VehicleSensor</a>
+, <a class="el" href="classVehicleSensor.html#a01e81fa9333df3afe77fd62d8e5d7177">VehicleSensor</a>
 </li>
 <li>get_height()
 : <a class="el" href="classMap.html#adef9516dd475e67aa7f819a6a358f668">Map</a>
@@ -193,8 +224,20 @@
 <li>get_id_as_string()
 : <a class="el" href="classVehicle.html#ab8727728d44a4f8f8f57211cdbf907cd">Vehicle</a>
 </li>
+<li>get_intersection_closest_to()
+: <a class="el" href="classMap.html#a0b69207acfac77e773c44f861c8c5b1d">Map</a>
+</li>
 <li>get_nearest()
-: <a class="el" href="classVehicleManager.html#afa807dee01b9ffafa7e35679c281bd2e">VehicleManager</a>
+: <a class="el" href="classVehicleManager.html#ac66ae58662fdea474e74d2de1028f970">VehicleManager</a>
+</li>
+<li>get_network()
+: <a class="el" href="classMap.html#addc03fbf71a969af72e973ff62a5feaf">Map</a>
+</li>
+<li>get_new_position()
+: <a class="el" href="classRoute.html#af871d2b87511c47f215aea5ff9e44b39">Route</a>
+</li>
+<li>get_num_intersections()
+: <a class="el" href="classMap.html#a976f25fedf381c0d792a872c507dc458">Map</a>
 </li>
 <li>get_num_lanes_backward()
 : <a class="el" href="classRoad.html#a8f14c5516d5de9ae42f62e6924fb64b2">Road</a>
@@ -203,8 +246,8 @@
 : <a class="el" href="classRoad.html#ab27c0b99baa7608e87536d5ca8f0ea88">Road</a>
 </li>
 <li>get_position()
-: <a class="el" href="classIntersection.html#a658375514cbe7dee338cf37b03e6760c">Intersection</a>
-, <a class="el" href="classVehicleSensor.html#aa7fa934303f0191915fc009ea765294f">VehicleSensor</a>
+: <a class="el" href="classIntersection.html#ac4bb2af2720702d821af0dce2f270b09">Intersection</a>
+, <a class="el" href="classVehicleSensor.html#aa048f6cad9073267d3c3367422c10dec">VehicleSensor</a>
 </li>
 <li>get_pressure()
 : <a class="el" href="classBrakePressure.html#ac35f0cbe108a3213c3258ce25cbcf57b">BrakePressure</a>
@@ -235,7 +278,7 @@
 </li>
 <li>get_speed()
 : <a class="el" href="classSpeed.html#a1eb92c6173289b3d3f3311157fa1cf31">Speed</a>
-, <a class="el" href="classVehicleSensor.html#a4ca81bdd0ff2427dd3730024ccb48b9c">VehicleSensor</a>
+, <a class="el" href="classVehicleSensor.html#ad5598612992aa5b1e4fa3999c8b011d6">VehicleSensor</a>
 </li>
 <li>get_speed_after_time()
 : <a class="el" href="classAcceleration.html#a6341e9ffa1f7eb73659d00d261c1acef">Acceleration</a>
@@ -244,7 +287,7 @@
 : <a class="el" href="classRoad.html#a64f498aaf35c78c300f1a17115bc70e7">Road</a>
 </li>
 <li>get_start_intersection()
-: <a class="el" href="classRoad.html#afa61237fbf7fc99a0e02e9964e6bf9ac">Road</a>
+: <a class="el" href="classRoad.html#a54c77714c22a30fd934ef19d5e427e44">Road</a>
 </li>
 <li>get_stopping_dist()
 : <a class="el" href="classVehicle.html#ac14a1cf2cdc3875a05c74b39e67f5477">Vehicle</a>
@@ -253,13 +296,16 @@
 : <a class="el" href="classTurnRate.html#adeb56e94d601f11b3f900c2f4baf76b6">TurnRate</a>
 </li>
 <li>get_vehicle_turn_rate()
-: <a class="el" href="classVehicleSensor.html#aba0c8b651c7d83610951fceab1e0da5f">VehicleSensor</a>
+: <a class="el" href="classVehicleSensor.html#a53a75e786021a155e5ea12f7ff93224c">VehicleSensor</a>
 </li>
 <li>get_vehicles()
 : <a class="el" href="classVehicleManager.html#ae0f9573bcdc915e870d2f7df9a1ec106">VehicleManager</a>
 </li>
+<li>get_vertex_for_intersection()
+: <a class="el" href="classMap.html#a99a3db4bbe05cdf7e4ccc9439fbe5513">Map</a>
+</li>
 <li>get_wheel_turn_rate()
-: <a class="el" href="classVehicleSensor.html#ad066c0eafd0836a755449978c407294b">VehicleSensor</a>
+: <a class="el" href="classVehicleSensor.html#a391dcca7708c2e5ccf21b62d02b62e0d">VehicleSensor</a>
 </li>
 <li>get_width()
 : <a class="el" href="classMap.html#a38609ea6ce07bc5bb2ea55db6580b355">Map</a>
@@ -281,6 +327,9 @@
 
 
 <h3><a class="anchor" id="index_i"></a>- i -</h3><ul>
+<li>init()
+: <a class="el" href="classVehicle.html#a798de9eb3b07a83b0aaef2b84b0b4ff0">Vehicle</a>
+</li>
 <li>Intersection()
 : <a class="el" href="classIntersection.html#a67497e3efe2793b23909052eeb82c4f3">Intersection</a>
 </li>
@@ -312,7 +361,8 @@
 : <a class="el" href="classMapDrawingArea.html#ab5e04b0832c2188061c4438c3298af8f">MapDrawingArea</a>
 </li>
 <li>operator()()
-: <a class="el" href="structVehicle_1_1vehicle__hash.html#ab5f759888fceb304193aa342bebf654b">Vehicle::vehicle_hash</a>
+: <a class="el" href="classEuclideanDistanceHeuristic.html#a8be7468b3b3ef652c1533721814e1f30">EuclideanDistanceHeuristic&lt; Graph, CostType &gt;</a>
+, <a class="el" href="structVehicle_1_1vehicle__hash.html#a84517b4c4fd59bf7aeb9c7a3ecde9abb">Vehicle::vehicle_hash</a>
 </li>
 <li>OrderedSet()
 : <a class="el" href="classOrderedSet.html#aea51f36240afe44e01cd25c328655822">OrderedSet</a>
@@ -330,6 +380,9 @@
 <li>print_map_data()
 : <a class="el" href="classMap.html#aa9568a8828f0e16088386f94e4fa6f15">Map</a>
 </li>
+<li>print_route()
+: <a class="el" href="classRoute.html#af655cb810fb32018f37346b48b3656d3">Route</a>
+</li>
 </ul>
 
 
@@ -343,6 +396,9 @@
 </li>
 <li>Road()
 : <a class="el" href="classRoad.html#a90bb6be2a5c3b6997849a915e2af0cf0">Road</a>
+</li>
+<li>Route()
+: <a class="el" href="classRoute.html#a2b1c971aaf032109cee8081c97e9b9e9">Route</a>
 </li>
 </ul>
 
@@ -360,7 +416,10 @@
 , <a class="el" href="classRoad.html#aad16b4e8a78aedb370d8aef6d0e335d2">Road</a>
 </li>
 <li>set_end_intersection()
-: <a class="el" href="classRoad.html#a38a2edc69078dc826e0b535c74a51eba">Road</a>
+: <a class="el" href="classRoad.html#a7ee79f4f1b8ea520ecd8962882d3d1f9">Road</a>
+</li>
+<li>set_goal_position()
+: <a class="el" href="classVehicle.html#a764a6cc6668ccf3cea442127156bed4d">Vehicle</a>
 </li>
 <li>set_heading()
 : <a class="el" href="classHeading.html#ad103dfe1c9429e79c6cc67671c3cd49a">Heading</a>
@@ -372,6 +431,10 @@
 </li>
 <li>set_id()
 : <a class="el" href="classIntersection.html#ab2fa65fc994d4d88dfde074132c6ad5e">Intersection</a>
+</li>
+<li>set_map()
+: <a class="el" href="classRoute.html#a47c8782cd1326ccc74642f767e3e7802">Route</a>
+, <a class="el" href="classVehicle.html#a09fcdddce98436862149e8c7414cf21d">Vehicle</a>
 </li>
 <li>set_pos_x()
 : <a class="el" href="classIntersection.html#a916662f3b83c907f858939c24637fbd5">Intersection</a>
@@ -395,7 +458,10 @@
 : <a class="el" href="classRoad.html#a84dd72376d9c736d1addb5ab384b8a93">Road</a>
 </li>
 <li>set_start_intersection()
-: <a class="el" href="classRoad.html#aed898c1a49b124a56f4fca314d005f30">Road</a>
+: <a class="el" href="classRoad.html#a3fce6051e3d6615dcbf49b461252e27f">Road</a>
+</li>
+<li>set_start_position()
+: <a class="el" href="classVehicle.html#a76556dbb0efaa6a420e366a1190c1cc8">Vehicle</a>
 </li>
 <li>set_stopping_dist()
 : <a class="el" href="classVehicle.html#a6824c70b827f387ccb0231b71ab0802f">Vehicle</a>
@@ -438,8 +504,14 @@
 <li>time_to_travel()
 : <a class="el" href="classSpeed.html#a23e6de53cd23d18c108b6851387e18d6">Speed</a>
 </li>
+<li>to_string()
+: <a class="el" href="classIVehicleDataListener.html#a1b1870c035ebd1155066b03cada3f013">IVehicleDataListener</a>
+, <a class="el" href="classPosition.html#a1aac38c3e7ebabffd20b0fd53b7a38e5">Position</a>
+, <a class="el" href="classVehicle.html#aec67aac7ab3bf3780d3740d71a709948">Vehicle</a>
+, <a class="el" href="classVehicleSensor.html#a4bc483210e570084c3bf54fc8b240924">VehicleSensor</a>
+</li>
 <li>TurnRate()
-: <a class="el" href="classTurnRate.html#a27e97ba8ccd2fe57b2fdc5cbc3efbe80">TurnRate</a>
+: <a class="el" href="classTurnRate.html#a73e99e380ec039b7868034f98bed0bc0">TurnRate</a>
 </li>
 </ul>
 
@@ -447,6 +519,9 @@
 <h3><a class="anchor" id="index_u"></a>- u -</h3><ul>
 <li>update()
 : <a class="el" href="classVehicle.html#af7bb2ec0eb3489104521e9e2e65bb1a0">Vehicle</a>
+</li>
+<li>update_self()
+: <a class="el" href="classVehicle.html#afff073fd407a71a60515946e254de188">Vehicle</a>
 </li>
 <li>Utils()
 : <a class="el" href="classUtils.html#a452e78692c87ed5c7c993b6c6ac4981a">Utils</a>
@@ -470,6 +545,9 @@
 <h3><a class="anchor" id="index_~"></a>- ~ -</h3><ul>
 <li>~Acceleration()
 : <a class="el" href="classAcceleration.html#a646f37532352ff3fc46935e7a47c0214">Acceleration</a>
+</li>
+<li>~AstarGoalVisitor()
+: <a class="el" href="classAstarGoalVisitor.html#a4db4472533108b1deca1dc873a83572c">AstarGoalVisitor</a>
 </li>
 <li>~BrakePressure()
 : <a class="el" href="classBrakePressure.html#ab798e2558ed8423fb4374e30ded1749b">BrakePressure</a>
@@ -504,6 +582,9 @@
 <li>~Road()
 : <a class="el" href="classRoad.html#a3fa0feda8a96c3763d5f5a1f06f2972e">Road</a>
 </li>
+<li>~Route()
+: <a class="el" href="classRoute.html#a41212532f2bce3298d8f9468f82c62ab">Route</a>
+</li>
 <li>~Speed()
 : <a class="el" href="classSpeed.html#a47ac1336c636f4dc4fb1d288dea76e3c">Speed</a>
 </li>
@@ -526,7 +607,7 @@
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 27 2014 14:08:18 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

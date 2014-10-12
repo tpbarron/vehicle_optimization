@@ -69,6 +69,10 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ac6b77292042ebb42993aa228b48ad9f4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a93c6770378634e3527de55bb67382dc5"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIVehicleDataListener.html#a93c6770378634e3527de55bb67382dc5">recv</a> (struct <a class="el" href="structVehicleSensorData.html">VehicleSensorData</a> &amp;data)=0</td></tr>
 <tr class="separator:a93c6770378634e3527de55bb67382dc5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a6d431df9ff8bdd85346d47e6a5b9e6f3"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIVehicleDataListener.html#a6d431df9ff8bdd85346d47e6a5b9e6f3">add_listener</a> (<a class="el" href="classIVehicleDataListener.html">IVehicleDataListener</a> &amp;l)=0</td></tr>
+<tr class="separator:a6d431df9ff8bdd85346d47e6a5b9e6f3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b1870c035ebd1155066b03cada3f013"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classIVehicleDataListener.html#a1b1870c035ebd1155066b03cada3f013">to_string</a> ()=0</td></tr>
+<tr class="separator:a1b1870c035ebd1155066b03cada3f013"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ac6b77292042ebb42993aa228b48ad9f4"></a>
@@ -95,6 +99,32 @@ Public Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a6d431df9ff8bdd85346d47e6a5b9e6f3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual void IVehicleDataListener::add_listener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIVehicleDataListener.html">IVehicleDataListener</a> &amp;&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classVehicle.html#adeb672bdb930c1efe33cf4beadc43d24">Vehicle</a>.</p>
+
+</div>
+</div>
 <a class="anchor" id="a93c6770378634e3527de55bb67382dc5"></a>
 <div class="memitem">
 <div class="memproto">
@@ -121,6 +151,31 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a1b1870c035ebd1155066b03cada3f013"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">virtual std::string IVehicleDataListener::to_string </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">pure virtual</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Implemented in <a class="el" href="classVehicle.html#aec67aac7ab3bf3780d3740d71a709948">Vehicle</a>.</p>
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/trevor/Documents/dev/cpp/cpp-workspace/vehicle_optimization/src/vehicle/<a class="el" href="IVehicleDataListener_8h.html">IVehicleDataListener.h</a></li>
 <li>/home/trevor/Documents/dev/cpp/cpp-workspace/vehicle_optimization/src/vehicle/<a class="el" href="IVehicleDataListener_8cpp.html">IVehicleDataListener.cpp</a></li>
@@ -128,7 +183,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 27 2014 14:08:18 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

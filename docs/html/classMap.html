@@ -45,8 +45,8 @@
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
-<a href="#pri-types">Private Types</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classMap-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -56,68 +56,74 @@
 
 <p><code>#include &lt;Map.h&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:af813cea50333cdb1ee00ab9a36497c02"><td class="memItemLeft" align="right" valign="top">typedef boost::adjacency_list<br class="typebreak"/>
+&lt; boost::vecS, boost::vecS, <br class="typebreak"/>
+boost::directedS, <a class="el" href="classIntersection.html">Intersection</a>, <br class="typebreak"/>
+<a class="el" href="classRoad.html">Road</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a></td></tr>
+<tr class="separator:af813cea50333cdb1ee00ab9a36497c02"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a861d97a382c4dcf24934858e91a094bd"><td class="memItemLeft" align="right" valign="top">typedef boost::graph_traits<br class="typebreak"/>
+&lt; <a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a> &gt;::vertex_descriptor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">vertex_t</a></td></tr>
+<tr class="separator:a861d97a382c4dcf24934858e91a094bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a97cf09f0780a0eff311025d0f8854f92"><td class="memItemLeft" align="right" valign="top">typedef boost::graph_traits<br class="typebreak"/>
+&lt; <a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a> &gt;::edge_descriptor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a97cf09f0780a0eff311025d0f8854f92">edge_t</a></td></tr>
+<tr class="separator:a97cf09f0780a0eff311025d0f8854f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a595aa277487c2ec44a05bfd81357abd3"><td class="memItemLeft" align="right" valign="top">typedef boost::graph_traits<br class="typebreak"/>
+&lt; <a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a> &gt;::<a class="el" href="classMap.html#a595aa277487c2ec44a05bfd81357abd3">edge_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a595aa277487c2ec44a05bfd81357abd3">edge_iterator</a></td></tr>
+<tr class="separator:a595aa277487c2ec44a05bfd81357abd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9c7c650823589313be10338f2c79681c"><td class="memItemLeft" align="right" valign="top">typedef boost::graph_traits<br class="typebreak"/>
+&lt; <a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a> &gt;::<a class="el" href="classMap.html#a9c7c650823589313be10338f2c79681c">vertex_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a9c7c650823589313be10338f2c79681c">vertex_iterator</a></td></tr>
+<tr class="separator:a9c7c650823589313be10338f2c79681c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a0f5ad0fd4563497b4214038cbca8b582"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a0f5ad0fd4563497b4214038cbca8b582">Map</a> ()</td></tr>
 <tr class="separator:a0f5ad0fd4563497b4214038cbca8b582"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa403fbe09394ccf39747588f5168e3b2"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#aa403fbe09394ccf39747588f5168e3b2">~Map</a> ()</td></tr>
 <tr class="separator:aa403fbe09394ccf39747588f5168e3b2"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2bd435e4ac7f431f25b23bf49254a45d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a2bd435e4ac7f431f25b23bf49254a45d">add_edge</a> (<a class="el" href="classIntersection.html">Intersection</a> *i1, <a class="el" href="classIntersection.html">Intersection</a> *i2, <a class="el" href="classRoad.html">Road</a> *r)</td></tr>
-<tr class="separator:a2bd435e4ac7f431f25b23bf49254a45d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a32a9ed7ee766dc33b89912cb8b031d93"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a32a9ed7ee766dc33b89912cb8b031d93">add_edge</a> (<a class="el" href="classIntersection.html">Intersection</a> &amp;i1, <a class="el" href="classIntersection.html">Intersection</a> &amp;i2, <a class="el" href="classRoad.html">Road</a> &amp;r)</td></tr>
+<tr class="separator:a32a9ed7ee766dc33b89912cb8b031d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a38609ea6ce07bc5bb2ea55db6580b355"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a38609ea6ce07bc5bb2ea55db6580b355">get_width</a> ()</td></tr>
 <tr class="separator:a38609ea6ce07bc5bb2ea55db6580b355"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:adef9516dd475e67aa7f819a6a358f668"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#adef9516dd475e67aa7f819a6a358f668">get_height</a> ()</td></tr>
 <tr class="separator:adef9516dd475e67aa7f819a6a358f668"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:abfc843ad61a602981ca1bacf35c3cfd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#abfc843ad61a602981ca1bacf35c3cfd6">set_width</a> (int <a class="el" href="classMap.html#a9ecfe932ad2d2bc22492416033bdacfd">width</a>)</td></tr>
+<tr class="memitem:abfc843ad61a602981ca1bacf35c3cfd6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#abfc843ad61a602981ca1bacf35c3cfd6">set_width</a> (int width)</td></tr>
 <tr class="separator:abfc843ad61a602981ca1bacf35c3cfd6"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a391410b0a008a2f8cd598664f927bdf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a391410b0a008a2f8cd598664f927bdf4">set_height</a> (int <a class="el" href="classMap.html#a0546fef98caebe38385bb2e0c7a15da1">height</a>)</td></tr>
+<tr class="memitem:a391410b0a008a2f8cd598664f927bdf4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a391410b0a008a2f8cd598664f927bdf4">set_height</a> (int height)</td></tr>
 <tr class="separator:a391410b0a008a2f8cd598664f927bdf4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:addc03fbf71a969af72e973ff62a5feaf"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#addc03fbf71a969af72e973ff62a5feaf">get_network</a> ()</td></tr>
+<tr class="separator:addc03fbf71a969af72e973ff62a5feaf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a976f25fedf381c0d792a872c507dc458"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a976f25fedf381c0d792a872c507dc458">get_num_intersections</a> ()</td></tr>
+<tr class="separator:a976f25fedf381c0d792a872c507dc458"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1b77a89afe3532f10f2079af409e1556"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a1b77a89afe3532f10f2079af409e1556">build_weight_map</a> ()</td></tr>
+<tr class="separator:a1b77a89afe3532f10f2079af409e1556"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0b69207acfac77e773c44f861c8c5b1d"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="classIntersection.html">Intersection</a>, <br class="typebreak"/>
+<a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a0b69207acfac77e773c44f861c8c5b1d">get_intersection_closest_to</a> (<a class="el" href="classPosition.html">Position</a> &amp;p)</td></tr>
+<tr class="separator:a0b69207acfac77e773c44f861c8c5b1d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a99a3db4bbe05cdf7e4ccc9439fbe5513"><td class="memItemLeft" align="right" valign="top">std::pair&lt; <a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a>, bool &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a99a3db4bbe05cdf7e4ccc9439fbe5513">get_vertex_for_intersection</a> (<a class="el" href="classIntersection.html">Intersection</a> &amp;i)</td></tr>
+<tr class="separator:a99a3db4bbe05cdf7e4ccc9439fbe5513"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa9568a8828f0e16088386f94e4fa6f15"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#aa9568a8828f0e16088386f94e4fa6f15">print_map_data</a> ()</td></tr>
 <tr class="separator:aa9568a8828f0e16088386f94e4fa6f15"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-types"></a>
-Private Types</h2></td></tr>
-<tr class="memitem:a510bfeb166faef2a39b6ab98de0c3196"><td class="memItemLeft" align="right" valign="top">typedef <br class="typebreak"/>
-boost::adjacency_matrix<br class="typebreak"/>
-&lt; boost::directedS, <br class="typebreak"/>
-<a class="el" href="classIntersection.html">Intersection</a> *, <a class="el" href="classRoad.html">Road</a> * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Graph</a></td></tr>
-<tr class="separator:a510bfeb166faef2a39b6ab98de0c3196"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a861d97a382c4dcf24934858e91a094bd"><td class="memItemLeft" align="right" valign="top">typedef boost::graph_traits<br class="typebreak"/>
-&lt; <a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Graph</a> &gt;::vertex_descriptor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">vertex_t</a></td></tr>
-<tr class="separator:a861d97a382c4dcf24934858e91a094bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a97cf09f0780a0eff311025d0f8854f92"><td class="memItemLeft" align="right" valign="top">typedef boost::graph_traits<br class="typebreak"/>
-&lt; <a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Graph</a> &gt;::edge_descriptor&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a97cf09f0780a0eff311025d0f8854f92">edge_t</a></td></tr>
-<tr class="separator:a97cf09f0780a0eff311025d0f8854f92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a595aa277487c2ec44a05bfd81357abd3"><td class="memItemLeft" align="right" valign="top">typedef boost::graph_traits<br class="typebreak"/>
-&lt; <a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Graph</a> &gt;::<a class="el" href="classMap.html#a595aa277487c2ec44a05bfd81357abd3">edge_iterator</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a595aa277487c2ec44a05bfd81357abd3">edge_iterator</a></td></tr>
-<tr class="separator:a595aa277487c2ec44a05bfd81357abd3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a9ecfe932ad2d2bc22492416033bdacfd"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a9ecfe932ad2d2bc22492416033bdacfd">width</a></td></tr>
-<tr class="separator:a9ecfe932ad2d2bc22492416033bdacfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0546fef98caebe38385bb2e0c7a15da1"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a0546fef98caebe38385bb2e0c7a15da1">height</a></td></tr>
-<tr class="separator:a0546fef98caebe38385bb2e0c7a15da1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1e4dd990519566ff9ecf55f7f58f0d39"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Graph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a1e4dd990519566ff9ecf55f7f58f0d39">network</a></td></tr>
-<tr class="separator:a1e4dd990519566ff9ecf55f7f58f0d39"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3ad2db614953dba0bf0f7b13d235404e"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#a3ad2db614953dba0bf0f7b13d235404e">_width</a></td></tr>
+<tr class="separator:a3ad2db614953dba0bf0f7b13d235404e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af2041d3e2c95e63e77c754b309b71ffb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#af2041d3e2c95e63e77c754b309b71ffb">_height</a></td></tr>
+<tr class="separator:af2041d3e2c95e63e77c754b309b71ffb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab1a0540658eb818b54979028d56ce157"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classMap.html#ab1a0540658eb818b54979028d56ce157">_network</a></td></tr>
+<tr class="separator:ab1a0540658eb818b54979028d56ce157"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Typedef Documentation</h2>
 <a class="anchor" id="a595aa277487c2ec44a05bfd81357abd3"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">typedef boost::graph_traits&lt;<a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Graph</a>&gt;::<a class="el" href="classMap.html#a595aa277487c2ec44a05bfd81357abd3">edge_iterator</a> <a class="el" href="classMap.html#a595aa277487c2ec44a05bfd81357abd3">Map::edge_iterator</a></td>
+          <td class="memname">typedef boost::graph_traits&lt;<a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a>&gt;::<a class="el" href="classMap.html#a595aa277487c2ec44a05bfd81357abd3">edge_iterator</a> <a class="el" href="classMap.html#a595aa277487c2ec44a05bfd81357abd3">Map::edge_iterator</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -125,39 +131,35 @@ Private Attributes</h2></td></tr>
 <a class="anchor" id="a97cf09f0780a0eff311025d0f8854f92"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">typedef boost::graph_traits&lt;<a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Graph</a>&gt;::edge_descriptor <a class="el" href="classMap.html#a97cf09f0780a0eff311025d0f8854f92">Map::edge_t</a></td>
+          <td class="memname">typedef boost::graph_traits&lt;<a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a>&gt;::edge_descriptor <a class="el" href="classMap.html#a97cf09f0780a0eff311025d0f8854f92">Map::edge_t</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
 </div>
-<a class="anchor" id="a510bfeb166faef2a39b6ab98de0c3196"></a>
+<a class="anchor" id="af813cea50333cdb1ee00ab9a36497c02"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">typedef boost::adjacency_matrix&lt;boost::directedS, <a class="el" href="classIntersection.html">Intersection</a>*, <a class="el" href="classRoad.html">Road</a>*&gt; <a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Map::Graph</a></td>
+          <td class="memname">typedef boost::adjacency_list&lt;boost::vecS, boost::vecS, boost::directedS, <a class="el" href="classIntersection.html">Intersection</a>, <a class="el" href="classRoad.html">Road</a>&gt; <a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Map::Graph</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9c7c650823589313be10338f2c79681c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">typedef boost::graph_traits&lt;<a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a>&gt;::<a class="el" href="classMap.html#a9c7c650823589313be10338f2c79681c">vertex_iterator</a> <a class="el" href="classMap.html#a9c7c650823589313be10338f2c79681c">Map::vertex_iterator</a></td>
+        </tr>
+      </table>
 </div><div class="memdoc">
 
 </div>
@@ -165,19 +167,11 @@ Private Attributes</h2></td></tr>
 <a class="anchor" id="a861d97a382c4dcf24934858e91a094bd"></a>
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">typedef boost::graph_traits&lt;<a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Graph</a>&gt;::vertex_descriptor <a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a></td>
+          <td class="memname">typedef boost::graph_traits&lt;<a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a>&gt;::vertex_descriptor <a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 </div>
@@ -222,32 +216,47 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a2bd435e4ac7f431f25b23bf49254a45d"></a>
+<a class="anchor" id="a32a9ed7ee766dc33b89912cb8b031d93"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Map::add_edge </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classIntersection.html">Intersection</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classIntersection.html">Intersection</a> &amp;&#160;</td>
           <td class="paramname"><em>i1</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classIntersection.html">Intersection</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classIntersection.html">Intersection</a> &amp;&#160;</td>
           <td class="paramname"><em>i2</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classRoad.html">Road</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classRoad.html">Road</a> &amp;&#160;</td>
           <td class="paramname"><em>r</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
           <td>)</td>
           <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a1b77a89afe3532f10f2079af409e1556"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Map::build_weight_map </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -266,6 +275,85 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0b69207acfac77e773c44f861c8c5b1d"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; <a class="el" href="classIntersection.html">Intersection</a>, <a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a> &gt; Map::get_intersection_closest_to </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPosition.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Finds the <a class="el" href="classIntersection.html">Intersection</a> closest to the given <a class="el" href="classPosition.html">Position</a>. Used to find the start and end Intersections for a route.</p>
+<p>Note: this will fail if there are no intersections.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>the position to find the nearest intersection from</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a std::pair&lt;Intersection, vertex_t&gt; designating the closest intersection to <a class="el" href="classPosition.html">Position</a> p </dd></dl>
+
+</div>
+</div>
+<a class="anchor" id="addc03fbf71a969af72e973ff62a5feaf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Map::Graph</a> Map::get_network </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a976f25fedf381c0d792a872c507dc458"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">int Map::get_num_intersections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a99a3db4bbe05cdf7e4ccc9439fbe5513"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::pair&lt; <a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a>, bool &gt; Map::get_vertex_for_intersection </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIntersection.html">Intersection</a> &amp;&#160;</td>
+          <td class="paramname"><em>i</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Provides the boost vertex type for a given intersection</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">i</td><td>the intersection to find the vertex_t for</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>a std::pair&lt;vertex_t, bool&gt; where bool determines if the desired element was found </dd></dl>
 
 </div>
 </div>
@@ -332,7 +420,7 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a0546fef98caebe38385bb2e0c7a15da1"></a>
+<a class="anchor" id="af2041d3e2c95e63e77c754b309b71ffb"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -340,7 +428,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Map::height</td>
+          <td class="memname">int Map::_height</td>
         </tr>
       </table>
   </td>
@@ -352,7 +440,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1e4dd990519566ff9ecf55f7f58f0d39"></a>
+<a class="anchor" id="ab1a0540658eb818b54979028d56ce157"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -360,7 +448,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMap.html#a510bfeb166faef2a39b6ab98de0c3196">Graph</a> Map::network</td>
+          <td class="memname"><a class="el" href="classMap.html#af813cea50333cdb1ee00ab9a36497c02">Graph</a> Map::_network</td>
         </tr>
       </table>
   </td>
@@ -372,7 +460,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a9ecfe932ad2d2bc22492416033bdacfd"></a>
+<a class="anchor" id="a3ad2db614953dba0bf0f7b13d235404e"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -380,7 +468,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">int Map::width</td>
+          <td class="memname">int Map::_width</td>
         </tr>
       </table>
   </td>
@@ -399,7 +487,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 27 2014 14:08:18 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

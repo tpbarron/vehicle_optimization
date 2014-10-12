@@ -46,6 +46,7 @@
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classSpeed-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -69,11 +70,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a1eb92c6173289b3d3f3311157fa1cf31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23e6de53cd23d18c108b6851387e18d6"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpeed.html#a23e6de53cd23d18c108b6851387e18d6">time_to_travel</a> (double meters)</td></tr>
 <tr class="separator:a23e6de53cd23d18c108b6851387e18d6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af73e1e5e14661326038b2c9db00cfcfd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classDistance.html">Distance</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpeed.html#af73e1e5e14661326038b2c9db00cfcfd">get_distance_for_time</a> (double millis)</td></tr>
+<tr class="separator:af73e1e5e14661326038b2c9db00cfcfd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:aea4ba51480eb0b6ba88d669edd237958"><td class="memItemLeft" align="right" valign="top">static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpeed.html#aea4ba51480eb0b6ba88d669edd237958">MPH_25</a> = 11.176</td></tr>
+<tr class="separator:aea4ba51480eb0b6ba88d669edd237958"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a14fdb2c19152827318eb6f82cd531d62"><td class="memItemLeft" align="right" valign="top">static constexpr double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpeed.html#a14fdb2c19152827318eb6f82cd531d62">MPH_30</a> = 13.4112</td></tr>
+<tr class="separator:a14fdb2c19152827318eb6f82cd531d62"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
-<tr class="memitem:a0b16826485c99173440679643d9fe9c0"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpeed.html#a0b16826485c99173440679643d9fe9c0">spd</a></td></tr>
-<tr class="separator:a0b16826485c99173440679643d9fe9c0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2ab2273fe9c6dac96f8f12bbc56b9c1a"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classSpeed.html#a2ab2273fe9c6dac96f8f12bbc56b9c1a">_speed</a></td></tr>
+<tr class="separator:a2ab2273fe9c6dac96f8f12bbc56b9c1a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a49a2dc0aa7168bd31be33962a6dec464"></a>
@@ -131,6 +141,29 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="af73e1e5e14661326038b2c9db00cfcfd"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDistance.html">Distance</a> Speed::get_distance_for_time </td>
+          <td>(</td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>millis</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Get distance in meters traveled at this speed in given millis</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">millis</td><td>the time to compute the distance for </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="a1eb92c6173289b3d3f3311157fa1cf31"></a>
 <div class="memitem">
 <div class="memproto">
@@ -175,11 +208,18 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Calculate time in millis to travel given meters at this speed;</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">meters</td><td>distance in meters </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
-<a class="anchor" id="a0b16826485c99173440679643d9fe9c0"></a>
+<a class="anchor" id="a2ab2273fe9c6dac96f8f12bbc56b9c1a"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -187,12 +227,52 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">double Speed::spd</td>
+          <td class="memname">double Speed::_speed</td>
         </tr>
       </table>
   </td>
   <td class="mlabels-right">
 <span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aea4ba51480eb0b6ba88d669edd237958"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr double Speed::MPH_25 = 11.176</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a14fdb2c19152827318eb6f82cd531d62"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">constexpr double Speed::MPH_30 = 13.4112</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
   </tr>
 </table>
 </div><div class="memdoc">
@@ -206,7 +286,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 27 2014 14:08:18 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

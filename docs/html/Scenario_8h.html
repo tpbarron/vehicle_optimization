@@ -69,6 +69,7 @@
 <code>#include &quot;<a class="el" href="Intersection_8h.html">map/Intersection.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="Road_8h.html">map/Road.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="Lane_8h.html">map/Lane.h</a>&quot;</code><br/>
+<code>#include &quot;<a class="el" href="Route_8h.html">map/routing/Route.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="VehicleSensor_8h.html">sensor/VehicleSensor.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="Utils_8h.html">utils/Utils.h</a>&quot;</code><br/>
 <code>#include &quot;<a class="el" href="Vehicle_8h.html">vehicle/Vehicle.h</a>&quot;</code><br/>
@@ -86,12 +87,14 @@ Functions</h2></td></tr>
 <tr class="separator:af0d8fc733c184fef0c26d8f46d6a6687"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e881fcd5a5d86de2c90ea7073eb8aa3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a9e881fcd5a5d86de2c90ea7073eb8aa3">Scenario::load_scenario</a> (std::string scenario)</td></tr>
 <tr class="separator:a9e881fcd5a5d86de2c90ea7073eb8aa3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab4e3910db94791659afcd1d78ebcc889"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ab4e3910db94791659afcd1d78ebcc889">Scenario::insert_scenario_data</a> (std::string name, std::string desc)</td></tr>
+<tr class="separator:ab4e3910db94791659afcd1d78ebcc889"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a99b30970c4091ec89ba82d26846e3da2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a99b30970c4091ec89ba82d26846e3da2">Scenario::load_scenario_map</a> (std::string scenario, boost::property_tree::ptree &amp;map_tree)</td></tr>
 <tr class="separator:a99b30970c4091ec89ba82d26846e3da2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8400a954ec44656986d79d53ee2a1b69"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a8400a954ec44656986d79d53ee2a1b69">Scenario::load_scenario_roads</a> (std::string scenario, std::string file)</td></tr>
 <tr class="separator:a8400a954ec44656986d79d53ee2a1b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af307c74aa0e24c27c38f90f83ea28326"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLane.html">Lane</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#af307c74aa0e24c27c38f90f83ea28326">Scenario::load_road_lane</a> (std::string scenario, std::string file)</td></tr>
-<tr class="separator:af307c74aa0e24c27c38f90f83ea28326"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a266ae5db3c87c4beaa13e08ac11dc792"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLane.html">Lane</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a266ae5db3c87c4beaa13e08ac11dc792">Scenario::load_road_lane</a> (std::string scenario, std::string file)</td></tr>
+<tr class="separator:a266ae5db3c87c4beaa13e08ac11dc792"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae36e35cd122cf0e81625de55cee49194"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ae36e35cd122cf0e81625de55cee49194">Scenario::load_scenario_intersections</a> (std::string scenario, std::string file)</td></tr>
 <tr class="separator:ae36e35cd122cf0e81625de55cee49194"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad894ec2daa848bbf692b88b66e4f7783"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ad894ec2daa848bbf692b88b66e4f7783">Scenario::load_vehicle</a> (std::string name, std::string file)</td></tr>
@@ -100,8 +103,8 @@ Functions</h2></td></tr>
 <tr class="separator:ac4288fa862061f64d9aac4f3080a42f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5eca03c3fb866111b910f8fe460680bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a5eca03c3fb866111b910f8fe460680bb">Scenario::populate_map</a> ()</td></tr>
 <tr class="separator:a5eca03c3fb866111b910f8fe460680bb"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1886478f777a756ecf7f111ec5c87871"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIntersection.html">Intersection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a1886478f777a756ecf7f111ec5c87871">Scenario::get_intersection_from_id</a> (int id)</td></tr>
-<tr class="separator:a1886478f777a756ecf7f111ec5c87871"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a212e0282baf64303e06e714b577b00cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIntersection.html">Intersection</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a212e0282baf64303e06e714b577b00cb">Scenario::get_intersection_from_id</a> (int id)</td></tr>
+<tr class="separator:a212e0282baf64303e06e714b577b00cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50abaf72ca4599de0318d495dc8620d7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a50abaf72ca4599de0318d495dc8620d7">Scenario::start</a> ()</td></tr>
 <tr class="separator:a50abaf72ca4599de0318d495dc8620d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16a42129b6e625c508eb52fbd9140177"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a16a42129b6e625c508eb52fbd9140177">Scenario::stop</a> ()</td></tr>
@@ -112,6 +115,8 @@ Functions</h2></td></tr>
 <tr class="separator:a50b005953161b1ad37f03ce74730c91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a04b6a0fd4cda2bd3c8015363c02f73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a0a04b6a0fd4cda2bd3c8015363c02f73">Scenario::test_print_map</a> ()</td></tr>
 <tr class="separator:a0a04b6a0fd4cda2bd3c8015363c02f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1f89b3b224e717c28f87355f7557faf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a1f89b3b224e717c28f87355f7557faf0">Scenario::test_routing</a> ()</td></tr>
+<tr class="separator:a1f89b3b224e717c28f87355f7557faf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
 Variables</h2></td></tr>
@@ -135,26 +140,14 @@ Variables</h2></td></tr>
 <tr class="separator:a04d97b703c4ab4733aac512e01a06e40"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6f1eeb574e74ed8bf979d54f3d64bb87"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a6f1eeb574e74ed8bf979d54f3d64bb87">Scenario::SCENARIO_MAP_ROADS</a> = &quot;roads&quot;</td></tr>
 <tr class="separator:a6f1eeb574e74ed8bf979d54f3d64bb87"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0e5089362700e546b41e0dd6c90560b1"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a0e5089362700e546b41e0dd6c90560b1">Scenario::VEHICLE_DATA</a> = &quot;data&quot;</td></tr>
-<tr class="separator:a0e5089362700e546b41e0dd6c90560b1"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a687696c4d846c3115adaf16b2900849b"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a687696c4d846c3115adaf16b2900849b">Scenario::VEHICLE_TIME</a> = &quot;time&quot;</td></tr>
-<tr class="separator:a687696c4d846c3115adaf16b2900849b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a15f25fa1c4f89edda67cdad0d06c61ff"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a15f25fa1c4f89edda67cdad0d06c61ff">Scenario::VEHICLE_POSITION_X</a> = &quot;pos_x&quot;</td></tr>
+<tr class="memitem:acbe7d34fded6a396eefe8c6372709749"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#acbe7d34fded6a396eefe8c6372709749">Scenario::VEHICLE_START</a> = &quot;start&quot;</td></tr>
+<tr class="separator:acbe7d34fded6a396eefe8c6372709749"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad544236ae6c5eacbe2afa8d6ff8583b5"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ad544236ae6c5eacbe2afa8d6ff8583b5">Scenario::VEHICLE_GOAL</a> = &quot;goal&quot;</td></tr>
+<tr class="separator:ad544236ae6c5eacbe2afa8d6ff8583b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a15f25fa1c4f89edda67cdad0d06c61ff"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a15f25fa1c4f89edda67cdad0d06c61ff">Scenario::VEHICLE_POSITION_X</a> = &quot;x&quot;</td></tr>
 <tr class="separator:a15f25fa1c4f89edda67cdad0d06c61ff"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3502d5ff9700855e4dde5ac190b4cd92"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a3502d5ff9700855e4dde5ac190b4cd92">Scenario::VEHICLE_POSITION_Y</a> = &quot;pos_y&quot;</td></tr>
+<tr class="memitem:a3502d5ff9700855e4dde5ac190b4cd92"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a3502d5ff9700855e4dde5ac190b4cd92">Scenario::VEHICLE_POSITION_Y</a> = &quot;y&quot;</td></tr>
 <tr class="separator:a3502d5ff9700855e4dde5ac190b4cd92"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6f49f7c49b6ad0b2f8d76268b36995e5"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a6f49f7c49b6ad0b2f8d76268b36995e5">Scenario::VEHICLE_ACCELERATION</a> = &quot;accel&quot;</td></tr>
-<tr class="separator:a6f49f7c49b6ad0b2f8d76268b36995e5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ade241edfdc23f3891aa81d761455fae7"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ade241edfdc23f3891aa81d761455fae7">Scenario::VEHICLE_SPEED</a> = &quot;speed&quot;</td></tr>
-<tr class="separator:ade241edfdc23f3891aa81d761455fae7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa96cf9640dcf4848c45f8c97bd0062e9"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#aa96cf9640dcf4848c45f8c97bd0062e9">Scenario::VEHICLE_BRAKE_PRESSURE</a> = &quot;brake&quot;</td></tr>
-<tr class="separator:aa96cf9640dcf4848c45f8c97bd0062e9"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a59f157649ee3772615e881d01dfe73e3"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a59f157649ee3772615e881d01dfe73e3">Scenario::VEHICLE_HEADING</a> = &quot;heading&quot;</td></tr>
-<tr class="separator:a59f157649ee3772615e881d01dfe73e3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ae771b3f97391e6378116b68fe5f86bdd"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ae771b3f97391e6378116b68fe5f86bdd">Scenario::VEHICLE_VEHICLE_TURN_RATE</a> = &quot;vturn&quot;</td></tr>
-<tr class="separator:ae771b3f97391e6378116b68fe5f86bdd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1bf91b863b9b915fb0b064abd27e1e6"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#aa1bf91b863b9b915fb0b064abd27e1e6">Scenario::VEHICLE_WHEEL_TURN_RATE</a> = &quot;wturn&quot;</td></tr>
-<tr class="separator:aa1bf91b863b9b915fb0b064abd27e1e6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a60027568bb8bc893f232bcc07186a103"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a60027568bb8bc893f232bcc07186a103">Scenario::INTERSECTION_DATA</a> = &quot;intersections&quot;</td></tr>
 <tr class="separator:a60027568bb8bc893f232bcc07186a103"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aef7b58908fc4316b30511c184929c483"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#aef7b58908fc4316b30511c184929c483">Scenario::INTERSECTION_ID</a> = &quot;id&quot;</td></tr>
@@ -189,13 +182,13 @@ Variables</h2></td></tr>
 <tr class="separator:ae013426e345b127181a4b4edb0834132"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a01977c1f1f859bac71a9cc302a188fc8"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a01977c1f1f859bac71a9cc302a188fc8">Scenario::LANE_POINT_Y</a> = &quot;ptx&quot;</td></tr>
 <tr class="separator:a01977c1f1f859bac71a9cc302a188fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a241dba05feff5093bfe09e648ef24850"><td class="memItemLeft" align="right" valign="top">boost::asio::strand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a241dba05feff5093bfe09e648ef24850">Scenario::strand_</a></td></tr>
-<tr class="separator:a241dba05feff5093bfe09e648ef24850"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abe018fef12a687878e330d5d5c744cd5"><td class="memItemLeft" align="right" valign="top">boost::asio::strand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#abe018fef12a687878e330d5d5c744cd5">Scenario::_strand</a></td></tr>
+<tr class="separator:abe018fef12a687878e330d5d5c744cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Sep 27 2014 14:08:18 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
