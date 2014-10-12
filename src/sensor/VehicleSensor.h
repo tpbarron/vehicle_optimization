@@ -8,6 +8,9 @@
 #ifndef VEHICLESENSOR_H_
 #define VEHICLESENSOR_H_
 
+#include <string>
+
+#include <boost/lexical_cast.hpp>
 #include <boost/uuid/uuid.hpp>
 
 #include "VehicleSensorData.h"
@@ -59,6 +62,8 @@ public:
 	const Speed get_speed() const;
 	const TurnRate get_vehicle_turn_rate() const;
 	const TurnRate get_wheel_turn_rate() const;
+
+	std::string to_string();
 
 private:
 

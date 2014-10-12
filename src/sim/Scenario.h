@@ -32,7 +32,9 @@
 
 namespace Scenario {
 
-
+/*
+ * Scenario json keys
+ */
 const std::string SCENARIO_NAME = "_name";
 const std::string SCENARIO_DESC = "_desc";
 
@@ -40,23 +42,38 @@ const std::string SCENARIO_VEHICLES = "vehicles";
 const std::string SCENARIO_VEHICLES_NAME = "name";
 const std::string SCENARIO_VEHICLES_DATA = "data";
 
+/*
+ * Map keys
+ */
 const std::string SCENARIO_MAP = "map";
 const std::string SCENARIO_MAP_WIDTH = "width";
 const std::string SCENARIO_MAP_HEIGHT = "height";
 const std::string SCENARIO_MAP_INTERSECTIONS = "intersections";
 const std::string SCENARIO_MAP_ROADS = "roads";
 
-const std::string VEHICLE_DATA = "data";
-const std::string VEHICLE_TIME = "time";
-const std::string VEHICLE_POSITION_X = "pos_x";
-const std::string VEHICLE_POSITION_Y = "pos_y";
-const std::string VEHICLE_ACCELERATION = "accel";
-const std::string VEHICLE_SPEED = "speed";
-const std::string VEHICLE_BRAKE_PRESSURE = "brake";
-const std::string VEHICLE_HEADING = "heading";
-const std::string VEHICLE_VEHICLE_TURN_RATE = "vturn";
-const std::string VEHICLE_WHEEL_TURN_RATE = "wturn";
+/*
+ * Vehicle keys
+ */
+const std::string VEHICLE_START = "start";
+const std::string VEHICLE_GOAL = "goal";
+const std::string VEHICLE_POSITION_X = "x";
+const std::string VEHICLE_POSITION_Y = "y";
 
+//const std::string VEHICLE_DATA = "data";
+//const std::string VEHICLE_TIME = "time";
+//const std::string VEHICLE_POSITION_X = "pos_x";
+//const std::string VEHICLE_POSITION_Y = "pos_y";
+//const std::string VEHICLE_ACCELERATION = "accel";
+//const std::string VEHICLE_SPEED = "speed";
+//const std::string VEHICLE_BRAKE_PRESSURE = "brake";
+//const std::string VEHICLE_HEADING = "heading";
+//const std::string VEHICLE_VEHICLE_TURN_RATE = "vturn";
+//const std::string VEHICLE_WHEEL_TURN_RATE = "wturn";
+
+
+/*
+ * Intersection keys
+ */
 const std::string INTERSECTION_DATA = "intersections";
 const std::string INTERSECTION_ID = "id";
 const std::string INTERSECTION_POSITION_X = "pos_x";
@@ -64,6 +81,9 @@ const std::string INTERSECTION_POSITION_Y = "pos_y";
 const std::string INTERSECTION_WIDTH = "width";
 const std::string INTERSECTION_HEIGHT = "height";
 
+/*
+ * Road keys
+ */
 const std::string ROAD_DATA = "roads";
 const std::string ROAD_START_INT_ID = "start_intersection";
 const std::string ROAD_END_INT_ID = "end_intersection";
@@ -73,6 +93,9 @@ const std::string ROAD_LANES = "lanes";
 const std::string ROAD_FORWARD_LANES = "forward";
 const std::string ROAD_BACKWARD_LANES = "backward";
 
+/*
+ * Lane keys
+ */
 const std::string LANE_WAYPOINTS = "waypoints";
 const std::string LANE_POINT_X = "ptx";
 const std::string LANE_POINT_Y = "ptx";

@@ -38,9 +38,8 @@ public:
 		Intersection i2 = _g[_goal];
 		Position p1 = i1.get_position();
 		Position p2 = i2.get_position();
-		//FIXME: get_distance_to returns a pointer (probably shouldn't though) and
-		//that memory is never freed this way
-		CostType d = p1.get_distance_to(p2)->get_distance();
+
+		CostType d = p1.get_distance_to(p2).get_distance();
 	//  	CostType dx = _location[m_goal].x - m_location[u].x;
 	//	CostType dy = _location[m_goal].y - m_location[u].y;
 	//	return std::sqrt(dx * dx + dy * dy);

@@ -30,7 +30,7 @@ bool OrderedSet::add(VehicleManager::VehicleDistPair &e) {
 
 void OrderedSet::add_to_list(VehicleManager::VehicleDistPair &e) {
 	for (unsigned int i = 0; i < _elements.size(); ++i) {
-		if (e.first->get_distance() < _elements[i].first->get_distance()) {
+		if (e.first.get_distance() < _elements[i].first.get_distance()) {
 			_elements.insert(_elements.begin() + i, e);
 			return;
 		}

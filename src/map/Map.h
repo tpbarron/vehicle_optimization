@@ -48,6 +48,7 @@ public:
 
 	void build_weight_map();
 
+	std::pair<Intersection, Map::vertex_t> get_intersection_closest_to(Position &p);
 	std::pair<Map::vertex_t, bool> get_vertex_for_intersection(Intersection &i);
 
 	void print_map_data();

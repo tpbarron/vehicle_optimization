@@ -7,6 +7,9 @@
 
 #include "Speed.h"
 
+//const double Speed::MPH_25 = 11.176;
+//const double Speed::MPH_30 = 13.4112;
+
 Speed::Speed() {
 	_speed = -1;
 }
@@ -27,9 +30,21 @@ const double Speed::get_speed() const {
 	return _speed;
 }
 
-/*
- * Calculate time to travel given meters at this speed;
+/**
+ * Calculate time in millis to travel given meters at this speed;
+ *
+ * @param meters distance in meters
  */
 double Speed::time_to_travel(double meters) {
-	return meters / _speed;
+	return meters / _speed * 1000.0;
+}
+
+/**
+ * Get distance in meters traveled at this speed in given millis
+ *
+ * @param millis the time to compute the distance for
+ */
+Distance Speed::get_distance_for_time(double millis) {
+	Distance d(_speed * millis / 1000.0);
+	return d;
 }

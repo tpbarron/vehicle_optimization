@@ -37,7 +37,7 @@ void Map::build_weight_map() {
 }
 
 /*
- * TODO
+ *
  */
 void Map::add_edge(Intersection &i1, Intersection &i2, Road &r) {
 	std::pair<vertex_t, bool> u_exists = get_vertex_for_intersection(i1);
@@ -80,10 +80,41 @@ int Map::get_num_intersections() {
 	return boost::num_vertices(_network);
 }
 
-/*
+
+/**
+ * Finds the Intersection closest to the given Position. Used to find the
+ * start and end Intersections for a route.
+ *
+ * Note: this will fail if there are no intersections.
+ *
+ * @param p the position to find the nearest intersection from
+ *
+ * @return a std::pair<Intersection, vertex_t> designating the closest
+ * intersection to Position p
+ */
+std::pair<Intersection, Map::vertex_t> Map::get_intersection_closest_to(Position &p) {
+	//Iterate the vertices and determine the nearest
+	std::pair<Intersection, Map::vertex_t> closest;
+	double dist = -1;
+
+	Map::vertex_t v;
+	std::pair<vertex_iterator, vertex_iterator> vi = boost::vertices(_network);
+	for (vertex_iterator vertex_iter = vi.first; vertex_iter != vi.second; ++vertex_iter) {
+		v = *vertex_iter;
+		Intersection val = _network[*vertex_iter];
+		double intersect_dist = val.get_position().get_distance_to(p).get_distance();
+		if (dist < 0 || intersect_dist < dist) {
+			closest = std::make_pair(val, v);
+			dist = intersect_dist;
+		}
+	}
+	return closest;
+}
+
+/**
  * Provides the boost vertex type for a given intersection
  *
- * @param the intersection to find the vertex_t for
+ * @param i the intersection to find the vertex_t for
  *
  * @return a std::pair<vertex_t, bool> where bool determines if the
  * desired element was found

@@ -37,6 +37,11 @@ void Position::set_position(double new_x, double new_y) {
 	Position::_y = new_y;
 }
 
+void Position::set_position(Position p) {
+	Position::_x = p.get_x();
+	Position::_y = p.get_y();
+}
+
 const double Position::get_x() const {
 	return _x;
 }
@@ -45,14 +50,12 @@ const double Position::get_y() const {
 	return _y;
 }
 
-//TODO ensure this is deallocated
 /*
  * Simple euclidean dist, does not follow roads....
  */
-const Distance* Position::get_distance_to(const Position &other) const {
-	Distance *d = new Distance();
-	double dist = sqrt(pow(other.get_x() - _x, 2) + pow(other.get_y() - _y, 2));
-	d->set_distance(dist);
+Distance Position::get_distance_to(const Position &other) const {
+	Distance d;
+	d.set_distance(sqrt(pow(other.get_x() - _x, 2) + pow(other.get_y() - _y, 2)));
 	return d;
 }
 

@@ -47,14 +47,14 @@ public:
 	 * @see Distance
 	 * @see Vehicle
 	 */
-	typedef std::pair<const Distance*, Vehicle*> VehicleDistPair;
+	typedef std::pair<Distance, Vehicle*> VehicleDistPair;
 
 	/**
 	 * A helper function to compare two VehicleDistPair s and
 	 * determine which Vehicle is closer
 	 */
 	inline static bool closer(VehicleDistPair p1, VehicleDistPair p2) {
-		return ((p1.first->get_distance()) < (p2.first->get_distance()));
+		return ((p1.first.get_distance()) < (p2.first.get_distance()));
 	}
 
 	/**

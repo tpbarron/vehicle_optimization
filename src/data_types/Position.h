@@ -21,11 +21,12 @@ public:
 	void set_x(double x);
 	void set_y(double y);
 	void set_position(double x, double y);
+	void set_position(Position p);
 
 	const double get_x() const;
 	const double get_y() const;
 
-	const Distance* get_distance_to(const Position &other) const;
+	Distance get_distance_to(const Position &other) const;
 
 	std::string to_string();
 

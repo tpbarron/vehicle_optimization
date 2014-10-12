@@ -69,10 +69,10 @@ int main(int argc, char* argv[]) {
 		Scenario::init();
 		Scenario::load_scenario("basic_grid");
 		Scenario::test_print_map();
-		Scenario::test_routing();
+//		Scenario::test_routing();
 		Scenario::start();
-		Scenario::stop();
-		Scenario::cleanup();
+//		Scenario::stop();
+//		Scenario::cleanup();
 	}
 
 	if (run_tests) {

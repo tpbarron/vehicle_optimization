@@ -89,3 +89,15 @@ const TurnRate VehicleSensor::get_vehicle_turn_rate() const {
 const TurnRate VehicleSensor::get_wheel_turn_rate() const {
 	return _wheel_turn_rate;
 }
+
+std::string VehicleSensor::to_string() {
+	std::string s = "Position: " + _pos.to_string() + "\n";
+//					"Acceleration: " + boost::lexical_cast<std::string>(_accel.get_acceleration()) + "\n" +
+//					"Brake Pressure: " + boost::lexical_cast<std::string>(_brake_pressure.get_pressure()) + "\n" +
+//					"Heading: " + boost::lexical_cast<std::string>(_heading.get_heading()) + "\n" +
+//					"Position: " + _pos.to_string() + "\n" +
+//					"Speed: " + boost::lexical_cast<std::string>(_spd.get_speed()) + "\n" +
+//					"Vehicle Turn Rate: " + boost::lexical_cast<std::string>(_vehicle_turn_rate.get_turn_rate()) + "\n" +
+//					"Wheel Turn Rate: " + boost::lexical_cast<std::string>(_wheel_turn_rate.get_turn_rate()) + "\n";
+	return s;
+}
