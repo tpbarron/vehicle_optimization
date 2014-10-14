@@ -7,7 +7,11 @@
 
 #include <map/routing/Route.h>
 
-Route::Route() : _currently_in_intersection(false), _angle_to_intersection(0) {
+Route::Route() : _currently_in_intersection(false),
+				 _path_exists(false),
+				 _angle_to_intersection(0),
+				 _current_start_vertex(0),
+				 _current_end_vertex(0) {
 	_map = nullptr;
 }
 
@@ -24,6 +28,10 @@ void Route::print_route() {
 		Map::vertex_t v = *it;
 		std::cout << "Vertex = " << (_map->get_network()[v]).get_id() << std::endl;
 	}
+}
+
+bool Route::does_path_exist() {
+	return _path_exists;
 }
 
 void Route::generate_route(Intersection &i1, Intersection &i2) {
@@ -71,29 +79,33 @@ void Route::generate_route(Intersection &i1, Intersection &i2) {
 		}
 		// Get the first non-start intersection so can easily find the first road.
 		// Then add the start intersection.
-		Map::vertex_t first_int = _vertices.front();
-		_current_end_intersection = _map->get_network()[first_int];
-		_current_start_intersection = i1check; // i1check is the starting int
+		_current_end_vertex = _vertices.front();
+		_current_start_vertex = start;
 
 		//edge must exist
-		std::pair<Map::edge_t, bool> edge_pair = boost::edge(start, first_int, _map->get_network());
-		Map::edge_t e = edge_pair.first;
+		std::pair<Map::edge_t, bool> edge_pair = boost::edge(_current_start_vertex,
+				_current_end_vertex, _map->get_network());
+		_current_edge = edge_pair.first;
 
 		//set start pos / road
 		Position ipos = i1check.get_position();
 		std::cout << "vehicle start intersect pos: " << ipos.to_string() << std::endl;
 		_current_position.set_position(i1check.get_position());
-		_current_road = _map->get_network()[e];
-
+		// Set last position so as to simulate going towards second intersection
+		// This gives a reasonable but not always perfect first heading calculation
+		_last_position.set_position(-i2check.get_position().get_x(), -i2check.get_position().get_y());
 		calculate_angle_to_intersection();
+
+		// set flag that a path exists
+		_path_exists = true;
 	}
 
 	// TODO: how to handle no found route?
 }
 
 void Route::calculate_angle_to_intersection() {
-	Position i1 = _current_start_intersection.get_position();
-	Position i2 = _current_end_intersection.get_position();
+	Position i1 = _map->get_network()[_current_start_vertex].get_position();
+	Position i2 = _map->get_network()[_current_end_vertex].get_position();
 	double dy = i2.get_y() - i1.get_y();
 	double dx = i2.get_x() - i1.get_x();
 	_angle_to_intersection = std::atan2(dy, dx);
@@ -106,14 +118,17 @@ void Route::calculate_angle_to_intersection() {
  */
 Speed Route::get_current_speed_limit() {
 //	Speed s(Speed::MPH_25);
-	Speed s(_current_road.get_speed_limit());
+	Speed s(_map->get_network()[_current_edge].get_speed_limit());
 	return s;
 }
 
 /**
  * Calculate new position after moving the given distance along route
  *
- * Let theta = the angle from the start intersection to the end intersection.
+ * Let,
+ *
+ * 	theta = the angle from the start intersection to the end intersection
+ *
  * Then we want to move Distance d along the hypotenuse where the horizontal
  * leg is the change in x value between the intersections and the vertical leg
  * is the change in y value between the intersections. Then the change in the
@@ -140,8 +155,11 @@ Position Route::get_new_position(const Distance &d) {
 	//If moving that far would push you past the end of the road
 	//continue on to the next segment of the route
 
-	//Get dist from current position to intersection
-	Position end_int_position = _current_end_intersection.get_position();
+	// Remember the current position
+	_last_position = _current_position;
+
+	// Get dist from current position to intersection
+	Position end_int_position = _map->get_network()[_current_end_vertex].get_position();
 	double gdx = end_int_position.get_x() - _current_position.get_x(); //dx to goal
 	double gdy = end_int_position.get_y() - _current_position.get_y(); //dy to goal
 	double max_dist_on_road = std::sqrt(gdx*gdx + gdy*gdy); //dist on this road
@@ -156,7 +174,7 @@ Position Route::get_new_position(const Distance &d) {
 			//Just move to the intersection and stop
 			//This should keep returning the same position once we have
 			//reached this point.
-			_current_position = _current_end_intersection.get_position();
+			_current_position = _map->get_network()[_current_end_vertex].get_position();
 			return _current_position;
 		}
 
@@ -167,27 +185,20 @@ Position Route::get_new_position(const Distance &d) {
 		_vertices.pop_front();
 
 		//The new start is the old end
-		//TODO: this is relatively inefficient and get_vertex_for_int iterates
-		//through the vertices until it finds the right one...
-		//Maybe the vertices / edges should be stored instead of the
-		//intersections and roads since it is each to go from vertex to intersection
-		//but not the other way.
-		Map::vertex_t start = _map->get_vertex_for_intersection(_current_end_intersection).first;
-		_current_start_intersection = _current_end_intersection;
+		_current_start_vertex = _current_end_vertex;
 
 		//The new end is the next element in the list.
-		Map::vertex_t end = _vertices.front();
-		_current_end_intersection = _map->get_network()[end];
+		_current_end_vertex = _vertices.front();
 
 		//Get the new edge from the new intersections
-		std::pair<Map::edge_t, bool> edge_pair = boost::edge(start, end, _map->get_network());
-		Map::edge_t e = edge_pair.first;
-		_current_road = _map->get_network()[e];
+		std::pair<Map::edge_t, bool> edge_pair = boost::edge(_current_start_vertex,
+				_current_end_vertex, _map->get_network());
+		_current_edge = edge_pair.first;
 
 		calculate_angle_to_intersection();
 
 		//Set my current position to be at the intersection I'm now 'starting' from
-		_current_position.set_position(_current_start_intersection.get_position());
+		_current_position.set_position(_map->get_network()[_current_start_vertex].get_position());
 
 		//Now just do computation as normal with distance to go
 		dist = excess_dist;
@@ -206,8 +217,8 @@ Position Route::get_new_position(const Distance &d) {
  * Return the current expected heading for a vehicle on the route
  */
 Heading Route::get_current_heading() {
-	//TODO: calculate heading based on last movement
-	Heading hdng(0);
+	Heading hdng;
+	hdng.set_from_pts(_last_position, _current_position);
 	return hdng;
 }
 

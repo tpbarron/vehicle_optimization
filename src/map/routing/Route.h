@@ -42,6 +42,8 @@ public:
 	Position get_new_position(const Distance &d);
 	Heading get_current_heading();
 
+	bool does_path_exist();
+
 private:
 
 	void calculate_angle_to_intersection();
@@ -51,10 +53,14 @@ private:
 
 	//position along route
 	Position _current_position;
-	Road _current_road;
-	Intersection _current_start_intersection;
-	Intersection _current_end_intersection;
+	Position _last_position;
+
+	Map::edge_t _current_edge;
+	Map::vertex_t _current_start_vertex;
+	Map::vertex_t _current_end_vertex;
+
 	bool _currently_in_intersection;
+	bool _path_exists;
 	double _angle_to_intersection; // radians
 };
 

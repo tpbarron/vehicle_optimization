@@ -108,7 +108,7 @@ void Vehicle::stop() {
  * Called regularly to send out data to other nearby vehicles..
  */
 void Vehicle::update() {
-	if (_count < 50) {
+	if (_count < 5) {
 		std::vector<VehicleManager::VehicleDistPair> nearby_vehicles =
 				VehicleManager::get_nearest(_sensor.get_position(), 10, 10);
 		for (unsigned int i = 0; i < nearby_vehicles.size(); ++i) {
@@ -190,10 +190,8 @@ void Vehicle::update_self() {
 
 	//Get time diff, calc new position from current
 	boost::posix_time::ptime cur_time = boost::posix_time::microsec_clock::local_time();
-
 	boost::posix_time::time_duration diff = cur_time - _last_update_time;
 	long diff_millis = diff.total_milliseconds();
-
 	calculate_progress(diff_millis);
 
 	_last_update_time = cur_time;
