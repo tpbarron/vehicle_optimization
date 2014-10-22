@@ -96,17 +96,17 @@
 <li>_count
 : <a class="el" href="classVehicle.html#a7c2967b630225051a303690c3b81fab4">Vehicle</a>
 </li>
-<li>_current_end_intersection
-: <a class="el" href="classRoute.html#a0080161a5e58f9e9b019c57e61ea1b20">Route</a>
+<li>_current_edge
+: <a class="el" href="classRoute.html#a95fbc0aa71d025ce27e8acfdd0182d23">Route</a>
+</li>
+<li>_current_end_vertex
+: <a class="el" href="classRoute.html#a91c7f34cce138c4e869c61e046efe2ac">Route</a>
 </li>
 <li>_current_position
 : <a class="el" href="classRoute.html#a1f0b9e8286b53b429da901e91191264f">Route</a>
 </li>
-<li>_current_road
-: <a class="el" href="classRoute.html#aaf2a055067aa7c0b365f5f6f9dea1056">Route</a>
-</li>
-<li>_current_start_intersection
-: <a class="el" href="classRoute.html#a97ecadb86d2ae539a99b6bb934ce3819">Route</a>
+<li>_current_start_vertex
+: <a class="el" href="classRoute.html#a4cb2a4a8ec12848ef5cc4b1855de1998">Route</a>
 </li>
 <li>_currently_in_intersection
 : <a class="el" href="classRoute.html#afc94eef77ce8410e01cf4f1108ac4e6f">Route</a>
@@ -132,7 +132,14 @@
 , <a class="el" href="classEuclideanDistanceHeuristic.html#aff10c12a45c64cea268e88f64f7c8b9e">EuclideanDistanceHeuristic&lt; Graph, CostType &gt;</a>
 </li>
 <li>_goal_position
-: <a class="el" href="classVehicle.html#a93cc5d5a81d75e029ebc784f3f1f7d58">Vehicle</a>
+: <a class="el" href="classModuleManager.html#a530ea82637f5fadff2664360a49fde6f">ModuleManager</a>
+</li>
+<li>_hazard_module
+: <a class="el" href="classModuleManager.html#a7f311efe5bf800d7897a578e7bbad9e7">ModuleManager</a>
+</li>
+<li>_hazards
+: <a class="el" href="classHazardWarningModule.html#aa8fe7b25c533c748efc2fa7fa648a7d2">HazardWarningModule</a>
+, <a class="el" href="classRoad.html#ab16a151b6b1460c98a823e2f980410a6">Road</a>
 </li>
 <li>_heading
 : <a class="el" href="classHeading.html#a3427ea318d0528c8b334ac7ce00fd782">Heading</a>
@@ -158,22 +165,37 @@
 <li>_lanes_forward
 : <a class="el" href="classRoad.html#ad772db49449ba815009d4a675c31d5bc">Road</a>
 </li>
+<li>_last_position
+: <a class="el" href="classRoute.html#a94388e108f850c91b3721dce2d75d79f">Route</a>
+</li>
 <li>_last_update_time
 : <a class="el" href="classVehicle.html#a8550a96b9b0cfdb033d222996bef6da3">Vehicle</a>
 </li>
 <li>_listeners
-: <a class="el" href="classVehicle.html#ab1d85be66a684a4d9d4d31f32c07637d">Vehicle</a>
+: <a class="el" href="classVehicle.html#a3ac5516df126d7d753a540d4575d728b">Vehicle</a>
 </li>
 <li>_map
-: <a class="el" href="classRoute.html#aa846ea907678266775f54d531c4de31a">Route</a>
-, <a class="el" href="classVehicle.html#af6d1ec21c14b5d5ec99ab9d831a03611">Vehicle</a>
+: <a class="el" href="classModuleManager.html#a065c07e9c8d3989e6f95d3055b35e203">ModuleManager</a>
+, <a class="el" href="classRoute.html#a9578b56ae4499fe995233bdd64412642">Route</a>
+</li>
+<li>_max_safe_speed
+: <a class="el" href="classHazard.html#a14ce5a25aa425e72f7f71a91ad693ba6">Hazard</a>
+</li>
+<li>_module_manager
+: <a class="el" href="classVehicle.html#a3f2e7580ab42d5383f1a9038f686d11f">Vehicle</a>
 </li>
 <li>_network
 : <a class="el" href="classMap.html#ab1a0540658eb818b54979028d56ce157">Map</a>
 </li>
+<li>_path_exists
+: <a class="el" href="classRoute.html#a284b3b83fe1927ce5f8b7209e76892d1">Route</a>
+</li>
 <li>_pos
 : <a class="el" href="classIntersection.html#ae274575bd54287e8f642b0497801cf80">Intersection</a>
 , <a class="el" href="classVehicleSensor.html#ab78e497cda4ddc6ec9f4be2ba5e3df1f">VehicleSensor</a>
+</li>
+<li>_position
+: <a class="el" href="classHazard.html#af091abdce3c04fd7f522430fa1ba7a41">Hazard</a>
 </li>
 <li>_pressure
 : <a class="el" href="classBrakePressure.html#aafa1e7a1eb8f7c883066164e589f0968">BrakePressure</a>
@@ -182,7 +204,10 @@
 : <a class="el" href="classVehicle.html#a98a2216b2c200873baba43e3ea6018c4">Vehicle</a>
 </li>
 <li>_route
-: <a class="el" href="classVehicle.html#a5668265765e02a182ab79c2a3dc88e23">Vehicle</a>
+: <a class="el" href="classRoutingModule.html#a051e5be35fae69b5e0784ad5c48e0da7">RoutingModule</a>
+</li>
+<li>_routing_module
+: <a class="el" href="classModuleManager.html#ad44a3508e56af10a0533f6ee78ae4bd1">ModuleManager</a>
 </li>
 <li>_self_update_io
 : <a class="el" href="classVehicle.html#a5c2d06c15250916aa88512dfef3c4b80">Vehicle</a>
@@ -209,7 +234,7 @@
 : <a class="el" href="classRoad.html#a433c0baa1035792f7844bb8bc69dbe10">Road</a>
 </li>
 <li>_start_position
-: <a class="el" href="classVehicle.html#a934e2aa5a5f97e53f1cde8851f95cf03">Vehicle</a>
+: <a class="el" href="classModuleManager.html#a1eb16f0449de303d099c25f5247d99f2">ModuleManager</a>
 </li>
 <li>_stopping_dist
 : <a class="el" href="classVehicle.html#a3d306bff30adcb3eca934895ce2aa8cf">Vehicle</a>
@@ -255,7 +280,7 @@
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 21 2014 21:18:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

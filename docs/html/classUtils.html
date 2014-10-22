@@ -71,6 +71,8 @@ Static Public Member Functions</h2></td></tr>
 <tr class="separator:a7289355c3eb239e442b3c0fcb819e9f8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab7d7b2ad150d95770cafeaefe83e82b6"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtils.html#ab7d7b2ad150d95770cafeaefe83e82b6">get_scenario_lane_file_path</a> (std::string scenario, std::string file)</td></tr>
 <tr class="separator:ab7d7b2ad150d95770cafeaefe83e82b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8db30eb4b127f3ec06f83251c5f9c3ea"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtils.html#a8db30eb4b127f3ec06f83251c5f9c3ea">get_scenario_hazard_file_path</a> (std::string scenario, std::string file)</td></tr>
+<tr class="separator:a8db30eb4b127f3ec06f83251c5f9c3ea"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a742f55ac0262659006847ebc3c837cc0"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtils.html#a742f55ac0262659006847ebc3c837cc0">get_scenario_intersection_file_path</a> (std::string scenario, std::string file)</td></tr>
 <tr class="separator:a742f55ac0262659006847ebc3c837cc0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5c8cb5a570c6c0a093ebceeafe726c69"><td class="memItemLeft" align="right" valign="top">static std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtils.html#a5c8cb5a570c6c0a093ebceeafe726c69">get_scenario_road_file_path</a> (std::string scenario, std::string file)</td></tr>
@@ -84,6 +86,8 @@ Static Public Attributes</h2></td></tr>
 <tr class="separator:ae9582b3ccd6ab280ecef1cb72b9b26b4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae69d4c279af04e20ea3bc63071d06e9b"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtils.html#ae69d4c279af04e20ea3bc63071d06e9b">SCENARIO_LANE_DATA_DIR</a> = &quot;lanes/&quot;</td></tr>
 <tr class="separator:ae69d4c279af04e20ea3bc63071d06e9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a512271a590f630db4c0c8e0bf3bb562c"><td class="memItemLeft" align="right" valign="top">static const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtils.html#a512271a590f630db4c0c8e0bf3bb562c">SCENARIO_HAZARD_DATA_DIR</a> = &quot;hazards/&quot;</td></tr>
+<tr class="separator:a512271a590f630db4c0c8e0bf3bb562c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac8c767c443714469226ed8f2e966f355"><td class="memItemLeft" align="right" valign="top">static <br class="typebreak"/>
 boost::uuids::random_generator&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtils.html#ac8c767c443714469226ed8f2e966f355">gen_uuid</a></td></tr>
 <tr class="separator:ac8c767c443714469226ed8f2e966f355"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -133,6 +137,40 @@ boost::uuids::random_generator&#160;</td><td class="memItemRight" valign="bottom
           <td class="paramtype">std::string&#160;</td>
           <td class="paramname"><em>file</em></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8db30eb4b127f3ec06f83251c5f9c3ea"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Utils::get_scenario_hazard_file_path </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>scenario</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
   </td>
@@ -321,6 +359,26 @@ boost::uuids::random_generator&#160;</td><td class="memItemRight" valign="bottom
 
 </div>
 </div>
+<a class="anchor" id="a512271a590f630db4c0c8e0bf3bb562c"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string Utils::SCENARIO_HAZARD_DATA_DIR = &quot;hazards/&quot;</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="ae69d4c279af04e20ea3bc63071d06e9b"></a>
 <div class="memitem">
 <div class="memproto">
@@ -368,7 +426,7 @@ boost::uuids::random_generator&#160;</td><td class="memItemRight" valign="bottom
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 21 2014 21:18:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

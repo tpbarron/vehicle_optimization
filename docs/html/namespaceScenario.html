@@ -72,6 +72,8 @@ Functions</h2></td></tr>
 <tr class="separator:a8400a954ec44656986d79d53ee2a1b69"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a266ae5db3c87c4beaa13e08ac11dc792"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classLane.html">Lane</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a266ae5db3c87c4beaa13e08ac11dc792">load_road_lane</a> (std::string scenario, std::string file)</td></tr>
 <tr class="separator:a266ae5db3c87c4beaa13e08ac11dc792"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7fe227a6a81993c394b715bd378461b3"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHazard.html">Hazard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a7fe227a6a81993c394b715bd378461b3">load_road_hazard</a> (std::string scenario, std::string file)</td></tr>
+<tr class="separator:a7fe227a6a81993c394b715bd378461b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a212e0282baf64303e06e714b577b00cb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIntersection.html">Intersection</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a212e0282baf64303e06e714b577b00cb">get_intersection_from_id</a> (int id)</td></tr>
 <tr class="separator:a212e0282baf64303e06e714b577b00cb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5eca03c3fb866111b910f8fe460680bb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a5eca03c3fb866111b910f8fe460680bb">populate_map</a> ()</td></tr>
@@ -80,14 +82,10 @@ Functions</h2></td></tr>
 <tr class="separator:a50abaf72ca4599de0318d495dc8620d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a16a42129b6e625c508eb52fbd9140177"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a16a42129b6e625c508eb52fbd9140177">stop</a> ()</td></tr>
 <tr class="separator:a16a42129b6e625c508eb52fbd9140177"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad6da10594d0969cb511c28fcf91c6017"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ad6da10594d0969cb511c28fcf91c6017">update_vehicle_sensor</a> (const std::string &amp;vid, <a class="el" href="classVehicleSensor.html">VehicleSensor</a> &amp;sensor)</td></tr>
-<tr class="separator:ad6da10594d0969cb511c28fcf91c6017"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a50b005953161b1ad37f03ce74730c91e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a50b005953161b1ad37f03ce74730c91e">test_get_closest_vehicles</a> ()</td></tr>
 <tr class="separator:a50b005953161b1ad37f03ce74730c91e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0a04b6a0fd4cda2bd3c8015363c02f73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a0a04b6a0fd4cda2bd3c8015363c02f73">test_print_map</a> ()</td></tr>
 <tr class="separator:a0a04b6a0fd4cda2bd3c8015363c02f73"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a1f89b3b224e717c28f87355f7557faf0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a1f89b3b224e717c28f87355f7557faf0">test_routing</a> ()</td></tr>
-<tr class="separator:a1f89b3b224e717c28f87355f7557faf0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac4288fa862061f64d9aac4f3080a42f1"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ac4288fa862061f64d9aac4f3080a42f1">insert_vehicle_data</a> (std::ifstream &amp;vehicle_file, std::string vid)</td></tr>
 <tr class="separator:ac4288fa862061f64d9aac4f3080a42f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -159,12 +157,20 @@ Variables</h2></td></tr>
 <tr class="separator:a19005b114527b0fb65c8fc7212bce73d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab349da0919db408a5f7cd913c811e2af"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ab349da0919db408a5f7cd913c811e2af">ROAD_BACKWARD_LANES</a> = &quot;backward&quot;</td></tr>
 <tr class="separator:ab349da0919db408a5f7cd913c811e2af"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af7fa210c6f9480522ad88085fad74ace"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#af7fa210c6f9480522ad88085fad74ace">ROAD_HAZARDS</a> = &quot;hazards&quot;</td></tr>
+<tr class="separator:af7fa210c6f9480522ad88085fad74ace"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a10e86e383133058a5cae215e6f7c48a8"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a10e86e383133058a5cae215e6f7c48a8">LANE_WAYPOINTS</a> = &quot;waypoints&quot;</td></tr>
 <tr class="separator:a10e86e383133058a5cae215e6f7c48a8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae013426e345b127181a4b4edb0834132"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#ae013426e345b127181a4b4edb0834132">LANE_POINT_X</a> = &quot;ptx&quot;</td></tr>
 <tr class="separator:ae013426e345b127181a4b4edb0834132"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a01977c1f1f859bac71a9cc302a188fc8"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a01977c1f1f859bac71a9cc302a188fc8">LANE_POINT_Y</a> = &quot;ptx&quot;</td></tr>
+<tr class="memitem:a01977c1f1f859bac71a9cc302a188fc8"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a01977c1f1f859bac71a9cc302a188fc8">LANE_POINT_Y</a> = &quot;pty&quot;</td></tr>
 <tr class="separator:a01977c1f1f859bac71a9cc302a188fc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8ca5e800db2b7c05e2c5c442cccb5737"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a8ca5e800db2b7c05e2c5c442cccb5737">HAZARD_POSITION_X</a> = &quot;pos_x&quot;</td></tr>
+<tr class="separator:a8ca5e800db2b7c05e2c5c442cccb5737"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9e73c782760d828f22a750b989494a12"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a9e73c782760d828f22a750b989494a12">HAZARD_POSITION_Y</a> = &quot;pos_y&quot;</td></tr>
+<tr class="separator:a9e73c782760d828f22a750b989494a12"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5924b5f7cff5b8ccb8bb89747d78b413"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#a5924b5f7cff5b8ccb8bb89747d78b413">HAZARD_MAX_SAFE_SPEED</a> = &quot;max_safe_speed&quot;</td></tr>
+<tr class="separator:a5924b5f7cff5b8ccb8bb89747d78b413"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:abe018fef12a687878e330d5d5c744cd5"><td class="memItemLeft" align="right" valign="top">boost::asio::strand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="namespaceScenario.html#abe018fef12a687878e330d5d5c744cd5">_strand</a></td></tr>
 <tr class="separator:abe018fef12a687878e330d5d5c744cd5"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
@@ -295,6 +301,32 @@ Variables</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a7fe227a6a81993c394b715bd378461b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classHazard.html">Hazard</a> Scenario::load_road_hazard </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>scenario</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>file</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a266ae5db3c87c4beaa13e08ac11dc792"></a>
 <div class="memitem">
 <div class="memproto">
@@ -318,6 +350,7 @@ Variables</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+<p>Load a road lane from a file </p>
 
 </div>
 </div>
@@ -547,47 +580,6 @@ Variables</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a1f89b3b224e717c28f87355f7557faf0"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Scenario::test_routing </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="ad6da10594d0969cb511c28fcf91c6017"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Scenario::update_vehicle_sensor </td>
-          <td>(</td>
-          <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>vid</em>, </td>
-        </tr>
-        <tr>
-          <td class="paramkey"></td>
-          <td></td>
-          <td class="paramtype"><a class="el" href="classVehicleSensor.html">VehicleSensor</a> &amp;&#160;</td>
-          <td class="paramname"><em>sensor</em>&#160;</td>
-        </tr>
-        <tr>
-          <td></td>
-          <td>)</td>
-          <td></td><td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <h2 class="groupheader">Variable Documentation</h2>
 <a class="anchor" id="a72cbf0f46074ba53046ce8a01d092b6b"></a>
 <div class="memitem">
@@ -655,6 +647,42 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">boost::asio::strand Scenario::_strand</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a5924b5f7cff5b8ccb8bb89747d78b413"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string Scenario::HAZARD_MAX_SAFE_SPEED = &quot;max_safe_speed&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a8ca5e800db2b7c05e2c5c442cccb5737"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string Scenario::HAZARD_POSITION_X = &quot;pos_x&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9e73c782760d828f22a750b989494a12"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string Scenario::HAZARD_POSITION_Y = &quot;pos_y&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -750,7 +778,7 @@ Variables</h2></td></tr>
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">const std::string Scenario::LANE_POINT_Y = &quot;ptx&quot;</td>
+          <td class="memname">const std::string Scenario::LANE_POINT_Y = &quot;pty&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -823,6 +851,18 @@ Variables</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">const std::string Scenario::ROAD_FORWARD_LANES = &quot;forward&quot;</td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af7fa210c6f9480522ad88085fad74ace"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">const std::string Scenario::ROAD_HAZARDS = &quot;hazards&quot;</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -1036,7 +1076,7 @@ Variables</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 21 2014 21:18:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

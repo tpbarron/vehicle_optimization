@@ -48,6 +48,7 @@
 <a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-attribs">Public Attributes</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classRoad-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -79,6 +80,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a84dd72376d9c736d1addb5ab384b8a93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aad16b4e8a78aedb370d8aef6d0e335d2"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#aad16b4e8a78aedb370d8aef6d0e335d2">set_distance</a> (double d)</td></tr>
 <tr class="separator:aad16b4e8a78aedb370d8aef6d0e335d2"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a01bb63c69820f5cf4e4b13c559627209"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#a01bb63c69820f5cf4e4b13c559627209">add_hazard</a> (<a class="el" href="classHazard.html">Hazard</a> h)</td></tr>
+<tr class="separator:a01bb63c69820f5cf4e4b13c559627209"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a54c77714c22a30fd934ef19d5e427e44"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIntersection.html">Intersection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#a54c77714c22a30fd934ef19d5e427e44">get_start_intersection</a> ()</td></tr>
 <tr class="separator:a54c77714c22a30fd934ef19d5e427e44"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a53bd062dde38e5968b3f55ed38ca88a0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classIntersection.html">Intersection</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#a53bd062dde38e5968b3f55ed38ca88a0">get_end_intersection</a> ()</td></tr>
@@ -99,11 +102,20 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ab3d563bb36d4b2d418e993e6eb77f614"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a122768ceb32604099f03fef7a6bf1417"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRoad.html#a666c8bcc7b8305513dfd0553f7a52f1d">RoadType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#a122768ceb32604099f03fef7a6bf1417">get_road_type</a> ()</td></tr>
 <tr class="separator:a122768ceb32604099f03fef7a6bf1417"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aaf4af522824b5775d6e5b7188a6f224c"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#aaf4af522824b5775d6e5b7188a6f224c">is_hazard_at_position</a> (<a class="el" href="classPosition.html">Position</a> &amp;p, double range=<a class="el" href="classRoad.html#ac0062638c75b94417098ceec75a65554">RANGE</a>)</td></tr>
+<tr class="separator:aaf4af522824b5775d6e5b7188a6f224c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a9f463168003ce394ece55a3d45b3b340"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHazard.html">Hazard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#a9f463168003ce394ece55a3d45b3b340">get_hazard_at_position</a> (<a class="el" href="classPosition.html">Position</a> &amp;p)</td></tr>
+<tr class="separator:a9f463168003ce394ece55a3d45b3b340"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-attribs"></a>
 Public Attributes</h2></td></tr>
 <tr class="memitem:ae2cecb217e4c8b3da4ab3ea9740a84be"><td class="memItemLeft" align="right" valign="top">double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#ae2cecb217e4c8b3da4ab3ea9740a84be">_distance</a></td></tr>
 <tr class="separator:ae2cecb217e4c8b3da4ab3ea9740a84be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:ac0062638c75b94417098ceec75a65554"><td class="memItemLeft" align="right" valign="top">static const double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#ac0062638c75b94417098ceec75a65554">RANGE</a> = 10.0</td></tr>
+<tr class="separator:ac0062638c75b94417098ceec75a65554"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -117,6 +129,8 @@ Private Attributes</h2></td></tr>
 <tr class="separator:ad772db49449ba815009d4a675c31d5bc"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9711c4ba8746a9f67b671233b5e8f61e"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classLane.html">Lane</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#a9711c4ba8746a9f67b671233b5e8f61e">_lanes_backward</a></td></tr>
 <tr class="separator:a9711c4ba8746a9f67b671233b5e8f61e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab16a151b6b1460c98a823e2f980410a6"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classHazard.html">Hazard</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoad.html#ab16a151b6b1460c98a823e2f980410a6">_hazards</a></td></tr>
+<tr class="separator:ab16a151b6b1460c98a823e2f980410a6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Member Enumeration Documentation</h2>
 <a class="anchor" id="a666c8bcc7b8305513dfd0553f7a52f1d"></a>
@@ -179,6 +193,22 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a01bb63c69820f5cf4e4b13c559627209"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Road::add_hazard </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classHazard.html">Hazard</a>&#160;</td>
+          <td class="paramname"><em>h</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a441ca274106093fd5c83e0c061cfacac"></a>
 <div class="memitem">
 <div class="memproto">
@@ -238,6 +268,23 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a9f463168003ce394ece55a3d45b3b340"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classHazard.html">Hazard</a> Road::get_hazard_at_position </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPosition.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>This assumes there is an existing hazard... will fail if empty </p>
 
 </div>
 </div>
@@ -313,6 +360,40 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aaf4af522824b5775d6e5b7188a6f224c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">bool Road::is_hazard_at_position </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPosition.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>p</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">double&#160;</td>
+          <td class="paramname"><em>range</em> = <code><a class="el" href="classRoad.html#ac0062638c75b94417098ceec75a65554">RANGE</a></code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<p>Determine whether there exists a hazard within range meters of the given position</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">p</td><td>the position near which to find hazards </td></tr>
+    <tr><td class="paramname">range</td><td>the distance to search for a hazard </td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -428,6 +509,26 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab16a151b6b1460c98a823e2f980410a6"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::vector&lt;<a class="el" href="classHazard.html">Hazard</a>&gt; Road::_hazards</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a9711c4ba8746a9f67b671233b5e8f61e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -508,6 +609,26 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ac0062638c75b94417098ceec75a65554"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const double Road::RANGE = 10.0</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/trevor/Documents/dev/cpp/cpp-workspace/vehicle_optimization/src/map/<a class="el" href="Road_8h.html">Road.h</a></li>
 <li>/home/trevor/Documents/dev/cpp/cpp-workspace/vehicle_optimization/src/map/<a class="el" href="Road_8cpp.html">Road.cpp</a></li>
@@ -515,7 +636,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 21 2014 21:18:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

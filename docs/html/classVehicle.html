@@ -68,7 +68,7 @@ Inheritance diagram for Vehicle:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
 Classes</h2></td></tr>
-<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVehicle_1_1vehicle__hash.html">vehicle_hash</a></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structVehicle_1_1VehicleHash.html">VehicleHash</a></td></tr>
 <tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
@@ -95,8 +95,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a76556dbb0efaa6a420e366a1190c1cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a764a6cc6668ccf3cea442127156bed4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a764a6cc6668ccf3cea442127156bed4d">set_goal_position</a> (double x, double y)</td></tr>
 <tr class="separator:a764a6cc6668ccf3cea442127156bed4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a09fcdddce98436862149e8c7414cf21d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a09fcdddce98436862149e8c7414cf21d">set_map</a> (<a class="el" href="classMap.html">Map</a> *m)</td></tr>
-<tr class="separator:a09fcdddce98436862149e8c7414cf21d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a948508cafdde79459fee8b57ddd0801b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a948508cafdde79459fee8b57ddd0801b">set_map</a> (<a class="el" href="classMap.html">Map</a> &amp;m)</td></tr>
+<tr class="separator:a948508cafdde79459fee8b57ddd0801b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70477d6a68bcb1c2c5ed629a4b5953c3"><td class="memItemLeft" align="right" valign="top">const boost::uuids::uuid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a70477d6a68bcb1c2c5ed629a4b5953c3">get_id</a> () const </td></tr>
 <tr class="separator:a70477d6a68bcb1c2c5ed629a4b5953c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8727728d44a4f8f8f57211cdbf907cd"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#ab8727728d44a4f8f8f57211cdbf907cd">get_id_as_string</a> () const </td></tr>
@@ -113,8 +113,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:a0e8b60e9fffbdd72e75a7f1fc1ed13b6"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a0e8b60e9fffbdd72e75a7f1fc1ed13b6">populate_data_struct</a> ()</td></tr>
-<tr class="separator:a0e8b60e9fffbdd72e75a7f1fc1ed13b6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afff073fd407a71a60515946e254de188"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#afff073fd407a71a60515946e254de188">update_self</a> ()</td></tr>
 <tr class="separator:afff073fd407a71a60515946e254de188"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:acd62c8551083e7f3e6c1845b80577f51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#acd62c8551083e7f3e6c1845b80577f51">calculate_progress</a> (long millis)</td></tr>
@@ -158,20 +156,14 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a2f02a9acc98ad6ebd4a3ae48b09abfce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0ac659a4f432ef4ff6266eb545ddedde"><td class="memItemLeft" align="right" valign="top">boost::thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a0ac659a4f432ef4ff6266eb545ddedde">_self_update_thread</a></td></tr>
 <tr class="separator:a0ac659a4f432ef4ff6266eb545ddedde"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af6d1ec21c14b5d5ec99ab9d831a03611"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classMap.html">Map</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#af6d1ec21c14b5d5ec99ab9d831a03611">_map</a></td></tr>
-<tr class="separator:af6d1ec21c14b5d5ec99ab9d831a03611"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5668265765e02a182ab79c2a3dc88e23"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRoute.html">Route</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a5668265765e02a182ab79c2a3dc88e23">_route</a></td></tr>
-<tr class="separator:a5668265765e02a182ab79c2a3dc88e23"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a934e2aa5a5f97e53f1cde8851f95cf03"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPosition.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a934e2aa5a5f97e53f1cde8851f95cf03">_start_position</a></td></tr>
-<tr class="separator:a934e2aa5a5f97e53f1cde8851f95cf03"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a93cc5d5a81d75e029ebc784f3f1f7d58"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPosition.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a93cc5d5a81d75e029ebc784f3f1f7d58">_goal_position</a></td></tr>
-<tr class="separator:a93cc5d5a81d75e029ebc784f3f1f7d58"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f2e7580ab42d5383f1a9038f686d11f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classModuleManager.html">ModuleManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a3f2e7580ab42d5383f1a9038f686d11f">_module_manager</a></td></tr>
+<tr class="separator:a3f2e7580ab42d5383f1a9038f686d11f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a5584e388f176ec638ece31b68afdb480"><td class="memItemLeft" align="right" valign="top">struct <a class="el" href="structVehicleSensorData.html">VehicleSensorData</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a5584e388f176ec638ece31b68afdb480">_data</a></td></tr>
 <tr class="separator:a5584e388f176ec638ece31b68afdb480"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab1d85be66a684a4d9d4d31f32c07637d"><td class="memItemLeft" align="right" valign="top">std::unordered_set<br class="typebreak"/>
+<tr class="memitem:a3ac5516df126d7d753a540d4575d728b"><td class="memItemLeft" align="right" valign="top">std::unordered_set<br class="typebreak"/>
 &lt; <a class="el" href="classIVehicleDataListener.html">IVehicleDataListener</a> <br class="typebreak"/>
-*, <a class="el" href="structVehicle_1_1vehicle__hash.html">vehicle_hash</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#ab1d85be66a684a4d9d4d31f32c07637d">_listeners</a></td></tr>
-<tr class="separator:ab1d85be66a684a4d9d4d31f32c07637d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+*, <a class="el" href="structVehicle_1_1VehicleHash.html">VehicleHash</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a3ac5516df126d7d753a540d4575d728b">_listeners</a></td></tr>
+<tr class="separator:a3ac5516df126d7d753a540d4575d728b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="a0aa86ed71aa8d3464260547022b34d21"></a>
@@ -283,7 +275,7 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Send out data struct to listeners </p>
+<p>Fill data struct will current values Send out data struct to listeners </p>
 
 </div>
 </div>
@@ -455,30 +447,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0e8b60e9fffbdd72e75a7f1fc1ed13b6"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Vehicle::populate_data_struct </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Fill data struct will current values </p>
-
-</div>
-</div>
 <a class="anchor" id="a38d9060c4feddae240385cbc3813d4aa"></a>
 <div class="memitem">
 <div class="memproto">
@@ -538,14 +506,14 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a09fcdddce98436862149e8c7414cf21d"></a>
+<a class="anchor" id="a948508cafdde79459fee8b57ddd0801b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void Vehicle::set_map </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classMap.html">Map</a> *&#160;</td>
+          <td class="paramtype"><a class="el" href="classMap.html">Map</a> &amp;&#160;</td>
           <td class="paramname"><em>m</em></td><td>)</td>
           <td></td>
         </tr>
@@ -767,26 +735,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a93cc5d5a81d75e029ebc784f3f1f7d58"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPosition.html">Position</a> Vehicle::_goal_position</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
 <a class="anchor" id="a890d7ca60c9597e1eb6e467a6fd71ae1"></a>
 <div class="memitem">
 <div class="memproto">
@@ -847,7 +795,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab1d85be66a684a4d9d4d31f32c07637d"></a>
+<a class="anchor" id="a3ac5516df126d7d753a540d4575d728b"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -855,7 +803,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">std::unordered_set&lt;<a class="el" href="classIVehicleDataListener.html">IVehicleDataListener</a>*, <a class="el" href="structVehicle_1_1vehicle__hash.html">vehicle_hash</a>&gt; Vehicle::_listeners</td>
+          <td class="memname">std::unordered_set&lt;<a class="el" href="classIVehicleDataListener.html">IVehicleDataListener</a>*, <a class="el" href="structVehicle_1_1VehicleHash.html">VehicleHash</a>&gt; Vehicle::_listeners</td>
         </tr>
       </table>
   </td>
@@ -867,7 +815,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="af6d1ec21c14b5d5ec99ab9d831a03611"></a>
+<a class="anchor" id="a3f2e7580ab42d5383f1a9038f686d11f"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -875,7 +823,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classMap.html">Map</a>* Vehicle::_map</td>
+          <td class="memname"><a class="el" href="classModuleManager.html">ModuleManager</a> Vehicle::_module_manager</td>
         </tr>
       </table>
   </td>
@@ -896,26 +844,6 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">std::string Vehicle::_readable_name</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a5668265765e02a182ab79c2a3dc88e23"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classRoute.html">Route</a> Vehicle::_route</td>
         </tr>
       </table>
   </td>
@@ -996,26 +924,6 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classVehicleSensor.html">VehicleSensor</a> Vehicle::_sensor</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a934e2aa5a5f97e53f1cde8851f95cf03"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname"><a class="el" href="classPosition.html">Position</a> Vehicle::_start_position</td>
         </tr>
       </table>
   </td>
@@ -1114,7 +1022,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sat Oct 11 2014 23:13:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Tue Oct 21 2014 21:18:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
