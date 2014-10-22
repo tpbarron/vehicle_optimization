@@ -10,12 +10,14 @@
 
 #include <vector>
 
+#include "data_types/module_types/Hazard.h"
 #include "Intersection.h"
 #include "Lane.h"
 
 class Road {
 
 public:
+
 	Road();
 	virtual ~Road();
 
@@ -29,6 +31,7 @@ public:
 	void set_end_intersection(Intersection &i);
 	void set_speed_limit(double s);
 	void set_distance(double d);
+	void add_hazard(Hazard h);
 
 	Intersection get_start_intersection();
 	Intersection get_end_intersection();
@@ -50,6 +53,15 @@ public:
 	bool is_one_way();
 	RoadType get_road_type();
 
+
+	/*
+	 * Check if there is a hazard within the given range...
+	 */
+	const static double RANGE;
+	bool is_hazard_at_position(Position &p, double range=RANGE);
+	Hazard get_hazard_at_position(Position &p);
+
+
 	/*
 	 * TODO: make this private and use function for cost..
 	 * Distance between intersections in meters
@@ -68,6 +80,8 @@ private:
 
 	std::vector<Lane> _lanes_forward;
 	std::vector<Lane> _lanes_backward;
+
+	std::vector<Hazard> _hazards;
 
 };
 

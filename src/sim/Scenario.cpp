@@ -57,7 +57,11 @@ void load_scenario(std::string scenario) {
 
 		DBConn::clear_db();
 
-		//vehicles
+		//Load map first so can pass copy of map to vehicles
+		boost::property_tree::ptree map_tree = tree.get_child(SCENARIO_MAP);
+		load_scenario_map(scenario, map_tree);
+
+		//Load vehicles
 		boost::property_tree::ptree::value_type v;
 		BOOST_FOREACH(boost::property_tree::ptree::value_type &v, tree.get_child(SCENARIO_VEHICLES)) {
 			std::string vname = v.second.get<std::string>(SCENARIO_VEHICLES_NAME);
@@ -66,9 +70,6 @@ void load_scenario(std::string scenario) {
 			std::cout << vname << ": " << vpath << std::endl;
 			load_vehicle(vname, vpath);
 		}
-
-		boost::property_tree::ptree map_tree = tree.get_child(SCENARIO_MAP);
-		load_scenario_map(scenario, map_tree);
 	} else {
 		std::cerr << "Unable to open scenario file" << std::endl;
 	}
@@ -118,7 +119,7 @@ void load_vehicle(std::string name, std::string file) {
 		std::cout <<"Loaded vehicle data : " << start_x << ", " << start_y << ", " << goal_x << ", " << goal_y << std::endl;
 		v->set_start_position(start_x, start_y);
 		v->set_goal_position(goal_x, goal_y);
-		v->set_map(&_map);
+		v->set_map(_map);
 
 //		boost::property_tree::ptree::value_type vehicle_state;
 //
@@ -226,17 +227,21 @@ void load_scenario_roads(std::string scenario, std::string file) {
 			r.set_speed_limit(speed_limit);
 			r.set_distance(dist);
 
-			std::cout << "Loading lanes" << std::endl;
+			// Load lanes
 			BOOST_FOREACH(boost::property_tree::ptree::value_type &forward_lanes,
 					road.second.get_child(ROAD_LANES+"."+ROAD_FORWARD_LANES)) {
-				std::cout << forward_lanes.second.data() << std::endl;
 				r.add_lane_forward(load_road_lane(scenario, forward_lanes.second.data()));
 			}
 
 			BOOST_FOREACH(boost::property_tree::ptree::value_type &backward_lanes,
 					road.second.get_child(ROAD_LANES+"."+ROAD_BACKWARD_LANES)) {
-				std::cout << backward_lanes.second.data() << std::endl;
 				r.add_lane_backward(load_road_lane(scenario, backward_lanes.second.data()));
+			}
+
+			// Load hazards
+			BOOST_FOREACH(boost::property_tree::ptree::value_type &hazards,
+					road.second.get_child(ROAD_HAZARDS)) {
+				r.add_hazard(load_road_hazard(scenario, hazards.second.data()));
 			}
 
 			_roads.push_back(r);
@@ -246,6 +251,9 @@ void load_scenario_roads(std::string scenario, std::string file) {
 	}
 }
 
+/**
+ * Load a road lane from a file
+ */
 Lane load_road_lane(std::string scenario, std::string file) {
 	std::string path = Utils::get_scenario_lane_file_path(scenario, file);
 	std::cout << "Lane: " << path << std::endl;
@@ -270,6 +278,31 @@ Lane load_road_lane(std::string scenario, std::string file) {
 		std::cerr << "Could not open road file" << std::endl;
 	}
 	return l;
+}
+
+Hazard load_road_hazard(std::string scenario, std::string file) {
+	std::string path = Utils::get_scenario_hazard_file_path(scenario, file);
+	std::cout << "Hazard: " << path << std::endl;
+	Hazard h;
+	std::ifstream in(path.c_str());
+	if (in.is_open()) {
+		std::stringstream buf;
+		buf << in.rdbuf();
+		in.close();
+		boost::property_tree::ptree hazard_data;
+		boost::property_tree::read_json(buf, hazard_data);
+
+		double ptx = hazard_data.get<double>(HAZARD_POSITION_X);
+		double pty = hazard_data.get<double>(HAZARD_POSITION_Y);
+		double max_safe_speed = hazard_data.get<double>(HAZARD_MAX_SAFE_SPEED);
+
+		Position p(ptx, pty);
+		h.set_position(p);
+		h.set_max_safe_speed(max_safe_speed);
+	} else {
+		std::cerr << "Could not open road file" << std::endl;
+	}
+	return h;
 }
 
 Intersection& get_intersection_from_id(int id) {
@@ -331,23 +364,23 @@ void stop() {
  * then populate into sensor.
  *
  */
-void update_vehicle_sensor(const std::string &vid, VehicleSensor &sensor) {
-	boost::posix_time::ptime cur_time = boost::posix_time::microsec_clock::local_time();
-	boost::posix_time::time_duration diff = cur_time - _start_time;
-	long millis = diff.total_milliseconds();
-	std::unique_ptr<mongo::DBClientCursor> cursor = DBConn::evaluate_query(DBConn::VEHICLE_PATH, vid, millis);
-	while (cursor->more()) {
-		mongo::BSONObj obj = cursor->next();
-		sensor.set_acceleration(obj.getField(DBConn::ACCELERATION).Double());
-		sensor.set_brake_pressure(obj.getField(DBConn::BRAKE_PRESSURE).Double());
-		sensor.set_heading(obj.getField(DBConn::HEADING).Double());
-		sensor.set_position(obj.getField(DBConn::POSITION_X).Double(), obj.getField(DBConn::POSITION_Y).Double());
-		sensor.set_speed(obj.getField(DBConn::SPEED).Double());
-		sensor.set_vehicle_turn_rate(obj.getField(DBConn::VEHICLE_TURN_RATE).Double());
-		sensor.set_wheel_turn_rate(obj.getField(DBConn::WHEEL_TURN_RATE).Double());
-	}
-	cursor.release();
-}
+//void update_vehicle_sensor(const std::string &vid, VehicleSensor &sensor) {
+//	boost::posix_time::ptime cur_time = boost::posix_time::microsec_clock::local_time();
+//	boost::posix_time::time_duration diff = cur_time - _start_time;
+//	long millis = diff.total_milliseconds();
+//	std::unique_ptr<mongo::DBClientCursor> cursor = DBConn::evaluate_query(DBConn::VEHICLE_PATH, vid, millis);
+//	while (cursor->more()) {
+//		mongo::BSONObj obj = cursor->next();
+//		sensor.set_acceleration(obj.getField(DBConn::ACCELERATION).Double());
+//		sensor.set_brake_pressure(obj.getField(DBConn::BRAKE_PRESSURE).Double());
+//		sensor.set_heading(obj.getField(DBConn::HEADING).Double());
+//		sensor.set_position(obj.getField(DBConn::POSITION_X).Double(), obj.getField(DBConn::POSITION_Y).Double());
+//		sensor.set_speed(obj.getField(DBConn::SPEED).Double());
+//		sensor.set_vehicle_turn_rate(obj.getField(DBConn::VEHICLE_TURN_RATE).Double());
+//		sensor.set_wheel_turn_rate(obj.getField(DBConn::WHEEL_TURN_RATE).Double());
+//	}
+//	cursor.release();
+//}
 
 /*
  *
@@ -430,11 +463,11 @@ void test_get_closest_vehicles() {
 void test_print_map() {
 	_map.print_map_data();
 }
-
-void test_routing() {
-	Route r;
-	r.set_map(&_map);
-	r.generate_route(_intersections[0], _intersections[5]);
-}
+//
+//void test_routing() {
+//	Route r;
+//	r.set_map(_map);
+//	r.generate_route(_intersections[0], _intersections[5]);
+//}
 
 }

@@ -5,41 +5,32 @@
  *      Author: trevor
  */
 
-#include <map/routing/Route.h>
+#include "Route.h"
 
-Route::Route() : _currently_in_intersection(false),
+Route::Route() : _current_start_vertex(0),
+				 _current_end_vertex(0),
+				 _currently_in_intersection(false),
 				 _path_exists(false),
-				 _angle_to_intersection(0),
-				 _current_start_vertex(0),
-				 _current_end_vertex(0) {
-	_map = nullptr;
+				 _angle_to_intersection(0) {
 }
 
 Route::~Route() {
 }
 
 
-void Route::set_map(Map *m) {
-	_map = m;
-}
-
-void Route::print_route() {
+void Route::print_route(Map& map) {
 	for (std::list<Map::vertex_t>::iterator it = _vertices.begin(); it != _vertices.end(); it++) {
 		Map::vertex_t v = *it;
-		std::cout << "Vertex = " << (_map->get_network()[v]).get_id() << std::endl;
+		std::cout << "Vertex = " << (map.get_network()[v]).get_id() << std::endl;
 	}
 }
 
-bool Route::does_path_exist() {
-	return _path_exists;
-}
+void Route::generate_route(Map &map, Intersection &i1, Intersection &i2) {
+	std::vector<Map::vertex_t> predecessors(map.get_num_intersections());
+	std::vector<double> distances(map.get_num_intersections());
 
-void Route::generate_route(Intersection &i1, Intersection &i2) {
-	std::vector<Map::vertex_t> predecessors(_map->get_num_intersections());
-	std::vector<double> distances(_map->get_num_intersections());
-
-	std::pair<Map::vertex_t, bool> start_exists = _map->get_vertex_for_intersection(i1);
-	std::pair<Map::vertex_t, bool> goal_exists = _map->get_vertex_for_intersection(i2);
+	std::pair<Map::vertex_t, bool> start_exists = map.get_vertex_for_intersection(i1);
+	std::pair<Map::vertex_t, bool> goal_exists = map.get_vertex_for_intersection(i2);
 
 	if (!start_exists.second) {
 		std::cerr << "Starting intersection does not exist." << std::endl;
@@ -55,21 +46,21 @@ void Route::generate_route(Intersection &i1, Intersection &i2) {
 	Map::vertex_t start = start_exists.first;
 	Map::vertex_t goal = goal_exists.first;
 
-	Intersection i1check = _map->get_network()[start];
-	Intersection i2check = _map->get_network()[goal];
+	Intersection i1check = map.get_network()[start];
+	Intersection i2check = map.get_network()[goal];
 
 	std::cout << "Routing from: " << i1check.get_id() << " -> " << i2check.get_id() << std::endl;
 
-	EuclideanDistanceHeuristic<Map::Graph, double> dist_heuristic(_map->get_network(), goal);
+	EuclideanDistanceHeuristic<Map::Graph, double> dist_heuristic(map.get_network(), goal);
 	AstarGoalVisitor astar_visitor(goal);
 
 	try {
 		boost::astar_search_tree(
-				_map->get_network(), start,
+				map.get_network(), start,
 				dist_heuristic,
-				boost::weight_map(boost::get(&Road::_distance, _map->get_network())).
-					predecessor_map(make_iterator_property_map(predecessors.begin(), boost::get(boost::vertex_index, _map->get_network()))).
-					distance_map(make_iterator_property_map(distances.begin(), boost::get(boost::vertex_index, _map->get_network()))).
+				boost::weight_map(boost::get(&Road::_distance, map.get_network())).
+					predecessor_map(boost::make_iterator_property_map(predecessors.begin(), boost::get(boost::vertex_index, map.get_network()))).
+					distance_map(boost::make_iterator_property_map(distances.begin(), boost::get(boost::vertex_index, map.get_network()))).
 					visitor(astar_visitor)
 		);
 	} catch (AstarGoalVisitor::found_goal &fg) {
@@ -84,7 +75,7 @@ void Route::generate_route(Intersection &i1, Intersection &i2) {
 
 		//edge must exist
 		std::pair<Map::edge_t, bool> edge_pair = boost::edge(_current_start_vertex,
-				_current_end_vertex, _map->get_network());
+				_current_end_vertex, map.get_network());
 		_current_edge = edge_pair.first;
 
 		//set start pos / road
@@ -94,7 +85,7 @@ void Route::generate_route(Intersection &i1, Intersection &i2) {
 		// Set last position so as to simulate going towards second intersection
 		// This gives a reasonable but not always perfect first heading calculation
 		_last_position.set_position(-i2check.get_position().get_x(), -i2check.get_position().get_y());
-		calculate_angle_to_intersection();
+		calculate_angle_to_intersection(map);
 
 		// set flag that a path exists
 		_path_exists = true;
@@ -103,22 +94,14 @@ void Route::generate_route(Intersection &i1, Intersection &i2) {
 	// TODO: how to handle no found route?
 }
 
-void Route::calculate_angle_to_intersection() {
-	Position i1 = _map->get_network()[_current_start_vertex].get_position();
-	Position i2 = _map->get_network()[_current_end_vertex].get_position();
-	double dy = i2.get_y() - i1.get_y();
-	double dx = i2.get_x() - i1.get_x();
-	_angle_to_intersection = std::atan2(dy, dx);
-	std::cout << "Computed angle to intersection in rad: " << _angle_to_intersection << std::endl;
-}
 
 /**
  * Return the Speed at the given
  * TODO: should the road store the speed limit as a Speed object?
  */
-Speed Route::get_current_speed_limit() {
+Speed Route::get_current_speed_limit(Map& map) {
 //	Speed s(Speed::MPH_25);
-	Speed s(_map->get_network()[_current_edge].get_speed_limit());
+	Speed s(map.get_network()[_current_edge].get_speed_limit());
 	return s;
 }
 
@@ -146,7 +129,7 @@ Speed Route::get_current_speed_limit() {
  *
  * @param d the distance to move
  */
-Position Route::get_new_position(const Distance &d) {
+Position Route::get_new_position(Map& map, const Distance &d) {
 	//TODO: move vehicle along road from int1 to int2
 	//might as well store current end points too
 
@@ -159,7 +142,7 @@ Position Route::get_new_position(const Distance &d) {
 	_last_position = _current_position;
 
 	// Get dist from current position to intersection
-	Position end_int_position = _map->get_network()[_current_end_vertex].get_position();
+	Position end_int_position = map.get_network()[_current_end_vertex].get_position();
 	double gdx = end_int_position.get_x() - _current_position.get_x(); //dx to goal
 	double gdy = end_int_position.get_y() - _current_position.get_y(); //dy to goal
 	double max_dist_on_road = std::sqrt(gdx*gdx + gdy*gdy); //dist on this road
@@ -174,7 +157,7 @@ Position Route::get_new_position(const Distance &d) {
 			//Just move to the intersection and stop
 			//This should keep returning the same position once we have
 			//reached this point.
-			_current_position = _map->get_network()[_current_end_vertex].get_position();
+			_current_position = map.get_network()[_current_end_vertex].get_position();
 			return _current_position;
 		}
 
@@ -192,13 +175,13 @@ Position Route::get_new_position(const Distance &d) {
 
 		//Get the new edge from the new intersections
 		std::pair<Map::edge_t, bool> edge_pair = boost::edge(_current_start_vertex,
-				_current_end_vertex, _map->get_network());
+				_current_end_vertex, map.get_network());
 		_current_edge = edge_pair.first;
 
-		calculate_angle_to_intersection();
+		calculate_angle_to_intersection(map);
 
 		//Set my current position to be at the intersection I'm now 'starting' from
-		_current_position.set_position(_map->get_network()[_current_start_vertex].get_position());
+		_current_position.set_position(map.get_network()[_current_start_vertex].get_position());
 
 		//Now just do computation as normal with distance to go
 		dist = excess_dist;
@@ -222,4 +205,36 @@ Heading Route::get_current_heading() {
 	return hdng;
 }
 
+/**
+ * Return true if there is an imminent Hazard along this route
+ */
+bool Route::imminent_hazard(Map& map) {
+	return map.get_network()[_current_edge].is_hazard_at_position(_current_position);
+}
 
+/*
+ * Return the nearest Hazard to the current vehicle position
+ */
+Hazard Route::get_imminent_hazard(Map& map) {
+	return map.get_network()[_current_edge].get_hazard_at_position(_current_position);
+}
+
+/**
+ * True if a route was able to be generated
+ */
+bool Route::does_path_exist() {
+	return _path_exists;
+}
+
+/**
+ * Calculate angle from start vertex to end vertex so we have a reasonable
+ * starting Heading
+ */
+void Route::calculate_angle_to_intersection(Map& map) {
+	Position i1 = map.get_network()[_current_start_vertex].get_position();
+	Position i2 = map.get_network()[_current_end_vertex].get_position();
+	double dy = i2.get_y() - i1.get_y();
+	double dx = i2.get_x() - i1.get_x();
+	_angle_to_intersection = std::atan2(dy, dx);
+	std::cout << "Computed angle to intersection in rad: " << _angle_to_intersection << std::endl;
+}

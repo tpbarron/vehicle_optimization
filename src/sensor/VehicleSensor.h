@@ -50,7 +50,7 @@ public:
 	void set_acceleration(double accel);
 	void set_brake_pressure(double brake_pressure);
 	void set_heading(double heading);
-	void set_position(double pos_x, double pos_y);
+	void set_position(const Position &p);
 	void set_speed(double spd);
 	void set_vehicle_turn_rate(double vehicle_turn_rate);
 	void set_wheel_turn_rate(double wheel_turn_rate);

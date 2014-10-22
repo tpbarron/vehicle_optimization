@@ -10,6 +10,7 @@
 const std::string Utils::SCENARIO_DATA_DIR = "data/scenarios/";
 const std::string Utils::SCENARIO_VEHICLE_DATA_DIR = "vehicles/";
 const std::string Utils::SCENARIO_LANE_DATA_DIR = "lanes/";
+const std::string Utils::SCENARIO_HAZARD_DATA_DIR = "hazards/";
 
 boost::uuids::random_generator Utils::gen_uuid;
 
@@ -31,6 +32,10 @@ std::string Utils::get_scenario_vehicle_file_path(std::string scenario, std::str
 
 std::string Utils::get_scenario_lane_file_path(std::string scenario, std::string file) {
 	return SCENARIO_DATA_DIR + scenario + "/" + SCENARIO_LANE_DATA_DIR + file;
+}
+
+std::string Utils::get_scenario_hazard_file_path(std::string scenario, std::string file) {
+	return SCENARIO_DATA_DIR + scenario + "/" + SCENARIO_HAZARD_DATA_DIR + file;
 }
 
 std::string Utils::get_scenario_intersection_file_path(std::string scenario, std::string file) {

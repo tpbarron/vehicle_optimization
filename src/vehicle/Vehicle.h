@@ -18,10 +18,15 @@
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
+#include "IVehicleDataListener.h"
 #include "data_manager/VehicleManager.h"
 #include "data_types/Distance.h"
-#include "IVehicleDataListener.h"
+#include "data_types/module_types/Hazard.h"
+
 #include "map/routing/Route.h"
+#include "modules/ModuleManager.h"
+#include "modules/HazardWarningModule.h"
+
 #include "sensor/VehicleSensor.h"
 #include "sensor/VehicleSensorData.h"
 #include "sim/Scenario.h"
@@ -61,7 +66,7 @@ public:
 	void set_stopping_dist(Distance &dist);
 	void set_start_position(double x, double y);
 	void set_goal_position(double x, double y);
-	void set_map(Map *m);
+	void set_map(Map &m);
 
 	/*
 	 * Getters
@@ -75,7 +80,7 @@ public:
 
 private:
 
-	struct vehicle_hash {
+	struct VehicleHash {
 	    size_t operator()(IVehicleDataListener *v) const
 	    {
 	        return std::hash<std::string>()(v->to_string());
@@ -101,19 +106,15 @@ private:
 	boost::asio::deadline_timer _self_update_timer;
 	boost::thread *_self_update_thread;
 
-
-	// Routing
-	Map *_map;
-	Route _route;
-	Position _start_position;
-	Position _goal_position;
+	// Modules
+	ModuleManager _module_manager;
 
 	// Data struct
 	struct VehicleSensorData* _data;
 
-	std::unordered_set<IVehicleDataListener*, vehicle_hash> _listeners;
+	std::unordered_set<IVehicleDataListener*, VehicleHash> _listeners;
 
-	void populate_data_struct();
+//	void populate_data_struct();
 
 	/*
 	 * Called to update the own vehicle position...

@@ -24,6 +24,10 @@ Position::Position(double x, double y) {
 Position::~Position() {
 }
 
+bool Position::operator==(const Position& other) const {
+	return _x == other.get_x() && _y == other.get_y();
+}
+
 void Position::set_x(double new_x) {
 	Position::_x = new_x;
 }

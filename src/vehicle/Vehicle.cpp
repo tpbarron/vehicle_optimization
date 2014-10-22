@@ -20,7 +20,6 @@ Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::str
 
 	_id = Utils::gen_uuid();
 
-	_map = nullptr;
 	_readable_name = name;
 
 	_data = new VehicleSensorData();
@@ -53,7 +52,7 @@ void Vehicle::init() {
 	_sensor.set_acceleration(0);
 	_sensor.set_brake_pressure(0);
 	_sensor.set_heading(0);
-	_sensor.set_position(_start_position.get_x(), _start_position.get_y());
+	_sensor.set_position(_module_manager.get_start_position());
 	_sensor.set_speed(0);
 	_sensor.set_vehicle_turn_rate(0);
 	_sensor.set_wheel_turn_rate(0);
@@ -65,14 +64,7 @@ void Vehicle::init() {
 void Vehicle::start() {
 	init();
 
-	std::pair<Intersection, Map::vertex_t> start = _map->get_intersection_closest_to(_start_position);
-	std::pair<Intersection, Map::vertex_t> goal = _map->get_intersection_closest_to(_goal_position);
-
-	Intersection start_int = start.first;
-	Intersection goal_int = goal.first;
-
-	_route.generate_route(start_int, goal_int);
-	_route.print_route();
+	_module_manager.generate_route();
 
 	// Start timer to update own position along route..
 	_self_update_timer.async_wait(boost::bind(&Vehicle::update_self, this));
@@ -130,17 +122,17 @@ void Vehicle::update() {
 /**
  * Fill data struct will current values
  */
-void Vehicle::populate_data_struct() {
-	Scenario::update_vehicle_sensor(get_id_as_string(), _sensor);
-	_data->WARN = should_warn();
-	_sensor.export_data(_data);
-}
+//void Vehicle::populate_data_struct() {
+//	Scenario::update_vehicle_sensor(get_id_as_string(), _sensor);
+//	_data->WARN = should_warn();
+//	_sensor.export_data(_data);
+//}
 
 /**
  * Send out data struct to listeners
  */
 void Vehicle::broadcast_data() {
-	for (std::unordered_set<IVehicleDataListener*, vehicle_hash>::iterator it = _listeners.begin(); it != _listeners.end(); ++it) {
+	for (std::unordered_set<IVehicleDataListener*, VehicleHash>::iterator it = _listeners.begin(); it != _listeners.end(); ++it) {
 		std::cout << "Sending data from " << get_id_as_string() << std::endl;
 		(*it)->recv(*_data);
 	}
@@ -207,7 +199,7 @@ void Vehicle::update_self() {
  */
 void Vehicle::calculate_progress(long millis) {
 	// Get the allowed speed at the current position
-	Speed speed = _route.get_current_speed_limit();
+	Speed speed = _module_manager.get_current_speed();
 	_sensor.set_speed(speed.get_speed());
 
 	// Get the distance in meters that would be covered in the allotted time
@@ -216,11 +208,11 @@ void Vehicle::calculate_progress(long millis) {
 	// TODO: there could have been a road change here and thus a speed change
 	// Perhaps the update is frequent enough that it isn't important to
 	// refresh immediately.
-	Position pos = _route.get_new_position(dist);
-	_sensor.set_position(pos.get_x(), pos.get_y());
+	Position pos = _module_manager.get_new_position(dist);
+	_sensor.set_position(pos);
 
 	// Get the heading from the route using the last two positions
-	Heading hdng = _route.get_current_heading();
+	Heading hdng = _module_manager.get_current_heading();
 	_sensor.set_heading(hdng.get_heading());
 
 	// TODO: for now assume the following are constant
@@ -228,6 +220,7 @@ void Vehicle::calculate_progress(long millis) {
 	_sensor.set_brake_pressure(0);
 	_sensor.set_vehicle_turn_rate(0);
 	_sensor.set_wheel_turn_rate(0);
+
 }
 
 /*
@@ -247,19 +240,20 @@ void Vehicle::set_stopping_dist(Distance &dist) {
 }
 
 void Vehicle::set_start_position(double x, double y) {
-	_start_position.set_position(x, y);
+	Position p(x, y);
+	_module_manager.set_start_position(p);
 }
 
 void Vehicle::set_goal_position(double x, double y) {
-	_goal_position.set_position(x, y);
+	Position p(x, y);
+	_module_manager.set_goal_position(p);
 }
 
 /*
  * TODO: do both the vehicle and the route need a map reference?
  */
-void Vehicle::set_map(Map *m) {
-	_map = m;
-	_route.set_map(m);
+void Vehicle::set_map(Map &m) {
+	_module_manager.set_map(m);
 }
 
 /*

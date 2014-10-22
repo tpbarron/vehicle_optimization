@@ -12,7 +12,10 @@
 				"backward": [
 					"lane2.json"
 				]
-			}
+			},
+			"hazards": [
+                 "hazard1.json"
+            ]
 		},
 		{
             "start_intersection": 1,
@@ -26,7 +29,8 @@
                 "backward": [
                     "lane2.json"
                 ]
-            }
+            },
+            "hazards": []
         },
         {
             "start_intersection": 0,
@@ -40,7 +44,8 @@
                 "backward": [
                     "lane2.json"
                 ]
-            }
+            },
+            "hazards": []
         },
         {
             "start_intersection": 1,
@@ -54,7 +59,8 @@
                 "backward": [
                     "lane2.json"
                 ]
-            }
+            },
+            "hazards": []
         },
         {
             "start_intersection": 2,
@@ -68,7 +74,8 @@
                 "backward": [
                     "lane2.json"
                 ]
-            }
+            },
+            "hazards": []
         },
         {
             "start_intersection": 3,
@@ -82,7 +89,8 @@
                 "backward": [
                     "lane2.json"
                 ]
-            }
+            },
+            "hazards": []
         },
         {
             "start_intersection": 4,
@@ -96,7 +104,8 @@
                 "backward": [
                     "lane2.json"
                 ]
-            }
+            },
+            "hazards": []
         }
 	]
 }

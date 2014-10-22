@@ -18,6 +18,8 @@ public:
 	Position(double x, double y);
 	virtual ~Position();
 
+	bool operator==(const Position& other) const;
+
 	void set_x(double x);
 	void set_y(double y);
 	void set_position(double x, double y);

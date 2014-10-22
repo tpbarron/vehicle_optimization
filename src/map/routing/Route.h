@@ -19,6 +19,8 @@
 #include "data_types/Position.h"
 #include "data_types/Speed.h"
 
+#include "data_types/module_types/Hazard.h"
+
 #include "map/Intersection.h"
 #include "map/Map.h"
 #include "map/routing/astar/AstarGoalVisitor.h"
@@ -34,21 +36,23 @@ public:
 	Route();
 	virtual ~Route();
 
-	void set_map(Map *m);
-	void print_route();
-	void generate_route(Intersection &i1, Intersection &i2);
+	void print_route(Map& map);
+	void generate_route(Map& map, Intersection &i1, Intersection &i2);
 
-	Speed get_current_speed_limit();
-	Position get_new_position(const Distance &d);
+	Speed get_current_speed_limit(Map& map);
+	Position get_new_position(Map& map, const Distance &d);
 	Heading get_current_heading();
+
+	bool imminent_hazard(Map& map);
+	Hazard get_imminent_hazard(Map& map);
 
 	bool does_path_exist();
 
 private:
 
-	void calculate_angle_to_intersection();
+	void calculate_angle_to_intersection(Map& map);
 
-	Map *_map;
+	Map _map;
 	std::list<Map::vertex_t> _vertices;
 
 	//position along route

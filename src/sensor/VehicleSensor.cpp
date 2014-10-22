@@ -45,8 +45,8 @@ void VehicleSensor::set_brake_pressure(double brake_pressure) {
 void VehicleSensor::set_heading(double heading) {
 	_heading.set_heading(heading);
 }
-void VehicleSensor::set_position(double pos_x, double pos_y) {
-	_pos.set_position(pos_x, pos_y);
+void VehicleSensor::set_position(const Position &p) {
+	_pos.set_position(p);
 }
 
 void VehicleSensor::set_speed(double spd) {

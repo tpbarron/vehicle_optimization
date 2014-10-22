@@ -7,6 +7,8 @@
 
 #include "Road.h"
 
+const double Road::RANGE = 10.0;
+
 Road::Road() {
 	_speed_limit = 0;
 	_distance = 0;
@@ -30,6 +32,10 @@ void Road::set_speed_limit(double s) {
 
 void Road::set_distance(double d) {
 	_distance = d;
+}
+
+void Road::add_hazard(Hazard h) {
+	_hazards.push_back(h);
 }
 
 
@@ -78,6 +84,40 @@ bool Road::is_one_way() {
 	}
 	return true;
 }
+
+
+/**
+ * Determine whether there exists a hazard within range meters of the
+ * given position
+ *
+ * @param p the position near which to find hazards
+ * @param range the distance to search for a hazard
+ */
+bool Road::is_hazard_at_position(Position &p, double range) {
+	for (unsigned int i = 0; i < _hazards.size(); ++i) {
+		if (_hazards[i].get_position().get_distance_to(p).get_distance() < range) {
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * This assumes there is an existing hazard... will fail if empty
+ */
+Hazard Road::get_hazard_at_position(Position &p) {
+	Hazard nearest = _hazards[0];
+	double nearest_dist = nearest.get_position().get_distance_to(p).get_distance();
+	for (unsigned int i = 1; i < _hazards.size(); ++i) {
+		double d = _hazards[i].get_position().get_distance_to(p).get_distance();
+		if (d < nearest_dist) {
+			nearest = _hazards[i];
+			nearest_dist = d;
+		}
+	}
+	return nearest;
+}
+
 
 Road::RoadType Road::get_road_type() {
 	if (is_one_way()) {

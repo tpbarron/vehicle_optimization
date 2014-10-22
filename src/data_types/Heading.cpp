@@ -27,6 +27,12 @@ void Heading::set_heading(double h) {
 	_heading = h;
 }
 
+/**
+ * Calculate the heading from point p1 to point p2 in radians
+ *
+ * @param p1 the start point
+ * @param p2 the end point
+ */
 void Heading::set_from_pts(Position &p1, Position &p2) {
 	double dx = p2.get_x() - p1.get_x();
 	double dy = p2.get_y() - p1.get_y();
