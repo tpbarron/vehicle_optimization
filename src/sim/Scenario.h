@@ -25,9 +25,9 @@
 #include "map/Lane.h"
 #include "map/Map.h"
 #include "map/Road.h"
-#include "map/routing/Route.h"
 #include "sensor/VehicleSensor.h"
 #include "utils/Utils.h"
+#include "vehicle/modules/routing/Route.h"
 #include "vehicle/Vehicle.h"
 
 namespace Scenario {

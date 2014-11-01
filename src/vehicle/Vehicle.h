@@ -23,9 +23,9 @@
 #include "data_types/sensor_types/Distance.h"
 #include "data_types/module_types/Hazard.h"
 
-#include "map/routing/Route.h"
-#include "modules/ModuleManager.h"
-#include "modules/HazardWarningModule.h"
+#include "vehicle/modules/routing/Route.h"
+#include "vehicle/modules/ModuleManager.h"
+#include "vehicle/modules/HazardWarningModule.h"
 
 #include "sensor/VehicleSensor.h"
 #include "sensor/VehicleSensorData.h"

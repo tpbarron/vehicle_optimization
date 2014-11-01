@@ -23,8 +23,8 @@
 
 #include "map/Intersection.h"
 #include "map/Map.h"
-#include "map/routing/astar/AstarGoalVisitor.h"
-#include "map/routing/astar/EuclideanDistanceHeuristic.h"
+#include "vehicle/modules/routing/astar/AstarGoalVisitor.h"
+#include "vehicle/modules/routing/astar/EuclideanDistanceHeuristic.h"
 
 
 /**
