@@ -8,8 +8,8 @@
 #ifndef HAZARD_H_
 #define HAZARD_H_
 
-#include "data_types/Position.h"
-#include "data_types/Speed.h"
+#include "data_types/sensor_types/Position.h"
+#include "data_types/sensor_types/Speed.h"
 
 /**
  *

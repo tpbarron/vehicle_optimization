@@ -8,10 +8,10 @@
 #ifndef ROUTINGMODULE_H_
 #define ROUTINGMODULE_H_
 
-#include "data_types/Distance.h"
-#include "data_types/Heading.h"
-#include "data_types/Position.h"
-#include "data_types/Speed.h"
+#include "data_types/sensor_types/Distance.h"
+#include "data_types/sensor_types/Heading.h"
+#include "data_types/sensor_types/Position.h"
+#include "data_types/sensor_types/Speed.h"
 #include "map/Map.h"
 #include "map/routing/Route.h"
 

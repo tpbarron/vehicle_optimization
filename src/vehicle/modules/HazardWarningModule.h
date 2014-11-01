@@ -12,7 +12,7 @@
 
 #include <boost/functional/hash.hpp>
 
-#include "data_types/Position.h"
+#include "data_types/sensor_types/Position.h"
 #include "data_types/module_types/Hazard.h"
 
 /**

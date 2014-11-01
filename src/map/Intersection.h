@@ -8,7 +8,7 @@
 #ifndef INTERSECTION_H_
 #define INTERSECTION_H_
 
-#include "../data_types/Position.h"
+#include "data_types/sensor_types/Position.h"
 
 class Intersection {
 

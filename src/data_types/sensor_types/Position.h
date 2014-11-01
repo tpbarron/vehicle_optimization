@@ -10,7 +10,7 @@
 
 #include <string>
 
-#include "data_types/Distance.h"
+#include "data_types/sensor_types/Distance.h"
 
 class Position {
 public:

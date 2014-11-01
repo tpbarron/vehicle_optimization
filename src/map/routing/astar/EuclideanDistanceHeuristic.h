@@ -13,7 +13,7 @@
 #include <boost/graph/astar_search.hpp>
 #include <boost/graph/adjacency_list.hpp>
 
-#include "data_types/Position.h"
+#include "data_types/sensor_types/Position.h"
 #include "map/Intersection.h"
 #include "map/Map.h"
 

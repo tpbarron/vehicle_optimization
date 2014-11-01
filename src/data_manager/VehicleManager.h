@@ -16,7 +16,7 @@
 #include <vector>
 
 #include "vehicle/Vehicle.h"
-#include "data_types/Position.h"
+#include "data_types/sensor_types/Position.h"
 
 class Vehicle;
 

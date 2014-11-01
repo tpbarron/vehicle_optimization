@@ -20,7 +20,7 @@
 
 #include "IVehicleDataListener.h"
 #include "data_manager/VehicleManager.h"
-#include "data_types/Distance.h"
+#include "data_types/sensor_types/Distance.h"
 #include "data_types/module_types/Hazard.h"
 
 #include "map/routing/Route.h"

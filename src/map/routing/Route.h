@@ -14,10 +14,10 @@
 
 #include <boost/graph/astar_search.hpp>
 
-#include "data_types/Distance.h"
-#include "data_types/Heading.h"
-#include "data_types/Position.h"
-#include "data_types/Speed.h"
+#include "data_types/sensor_types/Distance.h"
+#include "data_types/sensor_types/Heading.h"
+#include "data_types/sensor_types/Position.h"
+#include "data_types/sensor_types/Speed.h"
 
 #include "data_types/module_types/Hazard.h"
 

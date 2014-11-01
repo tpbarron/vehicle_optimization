@@ -8,9 +8,9 @@
 #ifndef MODULEMANAGER_H_
 #define MODULEMANAGER_H_
 
-#include "data_types/Distance.h"
-#include "data_types/Heading.h"
-#include "data_types/Position.h"
+#include "data_types/sensor_types/Distance.h"
+#include "data_types/sensor_types/Heading.h"
+#include "data_types/sensor_types/Position.h"
 #include "map/Map.h"
 #include "HazardWarningModule.h"
 #include "RoutingModule.h"

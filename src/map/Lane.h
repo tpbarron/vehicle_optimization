@@ -11,7 +11,7 @@
 #include <vector>
 #include <utility>
 
-#include "data_types/Position.h"
+#include "data_types/sensor_types/Position.h"
 
 class Lane {
 
