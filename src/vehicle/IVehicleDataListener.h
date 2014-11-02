@@ -10,14 +10,16 @@
 
 #include <string>
 
+#include "data_types/message_types/Message.h"
 #include "sensor/VehicleSensorData.h"
 
 class IVehicleDataListener {
 
 public:
+
 	virtual ~IVehicleDataListener();
 
-	virtual void recv(struct VehicleSensorData &data) = 0;
+	virtual void recv(Message &data) = 0;
 	virtual void add_listener(IVehicleDataListener &l) = 0;
 	virtual std::string to_string() = 0;
 };

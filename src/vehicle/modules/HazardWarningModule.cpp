@@ -16,6 +16,15 @@ HazardWarningModule::~HazardWarningModule() {
 	// TODO Auto-generated destructor stub
 }
 
+void HazardWarningModule::handle(Message &msg) {
+	HazardMessage& hazard_msg = dynamic_cast<HazardMessage&>(msg);
+	Hazard hazard = hazard_msg.get_hazard();
+	if (!is_known_hazard(hazard)) {
+		add_hazard(hazard);
+	}
+	//TODO: how respond to the actual hazard
+}
+
 void HazardWarningModule::add_hazard(Hazard &h) {
 	_hazards.insert(h); //push_back(h);
 }

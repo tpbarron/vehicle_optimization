@@ -12,8 +12,10 @@
 
 #include <boost/functional/hash.hpp>
 
-#include "data_types/sensor_types/Position.h"
+#include "data_types/message_types/Message.h"
+#include "data_types/message_types/HazardMessage.h"
 #include "data_types/module_types/Hazard.h"
+#include "data_types/sensor_types/Position.h"
 
 /**
  *
@@ -24,6 +26,8 @@ public:
 
 	HazardWarningModule();
 	virtual ~HazardWarningModule();
+
+	void handle(Message &msg);
 
 	void add_hazard(Hazard &h);
 	void remove_hazard(Hazard &h);
@@ -39,10 +43,10 @@ private:
 	    {
 	    	std::size_t seed = 0;
 
-//	    	Position p = h.get_position();
-//
-//	    	boost::hash_combine(seed, boost::hash_value(p.get_x()));
-//	    	boost::hash_combine(seed, boost::hash_value(p.get_y()));
+	    	Position p = h.get_position();
+
+	    	boost::hash_combine(seed, boost::hash_value(p.get_x()));
+	    	boost::hash_combine(seed, boost::hash_value(p.get_y()));
 
 	    	return seed;
 	    }

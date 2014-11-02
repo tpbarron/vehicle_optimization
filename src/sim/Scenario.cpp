@@ -17,8 +17,6 @@ namespace Scenario {
 
 boost::posix_time::ptime _start_time;
 
-boost::asio::io_service _io;
-boost::asio::strand _strand(_io);
 Map _map;
 std::vector<Intersection> _intersections;
 std::vector<Road> _roads;
@@ -82,7 +80,7 @@ void load_scenario(std::string scenario) {
 void load_vehicle(std::string name, std::string file) {
 	std::ifstream vehicle_file(file.c_str());
 	if (vehicle_file.is_open()) {
-		Vehicle *v = new Vehicle(name, &_io, &_strand);
+		Vehicle *v = new Vehicle(name);
 		VehicleManager::register_vehicle(v);
 
 		std::stringstream vbuf;
@@ -312,7 +310,6 @@ void start() {
 		Vehicle* v = VehicleManager::get_vehicles()[i];
 		v->start();
 	}
-	_io.run();
 }
 
 void stop() {
@@ -339,7 +336,7 @@ void test_get_closest_vehicles() {
 	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
 		Vehicle* v = VehicleManager::get_vehicles()[i];
 		std::cout << v->get_readable_name() << ", " << v->get_id_as_string() << std::endl;
-		std::vector<VehicleManager::VehicleDistPair> nearby = VehicleManager::get_nearest(v->get_sensor().get_position(), 2, 10);
+		std::vector<VehicleManager::VehicleDistPair> nearby = VehicleManager::get_nearest(v->get_module_manager().get_current_position(), 2, 10);
 		for (std::vector<VehicleManager::VehicleDistPair>::iterator vdistitr = nearby.begin(); vdistitr != nearby.end(); ++vdistitr) {
 			std::cout << "    Found vehicle: " << (*vdistitr).second->get_readable_name() << " at distance " << (*vdistitr).first.get_distance() << std::endl;
 		}

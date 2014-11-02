@@ -27,11 +27,12 @@ public:
 	void generate_route(Map& map, Position& start, Position& goal);
 
 	Speed get_current_speed_limit(Map& map);
-	Position get_new_position(Map& map,Distance& d);
+	Position get_current_position() const;
+	Position get_new_position(Map& map, Distance& d);
 	Heading get_current_heading();
 
 	bool imminent_hazard(Map& map);
-	const Hazard& get_imminent_hazard(Map& map);
+	Hazard get_imminent_hazard(Map& map);
 
 private:
 

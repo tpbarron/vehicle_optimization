@@ -1,18 +1,20 @@
 /**
- * Message.cpp
+ *  Message.cpp
  *	
  *  Created on: Oct 31, 2014
  *      Author: trevor
  */
 
-#include <data_types/message_types/Message.h>
-
-Message::Message() {
-	// TODO Auto-generated constructor stub
-
-}
+#include "Message.h"
 
 Message::~Message() {
-	// TODO Auto-generated destructor stub
+	// no-op, let subclasses handle destruction
 }
 
+message_types::MessageType Message::get_type() const {
+	return type;
+}
+
+void Message::set_type(message_types::MessageType type) {
+	this->type = type;
+}

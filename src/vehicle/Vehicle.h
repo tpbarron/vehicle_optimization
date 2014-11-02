@@ -9,7 +9,6 @@
 #define VEHICLE_H_
 
 #include <iostream>
-#include <unordered_set>
 
 #include <boost/asio.hpp>
 #include <boost/bind.hpp>
@@ -21,6 +20,7 @@
 #include "IVehicleDataListener.h"
 #include "data_manager/VehicleManager.h"
 #include "data_types/sensor_types/Distance.h"
+#include "data_types/message_types/Message.h"
 #include "data_types/module_types/Hazard.h"
 
 #include "vehicle/modules/routing/Route.h"
@@ -32,11 +32,10 @@
 #include "sim/Scenario.h"
 #include "utils/Utils.h"
 
-
 class Vehicle : public IVehicleDataListener {
 
 public:
-	Vehicle(std::string name, boost::asio::io_service *io, boost::asio::strand *strand);
+	Vehicle(std::string name);
 	virtual ~Vehicle();
 
 	void init();
@@ -58,7 +57,7 @@ public:
 	 * Add a new listener to broadcast data to
 	 */
 	virtual void add_listener(IVehicleDataListener &l);
-	virtual void recv(struct VehicleSensorData &data);
+	virtual void recv(Message &msg);
 
 	/*
 	 * Setters
@@ -74,31 +73,13 @@ public:
 	const boost::uuids::uuid get_id() const;
 	const std::string get_id_as_string() const;
 	const std::string get_readable_name() const;
-	Distance* get_stopping_dist();
-	VehicleSensor& get_sensor();
-
+	const ModuleManager& get_module_manager() const;
 
 private:
-
-	struct VehicleHash {
-	    size_t operator()(IVehicleDataListener *v) const
-	    {
-	        return std::hash<std::string>()(v->to_string());
-	    }
-	};
 
 
 	boost::uuids::uuid _id;
 	std::string _readable_name;
-	VehicleSensor _sensor;
-	Distance _stopping_dist;
-
-	// Timer
-	boost::asio::deadline_timer *_timer;
-	boost::asio::io_service *_io;
-	boost::asio::strand *_strand;
-	int _count;
-	boost::thread *_t;
 
 	// Self update
 	boost::posix_time::ptime _last_update_time;
@@ -109,33 +90,12 @@ private:
 	// Modules
 	ModuleManager _module_manager;
 
-	// Data struct
-	struct VehicleSensorData* _data;
-
-	std::unordered_set<IVehicleDataListener*, VehicleHash> _listeners;
-
-//	void populate_data_struct();
-
 	/*
 	 * Called to update the own vehicle position...
-	 * TODO: is it possible to only have one timer?
 	 */
 	void update_self();
 	void calculate_progress(long millis);
 
-	/*
-	 * Called regularly to update both check for new nearby vehicles
-	 * and send out any necessary data
-	 */
-	void update();
-
-	void compute();
-
-	bool should_warn();
-	/*
-	 * Calculates stopping distance based on weight, current speed, and road conditions
-	 */
-	void calc_stopping_dist();
 
 	virtual std::string to_string();
 

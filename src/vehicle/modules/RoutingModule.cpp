@@ -31,6 +31,10 @@ Speed RoutingModule::get_current_speed_limit(Map& map) {
 	return _route.get_current_speed_limit(map);
 }
 
+Position RoutingModule::get_current_position() const {
+	return _route.get_current_position();
+}
+
 Position RoutingModule::get_new_position(Map& map, Distance& d) {
 	return _route.get_new_position(map, d);
 }
@@ -43,7 +47,7 @@ bool RoutingModule::imminent_hazard(Map& map) {
 	return _route.imminent_hazard(map);
 }
 
-const Hazard& RoutingModule::get_imminent_hazard(Map& map) {
+Hazard RoutingModule::get_imminent_hazard(Map& map) {
 	return _route.get_imminent_hazard(map);
 }
 

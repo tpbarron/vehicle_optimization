@@ -8,27 +8,17 @@
 #include "Vehicle.h"
 
 /**
- * Create a Vehicle object given the readable name and reference to global
- * boost::asio::io_service and boost::asio::strand vars
+ * Create a Vehicle object
  *
  * @param name the readable name
  */
-Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::strand *strand) :
-		_count(0),
+Vehicle::Vehicle(std::string name) :
 		_last_update_time(boost::posix_time::microsec_clock::local_time()),
 		_self_update_timer(_self_update_io, boost::posix_time::milliseconds(100)) {
 
 	_id = Utils::gen_uuid();
 
 	_readable_name = name;
-
-	_data = new VehicleSensorData();
-	_data->VEHICLE_UUID = get_id_as_string();
-
-	_io = io;
-	_strand = strand;
-	_timer = new boost::asio::deadline_timer(*_io, boost::posix_time::milliseconds(500));
-	_t = nullptr;
 
 	_self_update_thread = nullptr;
 }
@@ -37,46 +27,24 @@ Vehicle::Vehicle(std::string name, boost::asio::io_service *io, boost::asio::str
  * Free the Vehicle memory
  */
 Vehicle::~Vehicle() {
-	delete _timer;
-	delete _data;
-	delete _t;
-
 	delete _self_update_thread;
 }
 
-/**
- * Initialize memory and populate necessary data such as data struct
- */
-void Vehicle::init() {
-	//just set initial position
-	_sensor.set_acceleration(0);
-	_sensor.set_brake_pressure(0);
-	_sensor.set_heading(0);
-	_sensor.set_position(_module_manager.get_start_position());
-	_sensor.set_speed(0);
-	_sensor.set_vehicle_turn_rate(0);
-	_sensor.set_wheel_turn_rate(0);
-}
 
 /**
  * Start the Vehicle internal simulation
  */
 void Vehicle::start() {
-	init();
-
+	_module_manager.init_sensor(get_id_as_string());
 	_module_manager.generate_route();
+	_module_manager.start();
+
 
 	// Start timer to update own position along route..
 	_self_update_timer.async_wait(boost::bind(&Vehicle::update_self, this));
 	_self_update_thread = new boost::thread(boost::bind(
 			static_cast<size_t (boost::asio::io_service::*)()> (&boost::asio::io_service::run),
 			boost::ref(_self_update_io)));
-
-	// Start timer to send out updates
-	(*_timer).async_wait((*_strand).wrap(boost::bind(&Vehicle::update, this)));
-	_t = new boost::thread(boost::bind(
-			static_cast<size_t (boost::asio::io_service::*)()> (&boost::asio::io_service::run),
-			boost::ref(*_io)));
 }
 
 
@@ -84,7 +52,7 @@ void Vehicle::start() {
  * Joins the Vehicle's update threads
  */
 void Vehicle::stop() {
-	_t->join();
+	_module_manager.stop();
 	_self_update_thread->join();
 }
 
@@ -96,48 +64,6 @@ void Vehicle::stop() {
  *
  */
 
-/**
- * Called regularly to send out data to other nearby vehicles..
- */
-void Vehicle::update() {
-	if (_count < 5) {
-		std::vector<VehicleManager::VehicleDistPair> nearby_vehicles =
-				VehicleManager::get_nearest(_sensor.get_position(), 10, 10);
-		for (unsigned int i = 0; i < nearby_vehicles.size(); ++i) {
-			_listeners.insert(nearby_vehicles[i].second);
-		}
-
-		broadcast_data();
-		compute();
-		std::cout << get_id_as_string() << ": " << _count << "\n";
-		++_count;
-
-		_timer->expires_at(_timer->expires_at() + boost::posix_time::milliseconds(250));
-		_timer->async_wait(_strand->wrap(boost::bind(&Vehicle::update, this)));
-
-		std::cout << std::endl;
-	}
-}
-
-/**
- * Fill data struct will current values
- */
-//void Vehicle::populate_data_struct() {
-//	Scenario::update_vehicle_sensor(get_id_as_string(), _sensor);
-//	_data->WARN = should_warn();
-//	_sensor.export_data(_data);
-//}
-
-/**
- * Send out data struct to listeners
- */
-void Vehicle::broadcast_data() {
-	for (std::unordered_set<IVehicleDataListener*, VehicleHash>::iterator it = _listeners.begin(); it != _listeners.end(); ++it) {
-		std::cout << "Sending data from " << get_id_as_string() << std::endl;
-		(*it)->recv(*_data);
-	}
-}
-
 
 /**
  * Add a new object that will listen to updates from this Vehicle
@@ -146,7 +72,7 @@ void Vehicle::broadcast_data() {
  */
 void Vehicle::add_listener(IVehicleDataListener &l) {
 	std::cout << "Adding listener to vehicle " << get_id_as_string() << std::endl;
-	_listeners.insert(&l);
+	_module_manager.add_listener(l);
 }
 
 
@@ -156,10 +82,9 @@ void Vehicle::add_listener(IVehicleDataListener &l) {
  *
  * @param data the data struct sent out by a nearby Vehicle
  */
-void Vehicle::recv(struct VehicleSensorData &data) {
-	std::cout << get_id_as_string() << ": received data" << std::endl;
-	//TODO: start thread for computation...
-	compute();
+void Vehicle::recv(Message &msg) {
+	std::cout << get_id_as_string() << ": received data, sending to module manager" << std::endl;
+	_module_manager.recv(msg);
 }
 
 
@@ -188,9 +113,9 @@ void Vehicle::update_self() {
 
 	_last_update_time = cur_time;
 
-	std::cout << _sensor.to_string() << std::endl;
-//	populate_data_struct();
+	std::cout << _module_manager.sensor_to_string() << std::endl;
 }
+
 
 /**
  * Given elapsed time since last update calculates progress
@@ -198,28 +123,28 @@ void Vehicle::update_self() {
  * @param millis the time in milliseconds since the last update
  */
 void Vehicle::calculate_progress(long millis) {
-	// Get the allowed speed at the current position
-	Speed speed = _module_manager.get_current_speed();
-	_sensor.set_speed(speed.get_speed());
-
-	// Get the distance in meters that would be covered in the allotted time
-	Distance dist = speed.get_distance_for_time(millis);
-	// Get a new position from the route after moving dist towards destination
-	// TODO: there could have been a road change here and thus a speed change
-	// Perhaps the update is frequent enough that it isn't important to
-	// refresh immediately.
-	Position pos = _module_manager.get_new_position(dist);
-	_sensor.set_position(pos);
-
-	// Get the heading from the route using the last two positions
-	Heading hdng = _module_manager.get_current_heading();
-	_sensor.set_heading(hdng.get_heading());
-
-	// TODO: for now assume the following are constant
-	_sensor.set_acceleration(0);
-	_sensor.set_brake_pressure(0);
-	_sensor.set_vehicle_turn_rate(0);
-	_sensor.set_wheel_turn_rate(0);
+//	// Get the allowed speed at the current position
+//	Speed speed = _module_manager.get_current_speed();
+//	_sensor.set_speed(speed.get_speed());
+//
+//	// Get the distance in meters that would be covered in the allotted time
+//	Distance dist = speed.get_distance_for_time(millis);
+//	// Get a new position from the route after moving dist towards destination
+//	// TODO: there could have been a road change here and thus a speed change
+//	// Perhaps the update is frequent enough that it isn't important to
+//	// refresh immediately.
+//	Position pos = _module_manager.get_new_position(dist);
+//	_sensor.set_position(pos);
+//
+//	// Get the heading from the route using the last two positions
+//	Heading hdng = _module_manager.get_current_heading();
+//	_sensor.set_heading(hdng.get_heading());
+//
+//	// TODO: for now assume the following are constant
+//	_sensor.set_acceleration(0);
+//	_sensor.set_brake_pressure(0);
+//	_sensor.set_vehicle_turn_rate(0);
+//	_sensor.set_wheel_turn_rate(0);
 
 }
 
@@ -276,37 +201,9 @@ const std::string Vehicle::get_readable_name() const {
 	return _readable_name;
 }
 
-//TODO: should this calculate stopping dist?
-//Should probably be cached
-Distance* Vehicle::get_stopping_dist() {
-	return &_stopping_dist;
+const ModuleManager& Vehicle::get_module_manager() const {
+	return _module_manager;
 }
-
-VehicleSensor& Vehicle::get_sensor() {
-	return _sensor;
-}
-
-/*
- *
- * -------------------
- * - Calculations
- * -------------------
- *
- */
-
-void Vehicle::compute() {
-	std::cout << get_id_as_string() << " Computing" << std::endl;
-}
-
-bool Vehicle::should_warn() {
-	return false;
-}
-
-void Vehicle::calc_stopping_dist() {
-
-}
-
-
 
 
 /**

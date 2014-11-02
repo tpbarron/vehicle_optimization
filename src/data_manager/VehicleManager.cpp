@@ -55,7 +55,7 @@ std::vector<VehicleManager::VehicleDistPair> VehicleManager::get_nearest(const P
 	for (std::vector<Vehicle*>::iterator it = _vehicles.begin(); it != _vehicles.end(); ++it) {
 		std::cout << "Checking vehicle" << std::endl;
 		VehicleManager::VehicleDistPair vdist;
-		vdist.first = p.get_distance_to((*it)->get_sensor().get_position());
+		vdist.first = p.get_distance_to((*it)->get_module_manager().get_current_position());
 		vdist.second = (*it);
 		nearest.push_back(vdist);
 	}

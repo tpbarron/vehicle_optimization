@@ -17,7 +17,6 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
-#include <boost/asio.hpp>
 
 #include "data_manager/VehicleManager.h"
 #include "data_types/module_types/Hazard.h"
@@ -117,9 +116,6 @@ void test_get_closest_vehicles();
 void test_print_map();
 //void test_routing();
 
-
-extern boost::asio::io_service _io;
-extern boost::asio::strand _strand;
 extern boost::posix_time::ptime _start_time;
 extern Map _map;
 extern std::vector<Intersection> _intersections;

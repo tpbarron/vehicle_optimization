@@ -100,9 +100,15 @@ void Route::generate_route(Map &map, Intersection &i1, Intersection &i2) {
  * TODO: should the road store the speed limit as a Speed object?
  */
 Speed Route::get_current_speed_limit(Map& map) {
-//	Speed s(Speed::MPH_25);
 	Speed s(map.get_network()[_current_edge].get_speed_limit());
 	return s;
+}
+
+/**
+ * Return the current position, no movement or calculation
+ */
+Position Route::get_current_position() const {
+	return _current_position;
 }
 
 /**

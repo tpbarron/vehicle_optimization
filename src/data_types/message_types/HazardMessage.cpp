@@ -5,14 +5,24 @@
  *      Author: trevor
  */
 
-#include <data_types/message_types/HazardMessage.h>
+
+#include "HazardMessage.h"
+
+#include "MessageTypes.h"
+
 
 HazardMessage::HazardMessage() {
-	// TODO Auto-generated constructor stub
-
+	set_type(message_types::TYPE_HAZARD_WARNING);
 }
 
 HazardMessage::~HazardMessage() {
-	// TODO Auto-generated destructor stub
 }
 
+
+const Hazard& HazardMessage::get_hazard() const {
+	return hazard;
+}
+
+void HazardMessage::set_hazard(const Hazard& hazard) {
+	this->hazard = hazard;
+}
