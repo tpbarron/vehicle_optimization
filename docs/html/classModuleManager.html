@@ -45,6 +45,7 @@
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classModuleManager-members.html">List of all members</a>  </div>
@@ -55,14 +56,29 @@
 
 <p><code>#include &lt;ModuleManager.h&gt;</code></p>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">struct &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="structModuleManager_1_1VehicleHash.html">VehicleHash</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a2940b3dd370b9c454c7cc600c540bb0e"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a2940b3dd370b9c454c7cc600c540bb0e">ModuleManager</a> ()</td></tr>
 <tr class="separator:a2940b3dd370b9c454c7cc600c540bb0e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4f7e83d51dcbc461d2514f44d21aacb4"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a4f7e83d51dcbc461d2514f44d21aacb4">~ModuleManager</a> ()</td></tr>
 <tr class="separator:a4f7e83d51dcbc461d2514f44d21aacb4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab21297e81adb554f7b137aec660f293c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#ab21297e81adb554f7b137aec660f293c">start</a> ()</td></tr>
+<tr class="separator:ab21297e81adb554f7b137aec660f293c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a047e939274ce75e87ae8fa349994aba0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a047e939274ce75e87ae8fa349994aba0">stop</a> ()</td></tr>
+<tr class="separator:a047e939274ce75e87ae8fa349994aba0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a60cbfb0ba23ae5e6a95043eb64bfcc7e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a60cbfb0ba23ae5e6a95043eb64bfcc7e">init_sensor</a> (std::string uuid)</td></tr>
+<tr class="separator:a60cbfb0ba23ae5e6a95043eb64bfcc7e"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a636df216fb28348fa4342f67cae50c53"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a636df216fb28348fa4342f67cae50c53">generate_route</a> ()</td></tr>
 <tr class="separator:a636df216fb28348fa4342f67cae50c53"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8660bb3464a0bba3daab5b9efdb4ed32"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a8660bb3464a0bba3daab5b9efdb4ed32">add_listener</a> (<a class="el" href="classIVehicleDataListener.html">IVehicleDataListener</a> &amp;l)</td></tr>
+<tr class="separator:a8660bb3464a0bba3daab5b9efdb4ed32"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a849b0597e77ddeb27843fa1e934b8b90"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a849b0597e77ddeb27843fa1e934b8b90">recv</a> (<a class="el" href="classMessage.html">Message</a> &amp;msg)</td></tr>
+<tr class="separator:a849b0597e77ddeb27843fa1e934b8b90"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1aa34a8beff5189c5c6951394177e55a"><td class="memItemLeft" align="right" valign="top">const <a class="el" href="classPosition.html">Position</a> &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a1aa34a8beff5189c5c6951394177e55a">get_goal_position</a> () const </td></tr>
 <tr class="separator:a1aa34a8beff5189c5c6951394177e55a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a42e6e2a808a717f8dadc8e4fc94cbb5e"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a42e6e2a808a717f8dadc8e4fc94cbb5e">set_goal_position</a> (const <a class="el" href="classPosition.html">Position</a> &amp;goal_position)</td></tr>
@@ -77,12 +93,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ae9e9b971b8e10807fad1ea008bbe5983"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aea794baa5509bd4fdcef81d89bebcfd7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSpeed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#aea794baa5509bd4fdcef81d89bebcfd7">get_current_speed</a> ()</td></tr>
 <tr class="separator:aea794baa5509bd4fdcef81d89bebcfd7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac38f1c52976a952abb34ca3f08d66d93"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPosition.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#ac38f1c52976a952abb34ca3f08d66d93">get_current_position</a> () const </td></tr>
+<tr class="separator:ac38f1c52976a952abb34ca3f08d66d93"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a61e95a6a3802dc775f14f77c7b905991"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPosition.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a61e95a6a3802dc775f14f77c7b905991">get_new_position</a> (<a class="el" href="classDistance.html">Distance</a> &amp;d)</td></tr>
 <tr class="separator:a61e95a6a3802dc775f14f77c7b905991"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4ad7cb8ac38f577cb884f6e01d2f3f56"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHeading.html">Heading</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a4ad7cb8ac38f577cb884f6e01d2f3f56">get_current_heading</a> ()</td></tr>
 <tr class="separator:a4ad7cb8ac38f577cb884f6e01d2f3f56"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aedef494f483ebcf9eee9ac29bc620e2d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#aedef494f483ebcf9eee9ac29bc620e2d">update_modules</a> ()</td></tr>
 <tr class="separator:aedef494f483ebcf9eee9ac29bc620e2d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0cce05e011a527e425bfe852dc0111d4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a0cce05e011a527e425bfe852dc0111d4">sensor_to_string</a> ()</td></tr>
+<tr class="separator:a0cce05e011a527e425bfe852dc0111d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
 Private Attributes</h2></td></tr>
@@ -92,10 +112,18 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a1eb16f0449de303d099c25f5247d99f2"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a530ea82637f5fadff2664360a49fde6f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPosition.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a530ea82637f5fadff2664360a49fde6f">_goal_position</a></td></tr>
 <tr class="separator:a530ea82637f5fadff2664360a49fde6f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af1af0c84a0f4e8a6de6f5eb44cb1f6d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classAutopilotModule.html">AutopilotModule</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#af1af0c84a0f4e8a6de6f5eb44cb1f6d7">_autopilot</a></td></tr>
+<tr class="separator:af1af0c84a0f4e8a6de6f5eb44cb1f6d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7f311efe5bf800d7897a578e7bbad9e7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHazardWarningModule.html">HazardWarningModule</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a7f311efe5bf800d7897a578e7bbad9e7">_hazard_module</a></td></tr>
 <tr class="separator:a7f311efe5bf800d7897a578e7bbad9e7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad44a3508e56af10a0533f6ee78ae4bd1"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classRoutingModule.html">RoutingModule</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#ad44a3508e56af10a0533f6ee78ae4bd1">_routing_module</a></td></tr>
 <tr class="separator:ad44a3508e56af10a0533f6ee78ae4bd1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2f53b0abb251f9366583d2f881381a9a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classVehicleSensorModule.html">VehicleSensorModule</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a2f53b0abb251f9366583d2f881381a9a">_vehicle_sensor_module</a></td></tr>
+<tr class="separator:a2f53b0abb251f9366583d2f881381a9a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a7e8c939e261e5cab10d614f07e53e694"><td class="memItemLeft" align="right" valign="top">std::unordered_set<br class="typebreak"/>
+&lt; <a class="el" href="classIVehicleDataListener.html">IVehicleDataListener</a> <br class="typebreak"/>
+*, <a class="el" href="structModuleManager_1_1VehicleHash.html">VehicleHash</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classModuleManager.html#a7e8c939e261e5cab10d614f07e53e694">_listeners</a></td></tr>
+<tr class="separator:a7e8c939e261e5cab10d614f07e53e694"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p><a class="el" href="ModuleManager_8h.html">ModuleManager.h</a></p>
@@ -142,6 +170,22 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a8660bb3464a0bba3daab5b9efdb4ed32"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ModuleManager::add_listener </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classIVehicleDataListener.html">IVehicleDataListener</a> &amp;&#160;</td>
+          <td class="paramname"><em>l</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a636df216fb28348fa4342f67cae50c53"></a>
 <div class="memitem">
 <div class="memproto">
@@ -166,6 +210,21 @@ Private Attributes</h2></td></tr>
           <td>(</td>
           <td class="paramname"></td><td>)</td>
           <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="ac38f1c52976a952abb34ca3f08d66d93"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classPosition.html">Position</a> ModuleManager::get_current_position </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
         </tr>
       </table>
 </div><div class="memdoc">
@@ -248,6 +307,53 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a60cbfb0ba23ae5e6a95043eb64bfcc7e"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ModuleManager::init_sensor </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>uuid</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a849b0597e77ddeb27843fa1e934b8b90"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ModuleManager::recv </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classMessage.html">Message</a> &amp;&#160;</td>
+          <td class="paramname"><em>msg</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0cce05e011a527e425bfe852dc0111d4"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string ModuleManager::sensor_to_string </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a42e6e2a808a717f8dadc8e4fc94cbb5e"></a>
 <div class="memitem">
 <div class="memproto">
@@ -296,6 +402,36 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ab21297e81adb554f7b137aec660f293c"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ModuleManager::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a047e939274ce75e87ae8fa349994aba0"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void ModuleManager::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="aedef494f483ebcf9eee9ac29bc620e2d"></a>
 <div class="memitem">
 <div class="memproto">
@@ -313,6 +449,26 @@ Private Attributes</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="af1af0c84a0f4e8a6de6f5eb44cb1f6d7"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classAutopilotModule.html">AutopilotModule</a> ModuleManager::_autopilot</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="a530ea82637f5fadff2664360a49fde6f"></a>
 <div class="memitem">
 <div class="memproto">
@@ -342,6 +498,26 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="classHazardWarningModule.html">HazardWarningModule</a> ModuleManager::_hazard_module</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a7e8c939e261e5cab10d614f07e53e694"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::unordered_set&lt;<a class="el" href="classIVehicleDataListener.html">IVehicleDataListener</a>*, <a class="el" href="structModuleManager_1_1VehicleHash.html">VehicleHash</a>&gt; ModuleManager::_listeners</td>
         </tr>
       </table>
   </td>
@@ -413,6 +589,26 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="a2f53b0abb251f9366583d2f881381a9a"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classVehicleSensorModule.html">VehicleSensorModule</a> ModuleManager::_vehicle_sensor_module</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/trevor/Documents/dev/cpp/cpp-workspace/vehicle_optimization/src/vehicle/modules/<a class="el" href="ModuleManager_8h.html">ModuleManager.h</a></li>
 <li>/home/trevor/Documents/dev/cpp/cpp-workspace/vehicle_optimization/src/vehicle/modules/<a class="el" href="ModuleManager_8cpp.html">ModuleManager.cpp</a></li>
@@ -420,7 +616,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Tue Oct 21 2014 21:18:10 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sun Nov 2 2014 08:35:13 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
