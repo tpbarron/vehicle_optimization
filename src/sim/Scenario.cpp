@@ -88,6 +88,8 @@ void load_vehicle(std::string name, std::string file) {
 		boost::property_tree::ptree vehicle_data;
 		boost::property_tree::read_json(vbuf, vehicle_data);
 
+		std::string type = vehicle_data.get<std::string>(VEHICLE_TYPE);
+
 		boost::property_tree::ptree start_data = vehicle_data.get_child(VEHICLE_START);
 		double start_x = start_data.get<double>(VEHICLE_POSITION_X);
 		double start_y = start_data.get<double>(VEHICLE_POSITION_Y);
@@ -100,6 +102,7 @@ void load_vehicle(std::string name, std::string file) {
 		v->set_start_position(start_x, start_y);
 		v->set_goal_position(goal_x, goal_y);
 		v->set_map(_map);
+		v->set_type_from_string(type);
 
 	} else {
 		std::cerr << "Unable to open vehicle file" << std::endl;

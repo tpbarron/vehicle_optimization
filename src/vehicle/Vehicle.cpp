@@ -17,8 +17,8 @@ Vehicle::Vehicle(std::string name) :
 		_self_update_timer(_self_update_io, boost::posix_time::milliseconds(100)) {
 
 	_id = Utils::gen_uuid();
-
 	_readable_name = name;
+	_type = VehicleType::TYPE_UNKNOWN_VEHICLE;
 
 	_self_update_thread = nullptr;
 }
@@ -179,6 +179,20 @@ void Vehicle::set_goal_position(double x, double y) {
  */
 void Vehicle::set_map(Map &m) {
 	_module_manager.set_map(m);
+}
+
+void Vehicle::set_type_from_string(std::string type) {
+	if (type == "default") {
+		_type = VehicleType::TYPE_DEFAULT_VEHICLE;
+	} else if (type == "emergency") {
+		_type = VehicleType::TYPE_EMERGENCY_VEHICLE;
+	} else if (type == "unknown") {
+		_type = VehicleType::TYPE_UNKNOWN_VEHICLE;
+	}
+}
+
+void Vehicle::set_type(VehicleType t) {
+	_type = t;
 }
 
 /*

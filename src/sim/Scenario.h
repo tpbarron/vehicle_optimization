@@ -53,6 +53,7 @@ const std::string SCENARIO_MAP_ROADS = "roads";
 /*
  * Vehicle keys
  */
+const std::string VEHICLE_TYPE = "type";
 const std::string VEHICLE_START = "start";
 const std::string VEHICLE_GOAL = "goal";
 const std::string VEHICLE_POSITION_X = "x";

@@ -35,6 +35,13 @@
 class Vehicle : public IVehicleDataListener {
 
 public:
+
+	enum VehicleType {
+		TYPE_DEFAULT_VEHICLE,
+		TYPE_EMERGENCY_VEHICLE,
+		TYPE_UNKNOWN_VEHICLE
+	};
+
 	Vehicle(std::string name);
 	virtual ~Vehicle();
 
@@ -66,6 +73,8 @@ public:
 	void set_start_position(double x, double y);
 	void set_goal_position(double x, double y);
 	void set_map(Map &m);
+	void set_type_from_string(std::string type);
+	void set_type(VehicleType t);
 
 	/*
 	 * Getters
@@ -80,6 +89,7 @@ private:
 
 	boost::uuids::uuid _id;
 	std::string _readable_name;
+	VehicleType _type;
 
 	// Self update
 	boost::posix_time::ptime _last_update_time;
