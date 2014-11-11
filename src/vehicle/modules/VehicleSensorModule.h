@@ -21,6 +21,8 @@
 #include "sensor/VehicleSensorData.h"
 
 
+class ModuleMediator;
+
 /**
  *
  */
@@ -30,6 +32,8 @@ public:
 	VehicleSensorModule();
 	virtual ~VehicleSensorModule();
 
+	void set_mediator(ModuleMediator *mediator);
+
 	void start();
 	void stop();
 
@@ -38,6 +42,8 @@ public:
 	std::string to_string();
 
 private:
+
+	ModuleMediator *_mediator;
 
 	VehicleSensor _sensor;
 	VehicleSensorData _data;

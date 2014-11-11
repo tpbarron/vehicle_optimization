@@ -18,10 +18,35 @@ ModuleManager::~ModuleManager() {
 
 void ModuleManager::start() {
 	_vehicle_sensor_module.start();
+	_autopilot.start();
 }
 
 void ModuleManager::stop() {
 	_vehicle_sensor_module.stop();
+	_autopilot.stop();
+}
+
+void ModuleManager::init(std::string uuid) {
+	init_mediator();
+	init_sensor(uuid);
+}
+
+/**
+ * Hook up the ModuleMediator for inter module communication.
+ * This needs to be updated every time a module is added.
+ */
+void ModuleManager::init_mediator() {
+	//pass reference of every module to mediator
+	_mediator.set_autopilot_module(&_autopilot);
+	_mediator.set_hazard_warning_module(&_hazard_module);
+	_mediator.set_routing_module(&_routing_module);
+	_mediator.set_vehicle_sensor_module(&_vehicle_sensor_module);
+
+	//pass reference of mediator to each module
+	_autopilot.set_mediator(&_mediator);
+	_hazard_module.set_mediator(&_mediator);
+	_routing_module.set_mediator(&_mediator);
+	_vehicle_sensor_module.set_mediator(&_mediator);
 }
 
 void ModuleManager::init_sensor(std::string uuid) {

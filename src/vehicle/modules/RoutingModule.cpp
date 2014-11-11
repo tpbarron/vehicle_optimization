@@ -7,13 +7,15 @@
 
 #include "RoutingModule.h"
 
-RoutingModule::RoutingModule() {
-	// TODO Auto-generated constructor stub
-
+RoutingModule::RoutingModule() :
+	_mediator(nullptr) {
 }
 
 RoutingModule::~RoutingModule() {
-	// TODO Auto-generated destructor stub
+}
+
+void RoutingModule::set_mediator(ModuleMediator *mediator) {
+	_mediator = mediator;
 }
 
 void RoutingModule::generate_route(Map& map, Position& start, Position& goal) {

@@ -18,6 +18,7 @@
 #include "data_types/sensor_types/Position.h"
 
 #include "map/Map.h"
+#include "ModuleMediator.h"
 #include "AutopilotModule.h"
 #include "HazardWarningModule.h"
 #include "RoutingModule.h"
@@ -36,6 +37,8 @@ public:
 	void start();
 	void stop();
 
+	void init(std::string uuid);
+	void init_mediator();
 	void init_sensor(std::string uuid);
 	void generate_route();
 
@@ -65,6 +68,8 @@ private:
 	Map _map;
 	Position _start_position;
 	Position _goal_position;
+
+	ModuleMediator _mediator;
 
 	AutopilotModule _autopilot;
 	HazardWarningModule _hazard_module;

@@ -7,13 +7,15 @@
 
 #include "HazardWarningModule.h"
 
-HazardWarningModule::HazardWarningModule() {
-	// TODO Auto-generated constructor stub
-
+HazardWarningModule::HazardWarningModule() :
+	_mediator(nullptr) {
 }
 
 HazardWarningModule::~HazardWarningModule() {
-	// TODO Auto-generated destructor stub
+}
+
+void HazardWarningModule::set_mediator(ModuleMediator *mediator) {
+	_mediator = mediator;
 }
 
 void HazardWarningModule::handle(Message &msg) {

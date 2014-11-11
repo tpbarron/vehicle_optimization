@@ -8,12 +8,18 @@
 #include "VehicleSensorModule.h"
 
 VehicleSensorModule::VehicleSensorModule() :
-		_broadcast_timer(_broadcast_io, boost::posix_time::milliseconds(500)), _count(0) {
-	_broadcast_thread = nullptr;
+	_mediator(nullptr),
+	_broadcast_timer(_broadcast_io, boost::posix_time::milliseconds(500)),
+	_broadcast_thread(nullptr),
+	_count(0) {
 }
 
 VehicleSensorModule::~VehicleSensorModule() {
 	delete _broadcast_thread;
+}
+
+void VehicleSensorModule::set_mediator(ModuleMediator *mediator) {
+	_mediator = mediator;
 }
 
 void VehicleSensorModule::start() {

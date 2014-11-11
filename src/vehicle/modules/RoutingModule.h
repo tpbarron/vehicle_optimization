@@ -15,6 +15,9 @@
 #include "map/Map.h"
 #include "vehicle/modules/routing/Route.h"
 
+
+class ModuleMediator;
+
 /**
  *
  */
@@ -23,6 +26,8 @@ class RoutingModule {
 public:
 	RoutingModule();
 	virtual ~RoutingModule();
+
+	void set_mediator(ModuleMediator *mediator);
 
 	void generate_route(Map& map, Position& start, Position& goal);
 
@@ -35,6 +40,8 @@ public:
 	Hazard get_imminent_hazard(Map& map);
 
 private:
+
+	ModuleMediator *_mediator;
 
 	Route _route;
 

@@ -69,7 +69,6 @@ public:
 	/*
 	 * Setters
 	 */
-	void set_stopping_dist(Distance &dist);
 	void set_start_position(double x, double y);
 	void set_goal_position(double x, double y);
 	void set_map(Map &m);
@@ -91,20 +90,8 @@ private:
 	std::string _readable_name;
 	VehicleType _type;
 
-	// Self update
-	boost::posix_time::ptime _last_update_time;
-	boost::asio::io_service _self_update_io;
-	boost::asio::deadline_timer _self_update_timer;
-	boost::thread *_self_update_thread;
-
 	// Modules
 	ModuleManager _module_manager;
-
-	/*
-	 * Called to update the own vehicle position...
-	 */
-	void update_self();
-	void calculate_progress(long millis);
 
 
 	virtual std::string to_string();

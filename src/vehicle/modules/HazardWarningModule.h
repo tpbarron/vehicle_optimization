@@ -17,6 +17,9 @@
 #include "data_types/module_types/Hazard.h"
 #include "data_types/sensor_types/Position.h"
 
+
+class ModuleMediator;
+
 /**
  *
  */
@@ -26,6 +29,8 @@ public:
 
 	HazardWarningModule();
 	virtual ~HazardWarningModule();
+
+	void set_mediator(ModuleMediator *mediator);
 
 	void handle(Message &msg);
 
@@ -37,6 +42,8 @@ public:
 	void update();
 
 private:
+
+	ModuleMediator *_mediator;
 
 	struct HazardHash {
 	    size_t operator()(const Hazard &h) const
