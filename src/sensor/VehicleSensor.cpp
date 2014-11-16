@@ -32,8 +32,6 @@ void VehicleSensor::export_data(struct VehicleSensorData *data) {
 	data->STEERING_WHEEL_TURN_RATE = &_wheel_turn_rate;
 }
 
-//TODO: update these to check whether null ptr, if so create obj
-//otherwise set obj.
 void VehicleSensor::set_acceleration(double accel) {
 	_accel.set_acceleration(accel);
 }
@@ -42,14 +40,14 @@ void VehicleSensor::set_brake_pressure(double brake_pressure) {
 	_brake_pressure.set_pressure(brake_pressure);
 }
 
-void VehicleSensor::set_heading(double heading) {
-	_heading.set_heading(heading);
+void VehicleSensor::set_heading(const Heading &h) {
+	_heading.set_heading(h);
 }
 void VehicleSensor::set_position(const Position &p) {
 	_pos.set_position(p);
 }
 
-void VehicleSensor::set_speed(double spd) {
+void VehicleSensor::set_speed(const Speed &spd) {
 	_spd.set_speed(spd);
 }
 

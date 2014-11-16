@@ -30,6 +30,7 @@ public:
 	virtual ~Heading();
 
 	const double get_heading() const;
+	void set_heading(const Heading &h);
 	void set_heading(double h);
 	void set_from_pts(Position &p1, Position &p2);
 

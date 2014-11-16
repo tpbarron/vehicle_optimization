@@ -29,7 +29,7 @@ class ModuleMediator;
 class VehicleSensorModule {
 public:
 
-	VehicleSensorModule();
+	VehicleSensorModule(boost::asio::io_service::strand &strand);
 	virtual ~VehicleSensorModule();
 
 	void set_mediator(ModuleMediator *mediator);
@@ -39,17 +39,24 @@ public:
 
 	void init(Position &p);
 	void set_vehicle_uuid(std::string uuid);
+
+	void set_speed(const Speed &s);
+	void set_position(const Position &p);
+	void set_heading(const Heading &h);
+
 	std::string to_string();
 
 private:
 
 	ModuleMediator *_mediator;
 
+	// manager refs
+	boost::asio::io_service::strand _strand;
+
 	VehicleSensor _sensor;
 	VehicleSensorData _data;
 
 	//Data broadcast timer
-	boost::asio::io_service _broadcast_io;
 	boost::asio::deadline_timer _broadcast_timer;
 	boost::thread *_broadcast_thread;
 	int _count;

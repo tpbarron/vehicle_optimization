@@ -23,6 +23,10 @@ const double Heading::get_heading() const {
 	return _heading;
 }
 
+void Heading::set_heading(const Heading &h) {
+	_heading = h.get_heading();
+}
+
 void Heading::set_heading(double h) {
 	_heading = h;
 }

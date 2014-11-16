@@ -26,7 +26,9 @@
 #include "vehicle/IVehicleDataListener.h"
 
 /**
- *
+ * The ModuleManager encapsulates all of the Vehicle modules. It contains
+ * a Mediator which manages communication between modules and handles incoming
+ * messages and sends out messages.
  */
 class ModuleManager {
 
@@ -61,7 +63,6 @@ public:
 
 	void update_modules();
 
-	std::string sensor_to_string();
 
 private:
 
@@ -70,6 +71,12 @@ private:
 	Position _goal_position;
 
 	ModuleMediator _mediator;
+
+	// timer synchronization,
+	// Wow what a bug, io must be initialized before the strand
+	// and as a result must be `declared` before the strand too.
+	boost::asio::io_service _manager_io;
+	boost::asio::io_service::strand _manager_strand;
 
 	AutopilotModule _autopilot;
 	HazardWarningModule _hazard_module;

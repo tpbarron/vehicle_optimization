@@ -7,9 +7,10 @@
 
 #include "VehicleSensorModule.h"
 
-VehicleSensorModule::VehicleSensorModule() :
+VehicleSensorModule::VehicleSensorModule(boost::asio::io_service::strand &strand) :
 	_mediator(nullptr),
-	_broadcast_timer(_broadcast_io, boost::posix_time::milliseconds(500)),
+	_strand(strand),
+	_broadcast_timer(strand.get_io_service(), boost::posix_time::milliseconds(500)),
 	_broadcast_thread(nullptr),
 	_count(0) {
 }
@@ -22,14 +23,14 @@ void VehicleSensorModule::set_mediator(ModuleMediator *mediator) {
 	_mediator = mediator;
 }
 
+
 void VehicleSensorModule::start() {
 	std::cout << "Starting vehicle sensor module" << std::endl;
 	// Start timer to send out updates
-	_broadcast_timer.async_wait(boost::bind(&VehicleSensorModule::update, this));
+	_broadcast_timer.async_wait(_strand.wrap(boost::bind(&VehicleSensorModule::update, this)));
 	_broadcast_thread = new boost::thread(boost::bind(
 			static_cast<size_t (boost::asio::io_service::*)()> (&boost::asio::io_service::run),
-			boost::ref(_broadcast_io)));
-	_broadcast_io.run();
+			boost::ref(_strand.get_io_service())));
 }
 
 void VehicleSensorModule::stop() {
@@ -53,13 +54,26 @@ void VehicleSensorModule::init(Position &p) {
 void VehicleSensorModule::set_vehicle_uuid(std::string uuid) {
 	_data.VEHICLE_UUID = uuid;
 }
+
+void VehicleSensorModule::set_speed(const Speed &s) {
+	_sensor.set_speed(s);
+}
+
+void VehicleSensorModule::set_position(const Position &p) {
+	_sensor.set_position(p);
+}
+
+void VehicleSensorModule::set_heading(const Heading &h) {
+	_sensor.set_heading(h);
+}
+
 std::string VehicleSensorModule::to_string() {
 	return _sensor.to_string();
 }
 
 
 void VehicleSensorModule::update() {
-	if (_count < 5) {
+	if (_count < 10) {
 		broadcast();
 		_broadcast_timer.expires_at(_broadcast_timer.expires_at() + boost::posix_time::milliseconds(500));
 		_broadcast_timer.async_wait(boost::bind(&VehicleSensorModule::update, this));

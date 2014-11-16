@@ -10,8 +10,6 @@
 
 #include <iostream>
 
-#include <boost/asio.hpp>
-#include <boost/bind.hpp>
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread.hpp>
 #include <boost/uuid/uuid.hpp>
@@ -50,6 +48,7 @@ public:
 	 * Start the timer update loop in a thread
 	 */
 	void start();
+	void thread_start();
 
 	/*
 	 * Stop thread / timers
@@ -92,6 +91,9 @@ private:
 
 	// Modules
 	ModuleManager _module_manager;
+
+	// Vehicle thread
+	boost::thread *_vehicle_thread;
 
 
 	virtual std::string to_string();

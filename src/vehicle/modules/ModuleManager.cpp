@@ -7,18 +7,20 @@
 
 #include "ModuleManager.h"
 
-ModuleManager::ModuleManager() {
-	// TODO Auto-generated constructor stub
-
+ModuleManager::ModuleManager() :
+	_manager_strand(_manager_io),
+	_autopilot(_manager_strand),
+	_vehicle_sensor_module(_manager_strand) {
 }
 
 ModuleManager::~ModuleManager() {
-	// TODO Auto-generated destructor stub
 }
 
 void ModuleManager::start() {
+	std::cout << "Starting ModuleManager" << std::endl;
 	_vehicle_sensor_module.start();
 	_autopilot.start();
+	_manager_io.run();
 }
 
 void ModuleManager::stop() {
@@ -36,6 +38,9 @@ void ModuleManager::init(std::string uuid) {
  * This needs to be updated every time a module is added.
  */
 void ModuleManager::init_mediator() {
+	//give mediator map reference
+	_mediator.set_map(&_map);
+
 	//pass reference of every module to mediator
 	_mediator.set_autopilot_module(&_autopilot);
 	_mediator.set_hazard_warning_module(&_hazard_module);
@@ -134,6 +139,3 @@ void ModuleManager::update_modules() {
 	_hazard_module.update();
 }
 
-std::string ModuleManager::sensor_to_string() {
-	return _vehicle_sensor_module.to_string();
-}

@@ -22,6 +22,10 @@ Speed::~Speed() {
 	// TODO Auto-generated destructor stub
 }
 
+void Speed::set_speed(const Speed &s) {
+	_speed = s.get_speed();
+}
+
 void Speed::set_speed(double s) {
 	_speed = s;
 }

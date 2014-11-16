@@ -12,16 +12,19 @@
  *
  * @param name the readable name
  */
-Vehicle::Vehicle(std::string name) {
+Vehicle::Vehicle(std::string name) :
+	_readable_name(name),
+	_type(VehicleType::TYPE_UNKNOWN_VEHICLE),
+	_vehicle_thread(nullptr) {
+
 	_id = Utils::gen_uuid();
-	_readable_name = name;
-	_type = VehicleType::TYPE_UNKNOWN_VEHICLE;
 }
 
 /**
  * Free the Vehicle memory
  */
 Vehicle::~Vehicle() {
+	delete _vehicle_thread;
 }
 
 
@@ -29,6 +32,16 @@ Vehicle::~Vehicle() {
  * Start the Vehicle internal simulation
  */
 void Vehicle::start() {
+	std::cout << "Starting vehicle" << std::endl;
+	_module_manager.init(get_id_as_string());
+	_module_manager.generate_route();
+	_module_manager.start();
+//	_vehicle_thread = new boost::thread(boost::bind(&Vehicle::thread_start, this));
+//	_vehicle_thread->start_thread();
+}
+
+void Vehicle::thread_start() {
+	std::cout << "Starting thread" << std::endl;
 	_module_manager.init(get_id_as_string());
 	_module_manager.generate_route();
 	_module_manager.start();
@@ -40,6 +53,7 @@ void Vehicle::start() {
  */
 void Vehicle::stop() {
 	_module_manager.stop();
+	_vehicle_thread->join();
 }
 
 /*
