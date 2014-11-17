@@ -19,7 +19,7 @@ class HazardMessage : public Message {
 
 public:
 
-	HazardMessage();
+	HazardMessage(const Hazard &h);
 	virtual ~HazardMessage();
 
 	const Hazard& get_hazard() const;

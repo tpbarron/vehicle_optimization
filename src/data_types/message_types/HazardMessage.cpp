@@ -11,7 +11,7 @@
 #include "MessageTypes.h"
 
 
-HazardMessage::HazardMessage() {
+HazardMessage::HazardMessage(const Hazard &h) {
 	set_type(message_types::TYPE_HAZARD_WARNING);
 }
 

@@ -55,16 +55,16 @@ void AutopilotModule::update_self() {
 	std::cout << "Updating self" << std::endl;
 	_self_update_timer.expires_at(_self_update_timer.expires_at() + boost::posix_time::milliseconds(100));
 	_self_update_timer.async_wait(boost::bind(&AutopilotModule::update_self, this));
-//
-//	//Get time diff, calc new position from current
-//	boost::posix_time::ptime cur_time = boost::posix_time::microsec_clock::local_time();
-//	boost::posix_time::time_duration diff = cur_time - _last_update_time;
-//	long diff_millis = diff.total_milliseconds();
-//	calculate_progress(diff_millis);
-//
-//	_last_update_time = cur_time;
-//
-//	std::cout << _mediator->sensor_to_string() << std::endl;
+
+	//Get time diff, calc new position from current
+	boost::posix_time::ptime cur_time = boost::posix_time::microsec_clock::local_time();
+	boost::posix_time::time_duration diff = cur_time - _last_update_time;
+	long diff_millis = diff.total_milliseconds();
+	calculate_progress(diff_millis);
+
+	_last_update_time = cur_time;
+
+	std::cout << _mediator->sensor_to_string() << std::endl;
 }
 
 /**
@@ -75,9 +75,7 @@ void AutopilotModule::update_self() {
 void AutopilotModule::calculate_progress(long millis) {
 	// Get the allowed speed at the current position
 	Speed speed = _mediator->get_speed_from_route();
-	//_module_manager.get_current_speed();
 	_mediator->set_sensor_speed(speed);
-	//_sensor.set_speed(speed.get_speed());
 
 	// Get the distance in meters that would be covered in the allotted time
 	Distance dist = speed.get_distance_for_time(millis);
@@ -98,5 +96,32 @@ void AutopilotModule::calculate_progress(long millis) {
 //	_sensor.set_vehicle_turn_rate(0);
 //	_sensor.set_wheel_turn_rate(0);
 
+	check_hazards(pos, hdng);
+}
+
+/**
+ * Given current position and heading check for hazards and
+ * respond to them.
+ */
+void AutopilotModule::check_hazards(Position &pos, Heading &hdng) {
+//	if (_mediator->is_known_relevant_hazards(pos, hdng)) {
+//		//if we already know about something, respond to it
+//		Speed hazard_speed = _mediator->get_safe_hazard_speed(pos, hdng);
+//		if (hazard_speed.get_speed() < _mediator->get_sensor_speed().get_speed()) {
+//			// set lower speed, wouldn't want to accidentally set a higher speed
+//			_mediator->set_sensor_speed(hazard_speed);
+//		}
+//	}
+	if (_mediator->is_new_imminent_hazard()) {
+		//save all new hazards
+		Hazard new_hazard = _mediator->get_imminent_hazard();
+		_mediator->save_hazard(new_hazard);
+
+		//respond immediately if necessary
+		//TODO: use mediator.get_safe_hazard_speed to check response
+
+		//send out some hazard messages
+		HazardMessage mesg = _mediator->create_hazard_message(new_hazard);
+	}
 }
 

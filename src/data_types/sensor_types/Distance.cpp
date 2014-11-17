@@ -17,7 +17,16 @@ Distance::Distance(double d) {
 }
 
 Distance::~Distance() {
-	// TODO Auto-generated destructor stub
+}
+
+bool Distance::operator>(const Distance& d) {
+	if (_distance > d.get_distance())
+		return true;
+	return false;
+}
+
+bool Distance::operator<(const Distance& d) {
+	return !operator>(d);
 }
 
 const double Distance::get_distance() const {

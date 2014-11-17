@@ -63,7 +63,7 @@ Distance Position::get_distance_to(const Position &other) const {
 	return d;
 }
 
-std::string Position::to_string() {
+std::string Position::to_string() const {
 	return "(" + boost::lexical_cast<std::string>(_x) + ", " +
 			boost::lexical_cast<std::string>(_y) + ")";
 }

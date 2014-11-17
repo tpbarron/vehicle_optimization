@@ -30,7 +30,7 @@ public:
 
 	Distance get_distance_to(const Position &other) const;
 
-	std::string to_string();
+	std::string to_string() const;
 
 private:
 

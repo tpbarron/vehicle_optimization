@@ -15,10 +15,14 @@
 #include "data_types/message_types/Message.h"
 #include "data_types/message_types/HazardMessage.h"
 #include "data_types/module_types/Hazard.h"
+#include "data_types/sensor_types/Distance.h"
+#include "data_types/sensor_types/Heading.h"
 #include "data_types/sensor_types/Position.h"
 
+#include "utils/MathUtils.h"
 
 class ModuleMediator;
+#include "ModuleMediator.h"
 
 /**
  *
@@ -26,6 +30,16 @@ class ModuleMediator;
 class HazardWarningModule {
 
 public:
+
+	/**
+	 * threshold in meters
+	 */
+	const static Distance HAZARD_DIST_THRESHOLD;
+	/**
+	 * heading threshold in radians
+	 * .5 rad ~ 30 deg
+	 */
+	const static Heading HAZARD_HEADING_THRESHOLD;
 
 	HazardWarningModule();
 	virtual ~HazardWarningModule();
@@ -37,7 +51,10 @@ public:
 	void add_hazard(Hazard &h);
 	void remove_hazard(Hazard &h);
 
+	bool is_known_relevant_hazards(Position &pos, Heading &hdng);
 	bool is_known_hazard(Hazard &h);
+
+	HazardMessage create_message(Hazard &h);
 
 	void update();
 

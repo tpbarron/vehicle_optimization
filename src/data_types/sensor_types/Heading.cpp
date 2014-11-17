@@ -16,8 +16,16 @@ Heading::Heading(double h) {
 }
 
 Heading::~Heading() {
-	// TODO Auto-generated destructor stub
 }
+
+bool Heading::operator>(const Heading& h) {
+	return _heading > h.get_heading();
+}
+
+bool Heading::operator<(const Heading& h) {
+	return !operator>(h);
+}
+
 
 const double Heading::get_heading() const {
 	return _heading;

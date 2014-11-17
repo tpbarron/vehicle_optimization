@@ -29,6 +29,9 @@ public:
 	Heading(double h);
 	virtual ~Heading();
 
+	bool operator>(const Heading& h);
+	bool operator<(const Heading& h);
+
 	const double get_heading() const;
 	void set_heading(const Heading &h);
 	void set_heading(double h);

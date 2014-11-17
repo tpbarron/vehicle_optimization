@@ -103,7 +103,9 @@ bool Road::is_hazard_at_position(Position &p, double range) {
 }
 
 /**
- * This assumes there is an existing hazard... will fail if empty
+ * This assumes there is an existing hazard... will fail if empty.
+ * Returns the closest hazard
+ *
  */
 Hazard Road::get_hazard_at_position(Position &p) {
 	Hazard nearest = _hazards[0];

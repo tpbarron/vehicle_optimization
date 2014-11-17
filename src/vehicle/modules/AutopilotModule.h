@@ -15,6 +15,7 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread.hpp>
 
+#include "data_types/sensor_types/Heading.h"
 #include "data_types/sensor_types/Speed.h"
 
 class ModuleMediator;
@@ -54,6 +55,7 @@ private:
 	 */
 	void update_self();
 	void calculate_progress(long millis);
+	void check_hazards(Position &pos, Heading &hdng);
 
 };
 

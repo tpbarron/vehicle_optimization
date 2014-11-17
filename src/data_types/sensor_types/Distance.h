@@ -14,6 +14,9 @@ public:
 	Distance(double d);
 	virtual ~Distance();
 
+	bool operator>(const Distance& d);
+	bool operator<(const Distance& d);
+
 	const double get_distance() const;
 	void set_distance(double d);
 
