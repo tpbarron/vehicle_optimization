@@ -38,10 +38,12 @@ void RoutingModule::generate_route() {
 	std::pair<Intersection, Map::vertex_t> start_vertex = _map.get_intersection_closest_to(_start);
 	std::pair<Intersection, Map::vertex_t> goal_vertex = _map.get_intersection_closest_to(_goal);
 
-	Intersection start_int = start_vertex.first;
-	Intersection goal_int = goal_vertex.first;
+//	Intersection start_int = start_vertex.first;
+//	Intersection goal_int = goal_vertex.first;
 
-	_route.generate_route(_map, start_int, goal_int);
+	Map::vertex_t start = start_vertex.second;
+	Map::vertex_t goal = goal_vertex.second;
+	_route.generate_route(_map, start, goal);
 	_route.print_route(_map);
 }
 

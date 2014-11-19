@@ -26,26 +26,10 @@ void Route::print_route(Map& map) {
 }
 
 
-void Route::generate_route(Map &map, Intersection &i1, Intersection &i2) {
+void Route::generate_route(Map &map, Map::vertex_t &start, Map::vertex_t &goal) {
+
 	std::vector<Map::vertex_t> predecessors(map.get_num_intersections());
 	std::vector<double> distances(map.get_num_intersections());
-
-	std::pair<Map::vertex_t, bool> start_exists = map.get_vertex_for_intersection(i1);
-	std::pair<Map::vertex_t, bool> goal_exists = map.get_vertex_for_intersection(i2);
-
-	if (!start_exists.second) {
-		std::cerr << "Starting intersection does not exist." << std::endl;
-		exit(1);
-	}
-
-	if (!goal_exists.second) {
-		std::cerr << "Goal intersection does not exist." << std::endl;
-		exit(1);
-	}
-
-	// We should have both intersections... still might not be a path
-	Map::vertex_t start = start_exists.first;
-	Map::vertex_t goal = goal_exists.first;
 
 	Intersection i1check = map.get_network()[start];
 	Intersection i2check = map.get_network()[goal];

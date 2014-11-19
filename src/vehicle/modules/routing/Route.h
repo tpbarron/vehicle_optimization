@@ -38,7 +38,7 @@ public:
 
 	void print_route(Map& map);
 
-	void generate_route(Map& map, Intersection &i1, Intersection &i2);
+	void generate_route(Map &map, Map::vertex_t &start, Map::vertex_t &goal);
 
 	Speed get_current_speed_limit(Map& map);
 	Position get_current_position() const;
