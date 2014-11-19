@@ -36,7 +36,6 @@ public:
 	ModuleMediator();
 	virtual ~ModuleMediator();
 
-	void set_map(Map *map);
 
 	/*
 	 * ----- Module setters -----
@@ -88,7 +87,6 @@ public:
 
 private:
 
-	Map *_map;
 	AutopilotModule *_autopilot;
 	HazardWarningModule *_hazard_module;
 	MesgHandlerModule *_mesg_handler;

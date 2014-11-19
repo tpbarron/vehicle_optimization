@@ -25,6 +25,7 @@ void Route::print_route(Map& map) {
 	}
 }
 
+
 void Route::generate_route(Map &map, Intersection &i1, Intersection &i2) {
 	std::vector<Map::vertex_t> predecessors(map.get_num_intersections());
 	std::vector<double> distances(map.get_num_intersections());

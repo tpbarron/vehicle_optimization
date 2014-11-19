@@ -37,12 +37,14 @@ public:
 	void start();
 	void stop();
 
-	void init(Position &p);
+	void init(const Position &p);
 	void set_vehicle_uuid(std::string uuid);
 
 	void set_speed(const Speed &s);
 	void set_position(const Position &p);
 	void set_heading(const Heading &h);
+
+	const Position& get_position() const;
 
 	std::string to_string();
 

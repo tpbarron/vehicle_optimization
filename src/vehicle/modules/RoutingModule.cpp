@@ -18,38 +18,54 @@ void RoutingModule::set_mediator(ModuleMediator *mediator) {
 	_mediator = mediator;
 }
 
-void RoutingModule::generate_route(Map& map, Position& start, Position& goal) {
-	std::pair<Intersection, Map::vertex_t> start_vertex = map.get_intersection_closest_to(start);
-	std::pair<Intersection, Map::vertex_t> goal_vertex = map.get_intersection_closest_to(goal);
+void RoutingModule::set_map(const Map& map) {
+	_map = map;
+}
+
+void RoutingModule::set_start_position(const Position& start) {
+	_start = start;
+}
+
+void RoutingModule::set_goal_position(const Position& goal) {
+	_goal = goal;
+}
+
+const Position& RoutingModule::get_start_position() const {
+	return _start;
+}
+
+void RoutingModule::generate_route() {
+	std::pair<Intersection, Map::vertex_t> start_vertex = _map.get_intersection_closest_to(_start);
+	std::pair<Intersection, Map::vertex_t> goal_vertex = _map.get_intersection_closest_to(_goal);
 
 	Intersection start_int = start_vertex.first;
 	Intersection goal_int = goal_vertex.first;
 
-	_route.generate_route(map, start_int, goal_int);
-	_route.print_route(map);
+	_route.generate_route(_map, start_int, goal_int);
+	_route.print_route(_map);
 }
 
-Speed RoutingModule::get_current_speed_limit(Map& map) {
-	return _route.get_current_speed_limit(map);
+Speed RoutingModule::get_current_speed_limit() {
+	return _route.get_current_speed_limit(_map);
 }
 
 Position RoutingModule::get_current_position() const {
 	return _route.get_current_position();
 }
 
-Position RoutingModule::get_new_position(Map& map, Distance& d) {
-	return _route.get_new_position(map, d);
+Position RoutingModule::get_new_position(Distance& d) {
+	return _route.get_new_position(_map, d);
 }
 
 Heading RoutingModule::get_current_heading() {
 	return _route.get_current_heading();
 }
 
-bool RoutingModule::imminent_hazard(Map& map) {
-	return _route.imminent_hazard(map);
+bool RoutingModule::imminent_hazard() {
+	return _route.imminent_hazard(_map);
 }
 
-Hazard RoutingModule::get_imminent_hazard(Map& map) {
-	return _route.get_imminent_hazard(map);
+Hazard RoutingModule::get_imminent_hazard() {
+	return _route.get_imminent_hazard(_map);
 }
 

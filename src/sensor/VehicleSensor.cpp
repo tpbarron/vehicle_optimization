@@ -60,31 +60,31 @@ void VehicleSensor::set_wheel_turn_rate(double wheel_turn_rate) {
 }
 
 
-const Acceleration VehicleSensor::get_acceleration() const {
+const Acceleration& VehicleSensor::get_acceleration() const {
 	return _accel;
 }
 
-const BrakePressure VehicleSensor::get_brake_pressure() const {
+const BrakePressure& VehicleSensor::get_brake_pressure() const {
 	return _brake_pressure;
 }
 
-const Heading VehicleSensor::get_heading() const {
+const Heading& VehicleSensor::get_heading() const {
 	return _heading;
 }
 
-const Position VehicleSensor::get_position() const {
+const Position& VehicleSensor::get_position() const {
 	return _pos;
 }
 
-const Speed VehicleSensor::get_speed() const {
+const Speed& VehicleSensor::get_speed() const {
 	return _spd;
 }
 
-const TurnRate VehicleSensor::get_vehicle_turn_rate() const {
+const TurnRate& VehicleSensor::get_vehicle_turn_rate() const {
 	return _vehicle_turn_rate;
 }
 
-const TurnRate VehicleSensor::get_wheel_turn_rate() const {
+const TurnRate& VehicleSensor::get_wheel_turn_rate() const {
 	return _wheel_turn_rate;
 }
 

@@ -38,9 +38,6 @@ void ModuleManager::init(std::string uuid) {
  * This needs to be updated every time a module is added.
  */
 void ModuleManager::init_mediator() {
-	//give mediator map reference
-	_mediator.set_map(&_map);
-
 	//pass reference of every module to mediator
 	_mediator.set_autopilot_module(&_autopilot);
 	_mediator.set_hazard_warning_module(&_hazard_module);
@@ -56,13 +53,18 @@ void ModuleManager::init_mediator() {
 	_vehicle_sensor_module.set_mediator(&_mediator);
 }
 
+/**
+ * It is possible to get the start position from the routing module for the
+ * sensor init here because the start and goal positions are set BEFORE
+ * this initialization, which is called just before starting.
+ */
 void ModuleManager::init_sensor(std::string uuid) {
 	_vehicle_sensor_module.set_vehicle_uuid(uuid);
-	_vehicle_sensor_module.init(_start_position);
+	_vehicle_sensor_module.init(_routing_module.get_start_position());
 }
 
 void ModuleManager::generate_route() {
-	_routing_module.generate_route(_map, _start_position, _goal_position);
+	_routing_module.generate_route();
 }
 
 
@@ -79,65 +81,20 @@ void ModuleManager::recv(Message &msg) {
 	}
 }
 
-const Position& ModuleManager::get_goal_position() const {
-	return _goal_position;
-}
-
 void ModuleManager::set_goal_position(const Position& goal_position) {
-	_goal_position = goal_position;
-}
-
-const Map& ModuleManager::get_map() const {
-	return _map;
+	_routing_module.set_goal_position(goal_position);
 }
 
 void ModuleManager::set_map(const Map& map) {
-	_map = map;
-}
-
-const Position& ModuleManager::get_start_position() const {
-	return _start_position;
+	_routing_module.set_map(map);
 }
 
 void ModuleManager::set_start_position(const Position& start_position) {
-	_start_position = start_position;
-}
-
-Speed ModuleManager::get_current_speed() {
-	Speed limit = _routing_module.get_current_speed_limit(_map);
-
-	//Check hazards
-	//If there is an imminent hazard, we have run into something that
-	//we didn't already know about
-	if (_routing_module.imminent_hazard(_map)) {
-		Hazard h = _routing_module.get_imminent_hazard(_map);
-		if (!_hazard_module.is_known_hazard(h)) {
-			_hazard_module.add_hazard(h);
-		}
-	}
-	//For each known hazard ordered by closest,
-	//respond as necessary, if necessary
-
-	return limit;
+	_routing_module.set_start_position(start_position);
 }
 
 Position ModuleManager::get_current_position() const {
-	return _routing_module.get_current_position();
+	return _vehicle_sensor_module.get_position();
 }
 
-Position ModuleManager::get_new_position(Distance& d) {
-	return _routing_module.get_new_position(_map, d);
-}
-
-Heading ModuleManager::get_current_heading() {
-	return _routing_module.get_current_heading();
-}
-
-/**
- * The modules are updated at every self update
- */
-void ModuleManager::update_modules() {
-	//Update module
-	_hazard_module.update();
-}
 

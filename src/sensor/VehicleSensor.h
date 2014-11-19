@@ -55,13 +55,13 @@ public:
 	void set_vehicle_turn_rate(double vehicle_turn_rate);
 	void set_wheel_turn_rate(double wheel_turn_rate);
 
-	const Acceleration get_acceleration() const;
-	const BrakePressure get_brake_pressure() const;
-	const Heading get_heading() const;
-	const Position get_position() const;
-	const Speed get_speed() const;
-	const TurnRate get_vehicle_turn_rate() const;
-	const TurnRate get_wheel_turn_rate() const;
+	const Acceleration& get_acceleration() const;
+	const BrakePressure& get_brake_pressure() const;
+	const Heading& get_heading() const;
+	const Position& get_position() const;
+	const Speed& get_speed() const;
+	const TurnRate& get_vehicle_turn_rate() const;
+	const TurnRate& get_wheel_turn_rate() const;
 
 	std::string to_string();
 

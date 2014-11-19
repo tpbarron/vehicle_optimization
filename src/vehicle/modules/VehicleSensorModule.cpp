@@ -40,7 +40,7 @@ void VehicleSensorModule::stop() {
 /**
  * Initialize memory and populate necessary data such as data struct
  */
-void VehicleSensorModule::init(Position &p) {
+void VehicleSensorModule::init(const Position &p) {
 	//just set initial position
 	_sensor.set_acceleration(0);
 	_sensor.set_brake_pressure(0);
@@ -66,6 +66,12 @@ void VehicleSensorModule::set_position(const Position &p) {
 void VehicleSensorModule::set_heading(const Heading &h) {
 	_sensor.set_heading(h);
 }
+
+
+const Position& VehicleSensorModule::get_position() const {
+	return _sensor.get_position();
+}
+
 
 std::string VehicleSensorModule::to_string() {
 	return _sensor.to_string();

@@ -37,6 +37,7 @@ public:
 	virtual ~Route();
 
 	void print_route(Map& map);
+
 	void generate_route(Map& map, Intersection &i1, Intersection &i2);
 
 	Speed get_current_speed_limit(Map& map);

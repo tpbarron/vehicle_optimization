@@ -8,9 +8,9 @@
 #include "ModuleMediator.h"
 
 ModuleMediator::ModuleMediator() :
-	_map(nullptr),
 	_autopilot(nullptr),
 	_hazard_module(nullptr),
+	_mesg_handler(nullptr),
 	_routing_module(nullptr),
 	_vehicle_sensor_module(nullptr) {
 }
@@ -18,9 +18,6 @@ ModuleMediator::ModuleMediator() :
 ModuleMediator::~ModuleMediator() {
 }
 
-void ModuleMediator::set_map(Map *map) {
-	_map = map;
-}
 
 /*
  *
@@ -53,7 +50,7 @@ void ModuleMediator::set_vehicle_sensor_module(VehicleSensorModule *vehicle_sens
  */
 
 Speed ModuleMediator::get_speed_from_route() {
-	return _routing_module->get_current_speed_limit(*_map);
+	return _routing_module->get_current_speed_limit();
 }
 
 void ModuleMediator::set_sensor_speed(Speed &s) {
@@ -61,7 +58,7 @@ void ModuleMediator::set_sensor_speed(Speed &s) {
 }
 
 Position ModuleMediator::get_new_position_from_route(Distance &dist) {
-	return _routing_module->get_new_position(*_map, dist);
+	return _routing_module->get_new_position(dist);
 }
 
 void ModuleMediator::set_sensor_position(Position &p) {
@@ -111,8 +108,8 @@ HazardMessage ModuleMediator::create_hazard_message(Hazard &h) {
  * Returns true if there is an imminent hazard that is not already known about
  */
 bool ModuleMediator::is_new_imminent_hazard() {
-	if (_routing_module->imminent_hazard(*_map)) {
-		Hazard imminent = _routing_module->get_imminent_hazard(*_map);
+	if (_routing_module->imminent_hazard()) {
+		Hazard imminent = _routing_module->get_imminent_hazard();
 		if (!_hazard_module->is_known_hazard(imminent)) {
 			return true;
 		}
@@ -121,5 +118,5 @@ bool ModuleMediator::is_new_imminent_hazard() {
 }
 
 Hazard ModuleMediator::get_imminent_hazard() {
-	return _routing_module->get_imminent_hazard(*_map);
+	return _routing_module->get_imminent_hazard();
 }

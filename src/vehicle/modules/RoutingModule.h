@@ -29,21 +29,30 @@ public:
 
 	void set_mediator(ModuleMediator *mediator);
 
-	void generate_route(Map& map, Position& start, Position& goal);
+	void set_map(const Map& map);
+	void set_start_position(const Position& start);
+	void set_goal_position(const Position& goal);
 
-	Speed get_current_speed_limit(Map& map);
+	const Position& get_start_position() const;
+
+	void generate_route();
+
+	Speed get_current_speed_limit();
 	Position get_current_position() const;
-	Position get_new_position(Map& map, Distance& d);
+	Position get_new_position(Distance& d);
 	Heading get_current_heading();
 
-	bool imminent_hazard(Map& map);
-	Hazard get_imminent_hazard(Map& map);
+	bool imminent_hazard();
+	Hazard get_imminent_hazard();
 
 private:
 
 	ModuleMediator *_mediator;
 
 	Route _route;
+	Map _map;
+	Position _start;
+	Position _goal;
 
 };
 
