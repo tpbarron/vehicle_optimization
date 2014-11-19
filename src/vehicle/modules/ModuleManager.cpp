@@ -44,12 +44,14 @@ void ModuleManager::init_mediator() {
 	//pass reference of every module to mediator
 	_mediator.set_autopilot_module(&_autopilot);
 	_mediator.set_hazard_warning_module(&_hazard_module);
+	_mediator.set_mesg_handler_module(&_mesg_handler);
 	_mediator.set_routing_module(&_routing_module);
 	_mediator.set_vehicle_sensor_module(&_vehicle_sensor_module);
 
 	//pass reference of mediator to each module
 	_autopilot.set_mediator(&_mediator);
 	_hazard_module.set_mediator(&_mediator);
+	_mesg_handler.set_mediator(&_mediator);
 	_routing_module.set_mediator(&_mediator);
 	_vehicle_sensor_module.set_mediator(&_mediator);
 }

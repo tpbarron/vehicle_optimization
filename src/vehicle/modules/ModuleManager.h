@@ -21,6 +21,7 @@
 #include "ModuleMediator.h"
 #include "AutopilotModule.h"
 #include "HazardWarningModule.h"
+#include "MesgHandlerModule.h"
 #include "RoutingModule.h"
 #include "VehicleSensorModule.h"
 #include "vehicle/IVehicleDataListener.h"
@@ -80,6 +81,7 @@ private:
 
 	AutopilotModule _autopilot;
 	HazardWarningModule _hazard_module;
+	MesgHandlerModule _mesg_handler;
 	RoutingModule _routing_module;
 	VehicleSensorModule _vehicle_sensor_module;
 

@@ -35,6 +35,10 @@ void ModuleMediator::set_hazard_warning_module(HazardWarningModule *hazard_modul
 	_hazard_module = hazard_module;
 }
 
+void ModuleMediator::set_mesg_handler_module(MesgHandlerModule *mesg_handler) {
+	_mesg_handler = mesg_handler;
+}
+
 void ModuleMediator::set_routing_module(RoutingModule *routing_module) {
 	_routing_module = routing_module;
 }

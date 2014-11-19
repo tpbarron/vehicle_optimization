@@ -14,12 +14,14 @@
 class Map;
 class AutopilotModule;
 class HazardWarningModule;
+class MesgHandlerModule;
 class RoutingModule;
 class VehicleSensorModule;
 
 #include "map/Map.h"
 #include "AutopilotModule.h"
 #include "HazardWarningModule.h"
+#include "MesgHandlerModule.h"
 #include "RoutingModule.h"
 #include "VehicleSensorModule.h"
 
@@ -42,6 +44,8 @@ public:
 	void set_autopilot_module(AutopilotModule *autopilot);
 
 	void set_hazard_warning_module(HazardWarningModule *hazard_module);
+
+	void set_mesg_handler_module(MesgHandlerModule *mesg_handler);
 
 	void set_routing_module(RoutingModule *routing_module);
 
@@ -87,6 +91,7 @@ private:
 	Map *_map;
 	AutopilotModule *_autopilot;
 	HazardWarningModule *_hazard_module;
+	MesgHandlerModule *_mesg_handler;
 	RoutingModule *_routing_module;
 	VehicleSensorModule *_vehicle_sensor_module;
 
