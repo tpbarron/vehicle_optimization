@@ -7,11 +7,12 @@
 
 #include "Route.h"
 
-Route::Route() : _current_start_vertex(0),
-				 _current_end_vertex(0),
-				 _currently_in_intersection(false),
-				 _path_exists(false),
-				 _angle_to_intersection(0) {
+Route::Route() :
+	_current_start_vertex(0),
+	_current_end_vertex(0),
+	_currently_in_intersection(false),
+	_path_exists(false),
+	_angle_to_intersection(0) {
 }
 
 Route::~Route() {
