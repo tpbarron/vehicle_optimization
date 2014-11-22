@@ -64,7 +64,7 @@ bool RoutingModule::imminent_hazard() {
 	return _route.imminent_hazard(_map);
 }
 
-Hazard RoutingModule::get_imminent_hazard() {
-	return _route.get_imminent_hazard(_map);
+std::vector<Hazard> RoutingModule::get_imminent_hazards() {
+	return _route.get_imminent_hazards(_map);
 }
 

@@ -46,7 +46,7 @@ public:
 	Heading get_current_heading();
 
 	bool imminent_hazard(Map& map);
-	Hazard get_imminent_hazard(Map& map);
+	std::vector<Hazard> get_imminent_hazards(Map& map);
 
 	bool does_path_exist();
 

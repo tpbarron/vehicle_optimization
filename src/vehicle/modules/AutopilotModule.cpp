@@ -112,16 +112,19 @@ void AutopilotModule::check_hazards(Position &pos, Heading &hdng) {
 //			_mediator->set_sensor_speed(hazard_speed);
 //		}
 //	}
-	if (_mediator->is_new_imminent_hazard()) {
-		//save all new hazards
-		Hazard new_hazard = _mediator->get_imminent_hazard();
-		_mediator->save_hazard(new_hazard);
 
-		//respond immediately if necessary
-		//TODO: use mediator.get_safe_hazard_speed to check response
+	std::vector<Hazard> imminents = _mediator->get_new_imminent_hazards();
+
+	for (std::vector<Hazard>::iterator itr = imminents.begin(); itr != imminents.end(); ++itr) {
+		//save all new hazards
+		_mediator->save_hazard(*itr);
 
 		//send out some hazard messages
-		HazardMessage mesg = _mediator->create_hazard_message(new_hazard);
+		HazardMessage mesg = _mediator->create_hazard_message(*itr);
 	}
+
+	// Now we have logged all hazards, check if we need to change the speed
+	// and respond immediately if necessary
+	//TODO: use mediator.get_safe_hazard_speed to check response
 }
 

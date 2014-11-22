@@ -46,7 +46,9 @@ void ModuleMediator::set_vehicle_sensor_module(VehicleSensorModule *vehicle_sens
 
 
 /*
+ *
  * ----- vehicle sensor interface -----
+ *
  */
 
 Speed ModuleMediator::get_speed_from_route() {
@@ -77,8 +79,19 @@ std::string ModuleMediator::sensor_to_string() {
 	return _vehicle_sensor_module->to_string();
 }
 
+
 /*
+ *
  * ----- Hazard interface -----
+ *
+ */
+
+/**
+ * @return true if the HazardModule knows about relevant Hazards near the given
+ * position going in the given heading.
+ *
+ * TODO: like the imminent hazard method, just convert this to return a vector
+ * of known hazards that could be of size 0
  */
 bool ModuleMediator::is_known_relevant_hazards(Position &pos, Heading &hdng) {
 	return _hazard_module->is_known_relevant_hazards(pos, hdng);
@@ -89,16 +102,19 @@ Speed ModuleMediator::get_safe_hazard_speed(Position &pos, Heading &hdng) {
 }
 
 /**
- * Saves an imminent hazard on the road to the hazard module. Will fail
- * if no imminent hazard exists.
+ * Saves an imminent hazard on the road to the HazardModule
  */
 void ModuleMediator::save_hazard(Hazard &h) {
 	_hazard_module->add_hazard(h);
 }
 
+/**
+ * Asks the HazardModule to build a HazardMessage given a Hazard
+ */
 HazardMessage ModuleMediator::create_hazard_message(Hazard &h) {
 	return _hazard_module->create_message(h);
 }
+
 
 /*
  * ----- Routing interface -----
@@ -106,17 +122,43 @@ HazardMessage ModuleMediator::create_hazard_message(Hazard &h) {
 
 /**
  * Returns true if there is an imminent hazard that is not already known about
+ *
+ * NOTE: Do NOT use this unless all you need to know if whether there is something
+ * new. If you need to get them just call get_imminent_hazards to avoid repeat
+ * calculations.
  */
 bool ModuleMediator::is_new_imminent_hazard() {
 	if (_routing_module->imminent_hazard()) {
-		Hazard imminent = _routing_module->get_imminent_hazard();
-		if (!_hazard_module->is_known_hazard(imminent)) {
-			return true;
+		std::vector<Hazard> imminents = _routing_module->get_imminent_hazards();
+		for (std::vector<Hazard>::iterator itr = imminents.begin(); itr != imminents.end(); ++itr) {
+			if (!_hazard_module->is_known_hazard(*itr)) {
+				return true;
+			}
 		}
 	}
 	return false;
 }
 
-Hazard ModuleMediator::get_imminent_hazard() {
-	return _routing_module->get_imminent_hazard();
+/**
+ * Returns all imminent hazards
+ */
+std::vector<Hazard> ModuleMediator::get_imminent_hazards() {
+	return _routing_module->get_imminent_hazards();
+}
+
+/**
+ * Returns all imminent hazards that the hazard module does not already know
+ * about.
+ */
+std::vector<Hazard> ModuleMediator::get_new_imminent_hazards() {
+	std::vector<Hazard> new_imminents;
+
+	std::vector<Hazard> imminents = _routing_module->get_imminent_hazards();
+	for (std::vector<Hazard>::iterator itr = imminents.begin(); itr != imminents.end(); ++itr) {
+		if (!_hazard_module->is_known_hazard(*itr)) {
+			new_imminents.push_back(*itr);
+		}
+	}
+
+	return new_imminents;
 }

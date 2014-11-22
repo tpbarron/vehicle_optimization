@@ -103,21 +103,19 @@ bool Road::is_hazard_at_position(Position &p, double range) {
 }
 
 /**
- * This assumes there is an existing hazard... will fail if empty.
- * Returns the closest hazard
- *
+ * Return any Hazards on the Road within the given range.
  */
-Hazard Road::get_hazard_at_position(Position &p) {
-	Hazard nearest = _hazards[0];
-	double nearest_dist = nearest.get_position().get_distance_to(p).get_distance();
+std::vector<Hazard> Road::get_hazard_at_position(Position &p, double range) {
+	std::vector<Hazard> hazards;
+
 	for (unsigned int i = 1; i < _hazards.size(); ++i) {
 		double d = _hazards[i].get_position().get_distance_to(p).get_distance();
-		if (d < nearest_dist) {
-			nearest = _hazards[i];
-			nearest_dist = d;
+		if (d < range) {
+			hazards.push_back(_hazards[i]);
 		}
 	}
-	return nearest;
+
+	return hazards;
 }
 
 

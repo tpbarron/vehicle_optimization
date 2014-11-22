@@ -34,12 +34,14 @@ class ModuleMediator {
 public:
 
 	ModuleMediator();
+
 	virtual ~ModuleMediator();
 
 
 	/*
 	 * ----- Module setters -----
 	 */
+
 	void set_autopilot_module(AutopilotModule *autopilot);
 
 	void set_hazard_warning_module(HazardWarningModule *hazard_module);
@@ -50,9 +52,11 @@ public:
 
 	void set_vehicle_sensor_module(VehicleSensorModule *vehicle_sensor_module);
 
+
 	/*
 	 * ----- vehicle sensor interface -----
 	 */
+
 	Speed get_speed_from_route();
 
 	void set_sensor_speed(Speed &s);
@@ -67,9 +71,11 @@ public:
 
 	std::string sensor_to_string();
 
+
 	/*
 	 * ----- Hazard interface -----
 	 */
+
 	bool is_known_relevant_hazards(Position &pos, Heading &hdng);
 
 	Speed get_safe_hazard_speed(Position &pos, Heading &hdng);
@@ -78,15 +84,23 @@ public:
 
 	HazardMessage create_hazard_message(Hazard &h);
 
+
 	/*
 	 * ----- Routing interface -----
 	 */
+
 	bool is_new_imminent_hazard();
 
-	Hazard get_imminent_hazard();
+	std::vector<Hazard> get_imminent_hazards();
+
+	std::vector<Hazard> get_new_imminent_hazards();
+
 
 private:
 
+	/*
+	 * Module pointers
+	 */
 	AutopilotModule *_autopilot;
 	HazardWarningModule *_hazard_module;
 	MesgHandlerModule *_mesg_handler;

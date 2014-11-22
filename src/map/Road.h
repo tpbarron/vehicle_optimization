@@ -59,7 +59,7 @@ public:
 	 */
 	const static double RANGE;
 	bool is_hazard_at_position(Position &p, double range=RANGE);
-	Hazard get_hazard_at_position(Position &p);
+	std::vector<Hazard> get_hazard_at_position(Position &p, double range=RANGE);
 
 
 	/*

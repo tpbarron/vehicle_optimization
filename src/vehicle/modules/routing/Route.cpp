@@ -207,7 +207,7 @@ bool Route::imminent_hazard(Map& map) {
 /*
  * Return the nearest Hazard to the current vehicle position
  */
-Hazard Route::get_imminent_hazard(Map& map) {
+std::vector<Hazard> Route::get_imminent_hazards(Map& map) {
 	return map.get_network()[_current_edge].get_hazard_at_position(_current_position);
 }
 

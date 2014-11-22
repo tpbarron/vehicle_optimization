@@ -43,7 +43,7 @@ public:
 	Heading get_current_heading();
 
 	bool imminent_hazard();
-	Hazard get_imminent_hazard();
+	std::vector<Hazard> get_imminent_hazards();
 
 private:
 
