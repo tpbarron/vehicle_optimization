@@ -45,6 +45,7 @@
 </div><!-- top -->
 <div class="header">
   <div class="summary">
+<a href="#pub-types">Public Types</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pri-methods">Private Member Functions</a> &#124;
 <a href="#pri-attribs">Private Attributes</a> &#124;
@@ -65,6 +66,14 @@ Inheritance diagram for Vehicle:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-types"></a>
+Public Types</h2></td></tr>
+<tr class="memitem:ac6033331d30982715e9d82f7588c49b3"><td class="memItemLeft" align="right" valign="top">enum &#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#ac6033331d30982715e9d82f7588c49b3">VehicleType</a> { <a class="el" href="classVehicle.html#ac6033331d30982715e9d82f7588c49b3aa1c2896845a900a1b13dbce1bc6a2ab1">TYPE_DEFAULT_VEHICLE</a>, 
+<a class="el" href="classVehicle.html#ac6033331d30982715e9d82f7588c49b3ab13abd24ea0ea5184e7f56645efaa8ad">TYPE_EMERGENCY_VEHICLE</a>, 
+<a class="el" href="classVehicle.html#ac6033331d30982715e9d82f7588c49b3adeff2f9201d5a768d10d0d13eb018ce1">TYPE_UNKNOWN_VEHICLE</a>
+ }</td></tr>
+<tr class="separator:ac6033331d30982715e9d82f7588c49b3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:ad71d2e4f9b4141b4b32f2e6f8ae8fb5b"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#ad71d2e4f9b4141b4b32f2e6f8ae8fb5b">Vehicle</a> (std::string name)</td></tr>
@@ -75,6 +84,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a798de9eb3b07a83b0aaef2b84b0b4ff0"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ccb19e449f184280cae484d2ee0e7c3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a3ccb19e449f184280cae484d2ee0e7c3">start</a> ()</td></tr>
 <tr class="separator:a3ccb19e449f184280cae484d2ee0e7c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae7cd634710a0eea794c5aa907dec59f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#ae7cd634710a0eea794c5aa907dec59f7">thread_start</a> ()</td></tr>
+<tr class="separator:ae7cd634710a0eea794c5aa907dec59f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a837e3c110672946892026ca6bfd21b27"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a837e3c110672946892026ca6bfd21b27">stop</a> ()</td></tr>
 <tr class="separator:a837e3c110672946892026ca6bfd21b27"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab49c93f87385b7c64f86c8b09689ab35"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#ab49c93f87385b7c64f86c8b09689ab35">broadcast_data</a> ()</td></tr>
@@ -83,14 +94,16 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:adeb672bdb930c1efe33cf4beadc43d24"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aa1ca2f90d3d09d57796f025a1712a050"><td class="memItemLeft" align="right" valign="top">virtual void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#aa1ca2f90d3d09d57796f025a1712a050">recv</a> (<a class="el" href="classMessage.html">Message</a> &amp;msg)</td></tr>
 <tr class="separator:aa1ca2f90d3d09d57796f025a1712a050"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a6824c70b827f387ccb0231b71ab0802f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a6824c70b827f387ccb0231b71ab0802f">set_stopping_dist</a> (<a class="el" href="classDistance.html">Distance</a> &amp;dist)</td></tr>
-<tr class="separator:a6824c70b827f387ccb0231b71ab0802f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a76556dbb0efaa6a420e366a1190c1cc8"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a76556dbb0efaa6a420e366a1190c1cc8">set_start_position</a> (double x, double y)</td></tr>
 <tr class="separator:a76556dbb0efaa6a420e366a1190c1cc8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a764a6cc6668ccf3cea442127156bed4d"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a764a6cc6668ccf3cea442127156bed4d">set_goal_position</a> (double x, double y)</td></tr>
 <tr class="separator:a764a6cc6668ccf3cea442127156bed4d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a948508cafdde79459fee8b57ddd0801b"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a948508cafdde79459fee8b57ddd0801b">set_map</a> (<a class="el" href="classMap.html">Map</a> &amp;m)</td></tr>
 <tr class="separator:a948508cafdde79459fee8b57ddd0801b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0d9dbb9422313f19e3fda8c04e64dbdf"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a0d9dbb9422313f19e3fda8c04e64dbdf">set_type_from_string</a> (std::string type)</td></tr>
+<tr class="separator:a0d9dbb9422313f19e3fda8c04e64dbdf"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ad62c01cd9e832fc595f5a4ff3598f4f7"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#ad62c01cd9e832fc595f5a4ff3598f4f7">set_type</a> (<a class="el" href="classVehicle.html#ac6033331d30982715e9d82f7588c49b3">VehicleType</a> t)</td></tr>
+<tr class="separator:ad62c01cd9e832fc595f5a4ff3598f4f7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a70477d6a68bcb1c2c5ed629a4b5953c3"><td class="memItemLeft" align="right" valign="top">const boost::uuids::uuid&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a70477d6a68bcb1c2c5ed629a4b5953c3">get_id</a> () const </td></tr>
 <tr class="separator:a70477d6a68bcb1c2c5ed629a4b5953c3"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab8727728d44a4f8f8f57211cdbf907cd"><td class="memItemLeft" align="right" valign="top">const std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#ab8727728d44a4f8f8f57211cdbf907cd">get_id_as_string</a> () const </td></tr>
@@ -105,10 +118,6 @@ Public Member Functions</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
 Private Member Functions</h2></td></tr>
-<tr class="memitem:afff073fd407a71a60515946e254de188"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#afff073fd407a71a60515946e254de188">update_self</a> ()</td></tr>
-<tr class="separator:afff073fd407a71a60515946e254de188"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:acd62c8551083e7f3e6c1845b80577f51"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#acd62c8551083e7f3e6c1845b80577f51">calculate_progress</a> (long millis)</td></tr>
-<tr class="separator:acd62c8551083e7f3e6c1845b80577f51"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:aec67aac7ab3bf3780d3740d71a709948"><td class="memItemLeft" align="right" valign="top">virtual std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#aec67aac7ab3bf3780d3740d71a709948">to_string</a> ()</td></tr>
 <tr class="separator:aec67aac7ab3bf3780d3740d71a709948"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -118,17 +127,34 @@ Private Attributes</h2></td></tr>
 <tr class="separator:a890d7ca60c9597e1eb6e467a6fd71ae1"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a98a2216b2c200873baba43e3ea6018c4"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a98a2216b2c200873baba43e3ea6018c4">_readable_name</a></td></tr>
 <tr class="separator:a98a2216b2c200873baba43e3ea6018c4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a8550a96b9b0cfdb033d222996bef6da3"><td class="memItemLeft" align="right" valign="top">boost::posix_time::ptime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a8550a96b9b0cfdb033d222996bef6da3">_last_update_time</a></td></tr>
-<tr class="separator:a8550a96b9b0cfdb033d222996bef6da3"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a5c2d06c15250916aa88512dfef3c4b80"><td class="memItemLeft" align="right" valign="top">boost::asio::io_service&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a5c2d06c15250916aa88512dfef3c4b80">_self_update_io</a></td></tr>
-<tr class="separator:a5c2d06c15250916aa88512dfef3c4b80"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f02a9acc98ad6ebd4a3ae48b09abfce"><td class="memItemLeft" align="right" valign="top">boost::asio::deadline_timer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a2f02a9acc98ad6ebd4a3ae48b09abfce">_self_update_timer</a></td></tr>
-<tr class="separator:a2f02a9acc98ad6ebd4a3ae48b09abfce"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a0ac659a4f432ef4ff6266eb545ddedde"><td class="memItemLeft" align="right" valign="top">boost::thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a0ac659a4f432ef4ff6266eb545ddedde">_self_update_thread</a></td></tr>
-<tr class="separator:a0ac659a4f432ef4ff6266eb545ddedde"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ac800e4660ed04f015ceee121098206e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classVehicle.html#ac6033331d30982715e9d82f7588c49b3">VehicleType</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#ac800e4660ed04f015ceee121098206e8">_type</a></td></tr>
+<tr class="separator:ac800e4660ed04f015ceee121098206e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3f2e7580ab42d5383f1a9038f686d11f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classModuleManager.html">ModuleManager</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a3f2e7580ab42d5383f1a9038f686d11f">_module_manager</a></td></tr>
 <tr class="separator:a3f2e7580ab42d5383f1a9038f686d11f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1c8a251b159aedc4eacfda44de09fefe"><td class="memItemLeft" align="right" valign="top">boost::thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classVehicle.html#a1c8a251b159aedc4eacfda44de09fefe">_vehicle_thread</a></td></tr>
+<tr class="separator:a1c8a251b159aedc4eacfda44de09fefe"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
+<h2 class="groupheader">Member Enumeration Documentation</h2>
+<a class="anchor" id="ac6033331d30982715e9d82f7588c49b3"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">enum <a class="el" href="classVehicle.html#ac6033331d30982715e9d82f7588c49b3">Vehicle::VehicleType</a></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><em><a class="anchor" id="ac6033331d30982715e9d82f7588c49b3aa1c2896845a900a1b13dbce1bc6a2ab1"></a>TYPE_DEFAULT_VEHICLE</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ac6033331d30982715e9d82f7588c49b3ab13abd24ea0ea5184e7f56645efaa8ad"></a>TYPE_EMERGENCY_VEHICLE</em>&#160;</td><td class="fielddoc">
+</td></tr>
+<tr><td class="fieldname"><em><a class="anchor" id="ac6033331d30982715e9d82f7588c49b3adeff2f9201d5a768d10d0d13eb018ce1"></a>TYPE_UNKNOWN_VEHICLE</em>&#160;</td><td class="fielddoc">
+</td></tr>
+</table>
+
+</div>
+</div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="ad71d2e4f9b4141b4b32f2e6f8ae8fb5b"></a>
 <div class="memitem">
@@ -223,37 +249,6 @@ Private Attributes</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="acd62c8551083e7f3e6c1845b80577f51"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Vehicle::calculate_progress </td>
-          <td>(</td>
-          <td class="paramtype">long&#160;</td>
-          <td class="paramname"><em>millis</em></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Given elapsed time since last update calculates progress</p>
-<dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">millis</td><td>the time in milliseconds since the last update </td></tr>
-  </table>
-  </dd>
-</dl>
 
 </div>
 </div>
@@ -433,15 +428,31 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a6824c70b827f387ccb0231b71ab0802f"></a>
+<a class="anchor" id="ad62c01cd9e832fc595f5a4ff3598f4f7"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname">void Vehicle::set_stopping_dist </td>
+          <td class="memname">void Vehicle::set_type </td>
           <td>(</td>
-          <td class="paramtype"><a class="el" href="classDistance.html">Distance</a> &amp;&#160;</td>
-          <td class="paramname"><em>dist</em></td><td>)</td>
+          <td class="paramtype"><a class="el" href="classVehicle.html#ac6033331d30982715e9d82f7588c49b3">VehicleType</a>&#160;</td>
+          <td class="paramname"><em>t</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a0d9dbb9422313f19e3fda8c04e64dbdf"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vehicle::set_type_from_string </td>
+          <td>(</td>
+          <td class="paramtype">std::string&#160;</td>
+          <td class="paramname"><em>type</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -481,6 +492,21 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
+<a class="anchor" id="ae7cd634710a0eea794c5aa907dec59f7"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Vehicle::thread_start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <a class="anchor" id="aec67aac7ab3bf3780d3740d71a709948"></a>
 <div class="memitem">
 <div class="memproto">
@@ -508,30 +534,6 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="afff073fd407a71a60515946e254de188"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">void Vehicle::update_self </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-<p>Called regularly to move this <a class="el" href="classVehicle.html">Vehicle</a> along route </p>
-
-</div>
-</div>
 <h2 class="groupheader">Member Data Documentation</h2>
 <a class="anchor" id="a890d7ca60c9597e1eb6e467a6fd71ae1"></a>
 <div class="memitem">
@@ -542,26 +544,6 @@ Private Attributes</h2></td></tr>
       <table class="memname">
         <tr>
           <td class="memname">boost::uuids::uuid Vehicle::_id</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a8550a96b9b0cfdb033d222996bef6da3"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">boost::posix_time::ptime Vehicle::_last_update_time</td>
         </tr>
       </table>
   </td>
@@ -613,7 +595,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a5c2d06c15250916aa88512dfef3c4b80"></a>
+<a class="anchor" id="ac800e4660ed04f015ceee121098206e8"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -621,7 +603,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">boost::asio::io_service Vehicle::_self_update_io</td>
+          <td class="memname"><a class="el" href="classVehicle.html#ac6033331d30982715e9d82f7588c49b3">VehicleType</a> Vehicle::_type</td>
         </tr>
       </table>
   </td>
@@ -633,7 +615,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a0ac659a4f432ef4ff6266eb545ddedde"></a>
+<a class="anchor" id="a1c8a251b159aedc4eacfda44de09fefe"></a>
 <div class="memitem">
 <div class="memproto">
 <table class="mlabels">
@@ -641,27 +623,7 @@ Private Attributes</h2></td></tr>
   <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname">boost::thread* Vehicle::_self_update_thread</td>
-        </tr>
-      </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">private</span></span>  </td>
-  </tr>
-</table>
-</div><div class="memdoc">
-
-</div>
-</div>
-<a class="anchor" id="a2f02a9acc98ad6ebd4a3ae48b09abfce"></a>
-<div class="memitem">
-<div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
-      <table class="memname">
-        <tr>
-          <td class="memname">boost::asio::deadline_timer Vehicle::_self_update_timer</td>
+          <td class="memname">boost::thread* Vehicle::_vehicle_thread</td>
         </tr>
       </table>
   </td>
@@ -680,7 +642,7 @@ Private Attributes</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 2 2014 08:35:14 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 22 2014 13:13:17 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

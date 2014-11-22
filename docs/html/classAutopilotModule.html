@@ -46,6 +46,8 @@
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pri-methods">Private Member Functions</a> &#124;
+<a href="#pri-attribs">Private Attributes</a> &#124;
 <a href="classAutopilotModule-members.html">List of all members</a>  </div>
   <div class="headertitle">
 <div class="title">AutopilotModule Class Reference</div>  </div>
@@ -56,23 +58,49 @@
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1041ad9cd9376f9f80eae4193fe02f7c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#a1041ad9cd9376f9f80eae4193fe02f7c">AutopilotModule</a> ()</td></tr>
-<tr class="separator:a1041ad9cd9376f9f80eae4193fe02f7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a5a0b0eda9ef0df029705b32bdaa8b744"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#a5a0b0eda9ef0df029705b32bdaa8b744">AutopilotModule</a> (boost::asio::io_service::strand &amp;strand)</td></tr>
+<tr class="separator:a5a0b0eda9ef0df029705b32bdaa8b744"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a36a66f603e47bcc3763eab21e5fa2e21"><td class="memItemLeft" align="right" valign="top">virtual&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#a36a66f603e47bcc3763eab21e5fa2e21">~AutopilotModule</a> ()</td></tr>
 <tr class="separator:a36a66f603e47bcc3763eab21e5fa2e21"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95f493418b9ba817e211aad6f445eaeb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#a95f493418b9ba817e211aad6f445eaeb">start</a> ()</td></tr>
+<tr class="separator:a95f493418b9ba817e211aad6f445eaeb"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aca69ac92ae08d1dc0630aef74f42e383"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#aca69ac92ae08d1dc0630aef74f42e383">stop</a> ()</td></tr>
+<tr class="separator:aca69ac92ae08d1dc0630aef74f42e383"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a241e4541e9ec76eb8f79fb4497f169be"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#a241e4541e9ec76eb8f79fb4497f169be">set_mediator</a> (<a class="el" href="classModuleMediator.html">ModuleMediator</a> *mediator)</td></tr>
+<tr class="separator:a241e4541e9ec76eb8f79fb4497f169be"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-methods"></a>
+Private Member Functions</h2></td></tr>
+<tr class="memitem:a6406de0d7a3ca2b8b9120f277070de73"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#a6406de0d7a3ca2b8b9120f277070de73">update_self</a> ()</td></tr>
+<tr class="separator:a6406de0d7a3ca2b8b9120f277070de73"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:afd2613a52e2a8e9a6db4e4587e297fe3"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#afd2613a52e2a8e9a6db4e4587e297fe3">calculate_progress</a> (long millis)</td></tr>
+<tr class="separator:afd2613a52e2a8e9a6db4e4587e297fe3"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1a0edc479364a1f2835dcff1f5aa9367"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#a1a0edc479364a1f2835dcff1f5aa9367">check_hazards</a> (<a class="el" href="classPosition.html">Position</a> &amp;pos, <a class="el" href="classHeading.html">Heading</a> &amp;hdng)</td></tr>
+<tr class="separator:a1a0edc479364a1f2835dcff1f5aa9367"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pri-attribs"></a>
+Private Attributes</h2></td></tr>
+<tr class="memitem:aead43e923f9e70a090f56ea8e32cac2e"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classModuleMediator.html">ModuleMediator</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#aead43e923f9e70a090f56ea8e32cac2e">_mediator</a></td></tr>
+<tr class="separator:aead43e923f9e70a090f56ea8e32cac2e"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a57cf60696627b942dbdbca96e670ec06"><td class="memItemLeft" align="right" valign="top">boost::asio::io_service::strand&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#a57cf60696627b942dbdbca96e670ec06">_strand</a></td></tr>
+<tr class="separator:a57cf60696627b942dbdbca96e670ec06"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a16ead70c3960566f0ad6b7a3c47e74d1"><td class="memItemLeft" align="right" valign="top">boost::posix_time::ptime&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#a16ead70c3960566f0ad6b7a3c47e74d1">_last_update_time</a></td></tr>
+<tr class="separator:a16ead70c3960566f0ad6b7a3c47e74d1"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:af9226ab510fe903f22401ea029b489e0"><td class="memItemLeft" align="right" valign="top">boost::asio::deadline_timer&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#af9226ab510fe903f22401ea029b489e0">_self_update_timer</a></td></tr>
+<tr class="separator:af9226ab510fe903f22401ea029b489e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aeb4c278ff838c1486753bee7277693cd"><td class="memItemLeft" align="right" valign="top">boost::thread *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classAutopilotModule.html#aeb4c278ff838c1486753bee7277693cd">_self_update_thread</a></td></tr>
+<tr class="separator:aeb4c278ff838c1486753bee7277693cd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p><a class="el" href="AutopilotModule_8h.html">AutopilotModule.h</a></p>
-<p>Created on: Nov 2, 2014 Author: trevor </p>
-</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a class="anchor" id="a1041ad9cd9376f9f80eae4193fe02f7c"></a>
+<h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a class="anchor" id="a5a0b0eda9ef0df029705b32bdaa8b744"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">AutopilotModule::AutopilotModule </td>
           <td>(</td>
-          <td class="paramname"></td><td>)</td>
+          <td class="paramtype">boost::asio::io_service::strand &amp;&#160;</td>
+          <td class="paramname"><em>strand</em></td><td>)</td>
           <td></td>
         </tr>
       </table>
@@ -105,6 +133,244 @@ Public Member Functions</h2></td></tr>
 
 </div>
 </div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="afd2613a52e2a8e9a6db4e4587e297fe3"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AutopilotModule::calculate_progress </td>
+          <td>(</td>
+          <td class="paramtype">long&#160;</td>
+          <td class="paramname"><em>millis</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Given elapsed time since last update calculates progress</p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">millis</td><td>the time in milliseconds since the last update </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a class="anchor" id="a1a0edc479364a1f2835dcff1f5aa9367"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AutopilotModule::check_hazards </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classPosition.html">Position</a> &amp;&#160;</td>
+          <td class="paramname"><em>pos</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype"><a class="el" href="classHeading.html">Heading</a> &amp;&#160;</td>
+          <td class="paramname"><em>hdng</em>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Given current position and heading check for hazards and respond to them. </p>
+
+</div>
+</div>
+<a class="anchor" id="a241e4541e9ec76eb8f79fb4497f169be"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AutopilotModule::set_mediator </td>
+          <td>(</td>
+          <td class="paramtype"><a class="el" href="classModuleMediator.html">ModuleMediator</a> *&#160;</td>
+          <td class="paramname"><em>mediator</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a95f493418b9ba817e211aad6f445eaeb"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AutopilotModule::start </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aca69ac92ae08d1dc0630aef74f42e383"></a>
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AutopilotModule::stop </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a6406de0d7a3ca2b8b9120f277070de73"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void AutopilotModule::update_self </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Called regularly to move this <a class="el" href="classVehicle.html">Vehicle</a> along route </p>
+
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a class="anchor" id="a16ead70c3960566f0ad6b7a3c47e74d1"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::posix_time::ptime AutopilotModule::_last_update_time</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aead43e923f9e70a090f56ea8e32cac2e"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classModuleMediator.html">ModuleMediator</a>* AutopilotModule::_mediator</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="aeb4c278ff838c1486753bee7277693cd"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::thread* AutopilotModule::_self_update_thread</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="af9226ab510fe903f22401ea029b489e0"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::asio::deadline_timer AutopilotModule::_self_update_timer</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
+<a class="anchor" id="a57cf60696627b942dbdbca96e670ec06"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">boost::asio::io_service::strand AutopilotModule::_strand</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">private</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+</div>
+</div>
 <hr/>The documentation for this class was generated from the following files:<ul>
 <li>/home/trevor/Documents/dev/cpp/cpp-workspace/vehicle_optimization/src/vehicle/modules/<a class="el" href="AutopilotModule_8h.html">AutopilotModule.h</a></li>
 <li>/home/trevor/Documents/dev/cpp/cpp-workspace/vehicle_optimization/src/vehicle/modules/<a class="el" href="AutopilotModule_8cpp.html">AutopilotModule.cpp</a></li>
@@ -112,7 +378,7 @@ Public Member Functions</h2></td></tr>
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 2 2014 08:35:13 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 22 2014 13:13:17 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>

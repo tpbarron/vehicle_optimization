@@ -64,8 +64,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:a41212532f2bce3298d8f9468f82c62ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a6cc04d3ca172f289c33e61715cf501b5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoute.html#a6cc04d3ca172f289c33e61715cf501b5">print_route</a> (<a class="el" href="classMap.html">Map</a> &amp;map)</td></tr>
 <tr class="separator:a6cc04d3ca172f289c33e61715cf501b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ab71537f9c46d92c9d04a50cb0dacafb0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoute.html#ab71537f9c46d92c9d04a50cb0dacafb0">generate_route</a> (<a class="el" href="classMap.html">Map</a> &amp;map, <a class="el" href="classIntersection.html">Intersection</a> &amp;i1, <a class="el" href="classIntersection.html">Intersection</a> &amp;i2)</td></tr>
-<tr class="separator:ab71537f9c46d92c9d04a50cb0dacafb0"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8034cd2d29e2ab5f988541dde467cab9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoute.html#a8034cd2d29e2ab5f988541dde467cab9">generate_route</a> (<a class="el" href="classMap.html">Map</a> &amp;map, <a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a> &amp;start, <a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a> &amp;goal)</td></tr>
+<tr class="separator:a8034cd2d29e2ab5f988541dde467cab9"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac6960ab148808980574807c55fee5af4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classSpeed.html">Speed</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoute.html#ac6960ab148808980574807c55fee5af4">get_current_speed_limit</a> (<a class="el" href="classMap.html">Map</a> &amp;map)</td></tr>
 <tr class="separator:ac6960ab148808980574807c55fee5af4"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ae886d0eeaeb37bb5ee56783a7579cac0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classPosition.html">Position</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoute.html#ae886d0eeaeb37bb5ee56783a7579cac0">get_current_position</a> () const </td></tr>
@@ -76,8 +76,8 @@ Public Member Functions</h2></td></tr>
 <tr class="separator:ace4efac7938dc75c941db70725a8abb7"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a348a6e2ac25020b0355d536632225820"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoute.html#a348a6e2ac25020b0355d536632225820">imminent_hazard</a> (<a class="el" href="classMap.html">Map</a> &amp;map)</td></tr>
 <tr class="separator:a348a6e2ac25020b0355d536632225820"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a569e2b26a3541fa6d96447bbe3fedc10"><td class="memItemLeft" align="right" valign="top"><a class="el" href="classHazard.html">Hazard</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoute.html#a569e2b26a3541fa6d96447bbe3fedc10">get_imminent_hazard</a> (<a class="el" href="classMap.html">Map</a> &amp;map)</td></tr>
-<tr class="separator:a569e2b26a3541fa6d96447bbe3fedc10"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a95b19d6a7966b6ad641cd11dc326a7da"><td class="memItemLeft" align="right" valign="top">std::vector&lt; <a class="el" href="classHazard.html">Hazard</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoute.html#a95b19d6a7966b6ad641cd11dc326a7da">get_imminent_hazards</a> (<a class="el" href="classMap.html">Map</a> &amp;map)</td></tr>
+<tr class="separator:a95b19d6a7966b6ad641cd11dc326a7da"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a140449b79c4b8545f9c5924ccff3753a"><td class="memItemLeft" align="right" valign="top">bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classRoute.html#a140449b79c4b8545f9c5924ccff3753a">does_path_exist</a> ()</td></tr>
 <tr class="separator:a140449b79c4b8545f9c5924ccff3753a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -195,7 +195,7 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="ab71537f9c46d92c9d04a50cb0dacafb0"></a>
+<a class="anchor" id="a8034cd2d29e2ab5f988541dde467cab9"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -208,14 +208,14 @@ Private Attributes</h2></td></tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classIntersection.html">Intersection</a> &amp;&#160;</td>
-          <td class="paramname"><em>i1</em>, </td>
+          <td class="paramtype"><a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>start</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype"><a class="el" href="classIntersection.html">Intersection</a> &amp;&#160;</td>
-          <td class="paramname"><em>i2</em>&#160;</td>
+          <td class="paramtype"><a class="el" href="classMap.html#a861d97a382c4dcf24934858e91a094bd">Map::vertex_t</a> &amp;&#160;</td>
+          <td class="paramname"><em>goal</em>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -276,12 +276,12 @@ Private Attributes</h2></td></tr>
 
 </div>
 </div>
-<a class="anchor" id="a569e2b26a3541fa6d96447bbe3fedc10"></a>
+<a class="anchor" id="a95b19d6a7966b6ad641cd11dc326a7da"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="classHazard.html">Hazard</a> Route::get_imminent_hazard </td>
+          <td class="memname">std::vector&lt; <a class="el" href="classHazard.html">Hazard</a> &gt; Route::get_imminent_hazards </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="classMap.html">Map</a> &amp;&#160;</td>
           <td class="paramname"><em>map</em></td><td>)</td>
@@ -573,7 +573,7 @@ dx = d * cos(theta)
 </div><!-- contents -->
 <!-- start footer part -->
 <hr class="footer"/><address class="footer"><small>
-Generated on Sun Nov 2 2014 08:35:13 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
+Generated on Sat Nov 22 2014 13:13:17 for Vehicle Simulator by &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.8.6
 </small></address>
