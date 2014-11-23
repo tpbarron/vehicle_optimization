@@ -8,6 +8,17 @@
 #ifndef MESGHANDLERMODULE_H_
 #define MESGHANDLERMODULE_H_
 
+#include <set>
+
+#include <boost/asio.hpp>
+#include <boost/bind.hpp>
+#include <boost/date_time/posix_time/posix_time.hpp>
+#include <boost/thread/thread.hpp>
+
+#include "vehicle/IVehicleDataListener.h"
+
+#include "data_types/message_types/Message.h"
+
 class ModuleMediator;
 #include "ModuleMediator.h"
 
@@ -17,14 +28,35 @@ class ModuleMediator;
 class MesgHandlerModule {
 public:
 
+	MesgHandlerModule(boost::asio::io_service::strand &strand);
 	virtual ~MesgHandlerModule();
-	MesgHandlerModule();
 
 	void set_mediator(ModuleMediator *mediator);
+
+	void start();
+	void stop();
+
+	void update_nearest_vehicles();
+
+	void send_message(Message &mesg);
+
+	void add_listener(IVehicleDataListener &l);
+	void remove_listener(IVehicleDataListener &l);
 
 private:
 
 	ModuleMediator *_mediator;
+
+	// manager refs
+	boost::asio::io_service::strand _strand;
+
+	// Self update
+	boost::asio::deadline_timer _nearby_vehicle_timer;
+	boost::thread *_nearby_vehicle_thread;
+
+
+	// Nearby vehicles
+	std::set<IVehicleDataListener*, IVehicleDataListener::IVehicleDataListenerComp> _listeners;
 };
 
 #endif /* MESGHANDLERMODULE_H_ */

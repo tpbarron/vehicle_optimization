@@ -77,8 +77,9 @@ public:
 	/*
 	 * Getters
 	 */
-	const boost::uuids::uuid get_id() const;
-	const std::string get_id_as_string() const;
+	const Position get_position() const;
+	const boost::uuids::uuid get_id_as_uuid() const;
+	const std::string get_id() const;
 	const std::string get_readable_name() const;
 	const ModuleManager& get_module_manager() const;
 
@@ -96,7 +97,7 @@ private:
 	boost::thread *_vehicle_thread;
 
 
-	virtual std::string to_string();
+	const std::string to_string() const;
 
 };
 

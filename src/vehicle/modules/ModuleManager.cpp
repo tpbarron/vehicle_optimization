@@ -10,6 +10,7 @@
 ModuleManager::ModuleManager() :
 	_manager_strand(_manager_io),
 	_autopilot(_manager_strand),
+	_mesg_handler(_manager_strand),
 	_vehicle_sensor_module(_manager_strand) {
 }
 
@@ -18,14 +19,18 @@ ModuleManager::~ModuleManager() {
 
 void ModuleManager::start() {
 	std::cout << "Starting ModuleManager" << std::endl;
-	_vehicle_sensor_module.start();
 	_autopilot.start();
+	_mesg_handler.start();
+	_vehicle_sensor_module.start();
+
+	//Now start the service
 	_manager_io.run();
 }
 
 void ModuleManager::stop() {
-	_vehicle_sensor_module.stop();
 	_autopilot.stop();
+	_mesg_handler.stop();
+	_vehicle_sensor_module.stop();
 }
 
 void ModuleManager::init(std::string uuid) {
@@ -69,7 +74,11 @@ void ModuleManager::generate_route() {
 
 
 void ModuleManager::add_listener(IVehicleDataListener &l) {
-	_listeners.insert(&l);
+	_mesg_handler.add_listener(l);
+}
+
+void ModuleManager::remove_listener(IVehicleDataListener &l) {
+	_mesg_handler.remove_listener(l);
 }
 
 void ModuleManager::recv(Message &msg) {
@@ -81,16 +90,16 @@ void ModuleManager::recv(Message &msg) {
 	}
 }
 
+void ModuleManager::set_start_position(const Position& start_position) {
+	_routing_module.set_start_position(start_position);
+}
+
 void ModuleManager::set_goal_position(const Position& goal_position) {
 	_routing_module.set_goal_position(goal_position);
 }
 
 void ModuleManager::set_map(const Map& map) {
 	_routing_module.set_map(map);
-}
-
-void ModuleManager::set_start_position(const Position& start_position) {
-	_routing_module.set_start_position(start_position);
 }
 
 Position ModuleManager::get_current_position() const {

@@ -46,11 +46,13 @@ public:
 	void generate_route();
 
 	void add_listener(IVehicleDataListener &l);
+	void remove_listener(IVehicleDataListener &l);
+
 	void recv(Message &msg);
 
+	void set_start_position(const Position& start_position);
 	void set_goal_position(const Position& goal_position);
 	void set_map(const Map& map);
-	void set_start_position(const Position& start_position);
 
 	Position get_current_position() const;
 
@@ -69,15 +71,6 @@ private:
 	MesgHandlerModule _mesg_handler;
 	RoutingModule _routing_module;
 	VehicleSensorModule _vehicle_sensor_module;
-
-	struct VehicleHash {
-	    size_t operator()(IVehicleDataListener *v) const
-	    {
-	        return std::hash<std::string>()(v->to_string());
-	    }
-	};
-
-	std::unordered_set<IVehicleDataListener*, VehicleHash> _listeners;
 
 };
 

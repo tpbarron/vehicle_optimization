@@ -33,7 +33,7 @@ Vehicle::~Vehicle() {
  */
 void Vehicle::start() {
 	std::cout << "Starting vehicle" << std::endl;
-	_module_manager.init(get_id_as_string());
+	_module_manager.init(get_id());
 	_module_manager.generate_route();
 	_module_manager.start();
 //	_vehicle_thread = new boost::thread(boost::bind(&Vehicle::thread_start, this));
@@ -42,7 +42,7 @@ void Vehicle::start() {
 
 void Vehicle::thread_start() {
 	std::cout << "Starting thread" << std::endl;
-	_module_manager.init(get_id_as_string());
+	_module_manager.init(get_id());
 	_module_manager.generate_route();
 	_module_manager.start();
 }
@@ -71,7 +71,7 @@ void Vehicle::stop() {
  * @param l the object to add to the listeners list
  */
 void Vehicle::add_listener(IVehicleDataListener &l) {
-	std::cout << "Adding listener to vehicle " << get_id_as_string() << std::endl;
+	std::cout << "Adding listener to vehicle " << get_id() << std::endl;
 	_module_manager.add_listener(l);
 }
 
@@ -80,10 +80,10 @@ void Vehicle::add_listener(IVehicleDataListener &l) {
  * Entry point for data coming in from other Vehicle.
  * Compute as necessary using received data
  *
- * @param data the data struct sent out by a nearby Vehicle
+ * @param msg the incoming Message
  */
 void Vehicle::recv(Message &msg) {
-	std::cout << get_id_as_string() << ": received data, sending to module manager" << std::endl;
+	std::cout << get_id() << ": received data, sending to module manager" << std::endl;
 	_module_manager.recv(msg);
 }
 
@@ -108,8 +108,8 @@ void Vehicle::set_goal_position(double x, double y) {
 	_module_manager.set_goal_position(p);
 }
 
-/*
- * TODO: do both the vehicle and the route need a map reference?
+/**
+ * Give the manager a copy of the initial map. It is stored in the RoutingModule
  */
 void Vehicle::set_map(Map &m) {
 	_module_manager.set_map(m);
@@ -137,11 +137,15 @@ void Vehicle::set_type(VehicleType t) {
  *
  */
 
-const boost::uuids::uuid Vehicle::get_id() const {
+const Position Vehicle::get_position() const {
+	return _module_manager.get_current_position();
+}
+
+const boost::uuids::uuid Vehicle::get_id_as_uuid() const {
 	return _id;
 }
 
-const std::string Vehicle::get_id_as_string() const {
+const std::string Vehicle::get_id() const {
 	return boost::uuids::to_string(_id);
 }
 
@@ -160,6 +164,6 @@ const ModuleManager& Vehicle::get_module_manager() const {
  *
  * Readable name: UUID
  */
-std::string Vehicle::to_string() {
-	return _readable_name + ": " + get_id_as_string();
+const std::string Vehicle::to_string() const {
+	return _readable_name + ": " + get_id();
 }

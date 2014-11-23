@@ -43,10 +43,8 @@ private:
 	// manager refs
 	boost::asio::io_service::strand _strand;
 
-
 	// Self update
 	boost::posix_time::ptime _last_update_time;
-//	boost::asio::io_service _self_update_io;
 	boost::asio::deadline_timer _self_update_timer;
 	boost::thread *_self_update_thread;
 

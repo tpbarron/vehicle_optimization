@@ -309,16 +309,25 @@ void populate_map() {
 void start() {
 	std::cout << "Starting scenario" << std::endl;
 	_start_time = boost::posix_time::microsec_clock::local_time();
-	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
-		Vehicle* v = VehicleManager::get_vehicles()[i];
+
+	auto vehicles = VehicleManager::get_vehicles();
+
+	for (auto itr = vehicles.begin();
+			itr != vehicles.end();
+			++itr) {
+		Vehicle* v = dynamic_cast<Vehicle*>(*itr);
 		v->start();
 	}
 }
 
 void stop() {
 	std::cout << "Stopping scenario" << std::endl;
-	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
-		Vehicle* v = VehicleManager::get_vehicles()[i];
+
+	auto vehicles = VehicleManager::get_vehicles();
+	for (auto itr = vehicles.begin();
+			itr != vehicles.end();
+			++itr) {
+		Vehicle* v = dynamic_cast<Vehicle*>(*itr);
 		v->stop();
 	}
 }
@@ -334,17 +343,17 @@ void stop() {
  *
  *
  */
-void test_get_closest_vehicles() {
-	std::cout << "Num vehicles: " << VehicleManager::get_vehicles().size() << std::endl;
-	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
-		Vehicle* v = VehicleManager::get_vehicles()[i];
-		std::cout << v->get_readable_name() << ", " << v->get_id_as_string() << std::endl;
-		std::vector<VehicleManager::VehicleDistPair> nearby = VehicleManager::get_nearest(v->get_module_manager().get_current_position(), 2, 10);
-		for (std::vector<VehicleManager::VehicleDistPair>::iterator vdistitr = nearby.begin(); vdistitr != nearby.end(); ++vdistitr) {
-			std::cout << "    Found vehicle: " << (*vdistitr).second->get_readable_name() << " at distance " << (*vdistitr).first.get_distance() << std::endl;
-		}
-	}
-}
+//void test_get_closest_vehicles() {
+//	std::cout << "Num vehicles: " << VehicleManager::get_vehicles().size() << std::endl;
+//	for (unsigned int i = 0; i < VehicleManager::get_vehicles().size(); ++i) {
+//		Vehicle* v = VehicleManager::get_vehicles()[i];
+//		std::cout << v->get_readable_name() << ", " << v->get_id_as_string() << std::endl;
+//		std::vector<VehicleManager::VehicleDistPair> nearby = VehicleManager::get_nearest(v->get_module_manager().get_current_position(), 2, 10);
+//		for (std::vector<VehicleManager::VehicleDistPair>::iterator vdistitr = nearby.begin(); vdistitr != nearby.end(); ++vdistitr) {
+//			std::cout << "    Found vehicle: " << (*vdistitr).second->get_readable_name() << " at distance " << (*vdistitr).first.get_distance() << std::endl;
+//		}
+//	}
+//}
 
 void test_print_map() {
 	_map.print_map_data();

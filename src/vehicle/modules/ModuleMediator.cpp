@@ -51,7 +51,7 @@ void ModuleMediator::set_vehicle_sensor_module(VehicleSensorModule *vehicle_sens
  *
  */
 
-Speed ModuleMediator::get_speed_from_route() {
+const Speed ModuleMediator::get_speed_from_route() const {
 	return _routing_module->get_current_speed_limit();
 }
 
@@ -63,11 +63,15 @@ Position ModuleMediator::get_new_position_from_route(Distance &dist) {
 	return _routing_module->get_new_position(dist);
 }
 
+const Position& ModuleMediator::get_sensor_position() const {
+	return _vehicle_sensor_module->get_position();
+}
+
 void ModuleMediator::set_sensor_position(Position &p) {
 	_vehicle_sensor_module->set_position(p);
 }
 
-Heading ModuleMediator::get_heading_from_route() {
+const Heading ModuleMediator::get_heading_from_route() const {
 	return _routing_module->get_current_heading();
 }
 
@@ -75,7 +79,7 @@ void ModuleMediator::set_sensor_heading(Heading &h) {
 	_vehicle_sensor_module->set_heading(h);
 }
 
-std::string ModuleMediator::sensor_to_string() {
+const std::string ModuleMediator::sensor_to_string() const {
 	return _vehicle_sensor_module->to_string();
 }
 

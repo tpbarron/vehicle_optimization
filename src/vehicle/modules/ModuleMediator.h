@@ -57,19 +57,21 @@ public:
 	 * ----- vehicle sensor interface -----
 	 */
 
-	Speed get_speed_from_route();
+	const Speed get_speed_from_route() const;
 
 	void set_sensor_speed(Speed &s);
 
 	Position get_new_position_from_route(Distance &dist);
 
+	const Position& get_sensor_position() const;
+
 	void set_sensor_position(Position &p);
 
-	Heading get_heading_from_route();
+	const Heading get_heading_from_route() const;
 
 	void set_sensor_heading(Heading &h);
 
-	std::string sensor_to_string();
+	const std::string sensor_to_string() const;
 
 
 	/*
