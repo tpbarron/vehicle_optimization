@@ -121,7 +121,9 @@ HazardMessage ModuleMediator::create_hazard_message(Hazard &h) {
 
 
 /*
+ *
  * ----- Routing interface -----
+ *
  */
 
 /**
@@ -165,4 +167,15 @@ std::vector<Hazard> ModuleMediator::get_new_imminent_hazards() {
 	}
 
 	return new_imminents;
+}
+
+
+/*
+ *
+ * ----- Mesg Handler interface
+ *
+ */
+
+void ModuleMediator::send_messages(std::vector<Message> messages) {
+	_mesg_handler->send_messages(messages);
 }

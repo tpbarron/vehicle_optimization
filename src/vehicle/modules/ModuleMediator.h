@@ -97,6 +97,11 @@ public:
 
 	std::vector<Hazard> get_new_imminent_hazards();
 
+	/*
+	 * ----- Mesg Handler interface
+	 */
+
+	void send_messages(std::vector<Message> messages);
 
 private:
 

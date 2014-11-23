@@ -73,6 +73,15 @@ void MesgHandlerModule::send_message(Message &mesg) {
 	}
 }
 
+/**
+ * Send out a bunch of messages
+ */
+void MesgHandlerModule::send_messages(std::vector<Message> &messages) {
+	for (auto itr = messages.begin(); itr != messages.end(); ++itr) {
+		send_message(*itr);
+	}
+}
+
 void MesgHandlerModule::add_listener(IVehicleDataListener &l) {
 	_listeners.insert(&l);
 }

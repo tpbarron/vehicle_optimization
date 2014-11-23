@@ -39,6 +39,7 @@ public:
 	void update_nearest_vehicles();
 
 	void send_message(Message &mesg);
+	void send_messages(std::vector<Message> &messages);
 
 	void add_listener(IVehicleDataListener &l);
 	void remove_listener(IVehicleDataListener &l);
