@@ -108,10 +108,11 @@ bool Road::is_hazard_at_position(Position &p, double range) {
 std::vector<Hazard> Road::get_hazard_at_position(Position &p, double range) {
 	std::vector<Hazard> hazards;
 
-	for (unsigned int i = 1; i < _hazards.size(); ++i) {
-		double d = _hazards[i].get_position().get_distance_to(p).get_distance();
+	for (auto itr = _hazards.begin(); itr != _hazards.end(); ++itr) {
+		Hazard h = *itr;
+		double d = h.get_position().get_distance_to(p).get_distance();
 		if (d < range) {
-			hazards.push_back(_hazards[i]);
+			hazards.push_back(h);
 		}
 	}
 
