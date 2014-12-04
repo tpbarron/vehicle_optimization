@@ -7,42 +7,54 @@
 
 #include "Utils.h"
 
-const std::string Utils::SCENARIO_DATA_DIR = "data/scenarios/";
-const std::string Utils::SCENARIO_VEHICLE_DATA_DIR = "vehicles/";
-const std::string Utils::SCENARIO_LANE_DATA_DIR = "lanes/";
-const std::string Utils::SCENARIO_HAZARD_DATA_DIR = "hazards/";
+namespace Utils {
 
-boost::uuids::random_generator Utils::gen_uuid;
+boost::uuids::random_generator gen_uuid;
 
-Utils::Utils() {
-}
+boost::asio::io_service _global_io;
+boost::asio::io_service::strand _global_strand(_global_io);
 
-Utils::~Utils() {
-	// TODO Auto-generated destructor stub
-}
 
-std::string Utils::get_scenario_file_path(std::string file) {
+std::string get_scenario_file_path(std::string file) {
 	return SCENARIO_DATA_DIR + file + "/" + file + ".json";
 }
 
-std::string Utils::get_scenario_vehicle_file_path(std::string scenario, std::string file) {
+std::string get_scenario_vehicle_file_path(std::string scenario, std::string file) {
 	return SCENARIO_DATA_DIR + scenario + "/" + SCENARIO_VEHICLE_DATA_DIR + file;
 }
 
 
-std::string Utils::get_scenario_lane_file_path(std::string scenario, std::string file) {
+std::string get_scenario_lane_file_path(std::string scenario, std::string file) {
 	return SCENARIO_DATA_DIR + scenario + "/" + SCENARIO_LANE_DATA_DIR + file;
 }
 
-std::string Utils::get_scenario_hazard_file_path(std::string scenario, std::string file) {
+std::string get_scenario_hazard_file_path(std::string scenario, std::string file) {
 	return SCENARIO_DATA_DIR + scenario + "/" + SCENARIO_HAZARD_DATA_DIR + file;
 }
 
-std::string Utils::get_scenario_intersection_file_path(std::string scenario, std::string file) {
+std::string get_scenario_intersection_file_path(std::string scenario, std::string file) {
 	return SCENARIO_DATA_DIR + scenario + "/" + file;
 }
 
-std::string Utils::get_scenario_road_file_path(std::string scenario, std::string file) {
+std::string get_scenario_road_file_path(std::string scenario, std::string file) {
 	return SCENARIO_DATA_DIR + scenario + "/" + file;
+}
+
+boost::asio::io_service& get_global_io_service() {
+	return _global_io;
+}
+
+boost::asio::io_service::strand& get_global_strand() {
+	return _global_strand;
+}
+
+void start_io() {
+	_global_io.run();
+}
+
+void stop_io() {
+	_global_io.stop();
+}
+
 }
 
