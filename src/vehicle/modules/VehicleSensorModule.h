@@ -20,6 +20,7 @@
 #include "sensor/VehicleSensor.h"
 #include "sensor/VehicleSensorData.h"
 
+#include "utils/Utils.h"
 
 class ModuleMediator;
 
@@ -29,7 +30,7 @@ class ModuleMediator;
 class VehicleSensorModule {
 public:
 
-	VehicleSensorModule(boost::asio::io_service::strand &strand);
+	VehicleSensorModule();
 	virtual ~VehicleSensorModule();
 
 	void set_mediator(ModuleMediator *mediator);
@@ -51,9 +52,6 @@ public:
 private:
 
 	ModuleMediator *_mediator;
-
-	// manager refs
-	boost::asio::io_service::strand _strand;
 
 	VehicleSensor _sensor;
 	VehicleSensorData _data;

@@ -7,11 +7,10 @@
 
 #include "AutopilotModule.h"
 
-AutopilotModule::AutopilotModule(boost::asio::io_service::strand &strand) :
+AutopilotModule::AutopilotModule() :
 	_mediator(nullptr),
-	_strand(strand),
 	_last_update_time(boost::posix_time::microsec_clock::local_time()),
-	_self_update_timer(strand.get_io_service(), boost::posix_time::milliseconds(100)),
+	_self_update_timer(Utils::get_global_io_service(), boost::posix_time::milliseconds(100)),
 	_self_update_thread(nullptr) {
 
 }
@@ -24,10 +23,10 @@ void AutopilotModule::start() {
 	std::cout << "Starting Autopilot Module" << std::endl;
 
 	// Start timer to update own position along route..
-	_self_update_timer.async_wait(_strand.wrap(boost::bind(&AutopilotModule::update_self, this)));
+	_self_update_timer.async_wait(boost::bind(&AutopilotModule::update_self, this));
 	_self_update_thread = new boost::thread(boost::bind(
 			static_cast<size_t (boost::asio::io_service::*)()> (&boost::asio::io_service::run),
-			boost::ref(_strand.get_io_service())));
+			boost::ref(Utils::get_global_io_service())));
 }
 
 void AutopilotModule::stop() {
@@ -119,6 +118,8 @@ void AutopilotModule::check_hazards(Position &pos, Heading &hdng) {
 	for (std::vector<Hazard>::iterator itr = imminents.begin(); itr != imminents.end(); ++itr) {
 		//save all new hazards
 		_mediator->save_hazard(*itr);
+
+		std::cout << "FOUND HAZARD!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
 
 		//create some hazard messages
 		HazardMessage mesg = _mediator->create_hazard_message(*itr);

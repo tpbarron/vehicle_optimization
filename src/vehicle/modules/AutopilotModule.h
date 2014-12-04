@@ -18,6 +18,8 @@
 #include "data_types/sensor_types/Heading.h"
 #include "data_types/sensor_types/Speed.h"
 
+#include "utils/Utils.h"
+
 class ModuleMediator;
 #include "ModuleMediator.h"
 
@@ -28,7 +30,7 @@ class AutopilotModule {
 
 public:
 
-	AutopilotModule(boost::asio::io_service::strand &strand);
+	AutopilotModule();
 	virtual ~AutopilotModule();
 
 	void start();
@@ -39,9 +41,6 @@ public:
 private:
 
 	ModuleMediator *_mediator;
-
-	// manager refs
-	boost::asio::io_service::strand _strand;
 
 	// Self update
 	boost::posix_time::ptime _last_update_time;

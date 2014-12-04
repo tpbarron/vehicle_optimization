@@ -19,6 +19,8 @@
 
 #include "data_types/message_types/Message.h"
 
+#include "utils/Utils.h"
+
 class ModuleMediator;
 #include "ModuleMediator.h"
 
@@ -28,7 +30,7 @@ class ModuleMediator;
 class MesgHandlerModule {
 public:
 
-	MesgHandlerModule(boost::asio::io_service::strand &strand);
+	MesgHandlerModule();
 	virtual ~MesgHandlerModule();
 
 	void set_mediator(ModuleMediator *mediator);
@@ -47,9 +49,6 @@ public:
 private:
 
 	ModuleMediator *_mediator;
-
-	// manager refs
-	boost::asio::io_service::strand _strand;
 
 	// Self update
 	boost::asio::deadline_timer _nearby_vehicle_timer;

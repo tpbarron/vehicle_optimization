@@ -21,7 +21,6 @@ namespace Utils {
 extern boost::uuids::random_generator gen_uuid;
 
 extern boost::asio::io_service _global_io;
-extern boost::asio::io_service::strand _global_strand;
 
 
 const std::string SCENARIO_DATA_DIR = "data/scenarios/";
@@ -37,7 +36,6 @@ std::string get_scenario_intersection_file_path(std::string scenario, std::strin
 std::string get_scenario_road_file_path(std::string scenario, std::string file);
 
 boost::asio::io_service& get_global_io_service();
-boost::asio::io_service::strand& get_global_strand();
 void start_io();
 void stop_io();
 

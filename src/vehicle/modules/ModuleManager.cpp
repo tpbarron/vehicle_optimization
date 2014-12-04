@@ -7,24 +7,19 @@
 
 #include "ModuleManager.h"
 
-ModuleManager::ModuleManager() :
-	_manager_strand(_manager_io),
-	_autopilot(_manager_strand),
-	_mesg_handler(_manager_strand),
-	_vehicle_sensor_module(_manager_strand) {
+ModuleManager::ModuleManager() {
 }
 
 ModuleManager::~ModuleManager() {
 }
 
+
 void ModuleManager::start() {
 	std::cout << "Starting ModuleManager" << std::endl;
+
 	_autopilot.start();
 	_mesg_handler.start();
 	_vehicle_sensor_module.start();
-
-	//Now start the service
-	_manager_io.run();
 }
 
 void ModuleManager::stop() {
@@ -34,6 +29,7 @@ void ModuleManager::stop() {
 }
 
 void ModuleManager::init(std::string uuid) {
+	std::cout << "Initializing ModuleManager" << std::endl;
 	init_mediator();
 	init_sensor(uuid);
 }
@@ -69,6 +65,7 @@ void ModuleManager::init_sensor(std::string uuid) {
 }
 
 void ModuleManager::generate_route() {
+	std::cout << "Generating Route" << std::endl;
 	_routing_module.generate_route();
 }
 

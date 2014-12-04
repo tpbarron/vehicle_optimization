@@ -230,3 +230,13 @@ void Route::calculate_angle_to_intersection(Map& map) {
 	_angle_to_intersection = std::atan2(dy, dx);
 	std::cout << "Computed angle to intersection in rad: " << _angle_to_intersection << std::endl;
 }
+
+
+std::vector<Intersection> Route::get_path_as_intersections(Map& map) const {
+	std::vector<Intersection> intersections;
+	for (auto itr = _vertices.begin(); itr != _vertices.end(); ++itr) {
+		Intersection i = map.get_network()[*itr];
+		intersections.push_back(i);
+	}
+	return intersections;
+}

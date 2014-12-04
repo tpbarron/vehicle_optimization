@@ -10,25 +10,11 @@
 
 #include <iostream>
 
-#include <boost/date_time/posix_time/posix_time.hpp>
-#include <boost/thread/thread.hpp>
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
-#include "IVehicleDataListener.h"
-#include "data_manager/VehicleManager.h"
-#include "data_types/sensor_types/Distance.h"
-#include "data_types/message_types/Message.h"
-#include "data_types/module_types/Hazard.h"
-
-#include "vehicle/modules/routing/Route.h"
+#include "vehicle/IVehicleDataListener.h"
 #include "vehicle/modules/ModuleManager.h"
-#include "vehicle/modules/HazardWarningModule.h"
-
-#include "sensor/VehicleSensor.h"
-#include "sensor/VehicleSensorData.h"
-#include "sim/Scenario.h"
-#include "utils/Utils.h"
 
 class Vehicle : public IVehicleDataListener {
 
@@ -44,11 +30,11 @@ public:
 	virtual ~Vehicle();
 
 	void init();
+
 	/*
-	 * Start the timer update loop in a thread
+	 * Start the vehicle simulation
 	 */
 	void start();
-	void thread_start();
 
 	/*
 	 * Stop thread / timers
@@ -92,9 +78,6 @@ private:
 
 	// Modules
 	ModuleManager _module_manager;
-
-	// Vehicle thread
-	boost::thread *_vehicle_thread;
 
 
 	const std::string to_string() const;

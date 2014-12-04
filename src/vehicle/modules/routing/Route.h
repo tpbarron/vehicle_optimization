@@ -8,6 +8,7 @@
 #ifndef ROUTE_H_
 #define ROUTE_H_
 
+#include <vector>
 #include <list>
 #include <cmath>
 #include <utility>
@@ -49,6 +50,8 @@ public:
 	std::vector<Hazard> get_imminent_hazards(Map& map);
 
 	bool does_path_exist();
+
+	std::vector<Intersection> get_path_as_intersections(Map& map) const;
 
 private:
 

@@ -12,7 +12,6 @@ namespace Utils {
 boost::uuids::random_generator gen_uuid;
 
 boost::asio::io_service _global_io;
-boost::asio::io_service::strand _global_strand(_global_io);
 
 
 std::string get_scenario_file_path(std::string file) {
@@ -44,9 +43,6 @@ boost::asio::io_service& get_global_io_service() {
 	return _global_io;
 }
 
-boost::asio::io_service::strand& get_global_strand() {
-	return _global_strand;
-}
 
 void start_io() {
 	_global_io.run();

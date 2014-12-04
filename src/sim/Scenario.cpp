@@ -303,9 +303,6 @@ void populate_map() {
 
 
 
-/*
- * TODO: start all timers
- */
 void start() {
 	std::cout << "Starting scenario" << std::endl;
 	_start_time = boost::posix_time::microsec_clock::local_time();
@@ -318,6 +315,7 @@ void start() {
 		Vehicle* v = dynamic_cast<Vehicle*>(*itr);
 		v->start();
 	}
+	Utils::start_io();
 }
 
 void stop() {
@@ -330,6 +328,7 @@ void stop() {
 		Vehicle* v = dynamic_cast<Vehicle*>(*itr);
 		v->stop();
 	}
+	Utils::stop_io();
 }
 
 

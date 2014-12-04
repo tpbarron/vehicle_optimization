@@ -157,6 +157,7 @@ std::vector<Hazard> ModuleMediator::get_imminent_hazards() {
  * about.
  */
 std::vector<Hazard> ModuleMediator::get_new_imminent_hazards() {
+
 	std::vector<Hazard> new_imminents;
 
 	std::vector<Hazard> imminents = _routing_module->get_imminent_hazards();

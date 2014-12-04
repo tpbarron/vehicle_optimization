@@ -14,10 +14,9 @@
 #include "data_manager/VehicleManager.h"
 
 
-MesgHandlerModule::MesgHandlerModule(boost::asio::io_service::strand &strand) :
+MesgHandlerModule::MesgHandlerModule() :
 	_mediator(nullptr),
-	_strand(strand),
-	_nearby_vehicle_timer(strand.get_io_service(), boost::posix_time::milliseconds(500)),
+	_nearby_vehicle_timer(Utils::get_global_io_service(), boost::posix_time::milliseconds(500)),
 	_nearby_vehicle_thread(nullptr) {
 }
 
@@ -33,10 +32,10 @@ void MesgHandlerModule::start() {
 	std::cout << "Starting MesgHandler Module" << std::endl;
 
 	// Start timer to update own position along route..
-	_nearby_vehicle_timer.async_wait(_strand.wrap(boost::bind(&MesgHandlerModule::update_nearest_vehicles, this)));
+	_nearby_vehicle_timer.async_wait(boost::bind(&MesgHandlerModule::update_nearest_vehicles, this));
 	_nearby_vehicle_thread = new boost::thread(boost::bind(
 			static_cast<size_t (boost::asio::io_service::*)()> (&boost::asio::io_service::run),
-			boost::ref(_strand.get_io_service())));
+			boost::ref(Utils::get_global_io_service())));
 }
 
 void MesgHandlerModule::stop() {

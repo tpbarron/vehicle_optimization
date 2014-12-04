@@ -7,10 +7,9 @@
 
 #include "VehicleSensorModule.h"
 
-VehicleSensorModule::VehicleSensorModule(boost::asio::io_service::strand &strand) :
+VehicleSensorModule::VehicleSensorModule() :
 	_mediator(nullptr),
-	_strand(strand),
-	_broadcast_timer(strand.get_io_service(), boost::posix_time::milliseconds(500)),
+	_broadcast_timer(Utils::get_global_io_service(), boost::posix_time::milliseconds(500)),
 	_broadcast_thread(nullptr),
 	_count(0) {
 }
@@ -26,11 +25,12 @@ void VehicleSensorModule::set_mediator(ModuleMediator *mediator) {
 
 void VehicleSensorModule::start() {
 	std::cout << "Starting vehicle sensor module" << std::endl;
+
 	// Start timer to send out updates
-	_broadcast_timer.async_wait(_strand.wrap(boost::bind(&VehicleSensorModule::update, this)));
+	_broadcast_timer.async_wait(boost::bind(&VehicleSensorModule::update, this));
 	_broadcast_thread = new boost::thread(boost::bind(
 			static_cast<size_t (boost::asio::io_service::*)()> (&boost::asio::io_service::run),
-			boost::ref(_strand.get_io_service())));
+			boost::ref(Utils::get_global_io_service())));
 }
 
 void VehicleSensorModule::stop() {
