@@ -8,8 +8,6 @@
 #include "Lane.h"
 
 Lane::Lane() {
-	// TODO Auto-generated constructor stub
-
 }
 
 Lane::~Lane() {

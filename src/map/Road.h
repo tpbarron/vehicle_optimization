@@ -10,6 +10,7 @@
 
 #include <vector>
 
+
 #include "data_types/module_types/Hazard.h"
 #include "Intersection.h"
 #include "Lane.h"
@@ -18,14 +19,14 @@ class Road {
 
 public:
 
-	Road();
-	virtual ~Road();
-
 	enum RoadType {
 		TWO_WAY,
 		ONE_WAY_FORWARD,
 		ONE_WAY_BACKWARD
 	};
+
+	Road();
+	virtual ~Road();
 
 	void set_start_intersection(Intersection &i);
 	void set_end_intersection(Intersection &i);
@@ -33,10 +34,10 @@ public:
 	void set_distance(double d);
 	void add_hazard(Hazard h);
 
-	Intersection get_start_intersection();
-	Intersection get_end_intersection();
-	double get_speed_limit();
-	double get_distance();
+	const Intersection& get_start_intersection() const;
+	const Intersection& get_end_intersection() const;
+	const double get_speed_limit() const;
+	const double get_distance() const;
 
 	/*
 	 * From start to end
@@ -60,7 +61,6 @@ public:
 	const static double RANGE;
 	bool is_hazard_at_position(Position &p, double range=RANGE);
 	std::vector<Hazard> get_hazard_at_position(Position &p, double range=RANGE);
-
 
 	/*
 	 * TODO: make this private and use function for cost..

@@ -120,7 +120,7 @@ std::pair<Intersection, Map::vertex_t> Map::get_intersection_closest_to(Position
  * desired element was found
  */
 std::pair<Map::vertex_t, bool> Map::get_vertex_for_intersection(Intersection &i) {
-	vertex_t v;
+	vertex_t v = 0;
 	std::pair<vertex_iterator, vertex_iterator> vi = boost::vertices(_network);
 	for (vertex_iterator vertex_iter = vi.first; vertex_iter != vi.second; ++vertex_iter) {
 		v = *vertex_iter;

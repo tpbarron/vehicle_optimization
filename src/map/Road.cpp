@@ -9,14 +9,17 @@
 
 const double Road::RANGE = 10.0;
 
-Road::Road() {
-	_speed_limit = 0;
-	_distance = 0;
+Road::Road() :
+	_distance(0),
+	_speed_limit(0) {
 }
 
 Road::~Road() {
 }
 
+/*
+ * ----- Setters -----
+ */
 
 void Road::set_start_intersection(Intersection &i) {
 	_start_int = i;
@@ -39,19 +42,23 @@ void Road::add_hazard(Hazard h) {
 }
 
 
-Intersection Road::get_start_intersection() {
+/*
+ * ----- Getters -----
+ */
+
+const Intersection& Road::get_start_intersection() const {
 	return _start_int;
 }
 
-Intersection Road::get_end_intersection() {
+const Intersection& Road::get_end_intersection() const {
 	return _end_int;
 }
 
-double Road::get_speed_limit() {
+const double Road::get_speed_limit() const {
 	return _speed_limit;
 }
 
-double Road::get_distance() {
+const double Road::get_distance() const {
 	return _distance;
 }
 
