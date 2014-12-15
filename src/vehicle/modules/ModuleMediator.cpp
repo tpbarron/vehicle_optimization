@@ -51,7 +51,7 @@ void ModuleMediator::set_vehicle_sensor_module(VehicleSensorModule *vehicle_sens
  *
  */
 
-const Speed ModuleMediator::get_speed_from_route() const {
+const Speed& ModuleMediator::get_speed_from_route() const {
 	return _routing_module->get_current_speed_limit();
 }
 

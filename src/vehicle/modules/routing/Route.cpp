@@ -83,11 +83,9 @@ void Route::generate_route(Map &map, Map::vertex_t &start, Map::vertex_t &goal) 
 
 /**
  * Return the Speed at the given
- * TODO: should the road store the speed limit as a Speed object?
  */
-Speed Route::get_current_speed_limit(Map& map) {
-	Speed s(map.get_network()[_current_edge].get_speed_limit());
-	return s;
+const Speed& Route::get_current_speed_limit(Map& map) {
+	return map.get_network()[_current_edge].get_speed_limit();
 }
 
 /**

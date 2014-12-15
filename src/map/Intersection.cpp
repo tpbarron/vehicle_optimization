@@ -7,10 +7,11 @@
 
 #include "Intersection.h"
 
-Intersection::Intersection() : _pos(0, 0) {
-	_id = -1;
-	_width = -1;
-	_height = -1;
+Intersection::Intersection() :
+	_id(-1),
+	_pos(0, 0),
+	_width(-1),
+	_height(-1) {
 }
 
 Intersection::~Intersection() {

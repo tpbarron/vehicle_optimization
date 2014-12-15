@@ -57,7 +57,7 @@ public:
 	 * ----- vehicle sensor interface -----
 	 */
 
-	const Speed get_speed_from_route() const;
+	const Speed& get_speed_from_route() const;
 
 	void set_sensor_speed(Speed &s);
 

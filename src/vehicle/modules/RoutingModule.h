@@ -37,7 +37,7 @@ public:
 
 	void generate_route();
 
-	Speed get_current_speed_limit();
+	const Speed& get_current_speed_limit();
 	Position get_current_position() const;
 	Position get_new_position(Distance& d);
 	Heading get_current_heading();

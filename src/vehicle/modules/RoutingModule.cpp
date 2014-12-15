@@ -44,7 +44,7 @@ void RoutingModule::generate_route() {
 	_route.print_route(_map);
 }
 
-Speed RoutingModule::get_current_speed_limit() {
+const Speed& RoutingModule::get_current_speed_limit() {
 	return _route.get_current_speed_limit(_map);
 }
 

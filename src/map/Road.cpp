@@ -30,7 +30,7 @@ void Road::set_end_intersection(Intersection &i) {
 }
 
 void Road::set_speed_limit(double s) {
-	_speed_limit = s;
+	_speed_limit.set_speed(s);
 }
 
 void Road::set_distance(double d) {
@@ -54,7 +54,7 @@ const Intersection& Road::get_end_intersection() const {
 	return _end_int;
 }
 
-const double Road::get_speed_limit() const {
+const Speed& Road::get_speed_limit() const {
 	return _speed_limit;
 }
 

@@ -41,7 +41,7 @@ public:
 
 	void generate_route(Map &map, Map::vertex_t &start, Map::vertex_t &goal);
 
-	Speed get_current_speed_limit(Map& map);
+	const Speed& get_current_speed_limit(Map& map);
 	Position get_current_position() const;
 	Position get_new_position(Map& map, const Distance &d);
 	Heading get_current_heading();

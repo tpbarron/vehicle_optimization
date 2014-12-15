@@ -12,6 +12,7 @@
 
 
 #include "data_types/module_types/Hazard.h"
+
 #include "Intersection.h"
 #include "Lane.h"
 
@@ -36,7 +37,7 @@ public:
 
 	const Intersection& get_start_intersection() const;
 	const Intersection& get_end_intersection() const;
-	const double get_speed_limit() const;
+	const Speed& get_speed_limit() const;
 	const double get_distance() const;
 
 	/*
@@ -73,7 +74,7 @@ private:
 	/*
 	 * Speed limit in meters/sec
 	 */
-	double _speed_limit;
+	Speed _speed_limit;
 
 	Intersection _start_int;
 	Intersection _end_int;
