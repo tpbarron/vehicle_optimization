@@ -18,7 +18,6 @@
 #include <boost/asio.hpp>
 #include <boost/program_options.hpp>
 
-#include "graphics/gui/GUI.h"
 #include "sim/Scenario.h"
 #include "utils/Utils.h"
 #include "vehicle/Vehicle.h"
@@ -35,7 +34,6 @@ int main(int argc, char* argv[]) {
 	desc.add_options()
 	    ("help", "help message")
 	    ("tests", po::value<bool>(), "Should run tests")
-	    ("graphics", po::value<bool>(), "Should use GTK graphics")
 	;
 
 	po::variables_map vm;
@@ -54,26 +52,13 @@ int main(int argc, char* argv[]) {
 	    run_tests = vm["tests"].as<bool>();
 	}
 
-	bool use_graphics = false;
-	if (vm.count("graphics")) {
-		std::cout << "Will use GTK graphics..." << std::endl;
-		use_graphics = vm["graphics"].as<bool>();
-	}
-
-	std::cout << "Use graphics: " << use_graphics << std::endl;
-	if (use_graphics) {
-		GUI::init(argc, argv);
-//		GUI::cleanup();
-		//need to clean up GUI but from where?
-	} else {
-		Scenario::init();
-		Scenario::load_scenario("basic_grid_single_vehicle");
-		Scenario::test_print_map();
-//		Scenario::test_routing();
-		Scenario::start();
-//		Scenario::stop();
-//		Scenario::cleanup();
-	}
+	Scenario::init();
+	Scenario::load_scenario("basic_grid_single_vehicle");
+	Scenario::test_print_map();
+	//		Scenario::test_routing();
+	Scenario::start();
+	//		Scenario::stop();
+	//		Scenario::cleanup();
 
 	if (run_tests) {
 		return TestMain::run_tests(argc, argv);
