@@ -237,8 +237,7 @@ Lane load_road_lane(std::string scenario, std::string file) {
 		BOOST_FOREACH(boost::property_tree::ptree::value_type &lane, lane_data.get_child(LANE_WAYPOINTS)) {
 			double ptx = lane.second.get<double>(LANE_POINT_X);
 			double pty = lane.second.get<double>(LANE_POINT_Y);
-			Position p;
-			p.set_position(ptx, pty);
+			Position p(ptx, pty);
 			l.add_waypoint(p);
 		}
 	} else {
