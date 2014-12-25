@@ -7,6 +7,9 @@
 
 #include "Route.h"
 
+#include <iostream>
+
+
 Route::Route() :
 	_current_start_vertex(0),
 	_current_end_vertex(0),

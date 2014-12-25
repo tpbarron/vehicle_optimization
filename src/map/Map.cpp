@@ -7,6 +7,8 @@
 
 #include "Map.h"
 
+#include <iostream>
+
 Map::Map() : _network(0) {
 	_height = -1;
 	_width = -1;
