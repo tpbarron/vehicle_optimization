@@ -44,10 +44,10 @@ void Intersection::set_position(double x, double y) {
 }
 
 
-Position Intersection::get_position() {
+const Position& Intersection::get_position() const {
 	return _pos;
 }
 
-int Intersection::get_id() {
+const int Intersection::get_id() const {
 	return _id;
 }

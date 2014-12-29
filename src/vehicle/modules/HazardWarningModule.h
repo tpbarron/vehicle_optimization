@@ -46,9 +46,9 @@ public:
 
 	void set_mediator(ModuleMediator *mediator);
 
-	void handle(Message &msg);
+	void handle(HazardMessage *mesg);
 
-	void add_hazard(Hazard &h);
+	void add_hazard(Hazard h);
 	void remove_hazard(Hazard &h);
 
 	bool is_known_relevant_hazards(Position &pos, Heading &hdng);

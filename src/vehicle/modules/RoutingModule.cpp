@@ -68,3 +68,7 @@ std::vector<Hazard> RoutingModule::get_imminent_hazards() {
 	return _route.get_imminent_hazards(_map);
 }
 
+void RoutingModule::print_map() {
+	_map.print_map_data();
+}
+

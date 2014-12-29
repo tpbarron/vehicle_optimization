@@ -8,9 +8,10 @@
 #include "AutopilotModule.h"
 
 AutopilotModule::AutopilotModule() :
+	_update_period(100),
 	_mediator(nullptr),
 	_last_update_time(boost::posix_time::microsec_clock::local_time()),
-	_self_update_timer(Utils::get_global_io_service(), boost::posix_time::milliseconds(100)),
+	_self_update_timer(Utils::get_global_io_service(), boost::posix_time::milliseconds(1000)),
 	_self_update_thread(nullptr) {
 
 }
@@ -52,7 +53,7 @@ void AutopilotModule::set_mediator(ModuleMediator *mediator) {
  */
 void AutopilotModule::update_self() {
 	std::cout << "Updating self" << std::endl;
-	_self_update_timer.expires_at(_self_update_timer.expires_at() + boost::posix_time::milliseconds(100));
+	_self_update_timer.expires_at(_self_update_timer.expires_at() + boost::posix_time::milliseconds(_update_period));
 	_self_update_timer.async_wait(boost::bind(&AutopilotModule::update_self, this));
 
 	//Get time diff, calc new position from current
@@ -113,22 +114,28 @@ void AutopilotModule::check_hazards(Position &pos, Heading &hdng) {
 //	}
 
 	std::vector<Hazard> imminents = _mediator->get_new_imminent_hazards();
-	std::vector<Message> hazard_messages;
+	std::vector<Message*> hazard_messages;
 
 	for (std::vector<Hazard>::iterator itr = imminents.begin(); itr != imminents.end(); ++itr) {
 		//save all new hazards
 		_mediator->save_hazard(*itr);
 
-		std::cout << "FOUND HAZARD!!!!!!!!!!!!!!!!!!!!!!" << std::endl;
-
 		//create some hazard messages
 		HazardMessage mesg = _mediator->create_hazard_message(*itr);
-		hazard_messages.push_back(mesg);
+		Message* m = new HazardMessage(mesg.get_hazard());
+		hazard_messages.push_back(m);
 	}
 
 	//send out all messages
-	if (hazard_messages.size() > 0)
+	if (hazard_messages.size() > 0) {
+		std::cout << "Sending HazardMessages" << std::endl;
 		_mediator->send_messages(hazard_messages);
+	}
+
+	// Free the memory for each HazardMessage*
+	for (auto itr = hazard_messages.begin(); itr != hazard_messages.end(); ++itr) {
+		delete *itr;
+	}
 
 	// Now we have logged all hazards, check if we need to change the speed
 	// and respond immediately if necessary

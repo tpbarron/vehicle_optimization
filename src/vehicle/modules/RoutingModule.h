@@ -45,6 +45,8 @@ public:
 	bool imminent_hazard();
 	std::vector<Hazard> get_imminent_hazards();
 
+	void print_map();
+
 private:
 
 	ModuleMediator *_mediator;

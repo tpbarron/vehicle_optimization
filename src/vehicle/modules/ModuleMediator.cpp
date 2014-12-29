@@ -24,6 +24,11 @@ ModuleMediator::~ModuleMediator() {
  * ----- Module setters -----
  *
  */
+
+void ModuleMediator::set_uuid(std::string uuid) {
+	_uuid = uuid;
+}
+
 void ModuleMediator::set_autopilot_module(AutopilotModule *autopilot) {
 	_autopilot = autopilot;
 }
@@ -44,6 +49,14 @@ void ModuleMediator::set_vehicle_sensor_module(VehicleSensorModule *vehicle_sens
 	_vehicle_sensor_module = vehicle_sensor_module;
 }
 
+
+/*
+ * ----- General -----
+ */
+
+const std::string& ModuleMediator::get_uuid() const {
+	return _uuid;
+}
 
 /*
  *
@@ -177,6 +190,6 @@ std::vector<Hazard> ModuleMediator::get_new_imminent_hazards() {
  *
  */
 
-void ModuleMediator::send_messages(std::vector<Message> messages) {
+void ModuleMediator::send_messages(std::vector<Message*> &messages) {
 	_mesg_handler->send_messages(messages);
 }

@@ -19,9 +19,9 @@ public:
 
 	virtual ~IVehicleDataListener();
 
-	virtual void recv(Message &data) = 0;
+	virtual void recv(Message *data) = 0;
 	virtual void add_listener(IVehicleDataListener &l) = 0;
-	virtual const Position get_position() const = 0;
+	virtual const Position& get_position() const = 0;
 	virtual const std::string to_string() const = 0;
 	virtual const std::string get_id() const = 0;
 

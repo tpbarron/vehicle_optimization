@@ -21,6 +21,7 @@ namespace Utils {
 extern boost::uuids::random_generator gen_uuid;
 
 extern boost::asio::io_service _global_io;
+extern boost::asio::io_service::work _global_work;
 
 
 const std::string SCENARIO_DATA_DIR = "data/scenarios/";

@@ -30,7 +30,7 @@ void ModuleManager::stop() {
 
 void ModuleManager::init(std::string uuid) {
 	std::cout << "Initializing ModuleManager" << std::endl;
-	init_mediator();
+	init_mediator(uuid);
 	init_sensor(uuid);
 }
 
@@ -38,7 +38,10 @@ void ModuleManager::init(std::string uuid) {
  * Hook up the ModuleMediator for inter module communication.
  * This needs to be updated every time a module is added.
  */
-void ModuleManager::init_mediator() {
+void ModuleManager::init_mediator(std::string uuid) {
+	//Give mediator uuid so that modules have access
+	_mediator.set_uuid(uuid);
+
 	//pass reference of every module to mediator
 	_mediator.set_autopilot_module(&_autopilot);
 	_mediator.set_hazard_warning_module(&_hazard_module);
@@ -78,12 +81,14 @@ void ModuleManager::remove_listener(IVehicleDataListener &l) {
 	_mesg_handler.remove_listener(l);
 }
 
-void ModuleManager::recv(Message &msg) {
-	if (msg.get_type() == message_types::TYPE_HAZARD_WARNING) {
-		std::cout << "Module Manager received hazard warning message";
-		_hazard_module.handle(msg);
-	} else if (msg.get_type() == message_types::TYPE_EMERGENCY_VEHICLE) {
-		std::cout << "Module Manager received emergency vehicle message";
+void ModuleManager::recv(Message *mesg) {
+	std::cout << "ModuleManager received Message" << std::endl;
+	if (mesg->get_type() == message_types::TYPE_HAZARD_WARNING) {
+		std::cout << "ModuleManager received HazardMessage" << std::endl;
+		HazardMessage* hazard_mesg = dynamic_cast<HazardMessage*>(mesg);
+		_hazard_module.handle(hazard_mesg);
+	} else if (mesg->get_type() == message_types::TYPE_EMERGENCY_VEHICLE) {
+		std::cout << "ModuleManager received emergency vehicle message" << std::endl;
 	}
 }
 
@@ -99,7 +104,7 @@ void ModuleManager::set_map(const Map& map) {
 	_routing_module.set_map(map);
 }
 
-Position ModuleManager::get_current_position() const {
+const Position& ModuleManager::get_current_position() const {
 	return _vehicle_sensor_module.get_position();
 }
 

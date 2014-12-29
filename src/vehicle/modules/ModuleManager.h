@@ -44,20 +44,20 @@ public:
 	void stop();
 
 	void init(std::string uuid);
-	void init_mediator();
+	void init_mediator(std::string uuid);
 	void init_sensor(std::string uuid);
 	void generate_route();
 
 	void add_listener(IVehicleDataListener &l);
 	void remove_listener(IVehicleDataListener &l);
 
-	void recv(Message &msg);
+	void recv(Message *mesg);
 
 	void set_start_position(const Position& start_position);
 	void set_goal_position(const Position& goal_position);
 	void set_map(const Map& map);
 
-	Position get_current_position() const;
+	const Position& get_current_position() const;
 
 private:
 

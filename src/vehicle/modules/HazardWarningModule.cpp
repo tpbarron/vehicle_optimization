@@ -21,16 +21,22 @@ void HazardWarningModule::set_mediator(ModuleMediator *mediator) {
 	_mediator = mediator;
 }
 
-void HazardWarningModule::handle(Message &msg) {
-	HazardMessage& hazard_msg = dynamic_cast<HazardMessage&>(msg);
-	Hazard hazard = hazard_msg.get_hazard();
+void HazardWarningModule::handle(HazardMessage *mesg) {
+	std::cout << "HazardWarningModule handling HazardMessage" << std::endl;
+	Hazard hazard = mesg->get_hazard();
 	if (!is_known_hazard(hazard)) {
+		std::cout << "HazardWarningModule saving new Hazard" << std::endl;
 		add_hazard(hazard);
+	} else {
+		std::cout << "HazardWarningModule Hazard already known" << std::endl;
 	}
-	//TODO: how respond to the actual hazard
 }
 
-void HazardWarningModule::add_hazard(Hazard &h) {
+/**
+ * Pass a copy to this function so the freeing of
+ * memory does not make this hazard invalid
+ */
+void HazardWarningModule::add_hazard(Hazard h) {
 	_hazards.insert(h); //push_back(h);
 }
 void HazardWarningModule::remove_hazard(Hazard &h) {

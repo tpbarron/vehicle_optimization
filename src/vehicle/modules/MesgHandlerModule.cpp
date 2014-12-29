@@ -15,8 +15,9 @@
 
 
 MesgHandlerModule::MesgHandlerModule() :
+	_update_period(500),
 	_mediator(nullptr),
-	_nearby_vehicle_timer(Utils::get_global_io_service(), boost::posix_time::milliseconds(500)),
+	_nearby_vehicle_timer(Utils::get_global_io_service(), boost::posix_time::milliseconds(1000)),
 	_nearby_vehicle_thread(nullptr) {
 }
 
@@ -50,23 +51,30 @@ void MesgHandlerModule::update_nearest_vehicles() {
 	std::cout << "Updating nearest vehicles" << std::endl;
 
 	// recalc every half second
-	_nearby_vehicle_timer.expires_at(_nearby_vehicle_timer.expires_at() + boost::posix_time::milliseconds(500));
+	_nearby_vehicle_timer.expires_at(_nearby_vehicle_timer.expires_at() + boost::posix_time::milliseconds(_update_period));
 	_nearby_vehicle_timer.async_wait(boost::bind(&MesgHandlerModule::update_nearest_vehicles, this));
 
 	std::set<IVehicleDataListener*, IVehicleDataListener::IVehicleDataListenerComp> nearest =
 			VehicleManager::get_nearest(_mediator->get_sensor_position(), 50, 100);
 
-	std::set<IVehicleDataListener*, IVehicleDataListener::IVehicleDataListenerComp> intersect;
-	std::set_intersection(nearest.begin(), nearest.end(), _listeners.begin(), _listeners.end(),
-	                  std::inserter(intersect,intersect.begin()));
+	// remove the own vehicle
+	std::string uuid = _mediator->get_uuid();
+	for (auto itr = nearest.begin(); itr != nearest.end(); ++itr) {
+		IVehicleDataListener* v = *itr;
+		if (v->get_id() == uuid) {
+			nearest.erase(itr);
+			break;
+		}
+	}
 
-	_listeners = intersect;
+	_listeners = nearest;
 }
 
 /**
  * Send out a Message to all nearby listening vehicles
  */
-void MesgHandlerModule::send_message(Message &mesg) {
+void MesgHandlerModule::send_message(Message *mesg) {
+	std::cout << "Sending Message to " << _listeners.size() << " vehicles" << std::endl;
 	for (auto itr = _listeners.begin(); itr != _listeners.end(); ++itr) {
 		(*itr)->recv(mesg);
 	}
@@ -75,7 +83,7 @@ void MesgHandlerModule::send_message(Message &mesg) {
 /**
  * Send out a bunch of messages
  */
-void MesgHandlerModule::send_messages(std::vector<Message> &messages) {
+void MesgHandlerModule::send_messages(std::vector<Message*> &messages) {
 	for (auto itr = messages.begin(); itr != messages.end(); ++itr) {
 		send_message(*itr);
 	}

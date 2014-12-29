@@ -9,9 +9,9 @@
 
 #include <iostream>
 
-Map::Map() : _network(0) {
-	_height = -1;
-	_width = -1;
+Map::Map() : _network(0),
+			 _width(-1),
+			 _height(-1) {
 }
 
 Map::~Map() {
@@ -42,10 +42,10 @@ void Map::build_weight_map() {
  *
  */
 void Map::add_edge(Intersection &i1, Intersection &i2, Road &r) {
-	std::pair<vertex_t, bool> u_exists = get_vertex_for_intersection(i1);
-	std::pair<vertex_t, bool> v_exists = get_vertex_for_intersection(i2);
+	std::pair<Map::vertex_t, bool> u_exists = get_vertex_for_intersection(i1);
+	std::pair<Map::vertex_t, bool> v_exists = get_vertex_for_intersection(i2);
 
-	vertex_t u, v;
+	Map::vertex_t u, v;
 	if (!u_exists.second) {
 		u = boost::add_vertex(i1, _network);
 	} else {
@@ -58,23 +58,16 @@ void Map::add_edge(Intersection &i1, Intersection &i2, Road &r) {
 		v = v_exists.first;
 	}
 
-	edge_t e;
+	Map::edge_t e;
 	bool b;
 	boost::tie(e, b) = boost::add_edge(u, v, _network);
-
-	//weight_map weights = boost::get(boost::edge_weight, _network);
-	//weights[e] = r->get_distance();
-
-	//copy to vertex u and v
-//	_network[u] = i1;
-//	_network[v] = i2;
 
 	//copy to edge e
 	_network[e] = r;
 }
 
 
-Map::Graph Map::get_network() {
+const Map::Graph& Map::get_network() {
 	return _network;
 }
 
@@ -146,8 +139,12 @@ void Map::print_map_data() {
 		Intersection i2 = _network[v];
 		Road r = _network[*edge_iter];
 
+
 		std::cout << "(" << i1.get_id() << " pos=" << i1.get_position().to_string() << "), "
 						 << "road = " << r.get_distance() << ", ("
 						 << i2.get_id() << " pos=" << i2.get_position().to_string() << ")" << std::endl;
+		for (auto itr = r.get_hazards().begin(); itr != r.get_hazards().end(); ++itr) {
+			std::cout << "  Hazard: " << (*itr).get_position().to_string() << std::endl;
+		}
 	}
 }

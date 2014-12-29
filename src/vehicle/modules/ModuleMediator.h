@@ -42,6 +42,8 @@ public:
 	 * ----- Module setters -----
 	 */
 
+	void set_uuid(std::string uuid);
+
 	void set_autopilot_module(AutopilotModule *autopilot);
 
 	void set_hazard_warning_module(HazardWarningModule *hazard_module);
@@ -52,6 +54,12 @@ public:
 
 	void set_vehicle_sensor_module(VehicleSensorModule *vehicle_sensor_module);
 
+
+	/*
+	 * ----- General -----
+	 */
+
+	const std::string& get_uuid() const;
 
 	/*
 	 * ----- vehicle sensor interface -----
@@ -101,9 +109,11 @@ public:
 	 * ----- Mesg Handler interface
 	 */
 
-	void send_messages(std::vector<Message> messages);
+	void send_messages(std::vector<Message*> &messages);
 
 private:
+
+	std::string _uuid;
 
 	/*
 	 * Module pointers

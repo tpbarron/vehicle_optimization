@@ -9,7 +9,6 @@
 
 #include <iostream>
 
-
 Route::Route() :
 	_current_start_vertex(0),
 	_current_end_vertex(0),
@@ -202,14 +201,14 @@ Heading Route::get_current_heading() {
  * Return true if there is an imminent Hazard along this route
  */
 bool Route::imminent_hazard(Map& map) {
-	return map.get_network()[_current_edge].is_hazard_at_position(_current_position);
+	return map.get_network()[_current_edge].is_hazard_at_position(_current_position, Road::RANGE);
 }
 
 /*
  * Return the nearest Hazard to the current vehicle position
  */
 std::vector<Hazard> Route::get_imminent_hazards(Map& map) {
-	return map.get_network()[_current_edge].get_hazard_at_position(_current_position);
+	return map.get_network()[_current_edge].get_hazard_at_position(_current_position, Road::RANGE);
 }
 
 /**

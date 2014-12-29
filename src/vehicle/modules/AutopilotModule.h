@@ -40,6 +40,8 @@ public:
 
 private:
 
+	unsigned int _update_period;
+
 	ModuleMediator *_mediator;
 
 	// Self update

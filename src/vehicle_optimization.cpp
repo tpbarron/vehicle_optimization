@@ -1,11 +1,8 @@
-/**
- * Copyright 1993-2012 NVIDIA Corporation.  All rights reserved.
+/*
+ * vehicle_optimization.cpp
  *
- * Please refer to the NVIDIA end user license agreement (EULA) associated
- * with this source code for terms and conditions that govern your use of
- * this software. Any use, reproduction, disclosure, or distribution of
- * this software and related documentation outside the terms of the EULA
- * is strictly prohibited.
+ *  Created on: Aug 23, 2014
+ *      Author: trevor
  */
 
 
@@ -53,7 +50,7 @@ int main(int argc, char* argv[]) {
 	}
 
 	Scenario::init();
-	Scenario::load_scenario("basic_grid_single_vehicle");
+	Scenario::load_scenario("basic_grid");
 	Scenario::test_print_map();
 	//		Scenario::test_routing();
 	Scenario::start();

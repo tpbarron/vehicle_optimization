@@ -60,8 +60,12 @@ public:
 	 * Check if there is a hazard within the given range...
 	 */
 	const static double RANGE;
-	bool is_hazard_at_position(Position &p, double range=RANGE);
-	std::vector<Hazard> get_hazard_at_position(Position &p, double range=RANGE);
+	bool is_hazard_at_position(Position &p, double range=RANGE) const;
+	std::vector<Hazard> get_hazard_at_position(Position &p, double range=RANGE) const;
+	std::vector<Hazard> get_hazards() const;
+
+
+	std::string to_string();
 
 	/*
 	 * TODO: make this private and use function for cost..

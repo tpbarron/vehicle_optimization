@@ -43,7 +43,7 @@ public:
 	void set_width(int width);
 	void set_height(int height);
 
-	Graph get_network();
+	const Map::Graph& get_network();
 	int get_num_intersections();
 
 	void build_weight_map();
@@ -58,7 +58,7 @@ private:
 	int _width;
 	int _height;
 
-	Graph _network;
+	Map::Graph _network;
 };
 
 #endif /* MAP_H_ */

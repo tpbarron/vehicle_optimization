@@ -8,8 +8,9 @@
 #include "VehicleSensorModule.h"
 
 VehicleSensorModule::VehicleSensorModule() :
+	_update_period(1000),
 	_mediator(nullptr),
-	_broadcast_timer(Utils::get_global_io_service(), boost::posix_time::milliseconds(500)),
+	_broadcast_timer(Utils::get_global_io_service(), boost::posix_time::milliseconds(_update_period)),
 	_broadcast_thread(nullptr),
 	_count(0) {
 }
@@ -81,7 +82,7 @@ std::string VehicleSensorModule::to_string() {
 void VehicleSensorModule::update() {
 	if (_count < 10) {
 		broadcast();
-		_broadcast_timer.expires_at(_broadcast_timer.expires_at() + boost::posix_time::milliseconds(500));
+		_broadcast_timer.expires_at(_broadcast_timer.expires_at() + boost::posix_time::milliseconds(_update_period));
 		_broadcast_timer.async_wait(boost::bind(&VehicleSensorModule::update, this));
 		_count++;
 	}

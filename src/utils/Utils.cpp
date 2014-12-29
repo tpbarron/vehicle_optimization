@@ -12,6 +12,7 @@ namespace Utils {
 boost::uuids::random_generator gen_uuid;
 
 boost::asio::io_service _global_io;
+boost::asio::io_service::work _global_work(_global_io);
 
 
 std::string get_scenario_file_path(std::string file) {

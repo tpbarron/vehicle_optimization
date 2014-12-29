@@ -70,9 +70,9 @@ void Vehicle::add_listener(IVehicleDataListener &l) {
  *
  * @param msg the incoming Message
  */
-void Vehicle::recv(Message &msg) {
-	std::cout << get_id() << ": received data, sending to module manager" << std::endl;
-	_module_manager.recv(msg);
+void Vehicle::recv(Message *mesg) {
+	std::cout << get_id() << ": received data, sending to ModuleManager" << std::endl;
+	_module_manager.recv(mesg);
 }
 
 
@@ -125,7 +125,7 @@ void Vehicle::set_type(VehicleType t) {
  *
  */
 
-const Position Vehicle::get_position() const {
+const Position& Vehicle::get_position() const {
 	return _module_manager.get_current_position();
 }
 

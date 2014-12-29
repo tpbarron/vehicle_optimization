@@ -23,8 +23,8 @@ public:
 	void set_pox_y(double y);
 	void set_position(double x, double y);
 
-	Position get_position();
-	int get_id();
+	const Position& get_position() const;
+	const int get_id() const;
 
 private:
 

@@ -49,7 +49,7 @@ public:
 	 * Add a new listener to broadcast data to
 	 */
 	virtual void add_listener(IVehicleDataListener &l);
-	virtual void recv(Message &msg);
+	virtual void recv(Message *mesg);
 
 	/*
 	 * Setters
@@ -63,7 +63,7 @@ public:
 	/*
 	 * Getters
 	 */
-	const Position get_position() const;
+	const Position& get_position() const;
 	const boost::uuids::uuid get_id_as_uuid() const;
 	const std::string get_id() const;
 	const std::string get_readable_name() const;

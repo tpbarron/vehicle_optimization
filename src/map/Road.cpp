@@ -7,6 +7,10 @@
 
 #include "Road.h"
 
+#include <iostream>
+
+#include <boost/lexical_cast.hpp>
+
 const double Road::RANGE = 10.0;
 
 Road::Road() :
@@ -100,7 +104,7 @@ bool Road::is_one_way() {
  * @param p the position near which to find hazards
  * @param range the distance to search for a hazard
  */
-bool Road::is_hazard_at_position(Position &p, double range) {
+bool Road::is_hazard_at_position(Position &p, double range) const {
 	for (unsigned int i = 0; i < _hazards.size(); ++i) {
 		if (_hazards[i].get_position().get_distance_to(p).get_distance() < range) {
 			return true;
@@ -112,9 +116,8 @@ bool Road::is_hazard_at_position(Position &p, double range) {
 /**
  * Return any Hazards on the Road within the given range.
  */
-std::vector<Hazard> Road::get_hazard_at_position(Position &p, double range) {
+std::vector<Hazard> Road::get_hazard_at_position(Position &p, double range) const {
 	std::vector<Hazard> hazards;
-
 	for (auto itr = _hazards.begin(); itr != _hazards.end(); ++itr) {
 		Hazard h = *itr;
 		double d = h.get_position().get_distance_to(p).get_distance();
@@ -124,6 +127,14 @@ std::vector<Hazard> Road::get_hazard_at_position(Position &p, double range) {
 	}
 
 	return hazards;
+}
+
+
+/**
+ * Get all hazards on this Road
+ */
+std::vector<Hazard> Road::get_hazards() const {
+	return _hazards;
 }
 
 
@@ -137,3 +148,11 @@ Road::RoadType Road::get_road_type() {
 	}
 	return RoadType::TWO_WAY;
 }
+
+std::string Road::to_string() {
+	std::string s = "";
+	s += "(" + boost::lexical_cast<std::string>(_start_int.get_id()) + ", " +
+			boost::lexical_cast<std::string>(_end_int.get_id()) + ")";
+	return s;
+}
+
