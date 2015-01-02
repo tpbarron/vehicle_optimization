@@ -88,7 +88,7 @@ public:
 
 	bool is_known_relevant_hazards(Position &pos, Heading &hdng);
 
-	Speed get_safe_hazard_speed(Position &pos, Heading &hdng);
+	Speed get_safe_hazard_speed(Position& pos, Heading& hdng, Speed& spd);
 
 	void save_hazard(Hazard &h);
 

@@ -114,8 +114,11 @@ bool ModuleMediator::is_known_relevant_hazards(Position &pos, Heading &hdng) {
 	return _hazard_module->is_known_relevant_hazards(pos, hdng);
 }
 
-Speed ModuleMediator::get_safe_hazard_speed(Position &pos, Heading &hdng) {
-//	return _hazard_module->get_safe_speed(pos, hdng);
+/**
+ * This intentionally returns a copy.
+ */
+Speed ModuleMediator::get_safe_hazard_speed(Position& pos, Heading& hdng, Speed& spd) {
+	return _hazard_module->get_safe_speed(pos, hdng, spd);
 }
 
 /**

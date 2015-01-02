@@ -77,6 +77,19 @@ bool HazardWarningModule::is_known_hazard(Hazard &h) {
 	return found != _hazards.end();
 }
 
+/**
+ *
+ */
+Speed HazardWarningModule::get_safe_speed(Position &pos, Heading &hdng, Speed& default_spd) {
+	for (auto itr = _hazards.begin(); itr != _hazards.end(); ++itr) {
+		Hazard h = *itr;
+		Speed max_safe = h.get_max_safe_speed();
+		if (max_safe < default_spd) {
+			default_spd = max_safe;
+		}
+	}
+	return default_spd;
+}
 
 HazardMessage HazardWarningModule::create_message(Hazard &h) {
 	HazardMessage mesg(h);

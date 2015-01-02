@@ -55,7 +55,7 @@ void MesgHandlerModule::update_nearest_vehicles() {
 	_nearby_vehicle_timer.async_wait(boost::bind(&MesgHandlerModule::update_nearest_vehicles, this));
 
 	std::set<IVehicleDataListener*, IVehicleDataListener::IVehicleDataListenerComp> nearest =
-			VehicleManager::get_nearest(_mediator->get_sensor_position(), 50, 100);
+			VehicleManager::get_nearest(_mediator->get_sensor_position(), 50, 25);
 
 	// remove the own vehicle
 	std::string uuid = _mediator->get_uuid();

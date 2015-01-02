@@ -19,7 +19,15 @@ Speed::Speed(double s) {
 }
 
 Speed::~Speed() {
-	// TODO Auto-generated destructor stub
+}
+
+
+bool Speed::operator <(Speed &other) {
+	return _speed < other.get_speed();
+}
+
+bool Speed::operator >(Speed &other) {
+	return !operator <(other);
 }
 
 void Speed::set_speed(const Speed &s) {

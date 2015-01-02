@@ -54,6 +54,8 @@ public:
 	bool is_known_relevant_hazards(Position &pos, Heading &hdng);
 	bool is_known_hazard(Hazard &h);
 
+	Speed get_safe_speed(Position &pos, Heading &hdng, Speed& default_spd);
+
 	HazardMessage create_message(Hazard &h);
 
 	void update();
@@ -77,7 +79,6 @@ private:
 	};
 
 	std::unordered_set<Hazard, HazardHash> _hazards;
-//	std::vector<Hazard> _hazards;
 
 };
 

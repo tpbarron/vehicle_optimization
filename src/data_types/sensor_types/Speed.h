@@ -20,6 +20,9 @@ public:
 	Speed(double s);
 	virtual ~Speed();
 
+	bool operator<(Speed &other);
+	bool operator>(Speed &other);
+
 	void set_speed(double s);
 	void set_speed(const Speed &s);
 	const double get_speed() const;

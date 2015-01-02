@@ -54,7 +54,7 @@ private:
 	 */
 	void update_self();
 	void calculate_progress(long millis);
-	void check_hazards(Position &pos, Heading &hdng);
+	void check_hazards(Position &pos, Heading &hdng, Speed &spd);
 
 };
 

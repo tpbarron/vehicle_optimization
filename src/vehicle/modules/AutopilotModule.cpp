@@ -96,14 +96,14 @@ void AutopilotModule::calculate_progress(long millis) {
 //	_sensor.set_vehicle_turn_rate(0);
 //	_sensor.set_wheel_turn_rate(0);
 
-	check_hazards(pos, hdng);
+	check_hazards(pos, hdng, speed);
 }
 
 /**
  * Given current position and heading check for hazards and
  * respond to them.
  */
-void AutopilotModule::check_hazards(Position &pos, Heading &hdng) {
+void AutopilotModule::check_hazards(Position &pos, Heading &hdng, Speed &spd) {
 //	if (_mediator->is_known_relevant_hazards(pos, hdng)) {
 //		//if we already know about something, respond to it
 //		Speed hazard_speed = _mediator->get_safe_hazard_speed(pos, hdng);
@@ -139,6 +139,7 @@ void AutopilotModule::check_hazards(Position &pos, Heading &hdng) {
 
 	// Now we have logged all hazards, check if we need to change the speed
 	// and respond immediately if necessary
-	//TODO: use mediator.get_safe_hazard_speed to check response
+	Speed safe_speed = _mediator->get_safe_hazard_speed(pos, hdng, spd);
+	_mediator->set_sensor_speed(safe_speed);
 }
 
