@@ -33,3 +33,6 @@
 # Eclipse Debug and Release folders
 Debug
 Release
+
+# Ignoring log files
+*.log
