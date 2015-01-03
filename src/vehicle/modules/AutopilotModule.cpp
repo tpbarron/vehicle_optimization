@@ -7,6 +7,8 @@
 
 #include "AutopilotModule.h"
 
+#include "utils/Logger.h"
+
 AutopilotModule::AutopilotModule() :
 	_update_period(100),
 	_mediator(nullptr),
@@ -21,7 +23,7 @@ AutopilotModule::~AutopilotModule() {
 }
 
 void AutopilotModule::start() {
-	std::cout << "Starting Autopilot Module" << std::endl;
+	Logger::info("Starting Autopilot Module");
 
 	// Start timer to update own position along route..
 	_self_update_timer.async_wait(boost::bind(&AutopilotModule::update_self, this));
@@ -52,7 +54,7 @@ void AutopilotModule::set_mediator(ModuleMediator *mediator) {
  * Called regularly to move this Vehicle along route
  */
 void AutopilotModule::update_self() {
-	std::cout << "Updating self" << std::endl;
+	Logger::info("Updating self");
 	_self_update_timer.expires_at(_self_update_timer.expires_at() + boost::posix_time::milliseconds(_update_period));
 	_self_update_timer.async_wait(boost::bind(&AutopilotModule::update_self, this));
 
@@ -64,7 +66,7 @@ void AutopilotModule::update_self() {
 
 	_last_update_time = cur_time;
 
-	std::cout << _mediator->sensor_to_string() << std::endl;
+	Logger::info(_mediator->sensor_to_string());
 }
 
 /**
@@ -128,7 +130,7 @@ void AutopilotModule::check_hazards(Position &pos, Heading &hdng, Speed &spd) {
 
 	//send out all messages
 	if (hazard_messages.size() > 0) {
-		std::cout << "Sending HazardMessages" << std::endl;
+		Logger::info("Sending HazardMessages");
 		_mediator->send_messages(hazard_messages);
 	}
 

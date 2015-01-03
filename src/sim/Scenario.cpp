@@ -9,6 +9,8 @@
 
 #include <boost/foreach.hpp>
 
+#include "utils/Logger.h"
+
 /**
  * Maintains data for a running scenario.
  *
@@ -32,7 +34,7 @@ void init() {
  * Cleanup resources used in the Scenario namespace
  */
 void cleanup() {
-	std::cout << "Cleaning up scenario" << std::endl;
+	Logger::info("Cleaning up scenario");
 }
 
 /**
@@ -63,7 +65,7 @@ void load_scenario(std::string scenario) {
 			std::string vname = v.second.get<std::string>(SCENARIO_VEHICLES_NAME);
 			std::string vfilename = v.second.get<std::string>(SCENARIO_VEHICLES_DATA);
 			std::string vpath = Utils::get_scenario_vehicle_file_path(scenario, vfilename);
-			std::cout << vname << ": " << vpath << std::endl;
+			Logger::info(vname + ": " + vpath);
 			load_vehicle(vname, vpath);
 		}
 	} else {
@@ -98,14 +100,19 @@ void load_vehicle(std::string name, std::string file) {
 		double goal_x = goal_data.get<double>(VEHICLE_POSITION_X);
 		double goal_y = goal_data.get<double>(VEHICLE_POSITION_Y);
 
-		std::cout <<"Loaded vehicle data : " << start_x << ", " << start_y << ", " << goal_x << ", " << goal_y << std::endl;
+		std::string i = "Loaded vehicle data : " +
+				boost::lexical_cast<std::string>(start_x) +
+				boost::lexical_cast<std::string>(start_y) + ", " +
+				boost::lexical_cast<std::string>(goal_x) + ", " +
+				boost::lexical_cast<std::string>(goal_y);
+		Logger::info(i);
 		v->set_start_position(start_x, start_y);
 		v->set_goal_position(goal_x, goal_y);
 		v->set_map(_map);
 		v->set_type_from_string(type);
 
 	} else {
-		std::cerr << "Unable to open vehicle file" << std::endl;
+		Logger::error("Unable to open vehicle file");
 	}
 }
 
@@ -136,7 +143,7 @@ void load_scenario_map(std::string scenario, boost::property_tree::ptree &map_tr
  */
 void load_scenario_intersections(std::string scenario, std::string file) {
 	std::string path = Utils::get_scenario_intersection_file_path(scenario, file);
-	std::cout << "Intersections: " << path << std::endl;
+	Logger::info("Intersections: " + path);
 	std::ifstream in(path.c_str());
 	if (in.is_open()) {
 		std::stringstream buf;
@@ -162,13 +169,13 @@ void load_scenario_intersections(std::string scenario, std::string file) {
 			_intersections.push_back(i);
 		}
 	} else {
-		std::cerr << "Could not open intersections file" << std::endl;
+		Logger::error("Could not open intersections file");
 	}
 }
 
 void load_scenario_roads(std::string scenario, std::string file) {
 	std::string path = Utils::get_scenario_road_file_path(scenario, file);
-	std::cout << "Roads: " << path << std::endl;
+	Logger::info("Roads: " + path);
 	std::ifstream in(path.c_str());
 
 	if (in.is_open()) {
@@ -214,7 +221,7 @@ void load_scenario_roads(std::string scenario, std::string file) {
 			_roads.push_back(r);
 		}
 	} else {
-		std::cerr << "Could not open road file" << std::endl;
+		Logger::error("Could not open road file");
 	}
 }
 
@@ -223,7 +230,7 @@ void load_scenario_roads(std::string scenario, std::string file) {
  */
 Lane load_road_lane(std::string scenario, std::string file) {
 	std::string path = Utils::get_scenario_lane_file_path(scenario, file);
-	std::cout << "Lane: " << path << std::endl;
+	Logger::info("Lane: " + path);
 	Lane l;
 	std::ifstream in(path.c_str());
 	if (in.is_open()) {
@@ -248,7 +255,7 @@ Lane load_road_lane(std::string scenario, std::string file) {
 
 Hazard load_road_hazard(std::string scenario, std::string file) {
 	std::string path = Utils::get_scenario_hazard_file_path(scenario, file);
-	std::cout << "Hazard: " << path << std::endl;
+	Logger::info("Hazard: " + path);
 	Hazard h;
 	std::ifstream in(path.c_str());
 	if (in.is_open()) {
@@ -266,7 +273,7 @@ Hazard load_road_hazard(std::string scenario, std::string file) {
 		h.set_position(p);
 		h.set_max_safe_speed(max_safe_speed);
 	} else {
-		std::cerr << "Could not open road file" << std::endl;
+		Logger::error("Could not open road file");
 	}
 	return h;
 }
@@ -277,6 +284,7 @@ Intersection& get_intersection_from_id(int id) {
 			return _intersections[i];
 		}
 	}
+	Logger::error("No intersection for id = " + boost::lexical_cast<std::string>(id));
 	throw std::invalid_argument("No intersection for id = " + boost::lexical_cast<std::string>(id));
 }
 
@@ -303,7 +311,7 @@ void populate_map() {
 
 
 void start() {
-	std::cout << "Starting scenario" << std::endl;
+	Logger::info("Starting scenario");
 	_start_time = boost::posix_time::microsec_clock::local_time();
 
 	auto vehicles = VehicleManager::get_vehicles();
@@ -318,7 +326,7 @@ void start() {
 }
 
 void stop() {
-	std::cout << "Stopping scenario" << std::endl;
+	Logger::info("Stopping scenario");
 
 	auto vehicles = VehicleManager::get_vehicles();
 	for (auto itr = vehicles.begin();

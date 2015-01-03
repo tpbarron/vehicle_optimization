@@ -9,9 +9,14 @@
 
 #include <iostream>
 
-Map::Map() : _network(0),
-			 _width(-1),
-			 _height(-1) {
+#include <boost/lexical_cast.hpp>
+
+#include "utils/Logger.h"
+
+
+Map::Map() : _width(-1),
+			 _height(-1),
+			 _network(0) {
 }
 
 Map::~Map() {
@@ -140,11 +145,12 @@ void Map::print_map_data() {
 		Road r = _network[*edge_iter];
 
 
-		std::cout << "(" << i1.get_id() << " pos=" << i1.get_position().to_string() << "), "
-						 << "road = " << r.get_distance() << ", ("
-						 << i2.get_id() << " pos=" << i2.get_position().to_string() << ")" << std::endl;
+		Logger::info("(" + boost::lexical_cast<std::string>(i1.get_id()) + " pos=" + i1.get_position().to_string() + "), "
+						 + "road = " + boost::lexical_cast<std::string>(r.get_distance()) + ", ("
+						 + boost::lexical_cast<std::string>(i2.get_id()) + " pos=" + i2.get_position().to_string() + ")");
+
 		for (auto itr = r.get_hazards().begin(); itr != r.get_hazards().end(); ++itr) {
-			std::cout << "  Hazard: " << (*itr).get_position().to_string() << std::endl;
+			Logger::info("  Hazard: " + (*itr).get_position().to_string());
 		}
 	}
 }

@@ -7,6 +7,8 @@
 
 #include "VehicleSensorModule.h"
 
+#include "utils/Logger.h"
+
 VehicleSensorModule::VehicleSensorModule() :
 	_update_period(1000),
 	_mediator(nullptr),
@@ -25,7 +27,7 @@ void VehicleSensorModule::set_mediator(ModuleMediator *mediator) {
 
 
 void VehicleSensorModule::start() {
-	std::cout << "Starting vehicle sensor module" << std::endl;
+	Logger::info("Starting vehicle sensor module");
 
 	// Start timer to send out updates
 	_broadcast_timer.async_wait(boost::bind(&VehicleSensorModule::update, this));
@@ -92,6 +94,5 @@ void VehicleSensorModule::update() {
  * Broadcasts a message to all listeners
  */
 void VehicleSensorModule::broadcast() {
-	std::cout << "VehicleSensorModule broadcasting" << std::endl;
-
+	Logger::info("VehicleSensorModule broadcasting");
 }

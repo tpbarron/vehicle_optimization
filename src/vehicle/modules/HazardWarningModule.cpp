@@ -7,6 +7,8 @@
 
 #include "HazardWarningModule.h"
 
+#include "utils/Logger.h"
+
 const Distance HazardWarningModule::HAZARD_DIST_THRESHOLD(10);
 const Heading HazardWarningModule::HAZARD_HEADING_THRESHOLD(.5);
 
@@ -22,13 +24,13 @@ void HazardWarningModule::set_mediator(ModuleMediator *mediator) {
 }
 
 void HazardWarningModule::handle(HazardMessage *mesg) {
-	std::cout << "HazardWarningModule handling HazardMessage" << std::endl;
+	Logger::info("HazardWarningModule handling HazardMessage");
 	Hazard hazard = mesg->get_hazard();
 	if (!is_known_hazard(hazard)) {
-		std::cout << "HazardWarningModule saving new Hazard" << std::endl;
+		Logger::info("HazardWarningModule saving new Hazard");
 		add_hazard(hazard);
 	} else {
-		std::cout << "HazardWarningModule Hazard already known" << std::endl;
+		Logger::info("HazardWarningModule Hazard already known");
 	}
 }
 

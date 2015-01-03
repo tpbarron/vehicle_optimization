@@ -9,6 +9,8 @@
 
 #include <iostream>
 
+#include "utils/Logger.h"
+
 Route::Route() :
 	_current_start_vertex(0),
 	_current_end_vertex(0),
@@ -24,7 +26,7 @@ Route::~Route() {
 void Route::print_route(Map& map) {
 	for (std::list<Map::vertex_t>::iterator it = _vertices.begin(); it != _vertices.end(); it++) {
 		Map::vertex_t v = *it;
-		std::cout << "Vertex = " << (map.get_network()[v]).get_id() << std::endl;
+		Logger::info("Vertex = " + boost::lexical_cast<std::string>((map.get_network()[v]).get_id()));
 	}
 }
 
@@ -37,7 +39,8 @@ void Route::generate_route(Map &map, Map::vertex_t &start, Map::vertex_t &goal) 
 	Intersection i1check = map.get_network()[start];
 	Intersection i2check = map.get_network()[goal];
 
-	std::cout << "Routing from: " << i1check.get_id() << " -> " << i2check.get_id() << std::endl;
+	Logger::info("Routing from: " + boost::lexical_cast<std::string>(i1check.get_id()) +
+			" -> " + boost::lexical_cast<std::string>(i2check.get_id()));
 
 	EuclideanDistanceHeuristic<Map::Graph, double> dist_heuristic(map.get_network(), goal);
 	AstarGoalVisitor astar_visitor(goal);
@@ -68,7 +71,7 @@ void Route::generate_route(Map &map, Map::vertex_t &start, Map::vertex_t &goal) 
 
 		//set start pos / road
 		Position ipos = i1check.get_position();
-		std::cout << "vehicle start intersect pos: " << ipos.to_string() << std::endl;
+		Logger::info("vehicle start intersect pos: " + ipos.to_string());
 		_current_position.set_position(i1check.get_position());
 		// Set last position so as to simulate going towards second intersection
 		// This gives a reasonable but not always perfect first heading calculation
@@ -228,7 +231,7 @@ void Route::calculate_angle_to_intersection(Map& map) {
 	double dy = i2.get_y() - i1.get_y();
 	double dx = i2.get_x() - i1.get_x();
 	_angle_to_intersection = std::atan2(dy, dx);
-	std::cout << "Computed angle to intersection in rad: " << _angle_to_intersection << std::endl;
+	Logger::info("Computed angle to intersection in rad: " + boost::lexical_cast<std::string>(_angle_to_intersection));
 }
 
 

@@ -6,19 +6,12 @@
  */
 
 
-#include <stdio.h>
-#include <stdlib.h>
 #include <iostream>
-#include <sstream>
-#include <string>
 
-#include <boost/asio.hpp>
 #include <boost/program_options.hpp>
 
+#include "utils/Logger.h"
 #include "sim/Scenario.h"
-#include "utils/Utils.h"
-#include "vehicle/Vehicle.h"
-
 #include "tests/TestMain.h"
 
 /**
@@ -49,6 +42,8 @@ int main(int argc, char* argv[]) {
 	    run_tests = vm["tests"].as<bool>();
 	}
 
+	Logger::init();
+
 	Scenario::init();
 	Scenario::load_scenario("basic_grid");
 	Scenario::test_print_map();
@@ -56,7 +51,7 @@ int main(int argc, char* argv[]) {
 	Scenario::start();
 	//		Scenario::stop();
 	//		Scenario::cleanup();
-
+//
 	if (run_tests) {
 		return TestMain::run_tests(argc, argv);
 	} else {
