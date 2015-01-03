@@ -7,6 +7,8 @@
 
 #include "Vehicle.h"
 
+#include "utils/Logger.h"
+
 /**
  * Create a Vehicle object
  *
@@ -30,7 +32,7 @@ Vehicle::~Vehicle() {
  * Start the Vehicle internal simulation
  */
 void Vehicle::start() {
-	std::cout << "Starting vehicle" << std::endl;
+	Logger::info("Starting vehicle");
 	_module_manager.init(get_id());
 	_module_manager.generate_route();
 	_module_manager.start();
@@ -59,7 +61,7 @@ void Vehicle::stop() {
  * @param l the object to add to the listeners list
  */
 void Vehicle::add_listener(IVehicleDataListener &l) {
-	std::cout << "Adding listener to vehicle " << get_id() << std::endl;
+	Logger::info("Adding listener to vehicle " + get_id());
 	_module_manager.add_listener(l);
 }
 
@@ -71,7 +73,7 @@ void Vehicle::add_listener(IVehicleDataListener &l) {
  * @param msg the incoming Message
  */
 void Vehicle::recv(Message *mesg) {
-	std::cout << get_id() << ": received data, sending to ModuleManager" << std::endl;
+	Logger::info(get_id() + ": received data, sending to ModuleManager");
 	_module_manager.recv(mesg);
 }
 

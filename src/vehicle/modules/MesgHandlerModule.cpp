@@ -8,10 +8,10 @@
 
 #include <vehicle/modules/MesgHandlerModule.h>
 
-#include <iostream>
 #include <algorithm>
 
 #include "data_manager/VehicleManager.h"
+#include "utils/Logger.h"
 
 
 MesgHandlerModule::MesgHandlerModule() :
@@ -30,7 +30,7 @@ void MesgHandlerModule::set_mediator(ModuleMediator *mediator) {
 }
 
 void MesgHandlerModule::start() {
-	std::cout << "Starting MesgHandler Module" << std::endl;
+	Logger::info("Starting MesgHandler Module");
 
 	// Start timer to update own position along route..
 	_nearby_vehicle_timer.async_wait(boost::bind(&MesgHandlerModule::update_nearest_vehicles, this));
@@ -48,7 +48,7 @@ void MesgHandlerModule::stop() {
  * set of nearest Vehicles.
  */
 void MesgHandlerModule::update_nearest_vehicles() {
-	std::cout << "Updating nearest vehicles" << std::endl;
+	Logger::info("Updating nearest vehicles");
 
 	// recalc every half second
 	_nearby_vehicle_timer.expires_at(_nearby_vehicle_timer.expires_at() + boost::posix_time::milliseconds(_update_period));
@@ -74,7 +74,7 @@ void MesgHandlerModule::update_nearest_vehicles() {
  * Send out a Message to all nearby listening vehicles
  */
 void MesgHandlerModule::send_message(Message *mesg) {
-	std::cout << "Sending Message to " << _listeners.size() << " vehicles" << std::endl;
+	Logger::info("Sending Message to " + boost::lexical_cast<std::string>(_listeners.size()) + " vehicles");
 	for (auto itr = _listeners.begin(); itr != _listeners.end(); ++itr) {
 		(*itr)->recv(mesg);
 	}

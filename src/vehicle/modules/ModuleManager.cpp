@@ -7,6 +7,8 @@
 
 #include "ModuleManager.h"
 
+#include "utils/Logger.h"
+
 ModuleManager::ModuleManager() {
 }
 
@@ -15,7 +17,7 @@ ModuleManager::~ModuleManager() {
 
 
 void ModuleManager::start() {
-	std::cout << "Starting ModuleManager" << std::endl;
+	Logger::info("Starting ModuleManager");
 
 	_autopilot.start();
 	_mesg_handler.start();
@@ -29,7 +31,7 @@ void ModuleManager::stop() {
 }
 
 void ModuleManager::init(std::string uuid) {
-	std::cout << "Initializing ModuleManager" << std::endl;
+	Logger::info("Initializing ModuleManager");
 	init_mediator(uuid);
 	init_sensor(uuid);
 }
@@ -68,7 +70,7 @@ void ModuleManager::init_sensor(std::string uuid) {
 }
 
 void ModuleManager::generate_route() {
-	std::cout << "Generating Route" << std::endl;
+	Logger::info("Generating Route");
 	_routing_module.generate_route();
 }
 
@@ -82,13 +84,13 @@ void ModuleManager::remove_listener(IVehicleDataListener &l) {
 }
 
 void ModuleManager::recv(Message *mesg) {
-	std::cout << "ModuleManager received Message" << std::endl;
+	Logger::info("ModuleManager received Message");
 	if (mesg->get_type() == message_types::TYPE_HAZARD_WARNING) {
-		std::cout << "ModuleManager received HazardMessage" << std::endl;
+		Logger::info("ModuleManager received HazardMessage");
 		HazardMessage* hazard_mesg = dynamic_cast<HazardMessage*>(mesg);
 		_hazard_module.handle(hazard_mesg);
 	} else if (mesg->get_type() == message_types::TYPE_EMERGENCY_VEHICLE) {
-		std::cout << "ModuleManager received emergency vehicle message" << std::endl;
+		Logger::info("ModuleManager received emergency vehicle message");
 	}
 }
 

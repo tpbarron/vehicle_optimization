@@ -8,11 +8,8 @@
 #ifndef SCENARIO_H_
 #define SCENARIO_H_
 
-#include <iostream>
 #include <string>
 #include <fstream>
-#include <sstream>
-#include <vector>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/property_tree/ptree.hpp>
