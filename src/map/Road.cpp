@@ -7,8 +7,6 @@
 
 #include "Road.h"
 
-#include <iostream>
-
 #include <boost/lexical_cast.hpp>
 
 const double Road::RANGE = 10.0;

@@ -7,8 +7,6 @@
 
 #include "Route.h"
 
-#include <iostream>
-
 #include "utils/Logger.h"
 
 Route::Route() :

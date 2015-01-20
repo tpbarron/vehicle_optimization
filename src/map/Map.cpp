@@ -7,8 +7,6 @@
 
 #include "Map.h"
 
-#include <iostream>
-
 #include <boost/lexical_cast.hpp>
 
 #include "utils/Logger.h"

@@ -8,8 +8,6 @@
 #ifndef VEHICLE_H_
 #define VEHICLE_H_
 
-#include <iostream>
-
 #include <boost/uuid/uuid.hpp>
 #include <boost/uuid/uuid_io.hpp>
 
